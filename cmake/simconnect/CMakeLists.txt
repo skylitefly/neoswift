@@ -7,7 +7,6 @@
 if(SWIFT_BUILD_FSX_PLUGIN OR SWIFT_BUILD_P3D_PLUGIN OR SWIFT_BUILD_MSFS_PLUGIN OR SWIFT_BUILD_MSFS2024_PLUGIN)
     add_library(externals_simconnect INTERFACE IMPORTED GLOBAL)
     target_compile_definitions(externals_simconnect INTERFACE SIMCONNECT_H_NOMANIFEST)
-    target_compile_definitions(externals_simconnect INTERFACE BUID_SIMCONNECT_LIB)
     if(SWIFT_WIN64)
         target_include_directories(externals_simconnect INTERFACE ${PROJECT_SOURCE_DIR}/third_party/externals/common/include/simconnect/P3D-v4)
         target_compile_definitions(externals_simconnect INTERFACE P3D_SDK_VERSION=400)

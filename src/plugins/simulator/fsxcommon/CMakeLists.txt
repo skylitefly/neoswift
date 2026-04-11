@@ -44,7 +44,7 @@ target_link_libraries(fsxcommon
 )
 
 force_asserts(fsxcommon)
-target_compile_definitions(fsxcommon PRIVATE BUILD_FSXCOMMON_LIB)
+target_compile_definitions(fsxcommon PRIVATE BUILD_FSXCOMMON_LIB BUID_SIMCONNECT_LIB)
 
 install(TARGETS fsxcommon
         LIBRARY DESTINATION bin
