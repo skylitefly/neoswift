@@ -21,6 +21,7 @@
 #    include <filesystem>
 #    include <fstream>
 #else
+#    include <sys/socket.h>
 #    include <ifaddrs.h>
 #    include <net/if_dl.h>
 #endif
