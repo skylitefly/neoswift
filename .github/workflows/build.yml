@@ -32,7 +32,6 @@ env:
   installbuilder_hash_macos: bffa8b2663c6e9aaaa1ed7cdb41a874d34ff89f22adfab419e172915f8f4ce57
   # Set EXTERNALS_PAT secret to enable proprietary externals (SimConnect SDK etc.)
   externals: ${{ github.repository_owner }}/neoswift-externals
-  externals_sha: e1f1743ba159e11b0c065ea8f1ae1a0e91e3bf39
   use_externals: ${{ secrets.EXTERNALS_PAT != '' }}
 
 jobs:
@@ -141,7 +140,6 @@ jobs:
           EXTERNALS_PAT: ${{ secrets.EXTERNALS_PAT }}
         with:
           repository: ${{ env.externals }}
-          ref: ${{ env.externals_sha }}
           token: ${{ env.EXTERNALS_PAT }}
           path: 'third_party/externals'
       - name: Install conan dependencies
@@ -210,7 +208,6 @@ jobs:
           EXTERNALS_PAT: ${{ secrets.EXTERNALS_PAT }}
         with:
           repository: ${{ env.externals }}
-          ref: ${{ env.externals_sha }}
           token: ${{ env.EXTERNALS_PAT }}
           path: 'third_party/externals'
       - name: Install conan dependencies
@@ -319,7 +316,6 @@ jobs:
           EXTERNALS_PAT: ${{ secrets.EXTERNALS_PAT }}
         with:
           repository: ${{ env.externals }}
-          ref: ${{ env.externals_sha }}
           token: ${{ env.EXTERNALS_PAT }}
           path: 'third_party/externals'
       - name: Install conan dependencies
@@ -417,7 +413,6 @@ jobs:
           EXTERNALS_PAT: ${{ secrets.EXTERNALS_PAT }}
         with:
           repository: ${{ env.externals }}
-          ref: ${{ env.externals_sha }}
           token: ${{ env.EXTERNALS_PAT }}
           path: 'third_party/externals'
       - name: Install conan dependencies
