@@ -1,62 +1,63 @@
-<!--
- SPDX-FileCopyrightText: Copyright (C) swift Project Community / Contributors
- SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-swift-pilot-client-1
--->
+# neoswift
 
-About
-=====
+A fork of [swift pilot client](https://swift-project.org/) for FSD-compatible flight simulation networks — built for networks that aren't VATSIM.
 
-_swift_ is a pilot client for virtual air traffic simulation networks,
-such as VATSIM, supporting the following simulators and operating systems:
+swift is a capable, cross-platform pilot client, but in practice it only works well for VATSIM: VATSIM endpoints are hardcoded, authentication is tied to proprietary closed-source components, and third-party networks get a degraded experience with no path to first-class support. neoswift changes that.
 
-- Prepar3D (Windows)
-- Flight Simulator X (Windows)
-- Flight Simulator 2004 (Windows)
-- Flight Simulator 2020 (Windows)
-- X-Plane 11 & 12 (Windows, Linux, macOS)
-- FlightGear (Windows, Linux, macOS)
+> **IMPORTANT**: neoswift is **NOT** a VATSIM-approved client and is not intended for use on the VATSIM network.
+>
+> neoswift removes VATSIM proprietary components. While it retains VATSIMAuth challenge support for use with third-party networks that implement the same handshake, **connecting to VATSIM is not guaranteed and may result in a ban**.
+>
+> If you want to connect to VATSIM, use the [official swift client](https://swift-project.org/) instead.
 
-Downloads
-=========
+## What's different
 
-[![Beta version](https://img.shields.io/github/v/release/swift-project/pilotclient?color=blue&label=beta)][1]
-[![Alpha version](https://img.shields.io/github/v/release/swift-project/pilotclient?include_prereleases&label=alpha)][2]
+### VATSIM proprietary components removed
+- `libvatsimauth` — VATSIM's closed-source client/server verification library — has been replaced with OpenVatsimAuth, an open-source reimplementation. This means neoswift can connect to networks that implement the VATSIMAuth challenge/response handshake without shipping a proprietary binary.
+- VATSIM-specific hardcoded endpoints, authentication flows, and UI have been removed.
 
-[1]: https://github.com/swift-project/pilotclient/releases/latest
-[2]: https://github.com/swift-project/pilotclient/releases
+### Network auto-discovery
+Add any compatible network with just a domain name, and enjoy the same convenience as connecting to VATSIM.
 
-Resources
-=========
+No more manual field-by-field setup or long setup insstructions, neoswift fetches `https://your-network.com/.well-known/fsd-configuration.json` and configures everything automatically — FSD protocol version, authentication method, server list, METAR source, and even AFV voice server
 
-[:globe_with_meridians: Website](https://swift-project.org/)
+### Full configurability
+neoswift enables full configurability to network operators with its auto-discovery feature.
 
-[:green_book: User guide](https://swift-project.org/documentation/)
+Every FSD protocol behavior that swift exposes is now configurable per-network, and fully automated with auto-discovery:
+- Protocol revision
+- Authentication method: JWT token endpoint or legacy plaintext password
+- VATSIMAuth challenge behaviors
+- Per-direction flags: aircraft parts, interim positions, ground flag, visual positions
+- EuroScope sim data, ICAO equipment field format, and more
+- Custom AFV-compatible voice server, or disable AFV
 
-[:wave: Discord](https://discord.gg/R7Atd9A)
+And even more:
+- Provide a dynamic updating server list dropdown, just like VATSIM, for your user to select from.
+- 
 
-Contributing
-============
+## For network operators
 
-_swift_ is written in modern C++17 using the Qt framework.
+Want your network to work with neoswift? Add a `fsd-configuration.json` to your domain's `.well-known/` path and your users get one-click setup.
 
+→ [Network Operator Guide](docs/network-operator-guide.md)
 
-We are open to any contribution! More information can be found [here](https://swift-project.org/home/getting_involved/).
+## For users whose network isn't supported yet
 
+Check [awesome-neoswift](https://github.com/skylitefly/awesome-neoswift) for community-maintained configuration files for networks that haven't added official neoswift support.
 
-[![Development version](https://img.shields.io/badge/version-0.15-blue)](.)
-[![Build status](https://img.shields.io/github/actions/workflow/status/swift-project/pilotclient/build.yml?branch=main)][3]
+## Building
 
-[3]: https://github.com/swift-project/pilotclient/actions
+neoswift is a fork of swift and builds with the same toolchain. See [BUILDING.md](BUILDING.md).
 
-Pull requests should be made against the `main` branch.
+To enable VATSIMAuth challenge support (required for networks that implement the handshake):
+```cmake
+cmake -DSWIFT_VATSIM_SUPPORT=ON ...
+```
 
-[:blue_book: Developer guide](https://github.com/swift-project/pilotclient/wiki)
+## License
 
-[:orange_book: API documentation](https://apidocs.swift-project.org/)
+GPL-3.0, inherited from swift pilot client. See [LICENSE](LICENSE).
 
-Licensing
-=========
-swift is dual-licensed under the GPL-3.0-or-later or the swift pilot client license (a modified GPL-3.0-or-later license).
-Official releases are published under the swift pilot client license.
-This dual licensing is necessary because swift may, depending on the build settings, link to proprietary software that is not compatible with the GPL-3.0-or-later.
-For example, this includes vatsimauth or simulator-specific connectors.
+neoswift is not affiliated with, endorsed by, or approved by VATSIM.
+neoswift is not a VATSIM-approved client and is not intended to connect to the VATSIM network.

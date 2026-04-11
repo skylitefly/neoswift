@@ -9,6 +9,8 @@
 using namespace swift::config;
 using namespace swift::misc;
 using namespace swift::misc::network;
+using namespace swift::misc::network::data;
+using namespace swift::misc::network::settings;
 
 namespace swift::core::data
 {
@@ -48,6 +50,14 @@ namespace swift::core::data
         return server.getEcosystem() == CEcosystem::privateFsd() || server.getEcosystem() == CEcosystem::swiftTest() ||
                server.getEcosystem() == CEcosystem::swift();
     }
+
+    CNetworkList CNetworkSetup::getNetworks() const { return m_networks.get(); }
+
+    CStatusMessage CNetworkSetup::setNetworks(const CNetworkList &networks) { return m_networks.set(networks); }
+
+    CNetwork CNetworkSetup::getLastNetwork() const { return m_lastNetwork.get(); }
+
+    CStatusMessage CNetworkSetup::setLastNetwork(const CNetwork &network) { return m_lastNetwork.set(network); }
 
     void CNetworkSetup::onSettingsChanged() { emit this->setupChanged(); }
 } // namespace swift::core::data

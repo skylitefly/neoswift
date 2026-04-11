@@ -17,6 +17,7 @@
 
 #include "core/context/contextnetwork.h"
 #include "core/corefacadeconfig.h"
+#include "core/data/networksetup.h"
 #include "core/swiftcoreexport.h"
 #include "misc/aviation/aircraftpartslist.h"
 #include "misc/aviation/aircraftsituationlist.h"
@@ -459,6 +460,7 @@ namespace swift::core
             swift::misc::network::CLoginMode m_currentMode = swift::misc::network::CLoginMode::Pilot; //!< current modeM
             CAirspaceMonitor *m_airspace = nullptr;
             fsd::CFSDClient *m_fsdClient = nullptr;
+            swift::core::data::CNetworkSetup m_networkSetup; //!< access to last-network data cache
             QTimer *m_requestAircraftDataTimer =
                 nullptr; //!< general updates such as frequencies, see requestAircraftDataUpdates()
             QTimer *m_requestAtisTimer = nullptr; //!< general updates such as ATIS

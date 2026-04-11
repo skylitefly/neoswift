@@ -24,12 +24,10 @@
 #include "core/context/contextnetwork.h"
 #include "core/context/contextownaircraft.h"
 #include "core/context/contextsimulator.h"
-#include "core/data/globalsetup.h"
 #include "core/simulator.h"
+#include "misc/network/network.h"
 #include "core/webdataservices.h"
-#include "gui/components/serverlistselector.h"
 #include "gui/editors/pilotform.h"
-#include "gui/editors/serverform.h"
 #include "gui/guiapplication.h"
 #include "gui/ticklabel.h"
 #include "gui/uppercasevalidator.h"
@@ -174,9 +172,8 @@ namespace swift::gui::components
         if (!sGui->getIContextNetwork() || !sGui->getIContextAudio()) { return; }
 
         m_networkConnected = sGui && sGui->getIContextNetwork()->isConnected();
-        const bool vatsimLogin = this->isVatsimNetworkTabSelected();
 
-        ui->form_Pilot->setVatsimValidation(vatsimLogin);
+        ui->form_Pilot->setVatsimValidation(false);
         this->updateUiConnectState();
 
         // reset time
@@ -257,7 +254,6 @@ namespace swift::gui::components
                 Q_ASSERT_X(currentServer.isValidForLogin(), Q_FUNC_INFO, "invalid server");
                 sGui->setExtraWindowTitle(QStringLiteral("[%1]").arg(ownAircraft.getCallsignAsString()));
                 CCrashHandler::instance()->crashAndLogInfoUserName(currentServer.getUser().getRealNameAndId());
-                CCrashHandler::instance()->crashAndLogInfoFlightNetwork(currentServer.getEcosystem().toQString(true));
                 CCrashHandler::instance()->crashAndLogAppendInfo(currentServer.getServerSessionId(false));
                 m_networkSetup.setLastServer(currentServer);
 
@@ -265,7 +261,6 @@ namespace swift::gui::components
                 m_lastAircraftModel.set(ownModel);
                 ui->le_LoginCallsign->setText(ownAircraft.getCallsignAsString());
                 ui->le_LoginHomeBase->setText(currentServer.getUser().getHomeBase().asString());
-                if (vatsimLogin) { m_networkSetup.setLastVatsimServer(currentServer); }
             }
             else { sGui->setExtraWindowTitle(""); }
         }
@@ -289,8 +284,10 @@ namespace swift::gui::components
 
     void CLoginComponent::loadRememberedUserData()
     {
-        const CServer lastServer = m_networkSetup.getLastServer();
-        const CUser lastUser = lastServer.getUser();
+        // Prefer per-network stored credentials; fall back to the last used server's user
+        const swift::misc::network::CNetwork lastNetwork = m_networkSetup.getLastNetwork();
+        const CUser lastUser =
+            lastNetwork.hasLoadedConfig() ? lastNetwork.getUser() : m_networkSetup.getLastServer().getUser();
         ui->form_Pilot->setUser(lastUser);
         ui->comp_OwnAircraft->setUser(lastUser);
     }
@@ -298,12 +295,7 @@ namespace swift::gui::components
     void CLoginComponent::onSelectedServerChanged(const CServer &server)
     {
         if (!m_updatePilotOnServerChanges) { return; }
-        const bool vatsim = this->isVatsimNetworkTabSelected();
-        const CUser user =
-            server.getServerType() != CServer::FSDServer ? this->getCurrentVatsimServer().getUser() : server.getUser();
-        if ((vatsim && server.getServerType() != CServer::FSDServer) ||
-            (!vatsim && server.getServerType() == CServer::FSDServer))
-            ui->form_Pilot->setUser(user);
+        if (server.getUser().hasCredentials()) { ui->form_Pilot->setUser(server.getUser()); }
     }
 
     void CLoginComponent::onSimulatorStatusChanged(int status)
@@ -332,15 +324,6 @@ namespace swift::gui::components
         this->updateGui();
     }
 
-    void CLoginComponent::onServerTabWidgetChanged(int index)
-    {
-        Q_UNUSED(index)
-        if (!m_updatePilotOnServerChanges) { return; }
-        const bool vatsim = this->isVatsimNetworkTabSelected();
-        const CServer server = vatsim ? this->getCurrentVatsimServer() : this->getCurrentOtherServer();
-        ui->form_Pilot->setUser(server.getUser());
-    }
-
     bool CLoginComponent::hasValidContexts() const
     {
         if (!sGui || !sGui->supportsContexts()) { return false; }
@@ -358,23 +341,9 @@ namespace swift::gui::components
         return user;
     }
 
-    CServer CLoginComponent::getCurrentVatsimServer() const
-    {
-        CServer server = ui->comp_NetworkDetails->getCurrentVatsimServer();
-        if (!server.getUser().hasValidVatsimId())
-        {
-            // normally VATSIM server have no valid user associated
-            const CUser user = m_networkSetup.getLastVatsimServer().getUser();
-            server.setUser(user);
-        }
-        return server;
-    }
-
-    CServer CLoginComponent::getCurrentOtherServer() const { return ui->comp_NetworkDetails->getCurrentOtherServer(); }
-
     CServer CLoginComponent::getCurrentServer() const
     {
-        return this->isVatsimNetworkTabSelected() ? this->getCurrentVatsimServer() : this->getCurrentOtherServer();
+        return ui->comp_NetworkDetails->getCurrentServer();
     }
 
     void CLoginComponent::startLogoffTimerCountdown()
@@ -507,6 +476,8 @@ namespace swift::gui::components
 
         if (m_networkConnected) { ui->pb_Ok->setDisabled(false); }
         else { ui->pb_Ok->setDisabled(!m_simulatorConnected); }
+
+        ui->lbl_NoSimulator->setVisible(!m_networkConnected && !m_simulatorConnected);
     }
 
     void CLoginComponent::blinkConnectButton()
@@ -530,11 +501,6 @@ namespace swift::gui::components
         });
         timer->setObjectName("blinker");
         timer->start(blinkLength);
-    }
-
-    bool CLoginComponent::isVatsimNetworkTabSelected() const
-    {
-        return ui->comp_NetworkDetails->isVatsimServerSelected();
     }
 
     CAircraftModel CLoginComponent::getPrefillModel() const

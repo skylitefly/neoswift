@@ -7,19 +7,18 @@
 #define SWIFT_GUI_COMPONENTS_SETTINGSNETWORKSERVERSCOMPONENT_H
 
 #include <QFrame>
-#include <QObject>
-#include <QScopedPointer>
+#include <QPushButton>
+#include <QTableWidget>
 
+#include "core/network/networkdiscoveryservice.h"
 #include "gui/swiftguiexport.h"
-#include "misc/network/settings/serversettings.h"
+#include "misc/network/settings/networksettings.h"
+#include "misc/settingscache.h"
 
-namespace Ui
-{
-    class CSettingsNetworkServersComponent;
-}
 namespace swift::gui::components
 {
-    //! Settings for network servers
+    //! Settings page for managing flight networks.
+    //! Shows all configured networks in a table and allows adding / removing them.
     class SWIFT_GUI_EXPORT CSettingsNetworkServersComponent : public QFrame
     {
         Q_OBJECT
@@ -32,18 +31,21 @@ namespace swift::gui::components
         ~CSettingsNetworkServersComponent() override;
 
     private:
-        //! Reload settings
-        void reloadSettings();
+        void reloadTable();
+        void onAddPressed();
+        void onDeletePressed();
+        void onRefreshSelectedPressed();
+        void onRefreshAllPressed();
 
-        //! Network server selected
-        void serverSelected(const QModelIndex &index);
+        QTableWidget *m_table = nullptr;
+        QPushButton *m_pbAdd = nullptr;
+        QPushButton *m_pbDelete = nullptr;
+        QPushButton *m_pbRefreshSelected = nullptr;
+        QPushButton *m_pbRefreshAll = nullptr;
 
-        //! Alter traffic server
-        void alterTrafficServer();
-
-        QScopedPointer<Ui::CSettingsNetworkServersComponent> ui;
-        swift::misc::CSetting<swift::misc::network::settings::TTrafficServers> m_trafficNetworkServers {
-            this, &CSettingsNetworkServersComponent::reloadSettings
+        swift::core::network::CNetworkDiscoveryService m_discoveryService;
+        swift::misc::CSetting<swift::misc::network::settings::TNetworks> m_networks {
+            this, &CSettingsNetworkServersComponent::reloadTable
         };
     };
 } // namespace swift::gui::components

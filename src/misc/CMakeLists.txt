@@ -374,6 +374,7 @@ add_library(misc SHARED
         network/clientprovider.h
         network/connectionstatus.cpp
         network/connectionstatus.h
+        network/data/lastnetwork.h
         network/data/lastserver.h
         network/ecosystem.cpp
         network/ecosystem.h
@@ -389,6 +390,12 @@ add_library(misc SHARED
         network/fsdsetup.h
         network/loginmode.cpp
         network/loginmode.h
+        network/network.cpp
+        network/network.h
+        network/networkconfig.cpp
+        network/networkconfig.h
+        network/networklist.cpp
+        network/networklist.h
         network/networkutils.cpp
         network/networkutils.h
         network/ping.cpp
@@ -411,6 +418,7 @@ add_library(misc SHARED
         network/server.h
         network/serverlist.cpp
         network/serverlist.h
+        network/settings/networksettings.h
         network/settings/serversettings.h
         network/textmessage.cpp
         network/textmessage.h

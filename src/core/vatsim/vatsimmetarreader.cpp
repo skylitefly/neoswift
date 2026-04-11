@@ -54,10 +54,13 @@ namespace swift::core::vatsim
         this->threadAssertCheck();
         if (!this->doWorkCheck()) { return; }
 
-        const CUrl url(sApp->getVatsimMetarUrl());
-        if (url.isEmpty()) { return; }
+        // Prefer injected URL (from CNetworkConfig), fall back to legacy GlobalSetup path
+        QReadLocker l(&m_lockUrl);
+        const CUrl base = m_metarUrl.isEmpty() ? CUrl(sApp->getVatsimMetarUrl()) : m_metarUrl;
+        l.unlock();
+        if (base.isEmpty()) { return; }
         Q_ASSERT_X(sApp, Q_FUNC_INFO, "No Application");
-        this->getFromNetworkAndLog(url.withAppendedQuery("id=all"), { this, &CVatsimMetarReader::decodeMetars });
+        this->getFromNetworkAndLog(base.withAppendedQuery("id=all"), { this, &CVatsimMetarReader::decodeMetars });
     }
 
     void CVatsimMetarReader::decodeMetars(QNetworkReply *nwReplyPtr)

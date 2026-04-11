@@ -1407,9 +1407,8 @@ namespace swift::core
         Q_UNUSED(oldStatus)
         if (newStatus == CConnectionStatus::Connecting && m_fsdClient)
         {
-            const CServer server = m_fsdClient->getServer();
-            const bool isVatsim = server.getEcosystem().isSystem(CEcosystem::VATSIM);
-            const CLength maxRange(isVatsim ? 125 : -1, CLengthUnit::NM());
+            const int rangeNm = m_fsdClient->getNetworkConfig().getMaxRangeNm();
+            const CLength maxRange(rangeNm, CLengthUnit::NM());
             this->setMaxRange(maxRange);
         }
 

@@ -26,7 +26,11 @@
 #include "misc/identifiable.h"
 #include "misc/identifier.h"
 #include "misc/input/actionhotkeydefs.h"
+#include "misc/datacache.h"
 #include "misc/network/connectionstatus.h"
+#include "misc/network/data/lastnetwork.h"
+#include "misc/network/network.h"
+#include "misc/network/networkconfig.h"
 #include "misc/network/userlist.h"
 #include "misc/simplecommandparser.h"
 #include "sound/notificationplayer.h"
@@ -292,6 +296,12 @@ namespace swift::core
             //! Init the voice client
             void initVoiceClient();
 
+            //! Set the network config for voice; must be called before initVoiceClient()
+            void setNetworkConfigForVoice(const swift::misc::network::CNetworkConfig &config)
+            {
+                m_currentNetworkConfig = config;
+            }
+
             //! Terminate the voice client
             void terminateVoiceClient();
 
@@ -367,6 +377,8 @@ namespace swift::core
             afv::clients::CAfvClient *m_voiceClient = nullptr;
             bool m_winCoInitialized = false;
             swift::misc::audio::CAudioDeviceInfoList m_activeLocalDevices;
+            swift::misc::network::CNetworkConfig m_currentNetworkConfig;
+            swift::misc::CData<swift::misc::network::data::TLastNetwork> m_lastNetworkData { this };
 
             // Players
             swift::sound::CSelcalPlayer *m_selcalPlayer = nullptr;

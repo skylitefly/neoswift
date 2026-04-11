@@ -26,6 +26,7 @@
 #include "misc/aviation/liverylist.h"
 #include "misc/countrylist.h"
 #include "misc/network/entityflags.h"
+#include "misc/network/networkconfig.h"
 #include "misc/network/serverlist.h"
 #include "misc/network/url.h"
 #include "misc/network/userlist.h"
@@ -99,6 +100,9 @@ namespace swift::core
 
         //! Metar reader
         vatsim::CVatsimMetarReader *getMetarReader() const { return m_vatsimMetarReader; }
+
+        //! Inject URLs from a network config into the data readers
+        void setActiveNetworkConfig(const swift::misc::network::CNetworkConfig &config);
 
         //! DB info data reader
         swift::core::db::CInfoDataReader *getDbInfoDataReader() const { return m_dbInfoDataReader; }

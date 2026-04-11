@@ -8,12 +8,14 @@
 
 #include <QMap>
 #include <QObject>
+#include <QReadWriteLock>
 #include <QString>
 #include <QStringList>
 
 #include "core/data/vatsimsetup.h"
 #include "core/swiftcoreexport.h"
 #include "core/threadedreaderperiodic.h"
+#include "misc/network/url.h"
 #include "misc/aviation/aircrafticaocode.h"
 #include "misc/aviation/airlineicaocode.h"
 #include "misc/aviation/atcstationlist.h"
@@ -112,6 +114,13 @@ namespace swift::core::vatsim
         //! \threadsafe
         void updateWithVatsimDataFileData(swift::misc::simulation::CSimulatedAircraft &aircraftToBeUdpated) const;
 
+        //! Set the URL for network data; must be set before the reader starts
+        void setNetworkDataUrl(const swift::misc::network::CUrl &url)
+        {
+            QWriteLocker l(&m_lockUrl);
+            m_networkDataUrl = url;
+        }
+
     signals:
         //! Data have been read
         void dataFileRead(int kB);
@@ -140,6 +149,8 @@ namespace swift::core::vatsim
         swift::misc::CSettingReadOnly<swift::core::vatsim::TVatsimDataFile> m_settings {
             this, &CVatsimDataFileReader::reloadSettings
         };
+        swift::misc::network::CUrl m_networkDataUrl; //!< injected via setNetworkDataUrl()
+        mutable QReadWriteLock m_lockUrl { QReadWriteLock::Recursive };
         QMap<swift::misc::aviation::CCallsign, swift::misc::aviation::CFlightPlanRemarks>
             m_flightPlanRemarks; //!< cache for flight plan remarks
 

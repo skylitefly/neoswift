@@ -7,32 +7,22 @@
 #define SWIFT_GUI_COMPONENTS_NETWORKDETAILSCOMPONENT_H
 
 #include <QFrame>
-#include <QScopedPointer>
 
-#include "core/data/networksetup.h"
-#include "misc/network/data/lastserver.h"
-#include "misc/network/entityflags.h"
 #include "misc/network/loginmode.h"
 
-namespace Ui
-{
-    class CNetworkDetailsComponent;
-}
+namespace swift::misc::aviation { class CCallsign; }
+namespace swift::misc::network { class CServer; }
+
 namespace swift::gui::components
 {
-    //! FSD details
+    class CNetworkSelectorComponent;
+
+    //! Thin shell delegating to CNetworkSelectorComponent.
     class CNetworkDetailsComponent : public QFrame
     {
         Q_OBJECT
 
     public:
-        //! The tabs
-        enum Tab
-        {
-            LoginVATSIM,
-            LoginOthers,
-        };
-
         //! Ctor
         explicit CNetworkDetailsComponent(QWidget *parent = nullptr);
 
@@ -45,19 +35,7 @@ namespace swift::gui::components
         //! Login mode
         void setLoginMode(swift::misc::network::CLoginMode mode);
 
-        //! @{
-        //! Selected server
-        bool isVatsimServerSelected() const;
-        bool isOtherServerSelected() const;
-        //! @}
-
-        //! Selected server (VATSIM)
-        swift::misc::network::CServer getCurrentVatsimServer() const;
-
-        //! Selected server (others)
-        swift::misc::network::CServer getCurrentOtherServer() const;
-
-        //! Current server based on selected tab
+        //! Current server
         swift::misc::network::CServer getCurrentServer() const;
 
         //! Pilot or Co-pilot callsign?
@@ -67,35 +45,14 @@ namespace swift::gui::components
         swift::misc::aviation::CCallsign getPartnerCallsign() const;
 
     signals:
-        //! Override the pilot
-        void overridePilot(const swift::misc::network::CUser &user);
-
         //! Request network settings
         void requestNetworkSettings();
 
         //! Current selected server changed
-        void currentServerChanged(const misc::network::CServer &server);
+        void currentServerChanged(const swift::misc::network::CServer &server);
 
     private:
-        //! Settings have been changed
-        void reloadOtherServersSetup();
-
-        //! Tab widget (server) changed
-        void onServerTabWidgetChanged(int index);
-
-        //! Server changed
-        void onSelectedServerChanged(const swift::misc::network::CServer &server);
-
-        //! Set the server buttons visible
-        void setServerButtonsVisible(bool visible);
-
-        //! VATSIM data file was loaded
-        void onWebServiceDataRead(swift::misc::network::CEntityFlags::Entity entity,
-                                  swift::misc::network::CEntityFlags::ReadState state, int number, const QUrl &url);
-
-        swift::core::data::CNetworkSetup m_networkSetup; //!< servers last used
-        bool m_updatePilotOnServerChanges = true;
-        QScopedPointer<Ui::CNetworkDetailsComponent> ui;
+        CNetworkSelectorComponent *m_networkSelector = nullptr;
     };
 } // namespace swift::gui::components
 

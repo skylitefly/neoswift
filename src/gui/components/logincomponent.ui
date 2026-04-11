@@ -149,6 +149,32 @@
         </layout>
        </widget>
       </item>
+      <item>
+       <widget class="QLabel" name="lbl_NoSimulator">
+        <property name="text">
+         <string>No simulator connected</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="styleSheet">
+         <string>color: orange; font-style: italic;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="vs_NoSimSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
      </layout>
     </widget>
    </item>

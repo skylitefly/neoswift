@@ -115,6 +115,10 @@ add_library(core SHARED
         db/modeldatareader.cpp
         db/modeldatareader.h
 
+        # Discovery
+        network/networkdiscoveryservice.cpp
+        network/networkdiscoveryservice.h
+
         # FSD
         fsd/addatc.cpp
         fsd/addatc.h
