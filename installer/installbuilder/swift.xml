@@ -3,9 +3,9 @@
 	SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-swift-pilot-client-1
 -->
 <componentGroup>
-    <name>swift</name>
-    <description>swift ${versionFull}</description>
-    <detailedDescription>swift ${versionFull}</detailedDescription>
+    <name>neoswift</name>
+    <description>neoswift ${versionFull}</description>
+    <detailedDescription>neoswift ${versionFull}</detailedDescription>
     <canBeEdited>1</canBeEdited>
     <selected>1</selected>
     <show>1</show>

@@ -524,7 +524,7 @@ void SwiftGuiStd::displayDBusReconnectDialog()
     static const QString informativeText("Do you want to try to reconnect? 'Abort' will close the GUI.\n\nDBus: '%1'");
     QMessageBox msgBox(this);
     msgBox.setIcon(QMessageBox::Critical);
-    msgBox.setText("swift core not reachable!");
+    msgBox.setText("neoswift core not reachable!");
     msgBox.setInformativeText(informativeText.arg(dBusAddress));
     msgBox.setStandardButtons(QMessageBox::Retry | QMessageBox::Abort);
     msgBox.setDefaultButton(QMessageBox::Retry);

@@ -74,7 +74,7 @@ swift::core::CApplication *sApp = nullptr; // set by constructor
 static const QString &swiftDataRoot()
 {
     static const QString path =
-        QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/org.swift-project/";
+        QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/org.neoswift/";
     return path;
 }
 

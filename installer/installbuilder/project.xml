@@ -216,7 +216,7 @@ It must be closed before the installation can proceed</progressText>
         <runProgram>
             <program>${installdir}/bin/swiftlauncher</program>
             <programArguments>-i &amp;</programArguments>
-            <progressText>Run swift launcher wizard</progressText>
+            <progressText>Run neoswift launcher wizard</progressText>
             <ruleList>
                 <platformTest>
                     <negate>1</negate>
@@ -228,7 +228,7 @@ It must be closed before the installation can proceed</progressText>
         <runProgram>
             <program>open</program>
             <programArguments>${Installdir}/bin/swiftlauncher.app --args -i &amp;</programArguments>
-            <progressText>Run swift launcher wizard</progressText>
+            <progressText>Run neoswift launcher wizard</progressText>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
@@ -302,10 +302,6 @@ It must be closed before the installation can proceed</progressText>
         </language> -->
     </customLanguageFileList>
     <finalPageActionList>
-        <!-- <launchBrowser>
-            <url>http://www.swift-project.org</url>
-            <progressText>Visit the swift project page</progressText>
-        </launchBrowser> -->
     </finalPageActionList>
     <licenseFileList>
         <licenseFile>

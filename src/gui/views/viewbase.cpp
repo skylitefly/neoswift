@@ -781,7 +781,7 @@ namespace swift::gui::views
     {
         const QString fileName = QFileDialog::getOpenFileName(
             nullptr, tr("Load data file"), directory.isEmpty() ? this->getFileDialogFileName(true) : directory,
-            tr("swift (*.json *.txt)"));
+            tr("neoswift (*.json *.txt)"));
         return this->loadJsonFile(fileName);
     }
 
@@ -790,7 +790,7 @@ namespace swift::gui::views
     {
         const QString fileName = QFileDialog::getSaveFileName(
             nullptr, tr("Save data file"), directory.isEmpty() ? this->getFileDialogFileName(false) : directory,
-            tr("swift (*.json *.txt)"));
+            tr("neoswift (*.json *.txt)"));
         if (fileName.isEmpty()) { return CStatusMessage(this, CStatusMessage::SeverityDebug, u"Save canceled", true); }
         const QString json(this->toJsonString(QJsonDocument::Indented, selectedOnly)); // save as CVariant JSON
 

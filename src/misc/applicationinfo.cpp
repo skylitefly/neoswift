@@ -164,25 +164,25 @@ namespace swift::misc
 
     const QString &CApplicationInfo::swiftPilotClientGui()
     {
-        static const QString s("swift pilot client GUI");
+        static const QString s("neoswift GUI");
         return s;
     }
 
     const QString &CApplicationInfo::swiftLauncher()
     {
-        static const QString s("swift launcher");
+        static const QString s("neoswift launcher");
         return s;
     }
 
     const QString &CApplicationInfo::swiftMappingTool()
     {
-        static const QString s("swift mapping tool");
+        static const QString s("neoswift mapping tool");
         return s;
     }
 
     const QString &CApplicationInfo::swiftCore()
     {
-        static const QString s("swift core");
+        static const QString s("neoswift core");
         return s;
     }
 

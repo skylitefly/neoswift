@@ -38,7 +38,7 @@
    <item>
     <widget class="QLabel" name="lbl_Info">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Loading the setup file (bootstrap.json) has failed!&lt;/span&gt; This file is required for &lt;span style=&quot; font-style:italic;&quot;&gt;swift&lt;/span&gt; to work properly. Fix the errors mentioned below and restart swift. You can also replace your bootstrap.json with the latest version available &lt;a href=&quot;https://raw.githubusercontent.com/swift-project/pilotclient/main/resources/share/shared/bootstrap/bootstrap.json&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;from GitHub.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Loading the setup file (bootstrap.json) has failed!&lt;/span&gt; This file is required for &lt;span style=&quot; font-style:italic;&quot;&gt;neoswift&lt;/span&gt; to work properly. Fix the errors mentioned below and restart neoswift. You can also replace your bootstrap.json with the latest version available &lt;a href=&quot;https://raw.githubusercontent.com/swift-project/pilotclient/main/resources/share/shared/bootstrap/bootstrap.json&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;from GitHub.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>
