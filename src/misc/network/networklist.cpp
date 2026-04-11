@@ -20,8 +20,7 @@ namespace swift::misc::network
 
     bool CNetworkList::containsDomain(const QString &domain) const
     {
-        return std::any_of(cbegin(), cend(), [&](const CNetwork &n) {
-            return n.getDomain().compare(domain, Qt::CaseInsensitive) == 0;
-        });
+        return std::any_of(cbegin(), cend(),
+                           [&](const CNetwork &n) { return n.getDomain().compare(domain, Qt::CaseInsensitive) == 0; });
     }
 } // namespace swift::misc::network

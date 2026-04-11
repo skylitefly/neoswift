@@ -25,7 +25,6 @@
 #include "core/context/contextownaircraft.h"
 #include "core/context/contextsimulator.h"
 #include "core/simulator.h"
-#include "misc/network/network.h"
 #include "core/webdataservices.h"
 #include "gui/editors/pilotform.h"
 #include "gui/guiapplication.h"
@@ -39,6 +38,7 @@
 #include "misc/logmessage.h"
 #include "misc/network/connectionstatus.h"
 #include "misc/network/entityflags.h"
+#include "misc/network/network.h"
 #include "misc/network/server.h"
 #include "misc/network/serverlist.h"
 #include "misc/simulation/aircraftmodel.h"
@@ -341,10 +341,7 @@ namespace swift::gui::components
         return user;
     }
 
-    CServer CLoginComponent::getCurrentServer() const
-    {
-        return ui->comp_NetworkDetails->getCurrentServer();
-    }
+    CServer CLoginComponent::getCurrentServer() const { return ui->comp_NetworkDetails->getCurrentServer(); }
 
     void CLoginComponent::startLogoffTimerCountdown()
     {

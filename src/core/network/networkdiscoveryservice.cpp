@@ -5,11 +5,11 @@
 
 #include <QJsonArray>
 #include <QJsonDocument>
-#include <QStringBuilder>
 #include <QJsonObject>
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QPointer>
+#include <QStringBuilder>
 
 #include "core/application.h"
 #include "misc/logmessage.h"
@@ -29,9 +29,8 @@ namespace swift::core::network
         return it.value().secsTo(QDateTime::currentDateTimeUtc()) < 60;
     }
 
-    void CNetworkDiscoveryService::discoverNetwork(
-        const QString &domain,
-        const CSlot<void(bool, const CNetworkConfig &)> &callback)
+    void CNetworkDiscoveryService::discoverNetwork(const QString &domain,
+                                                   const CSlot<void(bool, const CNetworkConfig &)> &callback)
     {
         Q_ASSERT_X(sApp, Q_FUNC_INFO, "sApp must be available");
 
@@ -41,8 +40,7 @@ namespace swift::core::network
             return;
         }
 
-        const CUrl url(QStringLiteral("https://") % domain %
-                       QStringLiteral("/.well-known/fsd-configuration.json"));
+        const CUrl url(QStringLiteral("https://") % domain % QStringLiteral("/.well-known/fsd-configuration.json"));
 
         m_lastDiscovery[domain] = QDateTime::currentDateTimeUtc();
         QPointer<CNetworkDiscoveryService> myself(this);
@@ -57,12 +55,11 @@ namespace swift::core::network
                                            emit myself->discoveryCompleted(domain, false);
                                            return;
                                        }
-                                       const QJsonDocument doc =
-                                           QJsonDocument::fromJson(nwReply->readAll());
+                                       const QJsonDocument doc = QJsonDocument::fromJson(nwReply->readAll());
                                        if (doc.isNull() || !doc.isObject())
                                        {
-                                           CLogMessage(myself.data()).warning(
-                                               u"Discovery of '%1': invalid JSON") << domain;
+                                           CLogMessage(myself.data()).warning(u"Discovery of '%1': invalid JSON")
+                                               << domain;
                                            callback(false, {});
                                            emit myself->discoveryCompleted(domain, false);
                                            return;
@@ -73,60 +70,55 @@ namespace swift::core::network
                                    } });
     }
 
-    void CNetworkDiscoveryService::discoverAndFetchAll(
-        CNetwork network,
-        const CSlot<void(bool, const CNetwork &)> &callback)
+    void CNetworkDiscoveryService::discoverAndFetchAll(CNetwork network,
+                                                       const CSlot<void(bool, const CNetwork &)> &callback)
     {
         const QString domain = network.getDomain();
         Q_ASSERT_X(!domain.isEmpty(), Q_FUNC_INFO, "domain must not be empty");
 
         QPointer<CNetworkDiscoveryService> myself(this);
-        discoverNetwork(domain, { this, [=](bool ok, const CNetworkConfig &cfg) mutable {
-                                     if (!myself) { return; }
-                                     if (!ok)
-                                     {
-                                         callback(false, network);
-                                         return;
-                                     }
-                                     network.setConfig(cfg);
+        discoverNetwork(domain,
+                        { this, [=](bool ok, const CNetworkConfig &cfg) mutable {
+                             if (!myself) { return; }
+                             if (!ok)
+                             {
+                                 callback(false, network);
+                                 return;
+                             }
+                             network.setConfig(cfg);
 
-                                     const CUrl serversUrl = cfg.getServersUrl();
-                                     if (serversUrl.isEmpty())
-                                     {
-                                         // no server URL: complete with empty server list
-                                         callback(true, network);
-                                         return;
-                                     }
+                             const CUrl serversUrl = cfg.getServersUrl();
+                             if (serversUrl.isEmpty())
+                             {
+                                 // no server URL: complete with empty server list
+                                 callback(true, network);
+                                 return;
+                             }
 
-                                     Q_ASSERT_X(sApp, Q_FUNC_INFO, "sApp must be available");
-                                     sApp->getFromNetwork(
-                                         serversUrl,
-                                         { myself.data(), [=](QNetworkReply *nwReply) mutable {
-                                               if (!myself) { return; }
-                                               nwReply->deleteLater();
-                                               if (nwReply->error() != QNetworkReply::NoError)
-                                               {
-                                                   CLogMessage(myself.data()).warning(
-                                                       u"Fetching servers from '%1' failed: %2")
-                                                       << serversUrl.toQString() << nwReply->errorString();
-                                                   // Complete with config but empty servers
-                                                   callback(true, network);
-                                                   return;
-                                               }
-                                               const QJsonDocument doc =
-                                                   QJsonDocument::fromJson(nwReply->readAll());
-                                               const QJsonArray arr =
-                                                   doc.isArray() ? doc.array()
-                                                                 : doc.object()["servers"].toArray();
-                                               network.setServers(
-                                                   myself->parseServerList(arr, cfg));
-                                               callback(true, network);
-                                           } });
-                                 } });
+                             Q_ASSERT_X(sApp, Q_FUNC_INFO, "sApp must be available");
+                             sApp->getFromNetwork(
+                                 serversUrl,
+                                 { myself.data(), [=](QNetworkReply *nwReply) mutable {
+                                      if (!myself) { return; }
+                                      nwReply->deleteLater();
+                                      if (nwReply->error() != QNetworkReply::NoError)
+                                      {
+                                          CLogMessage(myself.data()).warning(u"Fetching servers from '%1' failed: %2")
+                                              << serversUrl.toQString() << nwReply->errorString();
+                                          // Complete with config but empty servers
+                                          callback(true, network);
+                                          return;
+                                      }
+                                      const QJsonDocument doc = QJsonDocument::fromJson(nwReply->readAll());
+                                      const QJsonArray arr =
+                                          doc.isArray() ? doc.array() : doc.object()["servers"].toArray();
+                                      network.setServers(myself->parseServerList(arr, cfg));
+                                      callback(true, network);
+                                  } });
+                         } });
     }
 
-    CServerList CNetworkDiscoveryService::parseServerList(const QJsonArray &arr,
-                                                          const CNetworkConfig &config) const
+    CServerList CNetworkDiscoveryService::parseServerList(const QJsonArray &arr, const CNetworkConfig &config) const
     {
         CServerList servers;
         const CFsdSetup fsdSetup = config.toFsdSetup();

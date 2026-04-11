@@ -81,8 +81,7 @@ namespace swift::gui::components
         // ── Connections ───────────────────────────────────────────────────
         connect(m_cbNetwork, qOverload<int>(&QComboBox::currentIndexChanged), this,
                 &CNetworkSelectorComponent::onNetworkIndexChanged);
-        connect(m_pbNetworkSettings, &QPushButton::pressed, this,
-                &CNetworkSelectorComponent::requestNetworkSettings);
+        connect(m_pbNetworkSettings, &QPushButton::pressed, this, &CNetworkSelectorComponent::requestNetworkSettings);
         connect(m_pbRefresh, &QPushButton::pressed, this, &CNetworkSelectorComponent::onRefreshServersPressed);
         connect(m_serverSelector, &CServerListSelector::serverChanged, this,
                 &CNetworkSelectorComponent::currentServerChanged);
@@ -112,10 +111,7 @@ namespace swift::gui::components
         m_cbObserver->setChecked(mode == CLoginMode::Observer);
     }
 
-    bool CNetworkSelectorComponent::hasPartnerCallsign() const
-    {
-        return !m_lePartnerCallsign->text().isEmpty();
-    }
+    bool CNetworkSelectorComponent::hasPartnerCallsign() const { return !m_lePartnerCallsign->text().isEmpty(); }
 
     CCallsign CNetworkSelectorComponent::getPartnerCallsign() const
     {
@@ -169,22 +165,22 @@ namespace swift::gui::components
         m_pbRefresh->setText("…");
 
         QPointer<CNetworkSelectorComponent> myself(this);
-        m_discoveryService.discoverAndFetchAll(
-            networks[idx], { this, [=](bool success, const CNetwork &discovered) mutable {
-                if (!myself) { return; }
-                m_pbRefresh->setEnabled(true);
-                m_pbRefresh->setText("\u21bb");
-                if (!success) { return; }
+        m_discoveryService.discoverAndFetchAll(networks[idx],
+                                               { this, [=](bool success, const CNetwork &discovered) mutable {
+                                                    if (!myself) { return; }
+                                                    m_pbRefresh->setEnabled(true);
+                                                    m_pbRefresh->setText("\u21bb");
+                                                    if (!success) { return; }
 
-                CNetworkList updated = m_networks.get();
-                const int currentIdx = m_cbNetwork->currentIndex();
-                if (currentIdx >= 0 && currentIdx < updated.size())
-                {
-                    updated[currentIdx] = discovered;
-                    m_networks.set(updated);
-                    this->populateServers(discovered);
-                }
-            } });
+                                                    CNetworkList updated = m_networks.get();
+                                                    const int currentIdx = m_cbNetwork->currentIndex();
+                                                    if (currentIdx >= 0 && currentIdx < updated.size())
+                                                    {
+                                                        updated[currentIdx] = discovered;
+                                                        m_networks.set(updated);
+                                                        this->populateServers(discovered);
+                                                    }
+                                                } });
     }
 
     void CNetworkSelectorComponent::populateServers(const CNetwork &network)

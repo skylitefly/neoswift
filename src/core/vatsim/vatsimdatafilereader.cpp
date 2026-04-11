@@ -161,9 +161,7 @@ namespace swift::core::vatsim
 
         // Prefer injected URL (from CNetworkConfig), fall back to legacy GlobalSetup path
         QReadLocker l(&m_lockUrl);
-        const QUrl url = m_networkDataUrl.isEmpty() ?
-                             QUrl(sApp->getVatsimDataFileUrl()) :
-                             m_networkDataUrl.toQUrl();
+        const QUrl url = m_networkDataUrl.isEmpty() ? QUrl(sApp->getVatsimDataFileUrl()) : m_networkDataUrl.toQUrl();
         l.unlock();
         if (url.isEmpty()) { return; }
         this->getFromNetworkAndLog(url, { this, &CVatsimDataFileReader::parseVatsimFile });

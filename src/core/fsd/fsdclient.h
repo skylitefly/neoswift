@@ -571,8 +571,7 @@ namespace swift::core::fsd
         static QString noColons(const QString &input);
 
         //! Exchange CID+password for a JWT token at \a authUrl; invoke callback with the token
-        void getJwtToken(const QString &cid, const QString &password,
-                         const swift::misc::network::CUrl &authUrl,
+        void getJwtToken(const QString &cid, const QString &password, const swift::misc::network::CUrl &authUrl,
                          const swift::misc::CSlot<void(const QString &)> &callback);
 
         //! \deprecated Use getJwtToken() with explicit URL instead

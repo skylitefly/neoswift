@@ -31,7 +31,10 @@ namespace swift::misc::network
         cfg.m_fsdAuth = fsd["auth"].toString(QStringLiteral("plain"));
         if (!fsd["auth_url"].isNull()) { cfg.m_fsdAuthUrl = CUrl(fsd["auth_url"].toString()); }
         cfg.m_fsdServersUrl = CUrl(fsd["servers_url"].toString());
-        if (!fsd["load_balancing_url"].isNull()) { cfg.m_fsdLoadBalancingUrl = CUrl(fsd["load_balancing_url"].toString()); }
+        if (!fsd["load_balancing_url"].isNull())
+        {
+            cfg.m_fsdLoadBalancingUrl = CUrl(fsd["load_balancing_url"].toString());
+        }
         cfg.m_fsdTextCodec = fsd["text_codec"].toString(QStringLiteral("UTF-8"));
 
         // nested send/receive pairs
@@ -79,24 +82,14 @@ namespace swift::misc::network
     {
         CFsdSetup setup;
         setup.setTextCodec(m_fsdTextCodec);
-        setup.setSendReceiveDetails(
-            m_sendAircraftParts,
-            m_receiveAircraftParts,
-            m_sendGndFlag,
-            m_receiveGndFlag,
-            m_sendInterimPositions,
-            m_receiveInterimPositions,
-            m_sendVisualPositions,
-            m_receiveEuroscopeSimData,
-            m_sendFplIcaoEquipment);
+        setup.setSendReceiveDetails(m_sendAircraftParts, m_receiveAircraftParts, m_sendGndFlag, m_receiveGndFlag,
+                                    m_sendInterimPositions, m_receiveInterimPositions, m_sendVisualPositions,
+                                    m_receiveEuroscopeSimData, m_sendFplIcaoEquipment);
         setup.setForce3LetterAirlineCodes(m_force3LetterAirlineIcao);
         return setup;
     }
 
-    bool CNetworkConfig::isValid() const
-    {
-        return !m_networkName.isEmpty() && !m_fsdServersUrl.isEmpty();
-    }
+    bool CNetworkConfig::isValid() const { return !m_networkName.isEmpty() && !m_fsdServersUrl.isEmpty(); }
 
     QString CNetworkConfig::convertToQString(bool i18n) const
     {
@@ -154,7 +147,8 @@ namespace swift::misc::network
         switch (i)
         {
         case IndexNetworkName: return m_networkName.compare(compareValue.m_networkName, Qt::CaseInsensitive);
-        case IndexNetworkDescription: return m_networkDescription.compare(compareValue.m_networkDescription, Qt::CaseInsensitive);
+        case IndexNetworkDescription:
+            return m_networkDescription.compare(compareValue.m_networkDescription, Qt::CaseInsensitive);
         case IndexFsdProtocol: return m_fsdProtocol.compare(compareValue.m_fsdProtocol);
         case IndexFsdAuth: return m_fsdAuth.compare(compareValue.m_fsdAuth);
         case IndexFsdChallenge: return Compare::compare(m_fsdChallenge, compareValue.m_fsdChallenge);

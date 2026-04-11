@@ -36,9 +36,7 @@ namespace swift::core::afv::model
         connect(sApp, &CApplication::aboutToShutdown, &loop, &QEventLoop::quit);
         // Prefer injected map URL; fall back to GlobalSetup for legacy VATSIM connections
         const swift::misc::network::CUrl base =
-            m_mapUrl.isEmpty() ?
-                sApp->getGlobalSetup().getAfvApiServerUrl() :
-                m_mapUrl;
+            m_mapUrl.isEmpty() ? sApp->getGlobalSetup().getAfvApiServerUrl() : m_mapUrl;
         const QUrl url = base.withAppendedPath("/api/v1/network/online/callsigns");
         QNetworkReply *reply = sApp->getNetworkAccessManager()->get(QNetworkRequest(url));
         while (reply && !reply->isFinished() && sApp && !sApp->isShuttingDown()) { loop.exec(); }
