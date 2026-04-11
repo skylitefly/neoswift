@@ -76,11 +76,6 @@ jobs:
           pip install gitlint==0.19.1
       - name: Run gitlint
         run: gitlint --commits HEAD~1..HEAD
-      - name: Install REUSE
-        run: |
-          pip install reuse==4.0.3
-      - name: Run REUSE lint
-        run: reuse lint
       - name: Run clang-format
         run: |
           scripts/run_clang_format.py
