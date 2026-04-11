@@ -3,6 +3,8 @@
 
 #include "settingsnetworkserverscomponent.h"
 
+#include <memory>
+
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QHeaderView>
@@ -14,8 +16,6 @@
 #include <QRegularExpression>
 #include <QTableWidgetItem>
 #include <QVBoxLayout>
-
-#include <memory>
 
 #include "misc/network/network.h"
 #include "misc/network/networklist.h"
@@ -61,8 +61,8 @@ namespace swift::gui::components
         auto *gb = new QGroupBox("Networks", this);
         auto *gbLayout = new QVBoxLayout(gb);
         gbLayout->setContentsMargins(4, 4, 4, 4);
-        gbLayout->addWidget(new QLabel(
-            "Manage flight networks. Networks are discovered automatically from their domain.", gb));
+        gbLayout->addWidget(
+            new QLabel("Manage flight networks. Networks are discovered automatically from their domain.", gb));
         gbLayout->addWidget(m_table);
         gbLayout->addLayout(btnRow);
 
@@ -75,8 +75,7 @@ namespace swift::gui::components
         connect(m_pbDelete, &QPushButton::clicked, this, &CSettingsNetworkServersComponent::onDeletePressed);
         connect(m_pbRefreshSelected, &QPushButton::clicked, this,
                 &CSettingsNetworkServersComponent::onRefreshSelectedPressed);
-        connect(m_pbRefreshAll, &QPushButton::clicked, this,
-                &CSettingsNetworkServersComponent::onRefreshAllPressed);
+        connect(m_pbRefreshAll, &QPushButton::clicked, this, &CSettingsNetworkServersComponent::onRefreshAllPressed);
 
         reloadTable();
     }
@@ -102,8 +101,8 @@ namespace swift::gui::components
     {
         bool ok = false;
         QString domain = QInputDialog::getText(this, "Add Network",
-                                               "Enter network domain name\n(e.g. skylitefly.com):",
-                                               QLineEdit::Normal, QString(), &ok);
+                                               "Enter network domain name\n(e.g. skylitefly.com):", QLineEdit::Normal,
+                                               QString(), &ok);
         if (!ok || domain.trimmed().isEmpty()) { return; }
 
         // Normalize: lower-case, strip scheme, strip trailing slashes
@@ -119,8 +118,7 @@ namespace swift::gui::components
 
         if (m_networks.get().containsDomain(domain))
         {
-            QMessageBox::information(this, "Add Network",
-                                     QString("'%1' is already in your network list.").arg(domain));
+            QMessageBox::information(this, "Add Network", QString("'%1' is already in your network list.").arg(domain));
             return;
         }
 
@@ -131,25 +129,25 @@ namespace swift::gui::components
         QPointer<CSettingsNetworkServersComponent> myself(this);
         m_discoveryService.discoverAndFetchAll(
             network, { this, [=](bool success, const CNetwork &discovered) mutable {
-                if (!myself) { return; }
-                m_pbAdd->setEnabled(true);
-                m_pbAdd->setText("Add");
+                          if (!myself) { return; }
+                          m_pbAdd->setEnabled(true);
+                          m_pbAdd->setText("Add");
 
-                if (!success)
-                {
-                    QMessageBox::warning(this, "Add Network",
-                                         QString("Discovery of '%1' failed.\n"
-                                                 "Make sure the domain serves\n"
-                                                 "https://%1/.well-known/fsd-configuration.json\n"
-                                                 "with correct CORS headers.")
-                                             .arg(domain));
-                    return;
-                }
+                          if (!success)
+                          {
+                              QMessageBox::warning(this, "Add Network",
+                                                   QString("Discovery of '%1' failed.\n"
+                                                           "Make sure the domain serves\n"
+                                                           "https://%1/.well-known/fsd-configuration.json\n"
+                                                           "with correct CORS headers.")
+                                                       .arg(domain));
+                              return;
+                          }
 
-                CNetworkList networks = m_networks.get();
-                networks.push_back(discovered);
-                m_networks.set(networks);
-            } });
+                          CNetworkList networks = m_networks.get();
+                          networks.push_back(discovered);
+                          m_networks.set(networks);
+                      } });
     }
 
     void CSettingsNetworkServersComponent::onDeletePressed()
@@ -178,19 +176,19 @@ namespace swift::gui::components
         m_pbRefreshAll->setEnabled(false);
 
         QPointer<CSettingsNetworkServersComponent> myself(this);
-        m_discoveryService.discoverAndFetchAll(
-            networks[row], { this, [=](bool success, const CNetwork &discovered) mutable {
-                if (!myself) { return; }
-                m_pbRefreshSelected->setEnabled(true);
-                m_pbRefreshAll->setEnabled(true);
-                if (!success) { return; }
-                CNetworkList updated = m_networks.get();
-                if (row < updated.size())
-                {
-                    updated[row] = discovered;
-                    m_networks.set(updated);
-                }
-            } });
+        m_discoveryService.discoverAndFetchAll(networks[row],
+                                               { this, [=](bool success, const CNetwork &discovered) mutable {
+                                                    if (!myself) { return; }
+                                                    m_pbRefreshSelected->setEnabled(true);
+                                                    m_pbRefreshAll->setEnabled(true);
+                                                    if (!success) { return; }
+                                                    CNetworkList updated = m_networks.get();
+                                                    if (row < updated.size())
+                                                    {
+                                                        updated[row] = discovered;
+                                                        m_networks.set(updated);
+                                                    }
+                                                } });
     }
 
     void CSettingsNetworkServersComponent::onRefreshAllPressed()
@@ -206,24 +204,24 @@ namespace swift::gui::components
 
         for (int i = 0; i < networks.size(); ++i)
         {
-            m_discoveryService.discoverAndFetchAll(
-                networks[i], { this, [=](bool success, const CNetwork &discovered) mutable {
-                    if (!myself) { return; }
-                    if (success)
-                    {
-                        CNetworkList updated = m_networks.get();
-                        if (i < updated.size())
-                        {
-                            updated[i] = discovered;
-                            m_networks.set(updated);
-                        }
-                    }
-                    if (--*pending <= 0)
-                    {
-                        m_pbRefreshSelected->setEnabled(true);
-                        m_pbRefreshAll->setEnabled(true);
-                    }
-                } });
+            m_discoveryService.discoverAndFetchAll(networks[i],
+                                                   { this, [=](bool success, const CNetwork &discovered) mutable {
+                                                        if (!myself) { return; }
+                                                        if (success)
+                                                        {
+                                                            CNetworkList updated = m_networks.get();
+                                                            if (i < updated.size())
+                                                            {
+                                                                updated[i] = discovered;
+                                                                m_networks.set(updated);
+                                                            }
+                                                        }
+                                                        if (--*pending <= 0)
+                                                        {
+                                                            m_pbRefreshSelected->setEnabled(true);
+                                                            m_pbRefreshAll->setEnabled(true);
+                                                        }
+                                                    } });
         }
     }
 

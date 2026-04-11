@@ -6,9 +6,8 @@
 #ifndef SWIFT_MISC_NETWORK_DATA_LASTNETWORK_H
 #define SWIFT_MISC_NETWORK_DATA_LASTNETWORK_H
 
-#include "misc/network/network.h"
-
 #include "misc/datacache.h"
+#include "misc/network/network.h"
 
 namespace swift::misc::network::data
 {

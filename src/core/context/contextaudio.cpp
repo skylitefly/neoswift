@@ -181,9 +181,10 @@ namespace swift::core::context
             return;
         }
 
-        const QString afvApiUrl = (m_currentNetworkConfig.isValid() && !m_currentNetworkConfig.getVoiceApiUrl().isEmpty()) ?
-                                      m_currentNetworkConfig.getVoiceApiUrl().toQString() :
-                                      sApp->getGlobalSetup().getAfvApiServerUrl().toQString();
+        const QString afvApiUrl =
+            (m_currentNetworkConfig.isValid() && !m_currentNetworkConfig.getVoiceApiUrl().isEmpty()) ?
+                m_currentNetworkConfig.getVoiceApiUrl().toQString() :
+                sApp->getGlobalSetup().getAfvApiServerUrl().toQString();
 
         if (afvApiUrl.isEmpty())
         {

@@ -30,12 +30,14 @@ namespace swift::core::network
         explicit CNetworkDiscoveryService(QObject *parent = nullptr);
 
         //! Fetch the fsd-configuration.json for \a domain and invoke \a callback(success, config)
-        void discoverNetwork(const QString &domain,
-                             const swift::misc::CSlot<void(bool, const swift::misc::network::CNetworkConfig &)> &callback);
+        void
+        discoverNetwork(const QString &domain,
+                        const swift::misc::CSlot<void(bool, const swift::misc::network::CNetworkConfig &)> &callback);
 
         //! Convenience: discover config + fetch servers, update \a network, call \a callback(success, network)
-        void discoverAndFetchAll(swift::misc::network::CNetwork network,
-                                 const swift::misc::CSlot<void(bool, const swift::misc::network::CNetwork &)> &callback);
+        void
+        discoverAndFetchAll(swift::misc::network::CNetwork network,
+                            const swift::misc::CSlot<void(bool, const swift::misc::network::CNetwork &)> &callback);
 
     signals:
         //! Emitted when a discovery attempt for a domain completes

@@ -10,8 +10,14 @@
 
 #include "misc/network/loginmode.h"
 
-namespace swift::misc::aviation { class CCallsign; }
-namespace swift::misc::network { class CServer; }
+namespace swift::misc::aviation
+{
+    class CCallsign;
+}
+namespace swift::misc::network
+{
+    class CServer;
+}
 
 namespace swift::gui::components
 {

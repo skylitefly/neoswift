@@ -143,11 +143,10 @@ namespace swift::core::fsd
                    "Can't change server details while still connected");
 
         QWriteLocker l(&m_lockUserClientBuffered);
-        const int protocolRev = m_networkConfig.isValid() ?
-                                    m_networkConfig.getFsdProtocolRevision() :
-                                    ((server.getServerType() == CServer::FSDServerVatsim) ?
-                                         PROTOCOL_REVISION_VATSIM_VELOCITY :
-                                         PROTOCOL_REVISION_CLASSIC);
+        const int protocolRev = m_networkConfig.isValid() ? m_networkConfig.getFsdProtocolRevision() :
+                                                            ((server.getServerType() == CServer::FSDServerVatsim) ?
+                                                                 PROTOCOL_REVISION_VATSIM_VELOCITY :
+                                                                 PROTOCOL_REVISION_CLASSIC);
         const QString codecName = m_networkConfig.isValid() && !m_networkConfig.getTextCodec().isEmpty() ?
                                       m_networkConfig.getTextCodec() :
                                       server.getFsdSetup().getTextCodec();
@@ -1005,8 +1004,7 @@ namespace swift::core::fsd
         increaseStatisticsValue(QStringLiteral("sendClientIdentification"));
     }
 
-    void CFSDClient::getJwtToken(const QString &cid, const QString &password,
-                                 const swift::misc::network::CUrl &authUrl,
+    void CFSDClient::getJwtToken(const QString &cid, const QString &password, const swift::misc::network::CUrl &authUrl,
                                  const swift::misc::CSlot<void(const QString &)> &callback)
     {
         Q_ASSERT_X(sApp, Q_FUNC_INFO, "Need app");
@@ -1182,8 +1180,8 @@ namespace swift::core::fsd
             // * non-VATSIM server. VATSIM has a specific ATIS message
             // * Receiver callsign must be owner callsign and not any type of broadcast.
             // * We have requested the ATIS of this controller before.
-            if (!m_networkConfig.usesVatsimAtisMessages() &&
-                m_ownCallsign.asString() == textMessage.receiver() && m_pendingAtisQueries.contains(sender))
+            if (!m_networkConfig.usesVatsimAtisMessages() && m_ownCallsign.asString() == textMessage.receiver() &&
+                m_pendingAtisQueries.contains(sender))
             {
                 maybeHandleAtisReply(sender, receiver, textMessage.m_message);
                 return;
