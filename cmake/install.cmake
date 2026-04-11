@@ -3,19 +3,19 @@
 
 # Readme, License etc.
 set(GENERAL_FILES
-        ${swift_SOURCE_DIR}/LICENSES/LicenseRef-swift-pilot-client-1.txt
+        ${CMAKE_SOURCE_DIR}/LICENSES/LicenseRef-swift-pilot-client-1.txt
         )
 install(FILES ${GENERAL_FILES} DESTINATION bin)
 
 # Crashpad
 if(UNIX AND NOT APPLE)
-    set(crashpad_handler_path ${swift_SOURCE_DIR}/third_party/externals/linux-g++/64/bin/swift_crashpad_handler)
+    set(crashpad_handler_path ${CMAKE_SOURCE_DIR}/third_party/externals/linux-g++/64/bin/swift_crashpad_handler)
 elseif(SWIFT_WIN32)
-    set(crashpad_handler_path ${swift_SOURCE_DIR}/third_party/externals/win32-msvc/32/bin/swift_crashpad_handler.exe)
+    set(crashpad_handler_path ${CMAKE_SOURCE_DIR}/third_party/externals/win32-msvc/32/bin/swift_crashpad_handler.exe)
 elseif(SWIFT_WIN64)
-    set(crashpad_handler_path ${swift_SOURCE_DIR}/third_party/externals/win32-msvc/64/bin/swift_crashpad_handler.exe)
+    set(crashpad_handler_path ${CMAKE_SOURCE_DIR}/third_party/externals/win32-msvc/64/bin/swift_crashpad_handler.exe)
 elseif(APPLE)
-    set(crashpad_handler_path ${swift_SOURCE_DIR}/third_party/externals/macx-clang/64/bin/swift_crashpad_handler)
+    set(crashpad_handler_path ${CMAKE_SOURCE_DIR}/third_party/externals/macx-clang/64/bin/swift_crashpad_handler)
 endif()
 install(PROGRAMS ${crashpad_handler_path} DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 

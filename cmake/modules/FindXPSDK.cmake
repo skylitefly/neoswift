@@ -45,8 +45,8 @@ if (SWIFT_WIN64)
 elseif (APPLE)
     # XP SDK ships .tbd stub frameworks; use -framework flags rather than
     # pointing at the framework binary directly (which the linker rejects).
-    target_link_options(XPSDK::XPLM INTERFACE "-F${XP_SDK_PATH}/Libraries/Mac" "-framework XPLM")
-    target_link_options(XPSDK::XPWidgets INTERFACE "-F${XP_SDK_PATH}/Libraries/Mac" "-framework XPWidgets")
+    target_link_libraries(XPSDK::XPLM INTERFACE "-F${XP_SDK_PATH}/Libraries/Mac" "-framework XPLM")
+    target_link_libraries(XPSDK::XPWidgets INTERFACE "-F${XP_SDK_PATH}/Libraries/Mac" "-framework XPWidgets")
 
 endif ()
 
