@@ -19,11 +19,13 @@ if(SWIFT_BUILD_FSX_PLUGIN OR SWIFT_BUILD_P3D_PLUGIN OR SWIFT_BUILD_MSFS_PLUGIN O
     add_dependencies(externals_simconnect external_simconnects_dlls)
 
     macro(add_install_command LIB)
-        add_custom_command(TARGET external_simconnects_dlls
-                POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E copy_if_different ${LIB} ${PROJECT_BINARY_DIR}/out/bin/
-                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-        install(FILES ${LIB} DESTINATION bin)
+        if(EXISTS "${LIB}")
+            add_custom_command(TARGET external_simconnects_dlls
+                    POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${LIB} ${PROJECT_BINARY_DIR}/out/bin/
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+            install(FILES ${LIB} DESTINATION bin)
+        endif()
     endmacro()
 
     if(SWIFT_WIN32)
