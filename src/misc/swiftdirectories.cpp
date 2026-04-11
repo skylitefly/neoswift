@@ -99,7 +99,7 @@ namespace swift::misc
     const QString &CSwiftDirectories::applicationDataDirectory()
     {
         static const QString p = CFileUtils::appendFilePaths(
-            QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation), "/org.swift-project/");
+            QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation), "/org.neoswift/");
         return p;
     }
 

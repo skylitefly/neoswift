@@ -76,7 +76,7 @@ namespace swift::gui
 
     const QString &CGuiApplication::settingsOrganization()
     {
-        static const QString o("swift-project.org");
+        static const QString o("neoswift");
         return o;
     }
 

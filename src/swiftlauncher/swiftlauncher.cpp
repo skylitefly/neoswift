@@ -161,8 +161,8 @@ void CSwiftLauncher::installerMode()
     if (runDialog)
     {
         const QMessageBox::StandardButton ret =
-            QMessageBox::question(this, tr("swift configuration"),
-                                  tr("This installation directory already contains a swift configuration.\n"
+            QMessageBox::question(this, tr("neoswift configuration"),
+                                  tr("This installation directory already contains a neoswift configuration.\n"
                                      "Do you want to use that one?"));
         if (ret != QMessageBox::No) { startWizard = false; }
     }
@@ -174,7 +174,7 @@ void CSwiftLauncher::clearWindowsRegistry()
 {
     if (!CBuildConfig::isRunningOnWindowsNtPlatform()) { return; }
     const QMessageBox::StandardButton ret =
-        QMessageBox::warning(this, tr("Registry swift applications"),
+        QMessageBox::warning(this, tr("Registry neoswift applications"),
                              tr("Do you really want to delete all entries?\nThis cannot be undone!"),
                              QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::No);
     if (ret != QMessageBox::Yes) { return; }

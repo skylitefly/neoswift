@@ -587,7 +587,7 @@ namespace swift::gui::components
     {
         CStatusMessage m;
         const QString fileName = QFileDialog::getSaveFileName(
-            nullptr, tr("Save flight plan"), this->getDefaultFilename(false), tr("swift (*.json;*.txt)"));
+            nullptr, tr("Save flight plan"), this->getDefaultFilename(false), tr("neoswift (*.json;*.txt)"));
         do {
             if (fileName.isEmpty())
             {
