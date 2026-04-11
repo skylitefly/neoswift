@@ -200,7 +200,7 @@ if(SWIFT_BUILD_SAMPLES)
 endif()
 
 if(SWIFT_BUILD_DOCUMENTATION)
-    add_custom_target(documentation env DOXY_SRC_ROOT=${swift_SOURCE_DIR} doxygen Doxyfile WORKING_DIRECTORY ${swift_SOURCE_DIR}/docs)
+    add_custom_target(documentation env DOXY_SRC_ROOT=${CMAKE_SOURCE_DIR} doxygen Doxyfile WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/docs)
 endif()
 
 include(cmake/install.cmake)
