@@ -3,8 +3,8 @@
 	SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-swift-pilot-client-1
 -->
 <project>
-    <shortName>swift</shortName>
-    <fullName>swift</fullName>
+    <shortName>neoswift</shortName>
+    <fullName>neoswift</fullName>
     <version></version>
 
     <!-- <version>0.7.0</version> -->
@@ -36,10 +36,10 @@
             <name>checkForRunningSwift</name>
             <actionList>
                 <showProgressDialog>
-                    <title>Waiting for swift to be closed</title>
+                    <title>Waiting for neoswift to be closed</title>
                     <actionList>
                         <while>
-                            <progressText>It seems that some swift application is still in use.
+                            <progressText>It seems that some neoswift application is still in use.
 It must be closed before the installation can proceed</progressText>
                             <actionList>
                                 <wait><ms>50</ms></wait>
@@ -105,7 +105,7 @@ It must be closed before the installation can proceed</progressText>
             <actionList>
                 <readFile>
                     <name>installBaseDir</name>
-                    <path>${windows_folder_local_appdata}/org.swift-project/lastinstallpath-${architecture}bit.txt</path>
+                    <path>${windows_folder_local_appdata}/org.neoswift/lastinstallpath-${architecture}bit.txt</path>
                 </readFile>
                 <setInstallerVariableFromRegEx>
                     <name>installBaseDir</name>
@@ -120,7 +120,7 @@ It must be closed before the installation can proceed</progressText>
                 </platformTest>
                 <fileTest>
                     <condition>readable</condition>
-                    <path>${windows_folder_local_appdata}/org.swift-project/lastinstallpath-${architecture}bit.txt</path>
+                    <path>${windows_folder_local_appdata}/org.neoswift/lastinstallpath-${architecture}bit.txt</path>
                 </fileTest>
             </ruleList>
         </actionGroup>
@@ -187,7 +187,7 @@ It must be closed before the installation can proceed</progressText>
             </ruleList>
         </runProgram>
         <createDirectory>
-            <path>${windows_folder_local_appdata}/org.swift-project</path>
+            <path>${windows_folder_local_appdata}/org.neoswift</path>
             <ruleList>
                 <platformTest>
                     <type>windows</type>
@@ -195,7 +195,7 @@ It must be closed before the installation can proceed</progressText>
             </ruleList>
         </createDirectory>
         <writeFile>
-            <path>${windows_folder_local_appdata}/org.swift-project/lastinstallpath-${architecture}bit.txt</path>
+            <path>${windows_folder_local_appdata}/org.neoswift/lastinstallpath-${architecture}bit.txt</path>
             <text>${installdir}</text>
             <ruleList>
                 <platformTest>
@@ -207,9 +207,7 @@ It must be closed before the installation can proceed</progressText>
             <explanation>Create readme</explanation>
             <path>${installdir}/readme.txt</path>
             <show>0</show>
-            <text>swift pilot client version ${versionFull}
-
-https://swift-project.org/</text>
+            <text>neoswift version ${versionFull}</text>
         </writeFile>
         <addFilesToUninstaller>
             <files>${installdir}/readme.txt</files>
@@ -279,7 +277,7 @@ https://swift-project.org/</text>
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <osxApplicationBundleIcon>../images/swiftinstaller.icns</osxApplicationBundleIcon>
-    <osxApplicationBundleIdentifier>org.swift-project.macinstaller</osxApplicationBundleIdentifier>
+    <osxApplicationBundleIdentifier>org.neoswift.macinstaller</osxApplicationBundleIdentifier>
     <!-- Create 64bit installers -->
     <osxPlatforms>osx-x86_64</osxPlatforms>
     <osxUninstallerApplicationBundleIcon>../images/swiftinstaller.icns</osxUninstallerApplicationBundleIcon>
@@ -288,8 +286,8 @@ https://swift-project.org/</text>
     <productDisplayName>${product_fullname} ${project.version} (${architecture}bit)</productDisplayName>
     <requestedExecutionLevel>highestAvailable</requestedExecutionLevel>
     <saveRelativePaths>1</saveRelativePaths>
-    <startMenuGroupName>swift ${project.version} (${architecture}bit)</startMenuGroupName>
-    <vendor>swift Project</vendor>
+    <startMenuGroupName>neoswift ${project.version} (${architecture}bit)</startMenuGroupName>
+    <vendor>neoswift</vendor>
     <windowsExecutableIcon>../images/swiftinstaller.ico</windowsExecutableIcon>
 
     <!-- <windowsResourceOriginalFilename>TODO</windowsResourceOriginalFilename>
@@ -352,7 +350,7 @@ https://swift-project.org/</text>
                     <parameterList>
                         <booleanParameter>
                             <name>skipwizard</name>
-                            <description>Don't run configuration wizard (swift must be configured manually!)</description>
+                            <description>Don't run configuration wizard (neoswift must be configured manually!)</description>
                             <displayStyle>checkbox-left</displayStyle>
                             <value>0</value>
                         </booleanParameter>

@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (C) swift Project Community / Contributors
 # SPDX-License-Identifier: CC0-1.0
 
-name: Build swift
+name: Build neoswift
 
 on:
   push:
@@ -15,7 +15,6 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  do_vatsim_key: ${{ github.event_name == 'push' }}
   do_symbols:    ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
   do_doxygen:    ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
   do_static_analysis: ${{ github.event_name == 'push' && github.ref != 'refs/heads/main' }}
@@ -25,7 +24,8 @@ env:
   installbuilder_hash_win: f92b1741c78b8f024473f55057b26107c8ed9cc1ca583eb9323d0023a8024e00
   installbuilder_hash_linux: 3dff24cf94af17158cbcb16af41ecf0bb5060ba97d052597f15b987bd5e5b43a
   installbuilder_hash_macos: bffa8b2663c6e9aaaa1ed7cdb41a874d34ff89f22adfab419e172915f8f4ce57
-  externals: swift-project/externals
+  # Set EXTERNALS_PAT secret to enable proprietary externals (SimConnect SDK etc.)
+  externals: ${{ github.repository_owner }}/externals
   externals_sha: e1f1743ba159e11b0c065ea8f1ae1a0e91e3bf39
   use_externals: ${{ secrets.EXTERNALS_PAT != '' }}
 
@@ -47,15 +47,14 @@ jobs:
         run: |
           echo "value=$(python3 -u scripts/utils.py --version)" >>$GITHUB_OUTPUT
       - name: Remove artifacts
-        uses: swift-project/delete-artifact@swift
+        uses: geekyeggo/delete-artifact@v5
         with:
           name: |
             xswiftbus-thin-*
             xswiftbus-fat-*
-            swiftsymbols-*
-            swiftinstaller-*
+            neoswiftsymbols-*
+            neoswiftinstaller-*
           failOnError: false
-          warnIfNotFound: false
 
   checks:
     runs-on: ubuntu-22.04
@@ -70,7 +69,7 @@ jobs:
         run: |
           pip install gitlint==0.19.1
       - name: Run gitlint
-        run: gitlint --commits d789f61044e63e1a00d8e9f1d4d49c8d9ffc42a9..HEAD
+        run: gitlint --commits HEAD~1..HEAD
       - name: Install REUSE
         run: |
           pip install reuse==4.0.3
@@ -147,14 +146,8 @@ jobs:
       - name: Install conan dependencies
         if: ${{ steps.check_need_clang_tidy.outputs.should_run_clang_tidy == 'true' }}
         shell: bash
-        env:
-          ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
-          ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
         run: |
           conan profile detect
-          conan remote disable conancenter
-          conan remote add swift https://artifactory.swift-project.org/artifactory/api/conan/conan-local
-          conan remote login swift "$ARTIFACTORY_USER" --password "$ARTIFACTORY_TOKEN"
           conan install . --output-folder=build_conan --deployer=full_deploy -pr=ci/profile_linux
       - name: Run clang-tidy
         if: ${{ steps.check_need_clang_tidy.outputs.should_run_clang_tidy == 'true' }}
@@ -221,49 +214,34 @@ jobs:
           path: 'third_party/externals'
       - name: Install conan dependencies
         shell: bash
-        env:
-          ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
-          ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
         run: |
           conan profile detect
-          conan remote disable conancenter
-          conan remote add swift https://artifactory.swift-project.org/artifactory/api/conan/conan-local
-          conan remote login swift "$ARTIFACTORY_USER" --password "$ARTIFACTORY_TOKEN"
           conan install . --output-folder=build_conan --deployer=full_deploy -pr=ci/profile_linux
       - name: Start DBus session bus
         run: |
           dbus-launch --sh-syntax | tee session.sh
           eval $(cat session.sh)
           echo "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS" >>$GITHUB_ENV
-      - name: Create Vatsim key file
-        if: ${{ env.do_vatsim_key == 'true' }}
-        run: |
-          cat >vatsim.json <<EOF
-          { "vatsim": { "id": "$VATSIM_ID", "key": "$VATSIM_KEY" } }
-          EOF
-        env:
-          VATSIM_ID: ${{ secrets.VATSIM_ID }}
-          VATSIM_KEY: ${{ secrets.VATSIM_KEY }}
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
-      - name: Build swift (without symbols)
+      - name: Build neoswift (without symbols)
         if: ${{ env.do_symbols != 'true' }}
         run: |
           python3 -u scripts/build.py -w 64 -t gcc
-      - name: Build swift (with symbols)
+      - name: Build neoswift (with symbols)
         if: ${{ env.do_symbols == 'true' }}
         run: |
           python3 -u scripts/build.py -w 64 -t gcc --upload-symbols
       - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
-          name: swiftinstaller-linux-64-${{ needs.preBuild.outputs.version }}
-          path: ${{ github.workspace }}/swiftinstaller-*
+          name: neoswiftinstaller-linux-64-${{ needs.preBuild.outputs.version }}
+          path: ${{ github.workspace }}/neoswiftinstaller-*
       - name: Upload symbols
         uses: actions/upload-artifact@v4
         if: ${{ env.do_symbols == 'true' }}
         with:
-          name: swiftsymbols-linux-64-${{ needs.preBuild.outputs.version }}
-          path: ${{ github.workspace }}/swiftsymbols-*
+          name: neoswiftsymbols-linux-64-${{ needs.preBuild.outputs.version }}
+          path: ${{ github.workspace }}/neoswiftsymbols-*
       - name: Upload xswiftbus
         uses: actions/upload-artifact@v4
         with:
@@ -336,31 +314,16 @@ jobs:
           path: 'third_party/externals'
       - name: Install conan dependencies
         shell: bash
-        env:
-          ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
-          ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
         run: |
           conan profile detect
-          conan remote disable conancenter
-          conan remote add swift https://artifactory.swift-project.org/artifactory/api/conan/conan-local
-          conan remote login swift "$ARTIFACTORY_USER" --password "$ARTIFACTORY_TOKEN"
           conan install . --output-folder=build_conan --deployer=full_deploy -pr=ci/profile_win
-      - name: Create Vatsim key file
-        if: ${{ env.do_vatsim_key == 'true' }}
-        run: |
-          echo >vatsim.json @"
-          { "vatsim": { "id": "$env:VATSIM_ID", "key": "$env:VATSIM_KEY" } }
-          "@
-        env:
-          VATSIM_ID: ${{ secrets.VATSIM_ID }}
-          VATSIM_KEY: ${{ secrets.VATSIM_KEY }}
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
-      - name: Build swift (without symbols)
+      - name: Build neoswift (without symbols)
         if: ${{ env.do_symbols != 'true' }}
         shell: cmd
         run: |
           build_conan\\build\\RelWithDebInfo\\generators\\conanrun.bat && python -u scripts/build.py -w 64 -t msvc
-      - name: Build swift (with symbols)
+      - name: Build neoswift (with symbols)
         if: ${{ env.do_symbols == 'true' }}
         shell: cmd
         run: |
@@ -368,14 +331,14 @@ jobs:
       - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
-          name: swiftinstaller-windows-64-${{ needs.preBuild.outputs.version }}
-          path: ${{ github.workspace }}/swiftinstaller-*
+          name: neoswiftinstaller-windows-64-${{ needs.preBuild.outputs.version }}
+          path: ${{ github.workspace }}/neoswiftinstaller-*
       - name: Upload symbols
         uses: actions/upload-artifact@v4
         if: ${{ env.do_symbols == 'true' }}
         with:
-          name: swiftsymbols-windows-64-${{ needs.preBuild.outputs.version }}
-          path: ${{ github.workspace }}/swiftsymbols-*
+          name: neoswiftsymbols-windows-64-${{ needs.preBuild.outputs.version }}
+          path: ${{ github.workspace }}/neoswiftsymbols-*
       - name: Upload xswiftbus
         uses: actions/upload-artifact@v4
         with:
@@ -440,49 +403,34 @@ jobs:
           path: 'third_party/externals'
       - name: Install conan dependencies
         shell: bash
-        env:
-          ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
-          ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
         run: |
           # Empty presets to avoid autogenerated config from Conan
           echo "{\"version\": 6}" > CMakeUserPresets.json
           conan profile detect
-          conan remote disable conancenter
-          conan remote add swift https://artifactory.swift-project.org/artifactory/api/conan/conan-local
-          conan remote login swift "$ARTIFACTORY_USER" --password "$ARTIFACTORY_TOKEN"
           conan install . --output-folder=build_conan --deployer=full_deploy -pr=ci/profile_mac
           conan install . --output-folder=build_conan_arm --deployer=full_deploy -pr=ci/profile_mac_arm
           # https://doc.qt.io/qt-6/macos-issues.html#d-bus-and-macos
           conan install --requires=dbus/1.15.8 --output-folder build_conan_dbus_shared --deployer=full_deploy -o "dbus/*:shared=True" -o "dbus/*:message_bus=True" -pr=ci/profile_mac
-      - name: Create Vatsim key file
-        if: ${{ env.do_vatsim_key == 'true' }}
-        run: |
-          cat >vatsim.json <<EOF
-          { "vatsim": { "id": "$VATSIM_ID", "key": "$VATSIM_KEY" } }
-          EOF
-        env:
-          VATSIM_ID: ${{ secrets.VATSIM_ID }}
-          VATSIM_KEY: ${{ secrets.VATSIM_KEY }}
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
-      - name: Build swift (without symbols)
+      - name: Build neoswift (without symbols)
         if: ${{ env.do_symbols != 'true' }}
         run: |
           python3 -u scripts/build.py -w 64 -t clang
-      - name: Build swift (with symbols)
+      - name: Build neoswift (with symbols)
         if: ${{ env.do_symbols == 'true' }}
         run: |
           python3 -u scripts/build.py -w 64 -t clang --upload-symbols
       - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
-          name: swiftinstaller-macos-64-${{ needs.preBuild.outputs.version }}
-          path: ${{ github.workspace }}/swiftinstaller-*
+          name: neoswiftinstaller-macos-64-${{ needs.preBuild.outputs.version }}
+          path: ${{ github.workspace }}/neoswiftinstaller-*
       - name: Upload symbols
         uses: actions/upload-artifact@v4
         if: ${{ env.do_symbols == 'true' }}
         with:
-          name: swiftsymbols-macos-64-${{ needs.preBuild.outputs.version }}
-          path: ${{ github.workspace }}/swiftsymbols-*
+          name: neoswiftsymbols-macos-64-${{ needs.preBuild.outputs.version }}
+          path: ${{ github.workspace }}/neoswiftsymbols-*
       - name: Upload xswiftbus
         uses: actions/upload-artifact@v4
         with:
@@ -511,7 +459,7 @@ jobs:
           name: xswiftbus-fat-allos-${{ needs.preBuild.outputs.version }}
           path: xswiftbus-fat-allos-*
       - name: Remove xswiftbus-thin artifacts
-        uses: swift-project/delete-artifact@swift
+        uses: geekyeggo/delete-artifact@v5
         with:
           name: xswiftbus-thin-*
 
@@ -519,8 +467,6 @@ jobs:
     runs-on: ubuntu-22.04
     needs: [preBuild, postBuild]
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-    outputs:
-      id: ${{ steps.create.outputs.release_id }}
     permissions:
       id-token: write
       contents: write
@@ -532,92 +478,23 @@ jobs:
         uses: actions/download-artifact@v4
       - name: Flatten directories
         run: |
-          mv swiftinstaller-*/* .
+          mv neoswiftinstaller-*/* .
           mv xswiftbus-*/* .
-          mkdir swiftsymbols
-          mv swiftsymbols-*/* swiftsymbols
+          mkdir neoswiftsymbols
+          mv neoswiftsymbols-*/* neoswiftsymbols || true
       - name: Create release
-        uses: swift-project/github-release@2.0-connreset-retry
-        id: create
+        uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v${{ needs.preBuild.outputs.version }}
-          commitish: ${{ github.sha }}
+          tag_name: v${{ needs.preBuild.outputs.version }}
+          target_commitish: ${{ github.sha }}
           body: Version ${{ needs.preBuild.outputs.version }}
           draft: true
           prerelease: true
-          gzip: folders
-          files: >
-            swiftinstaller-linux-64-${{ needs.preBuild.outputs.version }}.run
-            swiftinstaller-windows-64-${{ needs.preBuild.outputs.version }}.exe
-            swiftinstaller-macos-64-${{ needs.preBuild.outputs.version }}.dmg
+          files: |
+            neoswiftinstaller-linux-64-${{ needs.preBuild.outputs.version }}.run
+            neoswiftinstaller-windows-64-${{ needs.preBuild.outputs.version }}.exe
+            neoswiftinstaller-macos-64-${{ needs.preBuild.outputs.version }}.dmg
             xswiftbus-fat-allos-${{ needs.preBuild.outputs.version }}.zip
-            swiftsymbols-allos-${{ needs.preBuild.outputs.version }}:swiftsymbols
       - name: Publish doxygen
         uses: actions/deploy-pages@v4
-
-  notify:
-    runs-on: ubuntu-22.04
-    needs: [preBuild, checks, buildLinux, buildWin64, buildMacOS, postBuild, release]
-    if: always()
-
-    steps:
-      - name: Install dependencies
-        run: |
-          sudo apt-get -y install jo jq
-      - name: Query GitHub annotations
-        uses: octokit/request-action@v2.x
-        id: checkruns
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          route: GET /repos/swift-project/pilotclient/commits/${{ github.sha }}/check-runs
-      - name: Prepare Discord build message
-        run: |
-          result=SKIPPED
-          ${{ contains(needs.*.result, 'success')   }} && result=SUCCESS
-          for run in $CHECK_RUNS; do
-            curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/swift-project/pilotclient/check-runs/$run/annotations" \
-            | jq -e 'any(.[].annotation_level; . == "warning" or . == "error")' && result=WARNING
-          done
-          ${{ contains(needs.*.result, 'cancelled') }} && result=CANCELLED
-          ${{ contains(needs.*.result, 'failure')   }} && result=FAILED
-          [[ $result = SKIPPED   ]] && emoji=repeat
-          [[ $result = SUCCESS   ]] && emoji=white_check_mark
-          [[ $result = WARNING   ]] && emoji=warning
-          [[ $result = CANCELLED ]] && emoji=grey_question
-          [[ $result = FAILED    ]] && emoji=x
-          echo "result=$result"  >>$GITHUB_ENV
-          echo "emoji=$emoji"    >>$GITHUB_ENV
-        env:
-          CHECK_RUNS: ${{ join(fromJson(steps.checkruns.outputs.data).check_runs.*.id, ' ') }}
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Prepare Discord release message
-        uses: octokit/request-action@v2.x
-        if: ${{ needs.release.result == 'success' }}
-        id: release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          route: GET /repos/swift-project/pilotclient/releases/${{ needs.release.outputs.id }}
-      - name: Send Discord build message
-        run: |
-          cat >message <<EOF
-          > :${{ env.emoji }}: \`${{ github.ref }}\`
-          > **${{ env.result }}** (triggered by ${{ github.event_name }})
-          > <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}>
-          EOF
-          jo content=@message | curl -i -H "Accept: application/json" -H "Content-Type: application/json" $WEBHOOK -d @-
-        env:
-          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: Send Discord release message
-        if: ${{ needs.release.result == 'success' }}
-        run: |
-          cat >message <<EOF
-          > :package: Created draft release \`v${{ needs.preBuild.outputs.version }}\`
-          > <${{ fromJson(steps.release.outputs.data).html_url }}>
-          EOF
-          jo content=@message | curl -i -H "Accept: application/json" -H "Content-Type: application/json" $WEBHOOK -d @-
-        env:
-          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
