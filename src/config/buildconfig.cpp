@@ -85,13 +85,13 @@ namespace swift::config
 
     const QString &CBuildConfig::gitHubRepoUrl()
     {
-        static const QString url = "https://github.com/neoswift/pilotclient/";
+        static const QString url = "https://github.com/skylitefly/neoswift/";
         return url;
     }
 
     const QString &CBuildConfig::gitHubRepoApiUrl()
     {
-        static const QString url = "https://api.github.com/repos/neoswift/pilotclient/";
+        static const QString url = "https://api.github.com/repos/skylitefly/neoswift/";
         return url;
     }
 
