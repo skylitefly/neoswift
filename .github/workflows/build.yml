@@ -15,6 +15,12 @@ concurrency:
   cancel-in-progress: true
 
 env:
+  # Whether to bake network client credentials into the binary.
+  # Set NETWORK_CLIENT_ID and NETWORK_CLIENT_KEY secrets to enable VATSIMAuth
+  # challenge-response on networks that support it (e.g. Skylite).
+  # Without these, the client falls back to dummy values (0 / all-zeros) and
+  # challenge-response auth will fail, but JWT-auth networks still work fine.
+  do_client_key: ${{ secrets.NETWORK_CLIENT_ID != '' }}
   do_symbols:    ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
   do_doxygen:    ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
   do_static_analysis: ${{ github.event_name == 'push' && github.ref != 'refs/heads/main' }}
@@ -222,6 +228,15 @@ jobs:
           dbus-launch --sh-syntax | tee session.sh
           eval $(cat session.sh)
           echo "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS" >>$GITHUB_ENV
+      - name: Create network client key file
+        if: ${{ env.do_client_key == 'true' }}
+        run: |
+          cat >vatsim.json <<EOF
+          { "vatsim": { "id": "$NETWORK_CLIENT_ID", "key": "$NETWORK_CLIENT_KEY" } }
+          EOF
+        env:
+          NETWORK_CLIENT_ID: ${{ secrets.NETWORK_CLIENT_ID }}
+          NETWORK_CLIENT_KEY: ${{ secrets.NETWORK_CLIENT_KEY }}
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
       - name: Build neoswift (without symbols)
         if: ${{ env.do_symbols != 'true' }}
@@ -317,6 +332,15 @@ jobs:
         run: |
           conan profile detect
           conan install . --output-folder=build_conan --deployer=full_deploy -pr=ci/profile_win
+      - name: Create network client key file
+        if: ${{ env.do_client_key == 'true' }}
+        run: |
+          echo >vatsim.json @"
+          { "vatsim": { "id": "$env:NETWORK_CLIENT_ID", "key": "$env:NETWORK_CLIENT_KEY" } }
+          "@
+        env:
+          NETWORK_CLIENT_ID: ${{ secrets.NETWORK_CLIENT_ID }}
+          NETWORK_CLIENT_KEY: ${{ secrets.NETWORK_CLIENT_KEY }}
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
       - name: Build neoswift (without symbols)
         if: ${{ env.do_symbols != 'true' }}
@@ -411,6 +435,15 @@ jobs:
           conan install . --output-folder=build_conan_arm --deployer=full_deploy -pr=ci/profile_mac_arm
           # https://doc.qt.io/qt-6/macos-issues.html#d-bus-and-macos
           conan install --requires=dbus/1.15.8 --output-folder build_conan_dbus_shared --deployer=full_deploy -o "dbus/*:shared=True" -o "dbus/*:message_bus=True" -pr=ci/profile_mac
+      - name: Create network client key file
+        if: ${{ env.do_client_key == 'true' }}
+        run: |
+          cat >vatsim.json <<EOF
+          { "vatsim": { "id": "$NETWORK_CLIENT_ID", "key": "$NETWORK_CLIENT_KEY" } }
+          EOF
+        env:
+          NETWORK_CLIENT_ID: ${{ secrets.NETWORK_CLIENT_ID }}
+          NETWORK_CLIENT_KEY: ${{ secrets.NETWORK_CLIENT_KEY }}
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
       - name: Build neoswift (without symbols)
         if: ${{ env.do_symbols != 'true' }}
