@@ -218,14 +218,18 @@ if(WIN32)
     elseif(SWIFT_WIN64)
             set(ARCH_DIR 64)
     endif()
-    add_custom_command(TARGET copy_externals_to_build_dir
-            POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different third_party/externals/win32-msvc/${ARCH_DIR}/bin ${PROJECT_BINARY_DIR}/out/bin
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-    add_custom_command(TARGET copy_externals_to_build_dir
-            POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different third_party/externals/win32-msvc/${ARCH_DIR}/lib ${PROJECT_BINARY_DIR}/out/bin
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    if(EXISTS "${CMAKE_SOURCE_DIR}/third_party/externals/win32-msvc/${ARCH_DIR}/bin")
+        add_custom_command(TARGET copy_externals_to_build_dir
+                POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different third_party/externals/win32-msvc/${ARCH_DIR}/bin ${PROJECT_BINARY_DIR}/out/bin
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    endif()
+    if(EXISTS "${CMAKE_SOURCE_DIR}/third_party/externals/win32-msvc/${ARCH_DIR}/lib")
+        add_custom_command(TARGET copy_externals_to_build_dir
+                POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different third_party/externals/win32-msvc/${ARCH_DIR}/lib ${PROJECT_BINARY_DIR}/out/bin
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    endif()
     # Copy Conan runtime DLLs to build dir
     if(SWIFT_WIN64)
         add_custom_command(TARGET copy_externals_to_build_dir
