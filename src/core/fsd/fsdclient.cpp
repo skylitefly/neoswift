@@ -142,14 +142,17 @@ namespace swift::core::fsd
         Q_ASSERT_X(this->getConnectionStatus().isDisconnected(), Q_FUNC_INFO,
                    "Can't change server details while still connected");
 
-        const QString codecName(server.getFsdSetup().getTextCodec());
+        QWriteLocker l(&m_lockUserClientBuffered);
+        const int protocolRev = m_networkConfig.isValid() ?
+                                    m_networkConfig.getFsdProtocolRevision() :
+                                    ((server.getServerType() == CServer::FSDServerVatsim) ?
+                                         PROTOCOL_REVISION_VATSIM_VELOCITY :
+                                         PROTOCOL_REVISION_CLASSIC);
+        const QString codecName = m_networkConfig.isValid() && !m_networkConfig.getTextCodec().isEmpty() ?
+                                      m_networkConfig.getTextCodec() :
+                                      server.getFsdSetup().getTextCodec();
         auto codec = QStringDecoder::encodingForName(codecName);
         if (!codec.has_value()) { codec = QStringConverter::Utf8; }
-        const int protocolRev = (server.getServerType() == CServer::FSDServerVatsim) ?
-                                    PROTOCOL_REVISION_VATSIM_VELOCITY :
-                                    PROTOCOL_REVISION_CLASSIC;
-
-        QWriteLocker l(&m_lockUserClientBuffered);
         m_server = server;
         m_protocolRevision = protocolRev;
         m_encoder = QStringEncoder(codec.value_or(QStringConverter::Utf8));
@@ -970,24 +973,29 @@ namespace swift::core::fsd
         }
     }
 
-#ifdef SWIFT_VATSIM_SUPPORT
     void CFSDClient::sendClientIdentification(const QString &fsdChallenge)
     {
-        std::array<char, 50> sysuid = {};
-        vatsim_get_system_unique_id(sysuid.data());
         const QString cid = m_server.getUser().getId();
-        const ClientIdentification clientIdentification(
-            getOwnCallsignAsString(), vatsim_auth_get_client_id(m_clientAuth), m_clientName, m_versionMajor,
-            m_versionMinor, cid, sysuid.data(), fsdChallenge);
-        this->sendQueuedMessage(clientIdentification);
 
-        if (getServer().getEcosystem().isSystem(CEcosystem::VATSIM))
+#ifdef SWIFT_VATSIM_SUPPORT
+        if (m_networkConfig.useChallenge())
         {
-            this->getVatsimAuthToken(cid, m_server.getUser().getPassword(),
-                                     { this, [this](const QString &token) {
-                                          this->sendLogin(token);
-                                          this->updateConnectionStatus(CConnectionStatus::Connected);
-                                      } });
+            std::array<char, 50> sysuid = {};
+            vatsim_get_system_unique_id(sysuid.data());
+            const ClientIdentification clientIdentification(
+                getOwnCallsignAsString(), vatsim_auth_get_client_id(m_clientAuth), m_clientName, m_versionMajor,
+                m_versionMinor, cid, sysuid.data(), fsdChallenge);
+            this->sendQueuedMessage(clientIdentification);
+        }
+#endif
+
+        if (m_networkConfig.useJwt())
+        {
+            this->getJwtToken(cid, m_server.getUser().getPassword(), m_networkConfig.getAuthUrl(),
+                              { this, [this](const QString &token) {
+                                   this->sendLogin(token);
+                                   this->updateConnectionStatus(CConnectionStatus::Connected);
+                               } });
         }
         else
         {
@@ -996,13 +1004,14 @@ namespace swift::core::fsd
         }
         increaseStatisticsValue(QStringLiteral("sendClientIdentification"));
     }
-#endif
 
-    void CFSDClient::getVatsimAuthToken(const QString &cid, const QString &password,
-                                        const swift::misc::CSlot<void(const QString &)> &callback)
+    void CFSDClient::getJwtToken(const QString &cid, const QString &password,
+                                 const swift::misc::network::CUrl &authUrl,
+                                 const swift::misc::CSlot<void(const QString &)> &callback)
     {
         Q_ASSERT_X(sApp, Q_FUNC_INFO, "Need app");
-        QNetworkRequest nwRequest(sApp->getGlobalSetup().getVatsimAuthUrl());
+        Q_ASSERT_X(!authUrl.isEmpty(), Q_FUNC_INFO, "authUrl must not be empty for JWT auth");
+        QNetworkRequest nwRequest(authUrl.toQUrl());
         nwRequest.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
         const QJsonObject jsonRequest { { "cid", cid }, { "password", password } };
 
@@ -1017,11 +1026,17 @@ namespace swift::core::fsd
                                      const QString error = json.value("error_msg").isString() ?
                                                                json.value("error_msg").toString() :
                                                                nwReply->errorString();
-                                     CLogMessage(this).error(u"VATSIM auth token endpoint: %1") << error;
+                                     CLogMessage(this).error(u"JWT auth token endpoint: %1") << error;
                                      disconnectFromServer();
                                  }
                                  nwReply->deleteLater();
                              } });
+    }
+
+    void CFSDClient::getVatsimAuthToken(const QString &cid, const QString &password,
+                                        const swift::misc::CSlot<void(const QString &)> &callback)
+    {
+        this->getJwtToken(cid, password, sApp->getGlobalSetup().getVatsimAuthUrl(), callback);
     }
 
     void CFSDClient::sendIncrementalAircraftConfig()
@@ -1167,7 +1182,7 @@ namespace swift::core::fsd
             // * non-VATSIM server. VATSIM has a specific ATIS message
             // * Receiver callsign must be owner callsign and not any type of broadcast.
             // * We have requested the ATIS of this controller before.
-            if (m_server.getServerType() != CServer::FSDServerVatsim &&
+            if (!m_networkConfig.usesVatsimAtisMessages() &&
                 m_ownCallsign.asString() == textMessage.receiver() && m_pendingAtisQueries.contains(sender))
             {
                 maybeHandleAtisReply(sender, receiver, textMessage.m_message);
@@ -1666,12 +1681,13 @@ namespace swift::core::fsd
 
     void CFSDClient::resolveLoadBalancing(const QString &host, std::function<void(const QString &)> callback)
     {
-        if (QHostAddress(host).isNull() && (getServer().getName() == "AUTOMATIC" || m_rehosting) &&
-            getServer().getEcosystem() == CEcosystem::VATSIM)
+        const CUrl loadBalancingUrl = m_networkConfig.getLoadBalancingUrl();
+        if (QHostAddress(host).isNull() && !loadBalancingUrl.isEmpty() &&
+            (getServer().getName() == "AUTOMATIC" || m_rehosting))
         {
             // Not an IP -> Get IP for load balancing via HTTP
             Q_ASSERT_X(sApp, Q_FUNC_INFO, "Need app");
-            CUrl url = sApp->getVatsimFsdHttpUrl();
+            const CUrl url = loadBalancingUrl;
             sApp->getFromNetwork(url, { this, [=](QNetworkReply *nwReplyPtr) {
                                            QScopedPointer<QNetworkReply, QScopedPointerDeleteLater> nwReply(nwReplyPtr);
 
@@ -2260,8 +2276,12 @@ namespace swift::core::fsd
             // handled ones
             case MessageType::AtcDataUpdate: handleAtcDataUpdate(tokens); break;
 #ifdef SWIFT_VATSIM_SUPPORT
-            case MessageType::AuthChallenge: handleAuthChallenge(tokens); break;
-            case MessageType::AuthResponse: handleAuthResponse(tokens); break;
+            case MessageType::AuthChallenge:
+                if (m_networkConfig.useChallenge()) { handleAuthChallenge(tokens); }
+                break;
+            case MessageType::AuthResponse:
+                if (m_networkConfig.useChallenge()) { handleAuthResponse(tokens); }
+                break;
 #endif
             case MessageType::ClientQuery: handleClientQuery(tokens); break;
             case MessageType::ClientResponse: handleClientResponse(tokens); break;
@@ -2269,7 +2289,9 @@ namespace swift::core::fsd
             case MessageType::DeletePilot: handleDeletePilot(tokens); break;
             case MessageType::FlightPlan: handleFlightPlan(tokens); break;
 #ifdef SWIFT_VATSIM_SUPPORT
-            case MessageType::FsdIdentification: handleFsdIdentification(tokens); break;
+            case MessageType::FsdIdentification:
+                if (m_networkConfig.useChallenge()) { handleFsdIdentification(tokens); }
+                break;
 #endif
             case MessageType::KillRequest: handleKillRequest(tokens); break;
             case MessageType::PilotDataUpdate: handlePilotDataUpdate(tokens); break;

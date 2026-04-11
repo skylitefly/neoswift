@@ -142,6 +142,7 @@ if(MSVC)
     add_compile_options(/utf-8)
     add_compile_options(/permissive-)
     add_compile_options(/Zc:lambda)
+    add_compile_options(/Zc:__cplusplus)
 
     # Workaround C1128 error
     add_compile_options(/bigobj)
@@ -225,6 +226,17 @@ if(WIN32)
             POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different third_party/externals/win32-msvc/${ARCH_DIR}/lib ${PROJECT_BINARY_DIR}/out/bin
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    # Copy Conan runtime DLLs to build dir
+    if(SWIFT_WIN64)
+        add_custom_command(TARGET copy_externals_to_build_dir
+                POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    ${OPUS_PATH}/bin/opus.dll
+                    ${SODIUM_PATH}/bin/libsodium.dll
+                    ${DBUS_PATH}/bin/dbus-1-3.dll
+                    ${DBUS_PATH}/bin/dbus-daemon.exe
+                    ${PROJECT_BINARY_DIR}/out/bin)
+    endif()
 endif()
 
 message(STATUS "Simulators:")

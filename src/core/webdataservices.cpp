@@ -114,6 +114,18 @@ namespace swift::core
         return {};
     }
 
+    void CWebDataServices::setActiveNetworkConfig(const CNetworkConfig &config)
+    {
+        if (m_vatsimDataFileReader && !config.getNetworkDataUrl().isEmpty())
+        {
+            m_vatsimDataFileReader->setNetworkDataUrl(config.getNetworkDataUrl());
+        }
+        if (m_vatsimMetarReader && !config.getMetarUrl().isEmpty())
+        {
+            m_vatsimMetarReader->setMetarUrl(config.getMetarUrl());
+        }
+    }
+
     CUserList CWebDataServices::getUsersForCallsign(const CCallsign &callsign) const
     {
         if (m_vatsimDataFileReader) { return m_vatsimDataFileReader->getUsersForCallsign(callsign); }

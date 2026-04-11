@@ -9,6 +9,7 @@
 
 #include "core/afv/model/atcstationmodel.h"
 #include "core/swiftcoreexport.h"
+#include "misc/network/url.h"
 
 namespace swift::core::afv::model
 {
@@ -32,6 +33,9 @@ namespace swift::core::afv::model
         //! Update ATC stations in model
         void updateFromMap();
 
+        //! Set the AFV map URL; if not set, the global setup fallback is used
+        void setMapUrl(const swift::misc::network::CUrl &url) { m_mapUrl = url; }
+
         //! ATC model
         CSampleAtcStationModel *getAtcStationModel() { return m_model; }
 
@@ -39,6 +43,7 @@ namespace swift::core::afv::model
         CSampleAtcStationModel *m_model = nullptr;
         QTimer *m_timer = nullptr;
         QString m_callsign;
+        swift::misc::network::CUrl m_mapUrl; //!< injected via setMapUrl(); if empty, uses GlobalSetup fallback
     };
 } // namespace swift::core::afv::model
 

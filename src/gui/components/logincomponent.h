@@ -14,7 +14,6 @@
 #include <QTimer>
 
 #include "core/data/networksetup.h"
-#include "core/vatsim/vatsimsettings.h"
 #include "gui/overlaymessagesframe.h"
 #include "gui/settings/guisettings.h"
 #include "gui/swiftguiexport.h"
@@ -49,13 +48,6 @@ namespace swift::gui::components
         Q_OBJECT
 
     public:
-        //! The tabs
-        enum Tab
-        {
-            LoginVATSIM,
-            LoginOthers
-        };
-
         //! Log categories
         static const QStringList &getLogCategories();
 
@@ -113,13 +105,7 @@ namespace swift::gui::components
 
         // -------------- others -----------------
 
-        //! Selected server (VATSIM)
-        swift::misc::network::CServer getCurrentVatsimServer() const;
-
-        //! Selected server (others)
-        swift::misc::network::CServer getCurrentOtherServer() const;
-
-        //! Current server based on selected tab
+        //! Current server based on the active network selection
         swift::misc::network::CServer getCurrentServer() const;
 
         //! Get a prefill model
@@ -155,9 +141,6 @@ namespace swift::gui::components
         //! Logoff countdown
         void startLogoffTimerCountdown();
 
-        //! Is the VATSIM network tab selected?
-        bool isVatsimNetworkTabSelected() const;
-
         //! Load from settings
         void loadRememberedUserData();
 
@@ -170,9 +153,6 @@ namespace swift::gui::components
         //! Network status has changed
         void onNetworkStatusChanged(const swift::misc::network::CConnectionStatus &from,
                                     const swift::misc::network::CConnectionStatus &to);
-
-        //! Tab widget (server) changed
-        void onServerTabWidgetChanged(int index);
 
         //! Has contexts?
         bool hasValidContexts() const;

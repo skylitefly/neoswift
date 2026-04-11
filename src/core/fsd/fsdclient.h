@@ -20,6 +20,7 @@
 #include "misc/network/connectionstatus.h"
 #include "misc/network/ecosystemprovider.h"
 #include "misc/network/loginmode.h"
+#include "misc/network/networkconfig.h"
 #include "misc/network/rawfsdmessage.h"
 #include "misc/network/server.h"
 #include "misc/network/textmessagelist.h"
@@ -126,6 +127,11 @@ namespace swift::core::fsd
             m_capabilities = capabilities;
         }
         void setServer(const swift::misc::network::CServer &server);
+        void setNetworkConfig(const swift::misc::network::CNetworkConfig &config)
+        {
+            QWriteLocker l(&m_lockUserClientBuffered);
+            m_networkConfig = config;
+        }
         void setLoginMode(const swift::misc::network::CLoginMode &mode)
         {
             QWriteLocker l(&m_lockUserClientBuffered);
@@ -162,6 +168,14 @@ namespace swift::core::fsd
         {
             QReadLocker l(&m_lockUserClientBuffered);
             return m_server;
+        }
+
+        //! Get the network config used for this connection
+        //! \threadsafe
+        swift::misc::network::CNetworkConfig getNetworkConfig() const
+        {
+            QReadLocker l(&m_lockUserClientBuffered);
+            return m_networkConfig;
         }
 
         //! List of all preset values
@@ -430,9 +444,7 @@ namespace swift::core::fsd
         void sendAuthResponse(const QString &response);
         void sendPong(const QString &receiver, const QString &timestamp);
         void sendClientResponse(ClientQueryType queryType, const QString &receiver);
-#ifdef SWIFT_VATSIM_SUPPORT
         void sendClientIdentification(const QString &fsdChallenge);
-#endif
         void sendIncrementalAircraftConfig();
 
         void readDataFromSocket() { this->readDataFromSocketMaxLines(); }
@@ -558,7 +570,12 @@ namespace swift::core::fsd
         //! String without colons
         static QString noColons(const QString &input);
 
-        //! Get a short-lived, one-time-use token from Vatsim web service, to avoid sending plaintext password to FSD
+        //! Exchange CID+password for a JWT token at \a authUrl; invoke callback with the token
+        void getJwtToken(const QString &cid, const QString &password,
+                         const swift::misc::network::CUrl &authUrl,
+                         const swift::misc::CSlot<void(const QString &)> &callback);
+
+        //! \deprecated Use getJwtToken() with explicit URL instead
         void getVatsimAuthToken(const QString &cid, const QString &password,
                                 const swift::misc::CSlot<void(const QString &)> &callback);
 
@@ -643,6 +660,7 @@ namespace swift::core::fsd
 
         // User data
         swift::misc::network::CServer m_server;
+        swift::misc::network::CNetworkConfig m_networkConfig; //!< set before connecting, drives protocol/auth behavior
         swift::misc::network::CLoginMode m_loginMode;
         QStringEncoder m_encoder;
         QStringDecoder m_decoder;

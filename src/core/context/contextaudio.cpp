@@ -167,7 +167,31 @@ namespace swift::core::context
         }
 #endif
 
-        m_voiceClient = new CAfvClient(sApp->getGlobalSetup().getAfvApiServerUrl().toQString(), this);
+        // Seed from the last-used network cache if not already set (startup before any connection)
+        if (!m_currentNetworkConfig.isValid())
+        {
+            const swift::misc::network::CNetwork lastNet = m_lastNetworkData.get();
+            if (lastNet.hasLoadedConfig()) { m_currentNetworkConfig = lastNet.getConfig(); }
+        }
+
+        // If the network explicitly disables voice, don't create the AFV client
+        if (m_currentNetworkConfig.isValid() && !m_currentNetworkConfig.isVoiceEnabled())
+        {
+            CLogMessage(this).info(u"Voice disabled for this network");
+            return;
+        }
+
+        const QString afvApiUrl = (m_currentNetworkConfig.isValid() && !m_currentNetworkConfig.getVoiceApiUrl().isEmpty()) ?
+                                      m_currentNetworkConfig.getVoiceApiUrl().toQString() :
+                                      sApp->getGlobalSetup().getAfvApiServerUrl().toQString();
+
+        if (afvApiUrl.isEmpty())
+        {
+            CLogMessage(this).info(u"Voice disabled: no AFV API URL configured");
+            return;
+        }
+
+        m_voiceClient = new CAfvClient(afvApiUrl, this);
 
         Q_ASSERT_X(m_voiceClient->thread() == qApp->thread(), Q_FUNC_INFO, "Should be in main thread");
         m_voiceClient->start(); // thread
@@ -254,10 +278,11 @@ namespace swift::core::context
         if (!m_voiceClient) { return false; }
         if (!sApp || sApp->isShuttingDown() || !sApp->getIContextNetwork()) { return false; }
 
-        const CEcosystem ecoSystem = this->getIContextNetwork()->getConnectedServer().getEcosystem();
-        if (ecoSystem != CEcosystem::vatsim())
+        // Voice is allowed for any network that has voice enabled in its config
+        // For legacy connections (no config loaded) we check the ecosystem as before
+        if (m_currentNetworkConfig.isValid() && !m_currentNetworkConfig.isVoiceEnabled())
         {
-            CLogMessage(this).info(u"Will not use AFV as ecosystem is '%1'") << ecoSystem.toQString(true);
+            CLogMessage(this).info(u"Voice disabled for this network");
             return false;
         }
 
@@ -567,20 +592,30 @@ namespace swift::core::context
     void CContextAudioBase::xCtxNetworkConnectionStatusChanged(const CConnectionStatus &from,
                                                                const CConnectionStatus &to)
     {
-        if (!m_voiceClient) { return; }
-
         Q_UNUSED(from)
         SWIFT_VERIFY_X(this->getIContextNetwork(), Q_FUNC_INFO, "Missing network context");
 
-        // we only change network connection of AFV client here
+        // Refresh config from the data cache — written by CNetworkSelectorComponent when user selects a network
+        const swift::misc::network::CNetwork lastNet = m_lastNetworkData.get();
+        if (lastNet.hasLoadedConfig()) { m_currentNetworkConfig = lastNet.getConfig(); }
+
         if (to.isConnected() && this->getIContextNetwork())
         {
+            // Voice disabled: tear down any existing voice client and stop here
+            if (m_currentNetworkConfig.isValid() && !m_currentNetworkConfig.isVoiceEnabled())
+            {
+                this->terminateVoiceClient();
+                return;
+            }
+
+            // Voice enabled but client not yet running (was disabled at startup, or just terminated)
+            if (!m_voiceClient) { this->initVoiceClient(); }
+            if (!m_voiceClient) { return; }
+
             const bool connected = this->connectAudioWithNetworkCredentials();
             Q_UNUSED(connected)
-
-            // one reason for not connecting is NOT using the VATSIM ecosystem
         }
-        else if (to.isDisconnected()) { m_voiceClient->disconnectFrom(); }
+        else if (to.isDisconnected() && m_voiceClient) { m_voiceClient->disconnectFrom(); }
     }
 
     void CContextAudioBase::onAfvConnectionStatusChanged(int status)

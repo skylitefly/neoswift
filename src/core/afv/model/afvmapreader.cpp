@@ -12,8 +12,10 @@
 #include "core/afv/dto.h"
 #include "core/application.h"
 #include "misc/aviation/callsign.h"
+#include "misc/network/url.h"
 
 using namespace swift::misc::aviation;
+using namespace swift::misc::network;
 
 namespace swift::core::afv::model
 {
@@ -32,8 +34,12 @@ namespace swift::core::afv::model
         QEventLoop loop(sApp);
         connect(sApp->getNetworkAccessManager(), &QNetworkAccessManager::finished, &loop, &QEventLoop::quit);
         connect(sApp, &CApplication::aboutToShutdown, &loop, &QEventLoop::quit);
-        const QUrl url =
-            sApp->getGlobalSetup().getAfvApiServerUrl().withAppendedPath("/api/v1/network/online/callsigns");
+        // Prefer injected map URL; fall back to GlobalSetup for legacy VATSIM connections
+        const swift::misc::network::CUrl base =
+            m_mapUrl.isEmpty() ?
+                sApp->getGlobalSetup().getAfvApiServerUrl() :
+                m_mapUrl;
+        const QUrl url = base.withAppendedPath("/api/v1/network/online/callsigns");
         QNetworkReply *reply = sApp->getNetworkAccessManager()->get(QNetworkRequest(url));
         while (reply && !reply->isFinished() && sApp && !sApp->isShuttingDown()) { loop.exec(); }
         const QByteArray jsonData = reply ? reply->readAll() : QByteArray {};

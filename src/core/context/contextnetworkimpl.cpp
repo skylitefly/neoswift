@@ -27,6 +27,7 @@
 #include "misc/network/entityflags.h"
 #include "misc/network/networkutils.h"
 #include "misc/network/textmessage.h"
+#include "core/data/networksetup.h"
 #include "misc/pq/constants.h"
 #include "misc/pq/frequency.h"
 #include "misc/pq/time.h"
@@ -46,6 +47,7 @@ using namespace swift::misc::simulation;
 using namespace swift::misc::weather;
 using namespace swift::core::fsd;
 using namespace swift::core::vatsim;
+using namespace swift::core::data;
 
 namespace swift::core::context
 {
@@ -315,6 +317,11 @@ namespace swift::core::context
         m_fsdClient->setClientCapabilities(Capabilities::AircraftInfo | Capabilities::FastPos | Capabilities::VisPos |
                                            Capabilities::AtcInfo | Capabilities::AircraftConfig |
                                            Capabilities::IcaoEquipment);
+
+        // Inject network config from last-network cache so FSD client knows protocol/auth without ecosystem checks
+        const CNetwork currentNet = m_networkSetup.getLastNetwork();
+        if (currentNet.hasLoadedConfig()) { m_fsdClient->setNetworkConfig(currentNet.getConfig()); }
+
         m_fsdClient->setServer(server);
 
         m_fsdClient->setPilotRating(PilotRating::Student);

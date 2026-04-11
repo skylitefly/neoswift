@@ -7,11 +7,13 @@
 #define SWIFT_CORE_VATSIM_VATSIMMETARREADER_H
 
 #include <QObject>
+#include <QReadWriteLock>
 
 #include "core/swiftcoreexport.h"
 #include "core/threadedreaderperiodic.h"
 #include "misc/aviation/airporticaocode.h"
 #include "misc/network/entityflags.h"
+#include "misc/network/url.h"
 #include "misc/weather/metar.h"
 #include "misc/weather/metardecoder.h"
 #include "misc/weather/metarlist.h"
@@ -61,12 +63,22 @@ namespace swift::core::vatsim
         //! Reload settings
         void reloadSettings();
 
+    public:
+        //! Set the METAR URL; must be set before the reader starts
+        void setMetarUrl(const swift::misc::network::CUrl &url)
+        {
+            QWriteLocker l(&m_lockUrl);
+            m_metarUrl = url;
+        }
+
     private:
         swift::misc::weather::CMetarDecoder m_metarDecoder;
         swift::misc::weather::CMetarList m_metars;
         swift::misc::CSettingReadOnly<swift::core::vatsim::TVatsimMetars> m_settings {
             this, &CVatsimMetarReader::reloadSettings
         };
+        swift::misc::network::CUrl m_metarUrl; //!< injected via setMetarUrl()
+        mutable QReadWriteLock m_lockUrl { QReadWriteLock::Recursive };
     };
 } // namespace swift::core::vatsim
 #endif // SWIFT_CORE_VATSIM_VATSIMMETARREADER_H

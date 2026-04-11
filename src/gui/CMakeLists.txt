@@ -351,7 +351,8 @@ add_library(gui SHARED
         components/networkaircraftvaluescomponent.ui
         components/networkdetailscomponent.cpp
         components/networkdetailscomponent.h
-        components/networkdetailscomponent.ui
+        components/networkselectorcomponent.cpp
+        components/networkselectorcomponent.h
         components/otherswiftversionscomponent.cpp
         components/otherswiftversionscomponent.h
         components/otherswiftversionscomponent.ui
@@ -415,7 +416,6 @@ add_library(gui SHARED
         components/settingsnetworkcomponent.ui
         components/settingsnetworkserverscomponent.cpp
         components/settingsnetworkserverscomponent.h
-        components/settingsnetworkserverscomponent.ui
         components/settingssimulatorbasicscomponent.cpp
         components/settingssimulatorbasicscomponent.h
         components/settingssimulatorbasicscomponent.ui

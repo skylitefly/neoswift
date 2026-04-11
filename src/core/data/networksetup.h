@@ -12,8 +12,13 @@
 #include "core/data/vatsimsetup.h"
 #include "core/swiftcoreexport.h"
 #include "core/vatsim/vatsimsettings.h"
+#include "misc/datacache.h"
+#include "misc/network/data/lastnetwork.h"
 #include "misc/network/data/lastserver.h"
+#include "misc/network/network.h"
+#include "misc/network/networklist.h"
 #include "misc/network/serverlist.h"
+#include "misc/network/settings/networksettings.h"
 #include "misc/network/settings/serversettings.h"
 #include "misc/settingscache.h"
 #include "misc/statusmessage.h"
@@ -59,6 +64,20 @@ namespace swift::core::data
         //! Used with an other server (i.e. non VATSIM)
         bool wasLastUsedWithOtherServer() const;
 
+        // ---- new generic network API ----
+
+        //! All known networks (persisted list)
+        swift::misc::network::CNetworkList getNetworks() const;
+
+        //! Persist the list of known networks
+        swift::misc::CStatusMessage setNetworks(const swift::misc::network::CNetworkList &networks);
+
+        //! The last used network (with cached config and servers)
+        swift::misc::network::CNetwork getLastNetwork() const;
+
+        //! Persist the last used network
+        swift::misc::CStatusMessage setLastNetwork(const swift::misc::network::CNetwork &network);
+
     signals:
         //! Setup changed
         void setupChanged();
@@ -76,6 +95,14 @@ namespace swift::core::data
         swift::misc::CData<swift::core::data::TVatsimLastServer> m_lastVatsimServer {
             this, &CNetworkSetup::onSettingsChanged
         }; //!< recently used VATSIM server
+
+        // new generic network storage
+        swift::misc::CSetting<swift::misc::network::settings::TNetworks> m_networks {
+            this, &CNetworkSetup::onSettingsChanged
+        };
+        swift::misc::CData<swift::misc::network::data::TLastNetwork> m_lastNetwork {
+            this, &CNetworkSetup::onSettingsChanged
+        };
     };
 } // namespace swift::core::data
 

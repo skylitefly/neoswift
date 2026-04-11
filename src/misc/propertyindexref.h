@@ -77,6 +77,8 @@ namespace swift::misc
             GlobalIndexCRemoteFile = 7000,
             GlobalIndexCEcosystem = 7100,
             GlobalIndexCRawFsdMessage = 7200,
+            GlobalIndexCNetworkConfig = 7300,
+            GlobalIndexCNetwork = 7400,
             GlobalIndexCAircraftModel = 8000,
             GlobalIndexCSimulatedAircraft = 8100,
             GlobalIndexCTextMessage = 8200,

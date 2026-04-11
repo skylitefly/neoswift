@@ -6,6 +6,9 @@
 // Network headers
 #include "misc/network/authenticateduser.h"
 #include "misc/network/client.h"
+#include "misc/network/network.h"
+#include "misc/network/networkconfig.h"
+#include "misc/network/networklist.h"
 #include "misc/network/clientlist.h"
 #include "misc/network/connectionstatus.h"
 #include "misc/network/ecosystem.h"
@@ -63,5 +66,8 @@ namespace swift::misc::network
         CUser::registerMetadata();
         CUserList::registerMetadata();
         CVoiceCapabilities::registerMetadata();
+        CNetworkConfig::registerMetadata();
+        CNetwork::registerMetadata();
+        CNetworkList::registerMetadata();
     }
 } // namespace swift::misc::network
