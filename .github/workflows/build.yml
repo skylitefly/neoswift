@@ -31,7 +31,7 @@ env:
   installbuilder_hash_linux: 3dff24cf94af17158cbcb16af41ecf0bb5060ba97d052597f15b987bd5e5b43a
   installbuilder_hash_macos: bffa8b2663c6e9aaaa1ed7cdb41a874d34ff89f22adfab419e172915f8f4ce57
   # Set EXTERNALS_PAT secret to enable proprietary externals (SimConnect SDK etc.)
-  externals: ${{ github.repository_owner }}/externals
+  externals: ${{ github.repository_owner }}/neoswift-externals
   externals_sha: e1f1743ba159e11b0c065ea8f1ae1a0e91e3bf39
   use_externals: ${{ secrets.EXTERNALS_PAT != '' }}
 
