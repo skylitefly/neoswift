@@ -78,7 +78,7 @@ class Builder:
                                 "~/license.xml",
                                 "--setvars",
                                 "project.outputDirectory=build",
-                                "project.installerFilename=swiftinstaller-{}-{}-{}.{}".format(os_name, self.word_size, version_full, extension),
+                                "project.installerFilename=neoswiftinstaller-{}-{}-{}.{}".format(os_name, self.word_size, version_full, extension),
                                 "project.version={}".format(version_full),
                                 "versionFull={}.{}".format(version_full, version_rev),
                                 "project.windows64bitMode={}".format(windows64),
@@ -123,7 +123,7 @@ class Builder:
             version_segments = self.version.split('.')
             last_segment = version_segments.pop()
             version_without_timestamp = '.'.join(version_segments)
-            installer_name_old = '-'.join(['swiftinstaller', self.os_map[platform.system()], self.word_size, version_without_timestamp])
+            installer_name_old = '-'.join(['neoswiftinstaller', self.os_map[platform.system()], self.word_size, version_without_timestamp])
             installer_name_new = '.'.join([installer_name_old, last_segment])
             installer_name_old = installer_name_old + '.' + extension_map[platform.system()]
             installer_name_new = installer_name_new + '.' + extension_map[platform.system()]

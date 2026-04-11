@@ -25,7 +25,7 @@ endif()
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 
-project(swift LANGUAGES ${SWIFT_LANGUAGES})
+project(neoswift LANGUAGES ${SWIFT_LANGUAGES})
 
 include(cmake/tools.cmake)
 include(cmake/pch_config.cmake)
