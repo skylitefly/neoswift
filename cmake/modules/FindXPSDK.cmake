@@ -27,12 +27,12 @@ if (NOT EXISTS "${XP_SDK_PATH}/CHeaders" OR NOT EXISTS "${XP_SDK_PATH}/Libraries
 endif ()
 
 
-if (SWIFT_WIN64 OR APPLE)
+if (SWIFT_WIN64)
     add_library(XPSDK::XPLM STATIC IMPORTED GLOBAL)
     add_library(XPSDK::XPWidgets STATIC IMPORTED GLOBAL)
-elseif (UNIX)
-    add_library(XPSDK::XPLM IMPORTED INTERFACE)
-    add_library(XPSDK::XPWidgets IMPORTED INTERFACE)
+else ()
+    add_library(XPSDK::XPLM IMPORTED INTERFACE GLOBAL)
+    add_library(XPSDK::XPWidgets IMPORTED INTERFACE GLOBAL)
 endif ()
 
 target_include_directories(XPSDK::XPLM INTERFACE ${XP_SDK_PATH}/CHeaders ${XP_SDK_PATH}/CHeaders/XPLM)
@@ -43,8 +43,10 @@ if (SWIFT_WIN64)
     set_target_properties(XPSDK::XPWidgets PROPERTIES IMPORTED_LOCATION ${XP_SDK_PATH}/Libraries/Win/XPWidgets_64.lib)
 
 elseif (APPLE)
-    set_target_properties(XPSDK::XPLM PROPERTIES IMPORTED_LOCATION ${XP_SDK_PATH}/Libraries/Mac/XPLM.framework/XPLM)
-    set_target_properties(XPSDK::XPWidgets PROPERTIES IMPORTED_LOCATION ${XP_SDK_PATH}/Libraries/Mac/XPWidgets.framework/XPWidgets)
+    # XP SDK ships .tbd stub frameworks; use -framework flags rather than
+    # pointing at the framework binary directly (which the linker rejects).
+    target_link_options(XPSDK::XPLM INTERFACE "-F${XP_SDK_PATH}/Libraries/Mac" "-framework XPLM")
+    target_link_options(XPSDK::XPWidgets INTERFACE "-F${XP_SDK_PATH}/Libraries/Mac" "-framework XPWidgets")
 
 endif ()
 
