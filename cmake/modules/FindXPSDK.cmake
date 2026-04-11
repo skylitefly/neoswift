@@ -43,10 +43,22 @@ if (SWIFT_WIN64)
     set_target_properties(XPSDK::XPWidgets PROPERTIES IMPORTED_LOCATION ${XP_SDK_PATH}/Libraries/Win/XPWidgets_64.lib)
 
 elseif (APPLE)
-    # XP SDK ships .tbd stub frameworks; use -framework flags rather than
-    # pointing at the framework binary directly (which the linker rejects).
-    target_link_libraries(XPSDK::XPLM INTERFACE "-F${XP_SDK_PATH}/Libraries/Mac" "-framework XPLM")
-    target_link_libraries(XPSDK::XPWidgets INTERFACE "-F${XP_SDK_PATH}/Libraries/Mac" "-framework XPWidgets")
+    # XP SDK ships .tbd stub frameworks.  Passing the binary path directly
+    # (IMPORTED_LOCATION) fails with "unknown file type" on Xcode 16+.
+    # find_library locates the .framework bundle and CMake automatically
+    # expands the path to -F <dir> -framework <name> at link time.
+    find_library(XPLM_FRAMEWORK XPLM
+        PATHS "${XP_SDK_PATH}/Libraries/Mac"
+        NO_DEFAULT_PATH)
+    find_library(XPWIDGETS_FRAMEWORK XPWidgets
+        PATHS "${XP_SDK_PATH}/Libraries/Mac"
+        NO_DEFAULT_PATH)
+    if(XPLM_FRAMEWORK)
+        target_link_libraries(XPSDK::XPLM INTERFACE ${XPLM_FRAMEWORK})
+    endif()
+    if(XPWIDGETS_FRAMEWORK)
+        target_link_libraries(XPSDK::XPWidgets INTERFACE ${XPWIDGETS_FRAMEWORK})
+    endif()
 
 endif ()
 
