@@ -17,6 +17,22 @@
 
 // clang-format off
 #include <Windows.h>
+
+// When consuming SimConnect wrappers from outside fsxcommon.dll (i.e. any
+// plugin that links fsxcommon), the wrapper functions must be imported from
+// fsxcommon.dll rather than exported from the consumer.  Pre-define
+// SIMCONNECTAPI before SimConnect.h so that its own conditional definition
+// (which may expand to dllexport when SIMCONNECT_H_NOMANIFEST is set) does
+// not take effect.  Also suppress the auto-link pragma.
+#ifndef BUILD_FSXCOMMON_LIB
+#  ifndef SIMCONNECT_H_NOMANIFEST
+#    define SIMCONNECT_H_NOMANIFEST
+#  endif
+#  ifndef SIMCONNECTAPI
+#    define SIMCONNECTAPI extern "C" __declspec(dllimport)
+#  endif
+#endif
+
 #include <SimConnect.h>
 // clang-format on
 

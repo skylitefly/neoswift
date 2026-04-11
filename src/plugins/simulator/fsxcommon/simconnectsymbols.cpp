@@ -8,6 +8,13 @@
 #include <SimConnect.h>
 // clang-format on
 
+// All SimConnect wrapper function bodies defined below must be exported from
+// fsxcommon.dll so that other plugins (e.g. simulatorp3d) can resolve them.
+// Override SIMCONNECTAPI after including SimConnect.h so that any previous
+// definition (which may be dllimport or bare extern "C") is replaced.
+#undef SIMCONNECTAPI
+#define SIMCONNECTAPI extern "C" __declspec(dllexport)
+
 #include <array>
 
 #include <QLibrary>

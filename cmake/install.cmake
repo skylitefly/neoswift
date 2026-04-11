@@ -17,7 +17,9 @@ elseif(SWIFT_WIN64)
 elseif(APPLE)
     set(crashpad_handler_path ${CMAKE_SOURCE_DIR}/third_party/externals/macx-clang/64/bin/swift_crashpad_handler)
 endif()
-install(PROGRAMS ${crashpad_handler_path} DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+if(EXISTS "${crashpad_handler_path}")
+    install(PROGRAMS ${crashpad_handler_path} DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+endif()
 
 # Deploy qt libs
 
