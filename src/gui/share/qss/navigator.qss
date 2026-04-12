@@ -4,13 +4,10 @@
  */
 
 QDialog {
-  background: lightgrey;
+  background-color: #252526;
+  border: 1px solid #474747;
+  border-radius: 6px;
 }
-
-/*
-#fr_NavigatorDialogInner[navigatorFrameless="true"] {}
-#fr_NavigatorDialogInner[navigatorFrameless="false"] {}
-*/
 
 #fr_NavigatorDialogInner QToolButton {
   margin: 0px;

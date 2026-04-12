@@ -3,15 +3,16 @@
  * SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-swift-pilot-client-1
  */
 
-/** style is applied to a CDockWidgetInfoBar **/
-/** frameless is dynamic property**/
-/** for frameless only use QDockWidget[framelessDockWidget="true"] QFrame **/
-/** "xpdrmode", m_transponder.getTransponderMode **/
-/** "xpdrmodeshort", m_transponder.getModeAsShortString **/
+/*
+ Info bar stylesheet - applied to CDockWidgetInfoBar
+ Transponder mode colors:
+   I (Ident):   amber  #d97706 bg, dark text
+   C (Charlie): green  #1a7340 bg, white text
+   S (Standby): blue   #094771 bg, white text
+*/
 
 swift--gui--CDockWidgetInfoBar {
-  background: black; /* background is background color here */
-  background-image: url(:/textures/icons/textures/texture-inner.jpg);
+  background-color: #252526;
   min-height: 1.25em;
 }
 
@@ -24,35 +25,38 @@ swift--gui--Components--CTransponderModeComponent {
   margin:  0px;
 }
 
+/* Transponder mode buttons - functional status colors */
 QToolButton[xpdrmodeshort="I"] {
-  background-color: yellow;
-  color: black;
+  background-color: #d97706;
+  border: 1px solid #f59e0b;
+  color: #1e1e1e;
+  font-weight: bold;
 }
 
 QToolButton[xpdrmodeshort="C"] {
-  background-color: green;
-  color: white;
+  background-color: #1a7340;
+  border: 1px solid #4ec994;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 QToolButton[xpdrmodeshort="S"] {
-  background-color: blue;
-  color: yellow;
+  background-color: #094771;
+  border: 1px solid #007acc;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 swift--gui--Components--CInfoBarStatusComponent {
-  padding-left:  1.0em;
-  padding-right: 1.0em;
+  padding-left:  0.75em;
+  padding-right: 0.75em;
 }
 
 QLabel {
   margin: 0px;
-  padding-left:  0.5em;
-  padding-right: 0.25em;
+  padding-left:  0.4em;
+  padding-right: 0.2em;
   padding-bottom: 0px;
   padding-top:    0px;
   border: 0px;
-  /**
-  background-color: darkslategray;
-  background-image: url(:/textures/icons/textures/texture-outer.jpg);
-  **/
 }

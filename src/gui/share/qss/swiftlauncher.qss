@@ -3,30 +3,37 @@
  * SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-swift-pilot-client-1
  */
 
-/**
-Works around two issues on Mac OS
- 1. The launcher dialog was entirely transparent
- 2. Transparency caused the QToolBox labels to be broken
-**/
+/*
+ Works around an issue on macOS where the launcher dialog was entirely transparent.
+*/
 QStackedWidget#sw_SwiftLauncher {
-  background-image: url(:/textures/icons/textures/texture-inner.jpg);
+  background-color: #252526;
 }
 
-/** special effects for start buttons **/
+/* Start page launch buttons */
 #pg_Start QToolButton {
-  border: 1px solid green;
-  border-radius: 5px;
+  background-color: #2d2d2d;
+  border: 1px solid #474747;
+  border-radius: 6px;
+  color: #cccccc;
+  padding: 6px;
 }
 
 #pg_Start QToolButton:hover {
-  border: 5px solid green;
-  border-radius: 5px;
+  background-color: #094771;
+  border: 2px solid #007acc;
+  border-radius: 6px;
   min-width: 30px;
   min-height: 30px;
 }
 
+#pg_Start QToolButton:pressed {
+  background-color: #0e639c;
+  border-color: #1177bb;
+}
+
 #pg_start QToolTip {
-  color: #ffffff;
-  background-color: #2a82da;
-  border: 1px solid white;
+  color: #cccccc;
+  background-color: #252526;
+  border: 1px solid #474747;
 }

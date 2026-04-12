@@ -3,24 +3,24 @@
  * SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-swift-pilot-client-1
  */
 
-/** default style from testmessage.css **/
+/** default style from textmessage.css **/
 /** style sheet for content !!!  **/
 /** does not(!) affect text edit **/
 /** http://doc.qt.io/qt-5/richtext-html-subset.html **/
 
-table { font-size: 8pt; }
+table { font-size: 9pt; }
 
 tr { }
 td { vertical-align: top; }
-td.timestamp { color: lightgreen; }
+td.timestamp { color: #4ec994; }
 td.message{ }
 
 /** recipient info normal/supervisor **/
-td.recipient{ color: yellow; }
-.sent td.recipient{ color: blue; }
-.supervisor td.recipient{ background-color: red; }
+td.recipient{ color: #4dabff; }
+.sent td.recipient{ color: #858585; }
+.supervisor td.recipient{ background-color: #5a1d1d; color: #f14c4c; }
 
 /** sent info normal/supervisor **/
-td.sender{ color: yellow; }
-.sent td.sender{ color: magenta; }
-.supervisor td.sender{ background-color: red; }
+td.sender{ color: #4dabff; }
+.sent td.sender{ color: #c678dd; }
+.supervisor td.sender{ background-color: #5a1d1d; color: #f14c4c; }
