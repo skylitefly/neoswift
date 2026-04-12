@@ -26,35 +26,41 @@ if (NOT EXISTS "${XP_SDK_PATH}/CHeaders" OR NOT EXISTS "${XP_SDK_PATH}/Libraries
     return()
 endif ()
 
+# Use plain (non-imported) INTERFACE libraries so that CMake never tries to
+# resolve a binary file path.  Expose them under the XPSDK:: namespace via
+# ALIAS targets; the double-colon names are supported for aliases in CMake.
+add_library(_xpsdk_xplm INTERFACE)
+add_library(_xpsdk_xpwidgets INTERFACE)
+add_library(XPSDK::XPLM ALIAS _xpsdk_xplm)
+add_library(XPSDK::XPWidgets ALIAS _xpsdk_xpwidgets)
+
+target_include_directories(_xpsdk_xplm INTERFACE
+    ${XP_SDK_PATH}/CHeaders
+    ${XP_SDK_PATH}/CHeaders/XPLM)
+target_include_directories(_xpsdk_xpwidgets INTERFACE
+    ${XP_SDK_PATH}/CHeaders
+    ${XP_SDK_PATH}/CHeaders/Widgets)
 
 if (SWIFT_WIN64)
-    add_library(XPSDK::XPLM STATIC IMPORTED GLOBAL)
-    add_library(XPSDK::XPWidgets STATIC IMPORTED GLOBAL)
-else ()
-    add_library(XPSDK::XPLM IMPORTED INTERFACE GLOBAL)
-    add_library(XPSDK::XPWidgets IMPORTED INTERFACE GLOBAL)
-endif ()
-
-target_include_directories(XPSDK::XPLM INTERFACE ${XP_SDK_PATH}/CHeaders ${XP_SDK_PATH}/CHeaders/XPLM)
-target_include_directories(XPSDK::XPWidgets INTERFACE ${XP_SDK_PATH}/CHeaders ${XP_SDK_PATH}/CHeaders/Widgets)
-
-if (SWIFT_WIN64)
-    set_target_properties(XPSDK::XPLM PROPERTIES IMPORTED_LOCATION ${XP_SDK_PATH}/Libraries/Win/XPLM_64.lib)
-    set_target_properties(XPSDK::XPWidgets PROPERTIES IMPORTED_LOCATION ${XP_SDK_PATH}/Libraries/Win/XPWidgets_64.lib)
+    # Windows: link against the static import libraries shipped with the SDK.
+    target_link_libraries(_xpsdk_xplm INTERFACE
+        ${XP_SDK_PATH}/Libraries/Win/XPLM_64.lib)
+    target_link_libraries(_xpsdk_xpwidgets INTERFACE
+        ${XP_SDK_PATH}/Libraries/Win/XPWidgets_64.lib)
 
 elseif (APPLE)
-    # XP SDK ships .tbd stub frameworks.  The linker rejects the binary
-    # path directly (IMPORTED_LOCATION → "unknown file type").
-    # Use LINKER: syntax which expands to -Wl,-framework,Name so the
-    # comma-separated args reach ld as two distinct arguments; no spaces
-    # are involved so CMake quoting cannot break the flag.
-    target_link_options(XPSDK::XPLM INTERFACE
-        "LINKER:-F${XP_SDK_PATH}/Libraries/Mac"
-        "LINKER:-framework,XPLM"
+    # XP SDK ships .tbd stub frameworks.  The linker rejects the binary path
+    # directly ("unknown file type").  Pass -Wl,-framework,Name so the
+    # comma-separated args reach ld as two distinct arguments.  Using plain
+    # INTERFACE (non-imported) targets ensures CMake never attaches a binary
+    # file path to the link command.
+    target_link_options(_xpsdk_xplm INTERFACE
+        "-Wl,-F${XP_SDK_PATH}/Libraries/Mac"
+        "-Wl,-framework,XPLM"
     )
-    target_link_options(XPSDK::XPWidgets INTERFACE
-        "LINKER:-F${XP_SDK_PATH}/Libraries/Mac"
-        "LINKER:-framework,XPWidgets"
+    target_link_options(_xpsdk_xpwidgets INTERFACE
+        "-Wl,-F${XP_SDK_PATH}/Libraries/Mac"
+        "-Wl,-framework,XPWidgets"
     )
 
 endif ()
