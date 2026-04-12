@@ -123,8 +123,6 @@ namespace swift::core::network
     {
         CServerList servers;
         const CFsdSetup fsdSetup = config.toFsdSetup();
-        const CServer::ServerType serverType =
-            config.getFsdProtocolRevision() > 9 ? CServer::FSDServerVatsim : CServer::FSDServer;
 
         for (const QJsonValue &val : arr)
         {
@@ -138,7 +136,9 @@ namespace swift::core::network
 
             if (hostname.isEmpty()) { continue; }
 
-            CServer server(name, location, hostname, port, CUser(), fsdSetup, {}, serverType);
+            // Discovered networks are configured via fsd-configuration.json.
+            // Do not infer legacy VATSIM behaviour presets from the protocol value here.
+            CServer server(name, location, hostname, port, CUser(), fsdSetup, {}, CServer::FSDServer);
             servers.push_back(server);
         }
         return servers;
