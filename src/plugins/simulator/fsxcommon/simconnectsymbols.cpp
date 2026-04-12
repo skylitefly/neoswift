@@ -455,8 +455,7 @@ SWIFT_SIMCONNECT_WRAPPER_API SimConnect_Open(HANDLE *phSimConnect, LPCSTR szName
 
 SWIFT_SIMCONNECT_WRAPPER_API SimConnect_Close(HANDLE hSimConnect) { return gSymbols.SimConnect_Close(hSimConnect); }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AddToDataDefinition(HANDLE hSimConnect,
-                                                            SIMCONNECT_DATA_DEFINITION_ID DefineID,
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AddToDataDefinition(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID,
                                                             const char *DatumName, const char *UnitsName,
                                                             SIMCONNECT_DATATYPE DatumType, float fEpsilon,
                                                             DWORD DatumID)
@@ -486,8 +485,7 @@ SWIFT_SIMCONNECT_WRAPPER_API SimConnect_WeatherSetModeGlobal(HANDLE hSimConnect)
     return gSymbols.SimConnect_WeatherSetModeGlobal(hSimConnect);
 }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_WeatherSetObservation(HANDLE hSimConnect, DWORD Seconds,
-                                                              const char *szMETAR)
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_WeatherSetObservation(HANDLE hSimConnect, DWORD Seconds, const char *szMETAR)
 {
     return gSymbols.SimConnect_WeatherSetObservation(hSimConnect, Seconds, szMETAR);
 }
@@ -500,8 +498,7 @@ SWIFT_SIMCONNECT_WRAPPER_API SimConnect_TransmitClientEvent(HANDLE hSimConnect, 
     return gSymbols.SimConnect_TransmitClientEvent(hSimConnect, ObjectID, EventID, dwData, GroupID, Flags);
 }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_SetClientData(HANDLE hSimConnect,
-                                                      SIMCONNECT_CLIENT_DATA_ID ClientDataID,
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_SetClientData(HANDLE hSimConnect, SIMCONNECT_CLIENT_DATA_ID ClientDataID,
                                                       SIMCONNECT_CLIENT_DATA_DEFINITION_ID DefineID,
                                                       SIMCONNECT_CLIENT_DATA_SET_FLAG Flags, DWORD dwReserved,
                                                       DWORD cbUnitSize, void *pDataSet)
@@ -510,11 +507,9 @@ SWIFT_SIMCONNECT_WRAPPER_API SimConnect_SetClientData(HANDLE hSimConnect,
                                              pDataSet);
 }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_RequestDataOnSimObject(HANDLE hSimConnect,
-                                                               SIMCONNECT_DATA_REQUEST_ID RequestID,
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_RequestDataOnSimObject(HANDLE hSimConnect, SIMCONNECT_DATA_REQUEST_ID RequestID,
                                                                SIMCONNECT_DATA_DEFINITION_ID DefineID,
-                                                               SIMCONNECT_OBJECT_ID ObjectID,
-                                                               SIMCONNECT_PERIOD Period,
+                                                               SIMCONNECT_OBJECT_ID ObjectID, SIMCONNECT_PERIOD Period,
                                                                SIMCONNECT_DATA_REQUEST_FLAG Flags, DWORD origin,
                                                                DWORD interval, DWORD limit)
 {
@@ -522,8 +517,7 @@ SWIFT_SIMCONNECT_WRAPPER_API SimConnect_RequestDataOnSimObject(HANDLE hSimConnec
                                                       interval, limit);
 }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_RequestClientData(HANDLE hSimConnect,
-                                                          SIMCONNECT_CLIENT_DATA_ID ClientDataID,
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_RequestClientData(HANDLE hSimConnect, SIMCONNECT_CLIENT_DATA_ID ClientDataID,
                                                           SIMCONNECT_DATA_REQUEST_ID RequestID,
                                                           SIMCONNECT_CLIENT_DATA_DEFINITION_ID DefineID,
                                                           SIMCONNECT_CLIENT_DATA_PERIOD Period,
@@ -534,15 +528,13 @@ SWIFT_SIMCONNECT_WRAPPER_API SimConnect_RequestClientData(HANDLE hSimConnect,
                                                  interval, limit);
 }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_SubscribeToSystemEvent(HANDLE hSimConnect,
-                                                               SIMCONNECT_CLIENT_EVENT_ID EventID,
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_SubscribeToSystemEvent(HANDLE hSimConnect, SIMCONNECT_CLIENT_EVENT_ID EventID,
                                                                const char *SystemEventName)
 {
     return gSymbols.SimConnect_SubscribeToSystemEvent(hSimConnect, EventID, SystemEventName);
 }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_MapClientEventToSimEvent(HANDLE hSimConnect,
-                                                                 SIMCONNECT_CLIENT_EVENT_ID EventID,
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_MapClientEventToSimEvent(HANDLE hSimConnect, SIMCONNECT_CLIENT_EVENT_ID EventID,
                                                                  const char *EventName)
 {
     return gSymbols.SimConnect_MapClientEventToSimEvent(hSimConnect, EventID, EventName);
@@ -565,8 +557,7 @@ SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AIRemoveObject(HANDLE hSimConnect, SIMCO
     return gSymbols.SimConnect_AIRemoveObject(hSimConnect, ObjectID, RequestID);
 }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_SetDataOnSimObject(HANDLE hSimConnect,
-                                                           SIMCONNECT_DATA_DEFINITION_ID DefineID,
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_SetDataOnSimObject(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID,
                                                            SIMCONNECT_OBJECT_ID ObjectID,
                                                            SIMCONNECT_DATA_SET_FLAG Flags, DWORD ArrayCount,
                                                            DWORD cbUnitSize, void *pDataSet)
@@ -589,8 +580,7 @@ SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AICreateNonATCAircraft(HANDLE hSimConnec
     return gSymbols.SimConnect_AICreateNonATCAircraft(hSimConnect, szContainerTitle, szTailNumber, InitPos, RequestID);
 }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AICreateEnrouteATCAircraft(HANDLE hSimConnect,
-                                                                   const char *szContainerTitle,
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AICreateEnrouteATCAircraft(HANDLE hSimConnect, const char *szContainerTitle,
                                                                    const char *szTailNumber, int iFlightNumber,
                                                                    const char *szFlightPlanPath,
                                                                    double dFlightPlanPosition, BOOL bTouchAndGo,
@@ -601,18 +591,15 @@ SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AICreateEnrouteATCAircraft(HANDLE hSimCo
                                                           RequestID);
 }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AICreateParkedATCAircraft(HANDLE hSimConnect,
-                                                                  const char *szContainerTitle,
-                                                                  const char *szTailNumber,
-                                                                  const char *szAirportID,
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AICreateParkedATCAircraft(HANDLE hSimConnect, const char *szContainerTitle,
+                                                                  const char *szTailNumber, const char *szAirportID,
                                                                   SIMCONNECT_DATA_REQUEST_ID RequestID)
 {
     return gSymbols.SimConnect_AICreateParkedATCAircraft(hSimConnect, szContainerTitle, szTailNumber, szAirportID,
                                                          RequestID);
 }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AICreateSimulatedObject(HANDLE hSimConnect,
-                                                                const char *szContainerTitle,
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AICreateSimulatedObject(HANDLE hSimConnect, const char *szContainerTitle,
                                                                 SIMCONNECT_DATA_INITPOSITION InitPos,
                                                                 SIMCONNECT_DATA_REQUEST_ID RequestID)
 {
@@ -625,27 +612,26 @@ SWIFT_SIMCONNECT_WRAPPER_API SimConnect_MapClientDataNameToID(HANDLE hSimConnect
     return gSymbols.SimConnect_MapClientDataNameToID(hSimConnect, szClientDataName, ClientDataID);
 }
 
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_CreateClientData(HANDLE hSimConnect,
-                                                         SIMCONNECT_CLIENT_DATA_ID ClientDataID, DWORD dwSize,
-                                                         SIMCONNECT_CREATE_CLIENT_DATA_FLAG Flags)
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_CreateClientData(HANDLE hSimConnect, SIMCONNECT_CLIENT_DATA_ID ClientDataID,
+                                                         DWORD dwSize, SIMCONNECT_CREATE_CLIENT_DATA_FLAG Flags)
 {
     return gSymbols.SimConnect_CreateClientData(hSimConnect, ClientDataID, dwSize, Flags);
 }
 
 SWIFT_SIMCONNECT_WRAPPER_API SimConnect_AddToClientDataDefinition(HANDLE hSimConnect,
                                                                   SIMCONNECT_CLIENT_DATA_DEFINITION_ID DefineID,
-                                                                  DWORD dwOffset, DWORD dwSizeOrType,
-                                                                  float fEpsilon, DWORD DatumID)
+                                                                  DWORD dwOffset, DWORD dwSizeOrType, float fEpsilon,
+                                                                  DWORD DatumID)
 {
     return gSymbols.SimConnect_AddToClientDataDefinition(hSimConnect, DefineID, dwOffset, dwSizeOrType, fEpsilon,
                                                          DatumID);
 }
 
 #ifdef Q_OS_WIN64
-SWIFT_SIMCONNECT_WRAPPER_API SimConnect_RequestGroundInfo(HANDLE hSimConnect,
-                                                          SIMCONNECT_DATA_REQUEST_ID RequestID, double minLat,
-                                                          double minLon, double minAlt, double maxLat, double maxLon,
-                                                          double maxAlt, DWORD dwGridWidth, DWORD dwGridHeight,
+SWIFT_SIMCONNECT_WRAPPER_API SimConnect_RequestGroundInfo(HANDLE hSimConnect, SIMCONNECT_DATA_REQUEST_ID RequestID,
+                                                          double minLat, double minLon, double minAlt, double maxLat,
+                                                          double maxLon, double maxAlt, DWORD dwGridWidth,
+                                                          DWORD dwGridHeight,
                                                           SIMCONNECT_GROUND_INFO_LATLON_FORMAT eLatLonFormat,
                                                           SIMCONNECT_GROUND_INFO_ALT_FORMAT eAltFormat,
                                                           SIMCONNECT_GROUND_INFO_SOURCE_FLAG eSourceFlags)
