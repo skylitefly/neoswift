@@ -4,22 +4,25 @@
  */
 
 #lep_CommandLineInput {
-  background-image: url(:/textures/icons/textures/texture-inner.jpg);
-  margin-bottom: 5px;
+  background-color: #1e1e1e;
+  border: 1px solid #474747;
+  border-radius: 4px;
+  margin-bottom: 4px;
   padding: 3px;
-  border-radius: 5px;
+}
+
+#lep_CommandLineInput:focus {
+  border-color: #007acc;
 }
 
 #comp_Log {
-  background: transparent; /** background is background color here **/
+  background: transparent;
 }
 
 #gb_DBusMode {
-  background: transparent; /** background is background color here **/
-  background-image: url(:/textures/icons/textures/texture-inner.jpg);
+  background-color: #252526;
 }
 
 #gb_Controls {
-  background: transparent; /** background is background color here **/
-  background-image: url(:/textures/icons/textures/texture-inner.jpg);
+  background-color: #252526;
 }

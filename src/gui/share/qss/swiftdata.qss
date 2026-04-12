@@ -4,15 +4,13 @@
  */
 
 #comp_Log {
-  background: transparent; /** background is background color here **/
+  background: transparent;
 }
 
 #gb_DBusMode {
-  background: transparent; /** background is background color here **/
-  background-image: url(:/textures/icons/textures/texture-inner.jpg);
+  background-color: #252526;
 }
 
 #gb_Controls {
-  background: transparent; /** background is background color here **/
-  background-image: url(:/textures/icons/textures/texture-inner.jpg);
+  background-color: #252526;
 }

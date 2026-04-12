@@ -4,8 +4,8 @@
  */
 
 QWidget {
-    color: white;
-    font-family: "Arial";
+    color: #cccccc;
+    font-family: "-apple-system", "SF Pro Text", "Helvetica Neue", "Arial", sans-serif;
     font-size: 12pt;
     font-style: normal;
     font-weight: normal;
