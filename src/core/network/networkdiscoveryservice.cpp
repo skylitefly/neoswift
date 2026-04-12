@@ -37,6 +37,7 @@ namespace swift::core::network
         if (isRateLimited(domain))
         {
             CLogMessage(this).info(u"Discovery of '%1' rate-limited (< 60 s)") << domain;
+            callback(false, {});
             return;
         }
 
