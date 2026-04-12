@@ -54,9 +54,6 @@
             <platforms>linux linux-x64</platforms>
             <distributionFileList>
                 <distributionFile>
-                    <origin>../../dist/lib/libvatsimauth.so</origin>
-                </distributionFile>
-                <distributionFile>
                     <origin>../../dist/lib/libsodium.so.23.3.0</origin>
                 </distributionFile>
                 <distributionFile>
@@ -107,9 +104,6 @@
                 </distributionFile>
                 <distributionFile>
                     <origin>../../dist/lib/libopus.0.dylib</origin>
-                </distributionFile>
-                <distributionFile>
-                    <origin>../../dist/lib/libvatsimauth.dylib</origin>
                 </distributionFile>
             </distributionFileList>
         </folder>
