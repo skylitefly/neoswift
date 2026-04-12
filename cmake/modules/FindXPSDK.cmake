@@ -43,22 +43,19 @@ if (SWIFT_WIN64)
     set_target_properties(XPSDK::XPWidgets PROPERTIES IMPORTED_LOCATION ${XP_SDK_PATH}/Libraries/Win/XPWidgets_64.lib)
 
 elseif (APPLE)
-    # XP SDK ships .tbd stub frameworks.  Passing the binary path directly
-    # (IMPORTED_LOCATION) fails with "unknown file type" on Xcode 16+.
-    # find_library locates the .framework bundle and CMake automatically
-    # expands the path to -F <dir> -framework <name> at link time.
-    find_library(XPLM_FRAMEWORK XPLM
-        PATHS "${XP_SDK_PATH}/Libraries/Mac"
-        NO_DEFAULT_PATH)
-    find_library(XPWIDGETS_FRAMEWORK XPWidgets
-        PATHS "${XP_SDK_PATH}/Libraries/Mac"
-        NO_DEFAULT_PATH)
-    if(XPLM_FRAMEWORK)
-        target_link_libraries(XPSDK::XPLM INTERFACE ${XPLM_FRAMEWORK})
-    endif()
-    if(XPWIDGETS_FRAMEWORK)
-        target_link_libraries(XPSDK::XPWidgets INTERFACE ${XPWIDGETS_FRAMEWORK})
-    endif()
+    # XP SDK ships .tbd stub frameworks.  The linker rejects the binary
+    # path directly (IMPORTED_LOCATION → "unknown file type").
+    # Use LINKER: syntax which expands to -Wl,-framework,Name so the
+    # comma-separated args reach ld as two distinct arguments; no spaces
+    # are involved so CMake quoting cannot break the flag.
+    target_link_options(XPSDK::XPLM INTERFACE
+        "LINKER:-F${XP_SDK_PATH}/Libraries/Mac"
+        "LINKER:-framework,XPLM"
+    )
+    target_link_options(XPSDK::XPWidgets INTERFACE
+        "LINKER:-F${XP_SDK_PATH}/Libraries/Mac"
+        "LINKER:-framework,XPWidgets"
+    )
 
 endif ()
 
