@@ -147,6 +147,7 @@ namespace swift::gui::components
                           CNetworkList networks = m_networks.get();
                           networks.push_back(discovered);
                           m_networks.set(networks);
+                          reloadTable();
                       } });
     }
 
@@ -164,6 +165,7 @@ namespace swift::gui::components
 
         networks.erase(networks.begin() + row);
         m_networks.set(networks);
+        reloadTable();
     }
 
     void CSettingsNetworkServersComponent::onRefreshSelectedPressed()
