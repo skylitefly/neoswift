@@ -95,8 +95,13 @@ target_include_directories(xswiftbus PUBLIC
 if(SWIFT_WIN64)
     target_link_libraries(xswiftbus PUBLIC XPSDK::XPLM XPSDK::XPWidgets)
 elseif(APPLE)
+    # XPLM and XPWidgets are provided by X-Plane at runtime; the .tbd stubs
+    # shipped with the XP SDK are in a format that Xcode 16 no longer accepts.
+    # Use -undefined dynamic_lookup so the linker does not require them at
+    # build time (same philosophy as the Linux version-script approach).
     target_link_libraries(xswiftbus PRIVATE XPSDK::XPLM XPSDK::XPWidgets)
     target_link_options(xswiftbus PRIVATE
+        "-undefined" "dynamic_lookup"
         "SHELL:-framework Cocoa"
         "SHELL:-framework CoreFoundation")
     target_compile_definitions(xswiftbus PRIVATE XUTILS_EXCLUDE_MAC_CRAP)

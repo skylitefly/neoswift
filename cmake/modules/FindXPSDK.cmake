@@ -49,16 +49,10 @@ if (SWIFT_WIN64)
         ${XP_SDK_PATH}/Libraries/Win/XPWidgets_64.lib)
 
 elseif (APPLE)
-    # XP SDK ships .tbd stub frameworks. The linker rejects the framework's
-    # inner file path directly, so only pass framework search paths and names.
-    target_link_options(_xpsdk_xplm INTERFACE
-        "-F${XP_SDK_PATH}/Libraries/Mac"
-        "SHELL:-framework XPLM"
-    )
-    target_link_options(_xpsdk_xpwidgets INTERFACE
-        "-F${XP_SDK_PATH}/Libraries/Mac"
-        "SHELL:-framework XPWidgets"
-    )
+    # XP SDK ships .tbd stubs in an old format that Xcode 16's ld no longer
+    # accepts.  X-Plane plugins resolve XPLM/XPWidgets symbols at runtime
+    # from the host executable — no link-time library is needed.
+    # Consumers must pass -undefined dynamic_lookup (see xswiftbus/CMakeLists.txt).
 
 endif ()
 

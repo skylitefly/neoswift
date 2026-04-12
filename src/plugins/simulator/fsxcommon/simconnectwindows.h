@@ -29,7 +29,7 @@
 #    define SIMCONNECT_H_NOMANIFEST
 #  endif
 #  ifndef SIMCONNECTAPI
-#    define SIMCONNECTAPI extern "C" __declspec(dllimport)
+#    define SIMCONNECTAPI extern "C" __declspec(dllimport) HRESULT WINAPI
 #  endif
 #endif
 
