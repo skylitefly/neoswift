@@ -13,7 +13,7 @@
 // Override SIMCONNECTAPI after including SimConnect.h so that any previous
 // definition (which may be dllimport or bare extern "C") is replaced.
 #undef SIMCONNECTAPI
-#define SIMCONNECTAPI extern "C" __declspec(dllexport)
+#define SIMCONNECTAPI extern "C" __declspec(dllexport) HRESULT WINAPI
 
 #include <array>
 

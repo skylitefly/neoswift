@@ -49,18 +49,15 @@ if (SWIFT_WIN64)
         ${XP_SDK_PATH}/Libraries/Win/XPWidgets_64.lib)
 
 elseif (APPLE)
-    # XP SDK ships .tbd stub frameworks.  The linker rejects the binary path
-    # directly ("unknown file type").  Pass -Wl,-framework,Name so the
-    # comma-separated args reach ld as two distinct arguments.  Using plain
-    # INTERFACE (non-imported) targets ensures CMake never attaches a binary
-    # file path to the link command.
+    # XP SDK ships .tbd stub frameworks. The linker rejects the framework's
+    # inner file path directly, so only pass framework search paths and names.
     target_link_options(_xpsdk_xplm INTERFACE
-        "-Wl,-F${XP_SDK_PATH}/Libraries/Mac"
-        "-Wl,-framework,XPLM"
+        "-F${XP_SDK_PATH}/Libraries/Mac"
+        "SHELL:-framework XPLM"
     )
     target_link_options(_xpsdk_xpwidgets INTERFACE
-        "-Wl,-F${XP_SDK_PATH}/Libraries/Mac"
-        "-Wl,-framework,XPWidgets"
+        "-F${XP_SDK_PATH}/Libraries/Mac"
+        "SHELL:-framework XPWidgets"
     )
 
 endif ()

@@ -95,7 +95,10 @@ target_include_directories(xswiftbus PUBLIC
 if(SWIFT_WIN64)
     target_link_libraries(xswiftbus PUBLIC XPSDK::XPLM XPSDK::XPWidgets)
 elseif(APPLE)
-    target_link_libraries(xswiftbus PRIVATE XPSDK::XPLM XPSDK::XPWidgets "-framework Cocoa" "-framework CoreFoundation")
+    target_link_libraries(xswiftbus PRIVATE XPSDK::XPLM XPSDK::XPWidgets)
+    target_link_options(xswiftbus PRIVATE
+        "SHELL:-framework Cocoa"
+        "SHELL:-framework CoreFoundation")
     target_compile_definitions(xswiftbus PRIVATE XUTILS_EXCLUDE_MAC_CRAP)
 elseif(UNIX)
     target_link_libraries(xswiftbus PUBLIC XPSDK::XPLM XPSDK::XPWidgets)
