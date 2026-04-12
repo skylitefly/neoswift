@@ -21,7 +21,7 @@ env:
   # Without these, the client falls back to dummy values (0 / all-zeros) and
   # challenge-response auth will fail, but JWT-auth networks still work fine.
   do_client_key: ${{ secrets.NETWORK_CLIENT_ID != '' }}
-  do_symbols:    ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+  do_symbols:    ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.BACKTRACE_SYMBOL_TOKEN != '' }}
   do_doxygen:    ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
   do_static_analysis: ${{ github.event_name == 'push' && github.ref != 'refs/heads/main' }}
   qt_version:    6.10.1
