@@ -142,6 +142,7 @@ namespace swift::gui::components
         // Update server list for whatever is now selected
         const int idx = m_cbNetwork->currentIndex();
         if (idx >= 0 && idx < networks.size()) { this->populateServers(networks[idx]); }
+        else { m_serverSelector->setServers({}); }
     }
 
     void CNetworkSelectorComponent::onNetworkIndexChanged(int index)
