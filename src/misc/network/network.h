@@ -67,7 +67,8 @@ namespace swift::misc::network
         void setServers(const CServerList &servers) { m_servers = servers; }
 
         //! True if a config has been loaded (discovery completed at least once)
-        bool hasLoadedConfig() const { return m_isConfigLoaded; }
+        //! or if a valid config was restored from persisted settings/cache.
+        bool hasLoadedConfig() const { return m_isConfigLoaded || m_config.isValid(); }
 
         //! URL at which the well-known config JSON is served
         QString getWellKnownUrl() const;

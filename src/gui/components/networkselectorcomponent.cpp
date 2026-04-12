@@ -141,7 +141,15 @@ namespace swift::gui::components
 
         // Update server list for whatever is now selected
         const int idx = m_cbNetwork->currentIndex();
-        if (idx >= 0 && idx < networks.size()) { this->populateServers(networks[idx]); }
+        if (idx >= 0 && idx < networks.size())
+        {
+            const CNetwork &selected = networks[idx];
+            this->populateServers(selected);
+
+            // Keep the last-network cache aligned with the currently selected network object.
+            // The cache is consumed by the FSD/audio contexts during connect.
+            m_lastNetwork.set(selected);
+        }
         else { m_serverSelector->setServers({}); }
     }
 
@@ -180,6 +188,7 @@ namespace swift::gui::components
                                                         updated[currentIdx] = discovered;
                                                         m_networks.set(updated);
                                                         this->populateServers(discovered);
+                                                        m_lastNetwork.set(discovered);
                                                     }
                                                 } });
     }

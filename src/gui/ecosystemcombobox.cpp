@@ -26,6 +26,7 @@ namespace swift::gui
     void CEcosystemComboBox::setCurrentEcosystem(const CEcosystem &ecosystem)
     {
         if (m_systems.contains(ecosystem)) { this->setCurrentText(ecosystem.getSystemString()); }
+        else { this->setCurrentIndex(-1); }
     }
 
     void CEcosystemComboBox::setEcosystems(const CEcosystemList &systems)
