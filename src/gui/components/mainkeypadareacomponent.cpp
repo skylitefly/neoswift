@@ -51,12 +51,9 @@ namespace swift::gui::components
 
         // non info areas
         connect(ui->pb_Connect, &QPushButton::released, this, &CMainKeypadAreaComponent::buttonSelected);
-        connect(ui->pb_Opacity050, &QPushButton::pressed, this, &CMainKeypadAreaComponent::buttonSelected);
-        connect(ui->pb_Opacity100, &QPushButton::pressed, this, &CMainKeypadAreaComponent::buttonSelected);
         connect(ui->pb_SoundMaxVolume, &QPushButton::pressed, this, &CMainKeypadAreaComponent::buttonSelected);
         connect(ui->pb_CockpitIdent, &QPushButton::released, this, &CMainKeypadAreaComponent::buttonSelected);
         connect(ui->pb_SoundMute, &QPushButton::released, this, &CMainKeypadAreaComponent::buttonSelected);
-        connect(ui->pb_Audio, &QPushButton::released, this, &CMainKeypadAreaComponent::buttonSelected);
 
         // command line
         ui->lep_CommandLineInput->setIdentifier(m_identifier);
@@ -125,8 +122,6 @@ namespace swift::gui::components
             return;
         }
         else if (senderButton == ui->pb_CockpitIdent && sGui->getIContextOwnAircraft()) { emit this->identPressed(); }
-        else if (senderButton == ui->pb_Opacity050) { emit this->changedOpacity(50); }
-        else if (senderButton == ui->pb_Opacity100) { emit this->changedOpacity(100); }
         else if (senderButton == ui->pb_SoundMaxVolume && sGui->getIContextAudio())
         {
             sGui->getCContextAudioBase()->setMasterOutputVolume(100);
@@ -141,7 +136,6 @@ namespace swift::gui::components
             emit this->connectPressed();
             this->updateConnectionStatus();
         }
-        else if (senderButton == ui->pb_Audio) { emit this->audioPressed(); }
     }
 
     void CMainKeypadAreaComponent::connectionStatusChanged(const CConnectionStatus &from, const CConnectionStatus &to)

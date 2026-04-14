@@ -93,6 +93,14 @@ void SwiftGuiStd::initMenus()
     sGui->addMenuInternals(*ui->menu_Internals);
     sGui->addMenuWindow(*ui->menu_Window);
 
+    // Opacity submenu
+    ui->menu_Window->addSeparator();
+    QMenu *opacityMenu = ui->menu_Window->addMenu("Opacity");
+    QAction *opacity50  = opacityMenu->addAction("50%");
+    connect(opacity50,  &QAction::triggered, this, [this]() { onChangedWindowOpacity(50); });
+    QAction *opacity100 = opacityMenu->addAction("100%");
+    connect(opacity100, &QAction::triggered, this, [this]() { onChangedWindowOpacity(100); });
+
     sGui->addMenuHelp(*ui->menu_Help);
     ui->menu_InfoAreas->addActions(ui->comp_MainInfoArea->getInfoAreaSelectActions(true, ui->menu_InfoAreas));
 
