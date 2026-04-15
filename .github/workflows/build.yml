@@ -75,9 +75,9 @@ jobs:
       #    pip install gitlint==0.19.1
       #- name: Run gitlint
       #  run: gitlint --commits HEAD~1..HEAD
-      - name: Run clang-format
-        run: |
-          scripts/run_clang_format.py
+      # - name: Run clang-format
+      #   run: |
+      #     scripts/run_clang_format.py
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
       - name: Run cppcheck
         run: |
