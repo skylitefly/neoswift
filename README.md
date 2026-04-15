@@ -6,14 +6,14 @@ swift is a capable, cross-platform pilot client, but in practice it only works w
 
 > **IMPORTANT**: neoswift is **NOT** a VATSIM-approved client and is not intended for use on the VATSIM network.
 >
-> neoswift removes VATSIM proprietary components. While it retains VATSIMAuth challenge support for use with third-party networks that implement the same handshake, **connecting to VATSIM is not guaranteed and may result in a ban**.
+> neoswift removes VATSIM proprietary components(`vatsimauth.dll`). While it retains VATSIMAuth challenge support for use with third-party networks that implement the same handshake, **connecting to VATSIM is not guaranteed and may result in a ban**.
 >
-> If you want to connect to VATSIM, use the [official swift client](https://swift-project.org/) instead.
+> If you want to connect to VATSIM, use the [original swift client](https://swift-project.org/) instead.
 
 ## What's different
 
 ### VATSIM proprietary components removed
-- `libvatsimauth` — VATSIM's closed-source client/server verification library — has been replaced with OpenVatsimAuth, an open-source reimplementation. This means neoswift can connect to networks that implement the VATSIMAuth challenge/response handshake without shipping a proprietary binary.
+- `vatsimauth` — VATSIM's closed-source client/server verification library(and a HWID collector) — has been replaced an reimplementation. This means neoswift can connect to networks that implement the VATSIMAuth challenge handshake without shipping a proprietary binary.
 - VATSIM-specific hardcoded endpoints, authentication flows, and UI have been removed.
 
 ### Network auto-discovery
@@ -34,7 +34,6 @@ Every FSD protocol behavior that swift exposes is now configurable per-network, 
 
 And even more:
 - Provide a dynamic updating server list dropdown, just like VATSIM, for your user to select from.
-- 
 
 ## For network operators
 
@@ -60,4 +59,5 @@ cmake -DSWIFT_VATSIM_SUPPORT=ON ...
 GPL-3.0, inherited from swift pilot client. See [LICENSE](LICENSE).
 
 neoswift is not affiliated with, endorsed by, or approved by VATSIM.
+
 neoswift is not a VATSIM-approved client and is not intended to connect to the VATSIM network.
