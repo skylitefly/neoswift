@@ -44,7 +44,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Get version number
@@ -67,7 +67,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: '0'
       #- name: Install gitlint
@@ -117,7 +117,7 @@ jobs:
           fi
       - name: Checkout repository
         if: ${{ steps.check_need_clang_tidy.outputs.should_run_clang_tidy == 'true' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: '0'
           submodules: 'true'
@@ -135,7 +135,7 @@ jobs:
           pip3 install requests conan
       - name: Checkout externals
         if: ${{ env.use_externals == 'true' && steps.check_need_clang_tidy.outputs.should_run_clang_tidy == 'true' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         env:
           EXTERNALS_PAT: ${{ secrets.EXTERNALS_PAT }}
         with:
@@ -197,13 +197,13 @@ jobs:
           sudo apt-get -y install dbus-x11 libglu1-mesa-dev libpulse-dev libdbus-1-dev ninja-build
           pip3 install requests conan
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
           fetch-depth: 0
       - name: Checkout externals
         if: ${{ env.use_externals == 'true' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         env:
           EXTERNALS_PAT: ${{ secrets.EXTERNALS_PAT }}
         with:
@@ -239,18 +239,18 @@ jobs:
         run: |
           python3 -u scripts/build.py -w 64 -t gcc --upload-symbols
       - name: Upload installer
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: neoswiftinstaller-linux-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/neoswiftinstaller-*
       - name: Upload symbols
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: ${{ env.do_symbols == 'true' }}
         with:
           name: neoswiftsymbols-linux-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/neoswiftsymbols-*
       - name: Upload xswiftbus
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: xswiftbus-thin-linux-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/xswiftbus-*
@@ -305,13 +305,13 @@ jobs:
         run: |
           pip install requests PyInstaller conan
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
           fetch-depth: 0
       - name: Checkout externals
         if: ${{ env.use_externals == 'true' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         env:
           EXTERNALS_PAT: ${{ secrets.EXTERNALS_PAT }}
         with:
@@ -344,18 +344,18 @@ jobs:
         run: |
           build_conan\\build\\RelWithDebInfo\\generators\\conanrun.bat && python -u scripts/build.py -w 64 -t msvc --upload-symbols
       - name: Upload installer
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: neoswiftinstaller-windows-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/neoswiftinstaller-*
       - name: Upload symbols
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: ${{ env.do_symbols == 'true' }}
         with:
           name: neoswiftsymbols-windows-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/neoswiftsymbols-*
       - name: Upload xswiftbus
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: xswiftbus-thin-windows-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/xswiftbus-*
@@ -402,13 +402,13 @@ jobs:
         run: |
           pip3 install requests conan
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
           fetch-depth: 0
       - name: Checkout externals
         if: ${{ env.use_externals == 'true' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         env:
           EXTERNALS_PAT: ${{ secrets.EXTERNALS_PAT }}
         with:
@@ -444,18 +444,18 @@ jobs:
         run: |
           python3 -u scripts/build.py -w 64 -t clang --upload-symbols
       - name: Upload installer
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: neoswiftinstaller-macos-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/neoswiftinstaller-*
       - name: Upload symbols
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: ${{ env.do_symbols == 'true' }}
         with:
           name: neoswiftsymbols-macos-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/neoswiftsymbols-*
       - name: Upload xswiftbus
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: xswiftbus-thin-macos-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/xswiftbus-*
@@ -477,7 +477,7 @@ jobs:
           unzip -o xswiftbus-macos-64-*.zip
           zip -r -9 xswiftbus-fat-allos-${{ needs.preBuild.outputs.version }}.zip xswiftbus
       - name: Upload xswiftbus-fat
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: xswiftbus-fat-allos-${{ needs.preBuild.outputs.version }}
           path: xswiftbus-fat-allos-*
