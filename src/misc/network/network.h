@@ -42,7 +42,7 @@ namespace swift::misc::network
         //! Construct with a domain name
         explicit CNetwork(const QString &domain);
 
-        //! Domain (e.g. "skylitefly.com")
+        //! Domain
         const QString &getDomain() const { return m_domain; }
 
         //! Set domain

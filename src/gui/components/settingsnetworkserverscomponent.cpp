@@ -101,7 +101,7 @@ namespace swift::gui::components
     {
         bool ok = false;
         QString domain = QInputDialog::getText(this, "Add Network",
-                                               "Enter network domain name\n(e.g. skylitefly.com):", QLineEdit::Normal,
+                                               "Enter network's domain name:", QLineEdit::Normal,
                                                QString(), &ok);
         if (!ok || domain.trimmed().isEmpty()) { return; }
 
