@@ -56,7 +56,7 @@
       <property name="spacing">
        <number>2</number>
       </property>
-      <item row="0" column="0" colspan="5">
+      <item row="0" column="0" colspan="4">
        <widget class="swift::gui::components::CCommandInput" name="lep_CommandLineInput">
         <property name="minimumSize">
          <size>
@@ -113,7 +113,7 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="4">
+      <item row="1" column="3">
        <widget class="QPushButton" name="pb_CockpitIdent">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -276,7 +276,7 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="4">
+      <item row="5" column="3">
        <widget class="QPushButton" name="pb_SoundMaxVolume">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -292,7 +292,7 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="4">
+      <item row="4" column="3">
        <widget class="QPushButton" name="pb_SoundMute">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -308,7 +308,7 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="4">
+      <item row="3" column="3">
        <widget class="QPushButton" name="pb_MainRadar">
         <property name="enabled">
          <bool>true</bool>
