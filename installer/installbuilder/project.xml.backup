@@ -1,17 +1,36 @@
+<!--
+	SPDX-FileCopyrightText: Copyright (C) swift Project Community / Contributors
+	SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-swift-pilot-client-1
+-->
 <project>
     <shortName>neoswift</shortName>
     <fullName>neoswift</fullName>
     <version></version>
 
     <!-- <version>0.7.0</version> -->
-
     <licenseFile>../../dist/bin/LicenseRef-swift-pilot-client-1.txt</licenseFile>
     <htmlLicenseFile>../../dist/share/legal/LicenseRef-swift-pilot-client-1.html</htmlLicenseFile>
     <leftImage>../images/leftimage.png</leftImage>
     <logoImage>../images/logo.png</logoImage>
     <splashImage>../images/splashscreen.png</splashImage>
     <wmImage>../images/logo.png</wmImage>
-    <allowLanguageSelection>1</allowLanguageSelection>
+    <componentList>
+        <include>
+            <file>swift.xml</file>
+        </include>
+        <include>
+            <file>qt6-binaries.xml</file>
+        </include>
+        <include>
+            <file>vcredist-x86.xml</file>
+        </include>
+        <include>
+            <file>vcredist-x64.xml</file>
+        </include>
+        <include>
+            <file>csl2xsb.xml</file>
+        </include>
+    </componentList>
     <functionDefinitionList>
         <actionDefinition>
             <name>checkForRunningSwift</name>
@@ -23,9 +42,7 @@
                             <progressText>It seems that some neoswift application is still in use.
 It must be closed before the installation can proceed</progressText>
                             <actionList>
-                                <wait>
-                                    <ms>50</ms>
-                                </wait>
+                                <wait><ms>50</ms></wait>
                             </actionList>
                             <conditionRuleList>
                                 <ruleGroup>
@@ -76,29 +93,10 @@ It must be closed before the installation can proceed</progressText>
             </actionList>
         </actionDefinition>
     </functionDefinitionList>
-    <componentList>
-        <include>
-            <file>swift.xml</file>
-        </include>
-        <include>
-            <file>qt6-binaries.xml</file>
-        </include>
-        <include>
-            <file>vcredist-x86.xml</file>
-        </include>
-        <include>
-            <file>vcredist-x64.xml</file>
-        </include>
-        <include>
-            <file>csl2xsb.xml</file>
-        </include>
-    </componentList>
     <preInstallationActionList>
-        <checkForRunningSwift/>
-        <killDBusDaemon/>
-
+        <checkForRunningSwift />
+        <killDBusDaemon />
         <!-- TODO Linux/MacOS: Save and load last install dir -->
-
         <setInstallerVariable>
             <name>installBaseDir</name>
             <value>${platform_install_prefix}</value>
@@ -146,33 +144,33 @@ It must be closed before the installation can proceed</progressText>
             </ruleList>
         </createDirectory>
         <writeFile>
-            <encoding>utf-8</encoding>
             <path>${user_home_directory}/Library/LaunchAgents/org.freedesktop.dbus-session.plist</path>
-            <text>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-&lt;plist version="1.0"&gt;
-&lt;dict&gt;
-    &lt;key&gt;Label&lt;/key&gt;
-    &lt;string&gt;org.freedesktop.dbus-session.plist&lt;/string&gt;
+            <encoding>utf-8</encoding>
+            <text><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>org.freedesktop.dbus-session.plist</string>
 
-    &lt;key&gt;ProgramArguments&lt;/key&gt;
-    &lt;array&gt;
-        &lt;string&gt;${installdir}/bin/dbus-daemon&lt;/string&gt;
-        &lt;string&gt;--nofork&lt;/string&gt;
-        &lt;string&gt;--config-file=${installdir}/share/dbus-1/session.conf&lt;/string&gt;
-    &lt;/array&gt;
+    <key>ProgramArguments</key>
+    <array>
+        <string>${installdir}/bin/dbus-daemon</string>
+        <string>--nofork</string>
+        <string>--config-file=${installdir}/share/dbus-1/session.conf</string>
+    </array>
 
-    &lt;key&gt;Sockets&lt;/key&gt;
-    &lt;dict&gt;
-        &lt;key&gt;unix_domain_listener&lt;/key&gt;
-        &lt;dict&gt;
-            &lt;key&gt;SecureSocketWithKey&lt;/key&gt;
-            &lt;string&gt;DBUS_LAUNCHD_SESSION_BUS_SOCKET&lt;/string&gt;
-        &lt;/dict&gt;
-    &lt;/dict&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;</text>
+    <key>Sockets</key>
+    <dict>
+        <key>unix_domain_listener</key>
+        <dict>
+            <key>SecureSocketWithKey</key>
+            <string>DBUS_LAUNCHD_SESSION_BUS_SOCKET</string>
+        </dict>
+    </dict>
+</dict>
+</plist>]]></text>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
@@ -224,7 +222,7 @@ It must be closed before the installation can proceed</progressText>
                     <negate>1</negate>
                     <type>osx</type>
                 </platformTest>
-                <isFalse value="${skipwizard}"/>
+                <isFalse value="${skipwizard}" />
             </ruleList>
         </runProgram>
         <runProgram>
@@ -235,13 +233,13 @@ It must be closed before the installation can proceed</progressText>
                 <platformTest>
                     <type>osx</type>
                 </platformTest>
-                <isFalse value="${skipwizard}"/>
+                <isFalse value="${skipwizard}" />
             </ruleList>
         </runProgram>
     </postInstallationActionList>
     <preUninstallationActionList>
-        <checkForRunningSwift/>
-        <killDBusDaemon/>
+        <checkForRunningSwift />
+        <killDBusDaemon />
         <runProgram>
             <program>launchctl</program>
             <programArguments>remove org.freedesktop.dbus-session.plist</programArguments>
@@ -273,18 +271,14 @@ It must be closed before the installation can proceed</progressText>
     <compressionAlgorithm>lzma</compressionAlgorithm>
 
     <!-- Generate a DMG for MacOS Installer -->
-
     <createOsxBundleDmg>1</createOsxBundleDmg>
 
     <!--  <allowedLanguages>en fr es it de ja nl ru zh_CN no pt_BR</allowedLanguages> -->
-
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
     <osxApplicationBundleIcon>../images/swiftinstaller.icns</osxApplicationBundleIcon>
     <osxApplicationBundleIdentifier>org.neoswift.macinstaller</osxApplicationBundleIdentifier>
-
     <!-- Create 64bit installers -->
-
     <osxPlatforms>osx-x86_64</osxPlatforms>
     <osxUninstallerApplicationBundleIcon>../images/swiftinstaller.icns</osxUninstallerApplicationBundleIcon>
     <outputDirectory>.</outputDirectory>
@@ -299,7 +293,6 @@ It must be closed before the installation can proceed</progressText>
     <!-- <windowsResourceOriginalFilename>TODO</windowsResourceOriginalFilename>
  <windowsResourceFileDescription>TODO</windowsResourceFileDescription>
  Code signing parameters -->
-
     <windowsSigningTimestampServer>http://timestamp.digicert.com</windowsSigningTimestampServer>
     <customLanguageFileList>
         <!-- <language>
@@ -307,8 +300,9 @@ It must be closed before the installation can proceed</progressText>
             <encoding>utf-8</encoding>
             <file>${build_project_directory}/lang/alf-en.po</file>
         </language> -->
-
     </customLanguageFileList>
+    <finalPageActionList>
+    </finalPageActionList>
     <licenseFileList>
         <licenseFile>
             <code>en</code>
@@ -321,9 +315,6 @@ It must be closed before the installation can proceed</progressText>
         <parameterGroup>
             <name>install</name>
             <title>Installation</title>
-            <explanation></explanation>
-            <value></value>
-            <default></default>
             <parameterList>
                 <directoryParameter>
                     <name>installdir</name>
@@ -338,11 +329,8 @@ It must be closed before the installation can proceed</progressText>
                     <width>40</width>
                 </directoryParameter>
                 <stringParameter name="versionFull" value="" ask="0">
-                    <description></description>
-                    <explanation></explanation>
                     <default></default>
                     <allowEmptyValue>1</allowEmptyValue>
-                    <width>40</width>
                 </stringParameter>
                 <stringParameter name="architecture" value="64" ask="0">
                     <description></description>
@@ -355,17 +343,12 @@ It must be closed before the installation can proceed</progressText>
                     <name>advanced</name>
                     <title>Advanced options</title>
                     <description>Enable advanced options</description>
-                    <explanation></explanation>
-                    <value></value>
-                    <default></default>
                     <parameterList>
                         <booleanParameter>
                             <name>skipwizard</name>
                             <description>Don't run configuration wizard (neoswift must be configured manually!)</description>
-                            <explanation></explanation>
-                            <value>0</value>
-                            <default></default>
                             <displayStyle>checkbox-left</displayStyle>
+                            <value>0</value>
                         </booleanParameter>
                     </parameterList>
                 </booleanParameterGroup>
@@ -391,4 +374,3 @@ It must be closed before the installation can proceed</progressText>
         </platformOptions>
     </platformOptionsList>
 </project>
-

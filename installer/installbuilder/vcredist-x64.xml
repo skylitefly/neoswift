@@ -1,18 +1,11 @@
-<!--
-	SPDX-FileCopyrightText: Copyright (C) swift Project Community / Contributors
-	SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-swift-pilot-client-1
--->
-<component>
-    <name>vcruntime64</name>
+<component name="vcruntime64">
     <description>Visual Studio 2022 x64 Redistributables</description>
     <canBeEdited>0</canBeEdited>
     <selected>1</selected>
     <show>1</show>
     <folderList>
-        <folder>
+        <folder destination="${installdir}/vcredist" name="vcredist64">
             <description>vcredist</description>
-            <destination>${installdir}/vcredist</destination>
-            <name>vcredist64</name>
             <platforms>windows</platforms>
             <actionList>
                 <runProgram>
@@ -41,6 +34,7 @@ ${installdir}\vcredist\
 The installation will now continue, but swift might not work properly. If this is the case, raise an issue at https://github.com/swift-project/pilotclient/issues with the error code, you received.</text>
                     <ruleList>
                         <!-- No error -->
+
                         <compareValues>
                             <logic>does_not_equal</logic>
                             <value1>${program_exit_code}</value1>
@@ -48,6 +42,7 @@ The installation will now continue, but swift might not work properly. If this i
                         </compareValues>
 
                         <!-- A newer version of this product is already installed -->
+
                         <compareValues>
                             <logic>does_not_equal</logic>
                             <value1>${program_exit_code}</value1>
@@ -55,6 +50,7 @@ The installation will now continue, but swift might not work properly. If this i
                         </compareValues>
 
                         <!-- Restart required -->
+
                         <compareValues>
                             <logic>does_not_equal</logic>
                             <value1>${program_exit_code}</value1>

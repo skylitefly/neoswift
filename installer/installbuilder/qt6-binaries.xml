@@ -1,19 +1,12 @@
-<!--
-	SPDX-FileCopyrightText: Copyright (C) swift Project Community / Contributors
-	SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-swift-pilot-client-1
--->
-<componentGroup>
-    <name>qt6binaries</name>
+<componentGroup name="qt6binaries">
     <description>Qt6 binaries</description>
     <canBeEdited>1</canBeEdited>
     <detailedDescription>Qt6 runtime binaries</detailedDescription>
     <selected>1</selected>
     <show>1</show>
     <folderList>
-        <folder>
+        <folder destination="${installdir}/bin" name="bin_windows">
             <description>bin</description>
-            <destination>${installdir}/bin</destination>
-            <name>bin_windows</name>
             <platforms>windows</platforms>
             <distributionFileList>
                 <distributionFile>
@@ -54,10 +47,8 @@
                 </distributionFile>
             </distributionFileList>
         </folder>
-        <folder>
+        <folder destination="${installdir}/lib" name="lib_linux">
             <description>lib</description>
-            <destination>${installdir}/lib</destination>
-            <name>lib_linux</name>
             <platforms>linux linux-x64</platforms>
             <distributionFileList>
                 <distributionFile>
@@ -110,10 +101,8 @@
                 </distributionFile>
             </distributionFileList>
         </folder>
-        <folder>
+        <folder destination="${installdir}/lib" name="lib_macos">
             <description>lib</description>
-            <destination>${installdir}/lib</destination>
-            <name>lib_macos</name>
             <platforms>osx</platforms>
             <distributionFileList>
                 <distributionFile>
@@ -157,10 +146,8 @@
                 </distributionDirectory>
             </distributionFileList>
         </folder>
-        <folder>
+        <folder destination="${installdir}/bin" name="bin_macos">
             <description>bin</description>
-            <destination>${installdir}/bin</destination>
-            <name>bin_macos</name>
             <platforms>osx</platforms>
             <distributionFileList>
                 <distributionFile>
@@ -171,10 +158,8 @@
                 </distributionFile>
             </distributionFileList>
         </folder>
-        <folder>
+        <folder destination="${installdir}/bin" name="bin_plugins">
             <description>bin</description>
-            <destination>${installdir}/bin</destination>
-            <name>bin_plugins</name>
             <platforms>all</platforms>
             <distributionFileList>
                 <distributionDirectory>

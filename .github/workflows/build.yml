@@ -28,8 +28,8 @@ env:
   bitrock_version: qt-enterprise-26.4.0
   bitrock_url:     https://releases.installbuilder.com/installbuilder
   installbuilder_hash_win: 79b1382a468178b6e9b09f069e87f2824417cd7f9a86f7a64a39b1c4145db77f
-  installbuilder_hash_linux: 92d7dd4188819f4614d16b08efa3e585885477de7ddd90a86b2810d9b94eb187
-  installbuilder_hash_macos: dc4c539ca6aa58ce5ae4930f9fa614bc98e92236e5a67ab34799259b89b6753e
+  installbuilder_hash_linux: dc4c539ca6aa58ce5ae4930f9fa614bc98e92236e5a67ab34799259b89b6753e
+  installbuilder_hash_macos: 92d7dd4188819f4614d16b08efa3e585885477de7ddd90a86b2810d9b94eb187
   # Set EXTERNALS_PAT secret to enable proprietary externals (SimConnect SDK etc.)
   externals: ${{ github.repository_owner }}/neoswift-externals
   use_externals: ${{ secrets.EXTERNALS_PAT != '' }}
