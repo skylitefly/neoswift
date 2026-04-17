@@ -100,8 +100,7 @@ namespace swift::gui::components
     void CSettingsNetworkServersComponent::onAddPressed()
     {
         bool ok = false;
-        QString domain = QInputDialog::getText(this, "Add Network",
-                                               "Enter network domain name\n(e.g. skylitefly.com):", QLineEdit::Normal,
+        QString domain = QInputDialog::getText(this, "Add Network", "Enter network's domain name:", QLineEdit::Normal,
                                                QString(), &ok);
         if (!ok || domain.trimmed().isEmpty()) { return; }
 

@@ -54,9 +54,6 @@ namespace swift::gui::components
         //! \sa CMainInfoAreaComponent
         void selectedMainInfoAreaDockWidget(CMainInfoAreaComponent::InfoArea infoArea);
 
-        //! Change opacity 0..30
-        void changedOpacity(int opacity);
-
         //! \copydoc CCommandInput::commandEntered
         void commandEntered(const QString &commandLine, const swift::misc::CIdentifier &originator);
 
@@ -68,9 +65,6 @@ namespace swift::gui::components
 
         //! Ident pressed
         void identPressed();
-
-        //! Request audio
-        void audioPressed();
 
     private:
         //! Button was clicked

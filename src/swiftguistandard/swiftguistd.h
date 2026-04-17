@@ -247,12 +247,6 @@ private:
     void handleTimerBasedUpdates();
 
     //! Change opacity 0-100
-    void onChangedWindowOpacityTo50(bool) { onChangedWindowOpacity(50); }
-
-    //! Change opacity 0-100
-    void onChangedWindowOpacityTo100(bool) { onChangedWindowOpacity(100); }
-
-    //! Change opacity 0-100
     void onChangedWindowOpacity(int opacity = -1);
 
     //! Toggle if windows stays on top
