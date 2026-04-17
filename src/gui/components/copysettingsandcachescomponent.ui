@@ -17,7 +17,7 @@
    <item>
     <widget class="QGroupBox" name="gb_OtherSwiftVersions">
      <property name="title">
-      <string>Select the version to copy from</string>
+      <string>Select a previous version to import from</string>
      </property>
      <layout class="QVBoxLayout" name="vl_OtherSwiftVersions">
       <item>
@@ -36,7 +36,7 @@
    <item>
     <widget class="QGroupBox" name="gb_WhatToCopy">
      <property name="title">
-      <string>What to copy?</string>
+      <string>What to import?</string>
      </property>
      <layout class="QGridLayout" name="gl_WhatToCopy">
       <item row="0" column="2">
@@ -111,21 +111,21 @@
          <item>
           <widget class="QPushButton" name="pb_DeselectAll">
            <property name="text">
-            <string>deselect all</string>
+            <string>Deselect all</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pb_SelectAll">
            <property name="text">
-            <string>select all</string>
+            <string>Select all</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pb_Copy">
            <property name="text">
-            <string>copy</string>
+            <string>Import</string>
            </property>
           </widget>
          </item>
@@ -178,6 +178,34 @@
              <widget class="QCheckBox" name="cb_SettingsSimulatorXPlane">
               <property name="text">
                <string>XPlane</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cb_SettingsSimulatorMSFS">
+              <property name="text">
+               <string>MSFS</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cb_SettingsSimulatorMSFS2024">
+              <property name="text">
+               <string>MSFS2024</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cb_SettingsSimulatorFs9">
+              <property name="text">
+               <string>FS9</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cb_SettingsSimulatorFG">
+              <property name="text">
+               <string>FG</string>
               </property>
              </widget>
             </item>
@@ -242,23 +270,16 @@
         </property>
         <layout class="QVBoxLayout" name="vl_Network">
          <item>
-          <widget class="QCheckBox" name="cb_SettingsNetworkTrafficServers">
+          <widget class="QCheckBox" name="cb_SettingsNetworks">
            <property name="text">
             <string>Network1</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="cb_CacheLastNetworkServer">
+          <widget class="QCheckBox" name="cb_CacheLastNetwork">
            <property name="text">
             <string>Network2</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="cb_CacheLastVatsimServer">
-           <property name="text">
-            <string>Network3</string>
            </property>
           </widget>
          </item>
@@ -333,13 +354,16 @@
   <tabstop>cb_SettingsGuiGeneral</tabstop>
   <tabstop>cb_SettingsDockWidget</tabstop>
   <tabstop>cb_SettingsViewUpdate</tabstop>
-  <tabstop>cb_SettingsNetworkTrafficServers</tabstop>
-  <tabstop>cb_CacheLastNetworkServer</tabstop>
-  <tabstop>cb_CacheLastVatsimServer</tabstop>
+  <tabstop>cb_SettingsNetworks</tabstop>
+  <tabstop>cb_CacheLastNetwork</tabstop>
   <tabstop>cb_SettingsEnabledSimulators</tabstop>
   <tabstop>cb_SettingsSimulatorP3D</tabstop>
   <tabstop>cb_SettingsSimulatorFSX</tabstop>
   <tabstop>cb_SettingsSimulatorXPlane</tabstop>
+  <tabstop>cb_SettingsSimulatorMSFS</tabstop>
+  <tabstop>cb_SettingsSimulatorMSFS2024</tabstop>
+  <tabstop>cb_SettingsSimulatorFs9</tabstop>
+  <tabstop>cb_SettingsSimulatorFG</tabstop>
   <tabstop>cb_SettingsModel</tabstop>
   <tabstop>cb_SettingsConsolidation</tabstop>
   <tabstop>cb_SettingsActionHotkeys</tabstop>

@@ -25,8 +25,10 @@
 #include "misc/applicationinfo.h"
 #include "misc/audio/audiosettings.h"
 #include "misc/directories.h"
-#include "misc/network/data/lastserver.h"
-#include "misc/network/settings/serversettings.h"
+#include "misc/network/data/lastnetwork.h"
+#include "misc/network/network.h"
+#include "misc/network/networklist.h"
+#include "misc/network/settings/networksettings.h"
 #include "misc/simulation/data/lastmodel.h"
 #include "misc/simulation/data/modelcaches.h"
 #include "misc/simulation/settings/modelsettings.h"
@@ -122,7 +124,7 @@ namespace swift::gui::components
         swift::misc::CSetting<swift::core::application::TActionHotkeys> m_settingsActionHotkeys { this };
         swift::misc::CSetting<swift::misc::audio::TSettings> m_settingsAudio { this };
         swift::misc::CSetting<swift::misc::settings::TDirectorySettings> m_settingsDirectories { this };
-        swift::misc::CSetting<swift::misc::network::settings::TTrafficServers> m_settingsNetworkServers { this };
+        swift::misc::CSetting<swift::misc::network::settings::TNetworks> m_settingsNetworks { this };
         swift::misc::CSetting<swift::misc::simulation::settings::TSimulatorFsx> m_settingsSimulatorFsx {
             this
         }; //!< FSX settings
@@ -135,16 +137,20 @@ namespace swift::gui::components
         swift::misc::CSetting<swift::misc::simulation::settings::TSimulatorXP> m_settingsSimulatorXPlane {
             this
         }; //!< XP settings
+        swift::misc::CSetting<swift::misc::simulation::settings::TSimulatorMsfs> m_settingsSimulatorMsfs {
+            this
+        }; //!< MSFS settings
+        swift::misc::CSetting<swift::misc::simulation::settings::TSimulatorMsfs2024> m_settingsSimulatorMsfs2024 {
+            this
+        }; //!< MSFS2024 settings
+        swift::misc::CSetting<swift::misc::simulation::settings::TSimulatorFG> m_settingsSimulatorFG {
+            this
+        }; //!< FG settings
         swift::misc::CSetting<swift::misc::simulation::settings::TModel> m_settingsModel { this }; //!< model setting
 
-        swift::misc::CData<swift::core::data::TVatsimLastServer> m_cacheLastVatsimServer {
-            this
-        }; //!< recently used VATSIM server
         swift::misc::CData<swift::core::data::TLauncherSetup> m_cacheLauncherSetup { this };
         swift::misc::CData<swift::core::data::TVatsimSetup> m_cacheVatsimSetup { this };
-        swift::misc::CData<swift::misc::network::data::TLastServer> m_cacheLastNetworkServer {
-            this
-        }; //!< recently used server (VATSIM, other)
+        swift::misc::CData<swift::misc::network::data::TLastNetwork> m_cacheLastNetwork { this }; //!< recently used network
         swift::misc::CData<swift::misc::simulation::data::TSimulatorLastSelection> m_cacheModelSetCurrentSimulator {
             this
         };

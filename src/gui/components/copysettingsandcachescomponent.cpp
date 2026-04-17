@@ -60,12 +60,10 @@ namespace swift::gui::components
         readOnlyCheckbox(ui->cb_SettingsAudioOutputDevice, !CCacheSettingsUtils::hasOtherVersionSettingsFile(
                                                                info, m_settingsAudioOutputDevice.getFilename()));
 
-        readOnlyCheckbox(ui->cb_SettingsNetworkTrafficServers, !CCacheSettingsUtils::hasOtherVersionSettingsFile(
-                                                                   info, m_settingsNetworkServers.getFilename()));
-        readOnlyCheckbox(ui->cb_CacheLastNetworkServer,
-                         !CCacheSettingsUtils::hasOtherVersionCacheFile(info, m_cacheLastNetworkServer.getFilename()));
-        readOnlyCheckbox(ui->cb_CacheLastVatsimServer,
-                         !CCacheSettingsUtils::hasOtherVersionCacheFile(info, m_cacheLastVatsimServer.getFilename()));
+        readOnlyCheckbox(ui->cb_SettingsNetworks,
+                         !CCacheSettingsUtils::hasOtherVersionSettingsFile(info, m_settingsNetworks.getFilename()));
+        readOnlyCheckbox(ui->cb_CacheLastNetwork,
+                         !CCacheSettingsUtils::hasOtherVersionCacheFile(info, m_cacheLastNetwork.getFilename()));
 
         readOnlyCheckbox(ui->cb_SettingsGuiGeneral,
                          !CCacheSettingsUtils::hasOtherVersionSettingsFile(info, m_settingsGuiGeneral.getFilename()));
@@ -82,6 +80,14 @@ namespace swift::gui::components
                          !CCacheSettingsUtils::hasOtherVersionSettingsFile(info, m_settingsSimulatorP3D.getFilename()));
         readOnlyCheckbox(ui->cb_SettingsSimulatorXPlane, !CCacheSettingsUtils::hasOtherVersionSettingsFile(
                                                              info, m_settingsSimulatorXPlane.getFilename()));
+        readOnlyCheckbox(ui->cb_SettingsSimulatorMSFS, !CCacheSettingsUtils::hasOtherVersionSettingsFile(
+                                                           info, m_settingsSimulatorMsfs.getFilename()));
+        readOnlyCheckbox(ui->cb_SettingsSimulatorMSFS2024, !CCacheSettingsUtils::hasOtherVersionSettingsFile(
+                                                               info, m_settingsSimulatorMsfs2024.getFilename()));
+        readOnlyCheckbox(ui->cb_SettingsSimulatorFs9,
+                         !CCacheSettingsUtils::hasOtherVersionSettingsFile(info, m_settingsSimulatorFs9.getFilename()));
+        readOnlyCheckbox(ui->cb_SettingsSimulatorFG,
+                         !CCacheSettingsUtils::hasOtherVersionSettingsFile(info, m_settingsSimulatorFG.getFilename()));
 
         readOnlyCheckbox(ui->cb_SettingsActionHotkeys, !CCacheSettingsUtils::hasOtherVersionSettingsFile(
                                                            info, m_settingsActionHotkeys.getFilename()));
@@ -115,9 +121,8 @@ namespace swift::gui::components
 
     void CCopySettingsAndCachesComponent::initNetwork()
     {
-        ui->cb_SettingsNetworkTrafficServers->setText(checkBoxText(TTrafficServers::humanReadable(), true));
-        ui->cb_CacheLastNetworkServer->setText(checkBoxText(TLastServer::humanReadable(), false));
-        ui->cb_CacheLastVatsimServer->setText(checkBoxText(TVatsimLastServer::humanReadable(), false));
+        ui->cb_SettingsNetworks->setText(checkBoxText(TNetworks::humanReadable(), true));
+        ui->cb_CacheLastNetwork->setText(checkBoxText(TLastNetwork::humanReadable(), false));
     }
 
     void CCopySettingsAndCachesComponent::initUi()
@@ -133,6 +138,10 @@ namespace swift::gui::components
         ui->cb_SettingsSimulatorFSX->setText(checkBoxText(TSimulatorFsx::humanReadable(), true));
         ui->cb_SettingsSimulatorP3D->setText(checkBoxText(TSimulatorP3D::humanReadable(), true));
         ui->cb_SettingsSimulatorXPlane->setText(checkBoxText(TSimulatorXP::humanReadable(), true));
+        ui->cb_SettingsSimulatorMSFS->setText(checkBoxText(TSimulatorMsfs::humanReadable(), true));
+        ui->cb_SettingsSimulatorMSFS2024->setText(checkBoxText(TSimulatorMsfs2024::humanReadable(), true));
+        ui->cb_SettingsSimulatorFs9->setText(checkBoxText(TSimulatorFs9::humanReadable(), true));
+        ui->cb_SettingsSimulatorFG->setText(checkBoxText(TSimulatorFG::humanReadable(), true));
     }
 
     void CCopySettingsAndCachesComponent::initMisc()
@@ -221,47 +230,31 @@ namespace swift::gui::components
         }
 
         // ------- network -------
-        if (ui->cb_SettingsNetworkTrafficServers->isChecked())
+        if (ui->cb_SettingsNetworks->isChecked())
         {
             const QString joStr = CCacheSettingsUtils::otherVersionSettingsFileContent(
-                otherVersionInfo, m_settingsNetworkServers.getFilename());
+                otherVersionInfo, m_settingsNetworks.getFilename());
             if (!joStr.isEmpty())
             {
-                const CServerList networkServers = CServerList::fromJsonNoThrow(joStr, true, success, errMsg);
-                if (this->parsingMessage(success, errMsg, m_settingsNetworkServers.getKey()))
+                const CNetworkList networks = CNetworkList::fromJsonNoThrow(joStr, true, success, errMsg);
+                if (this->parsingMessage(success, errMsg, m_settingsNetworks.getKey()))
                 {
-                    this->displayStatusMessage(m_settingsNetworkServers.setAndSave(networkServers),
-                                               networkServers.toQString(true));
+                    this->displayStatusMessage(m_settingsNetworks.setAndSave(networks), networks.toQString(true));
                     copied++;
                 }
             }
         }
 
-        if (ui->cb_CacheLastNetworkServer->isChecked())
+        if (ui->cb_CacheLastNetwork->isChecked())
         {
             const QString joStr = CCacheSettingsUtils::otherVersionCacheFileContent(
-                otherVersionInfo, m_cacheLastNetworkServer.getFilename());
+                otherVersionInfo, m_cacheLastNetwork.getFilename());
             if (!joStr.isEmpty())
             {
-                const CServer server = CServer::fromJsonNoThrow(joStr, true, success, errMsg);
-                if (this->parsingMessage(success, errMsg, m_cacheLastNetworkServer.getKey()))
+                const CNetwork network = CNetwork::fromJsonNoThrow(joStr, true, success, errMsg);
+                if (this->parsingMessage(success, errMsg, m_cacheLastNetwork.getKey()))
                 {
-                    this->displayStatusMessage(m_cacheLastNetworkServer.set(server), server.toQString(true));
-                    copied++;
-                }
-            }
-        }
-
-        if (ui->cb_CacheLastVatsimServer->isChecked())
-        {
-            const QString joStr = CCacheSettingsUtils::otherVersionCacheFileContent(
-                otherVersionInfo, m_cacheLastVatsimServer.getFilename());
-            if (!joStr.isEmpty())
-            {
-                const CServer server = CServer::fromJsonNoThrow(joStr, true, success, errMsg);
-                if (this->parsingMessage(success, errMsg, m_cacheLastVatsimServer.getKey()))
-                {
-                    this->displayStatusMessage(m_cacheLastVatsimServer.set(server), server.toQString(true));
+                    this->displayStatusMessage(m_cacheLastNetwork.set(network), network.toQString(true));
                     copied++;
                 }
             }
@@ -370,6 +363,67 @@ namespace swift::gui::components
             }
         }
 
+        if (ui->cb_SettingsSimulatorMSFS->isChecked())
+        {
+            const QString joStr = CCacheSettingsUtils::otherVersionSettingsFileContent(
+                otherVersionInfo, m_settingsSimulatorMsfs.getFilename());
+            if (!joStr.isEmpty())
+            {
+                const CSimulatorSettings settings = CSimulatorSettings::fromJsonNoThrow(joStr, true, success, errMsg);
+                if (this->parsingMessage(success, errMsg, m_settingsSimulatorMsfs.getKey()))
+                {
+                    this->displayStatusMessage(m_settingsSimulatorMsfs.setAndSave(settings), settings.toQString(true));
+                }
+                copied++;
+            }
+        }
+
+        if (ui->cb_SettingsSimulatorMSFS2024->isChecked())
+        {
+            const QString joStr = CCacheSettingsUtils::otherVersionSettingsFileContent(
+                otherVersionInfo, m_settingsSimulatorMsfs2024.getFilename());
+            if (!joStr.isEmpty())
+            {
+                const CSimulatorSettings settings = CSimulatorSettings::fromJsonNoThrow(joStr, true, success, errMsg);
+                if (this->parsingMessage(success, errMsg, m_settingsSimulatorMsfs2024.getKey()))
+                {
+                    this->displayStatusMessage(m_settingsSimulatorMsfs2024.setAndSave(settings),
+                                               settings.toQString(true));
+                }
+                copied++;
+            }
+        }
+
+        if (ui->cb_SettingsSimulatorFs9->isChecked())
+        {
+            const QString joStr = CCacheSettingsUtils::otherVersionSettingsFileContent(
+                otherVersionInfo, m_settingsSimulatorFs9.getFilename());
+            if (!joStr.isEmpty())
+            {
+                const CSimulatorSettings settings = CSimulatorSettings::fromJsonNoThrow(joStr, true, success, errMsg);
+                if (this->parsingMessage(success, errMsg, m_settingsSimulatorFs9.getKey()))
+                {
+                    this->displayStatusMessage(m_settingsSimulatorFs9.setAndSave(settings), settings.toQString(true));
+                }
+                copied++;
+            }
+        }
+
+        if (ui->cb_SettingsSimulatorFG->isChecked())
+        {
+            const QString joStr = CCacheSettingsUtils::otherVersionSettingsFileContent(
+                otherVersionInfo, m_settingsSimulatorFG.getFilename());
+            if (!joStr.isEmpty())
+            {
+                const CSimulatorSettings settings = CSimulatorSettings::fromJsonNoThrow(joStr, true, success, errMsg);
+                if (this->parsingMessage(success, errMsg, m_settingsSimulatorFG.getKey()))
+                {
+                    this->displayStatusMessage(m_settingsSimulatorFG.setAndSave(settings), settings.toQString(true));
+                }
+                copied++;
+            }
+        }
+
         // ------ model ------
         if (ui->cb_SettingsModel->isChecked())
         {
@@ -438,7 +492,7 @@ namespace swift::gui::components
 
         if (copied > 0)
         {
-            const CStatusMessage m = CStatusMessage(this).validationInfo(u"Copied %1 settings") << copied;
+            const CStatusMessage m = CStatusMessage(this).validationInfo(u"Imported %1 settings") << copied;
             this->showOverlayHTMLMessage(m);
         }
 
