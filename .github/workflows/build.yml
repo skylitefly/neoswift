@@ -25,11 +25,11 @@ env:
   do_doxygen:    ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
   do_static_analysis: ${{ github.event_name == 'push' && github.ref != 'refs/heads/main' }}
   qt_version:    6.10.1
-  bitrock_version: qt-professional-25.10.1
+  bitrock_version: qt-enterprise-26.4.0
   bitrock_url:     https://releases.installbuilder.com/installbuilder
-  installbuilder_hash_win: f92b1741c78b8f024473f55057b26107c8ed9cc1ca583eb9323d0023a8024e00
-  installbuilder_hash_linux: 3dff24cf94af17158cbcb16af41ecf0bb5060ba97d052597f15b987bd5e5b43a
-  installbuilder_hash_macos: bffa8b2663c6e9aaaa1ed7cdb41a874d34ff89f22adfab419e172915f8f4ce57
+  installbuilder_hash_win: 79b1382a468178b6e9b09f069e87f2824417cd7f9a86f7a64a39b1c4145db77f
+  installbuilder_hash_linux: 92d7dd4188819f4614d16b08efa3e585885477de7ddd90a86b2810d9b94eb187
+  installbuilder_hash_macos: dc4c539ca6aa58ce5ae4930f9fa614bc98e92236e5a67ab34799259b89b6753e
   # Set EXTERNALS_PAT secret to enable proprietary externals (SimConnect SDK etc.)
   externals: ${{ github.repository_owner }}/neoswift-externals
   use_externals: ${{ secrets.EXTERNALS_PAT != '' }}
