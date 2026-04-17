@@ -28,18 +28,14 @@ namespace swift::gui::components
 
     void CConfigSimulatorComponent::save()
     {
-        ui->comp_SettingsSimulator->save();
         const QStringList sims = this->selectedSimsToPluginIds();
         const CStatusMessage msg = m_enabledSimulators.setAndSave(sims);
         CLogMessage::preformatted(msg);
     }
 
-    bool CConfigSimulatorComponent::hasUnsavedChanges() const
-    {
-        return ui->comp_SettingsSimulator->hasUnsavedChanges();
-    }
+    bool CConfigSimulatorComponent::hasUnsavedChanges() const { return false; }
 
-    void CConfigSimulatorComponent::resetUnsavedChanges() { ui->comp_SettingsSimulator->resetUnsavedChanges(); }
+    void CConfigSimulatorComponent::resetUnsavedChanges() {}
 
     void CConfigSimulatorComponent::preselectSimulators()
     {
@@ -88,13 +84,6 @@ namespace swift::gui::components
         CGuiUtility::checkBoxReadOnly(ui->cb_MSFS, !CBuildConfig::isCompiledWithMSFSSupport());
         CGuiUtility::checkBoxReadOnly(ui->cb_MSFS2024, !CBuildConfig::isCompiledWithMSFS2024Support());
 
-        if (p3d) { ui->comp_SettingsSimulator->setSimulator(CSimulatorInfo(CSimulatorInfo::P3D)); }
-        else if (fsx) { ui->comp_SettingsSimulator->setSimulator(CSimulatorInfo(CSimulatorInfo::FSX)); }
-        else if (fs9) { ui->comp_SettingsSimulator->setSimulator(CSimulatorInfo(CSimulatorInfo::FS9)); }
-        else if (xp) { ui->comp_SettingsSimulator->setSimulator(CSimulatorInfo(CSimulatorInfo::XPLANE)); }
-        else if (fg) { ui->comp_SettingsSimulator->setSimulator(CSimulatorInfo(CSimulatorInfo::FG)); }
-        else if (msfs) { ui->comp_SettingsSimulator->setSimulator(CSimulatorInfo(CSimulatorInfo::MSFS)); }
-        else if (msfs2024) { ui->comp_SettingsSimulator->setSimulator(CSimulatorInfo(CSimulatorInfo::MSFS2024)); }
     }
 
     QStringList CConfigSimulatorComponent::selectedSimsToPluginIds()

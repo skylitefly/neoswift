@@ -102,6 +102,8 @@ add_library(gui SHARED
         components/configsimulatorcomponent.cpp
         components/configsimulatorcomponent.h
         components/configsimulatorcomponent.ui
+        components/configsimulatorsetupcomponent.cpp
+        components/configsimulatorsetupcomponent.h
         components/configurationwizard.cpp
         components/configurationwizard.h
         components/configurationwizard.ui
