@@ -1,6 +1,6 @@
 <project>
     <shortName>neoswift</shortName>
-    <fullName>neoswift</fullName>
+    <fullName>NeoSwift</fullName>
     <version></version>
 
     <!-- <version>0.7.0</version> -->
@@ -11,6 +11,7 @@
     <logoImage>../images/logo.png</logoImage>
     <splashImage>../images/splashscreen.png</splashImage>
     <wmImage>../images/logo.png</wmImage>
+    <defaultLanguage>auto</defaultLanguage>
     <allowLanguageSelection>1</allowLanguageSelection>
     <functionDefinitionList>
         <actionDefinition>
@@ -293,7 +294,7 @@ It must be closed before the installation can proceed</progressText>
     <requestedExecutionLevel>highestAvailable</requestedExecutionLevel>
     <saveRelativePaths>1</saveRelativePaths>
     <startMenuGroupName>neoswift ${project.version} (${architecture}bit)</startMenuGroupName>
-    <vendor>neoswift</vendor>
+    <vendor>Skylite</vendor>
     <windowsExecutableIcon>../images/swiftinstaller.ico</windowsExecutableIcon>
 
     <!-- <windowsResourceOriginalFilename>TODO</windowsResourceOriginalFilename>
