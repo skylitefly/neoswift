@@ -389,8 +389,8 @@ jobs:
       - name: Install InstallBuilder
         run: |
           hdiutil attach $HOME/installbuilder.dmg
-          cp -rf "/Volumes/InstallBuilder Qt/installbuilder-${{ env.bitrock_version }}-osx-installer.app" /Applications
-          hdiutil detach "/Volumes/InstallBuilder Qt"
+          cp -rf "/Volumes/InstallBuilder Qt Enterprise/installbuilder-${{ env.bitrock_version }}-osx-installer.app" /Applications
+          hdiutil detach "/Volumes/InstallBuilder Qt Enterprise"
           sudo xattr -r -d com.apple.quarantine /Applications/installbuilder-${{ env.bitrock_version }}-osx-installer.app
           sudo /Applications/installbuilder-${{ env.bitrock_version }}-osx-installer.app/Contents/MacOs/installbuilder.sh --mode unattended --prefix /Applications/installbuilder
           cat >~/license.xml <<EOF
