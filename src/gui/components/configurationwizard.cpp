@@ -4,16 +4,20 @@
 #include "configurationwizard.h"
 
 #include <QPointer>
+#include <QTimer>
 
 #include "ui_configurationwizard.h"
 
 #include "gui/guiapplication.h"
 #include "gui/guiutility.h"
+#include "misc/applicationinfolist.h"
 #include "misc/directoryutils.h"
 #include "misc/math/mathutils.h"
+#include "misc/simulation/simulatorplugininfo.h"
 
 using namespace swift::misc;
 using namespace swift::misc::math;
+using namespace swift::misc::simulation;
 
 namespace swift::gui::components
 {
@@ -26,6 +30,7 @@ namespace swift::gui::components
         ui->wp_CopyModels->setConfigComponent(ui->comp_CopyModels);
         ui->wp_CopySettingsAndCaches->setConfigComponent(ui->comp_CopySettingsAndCachesComponent);
         ui->wp_Simulator->setConfigComponent(ui->comp_Simulator);
+        ui->wp_SimulatorSetup->setConfigComponent(ui->comp_SimulatorSetup);
         ui->wp_SimulatorSpecific->setConfigComponent(ui->comp_InstallXSwiftBus, ui->comp_InstallFsxTerrainProbe);
         ui->wp_DataLoad->setConfigComponent(ui->comp_DataLoad);
         ui->wp_Hotkeys->setConfigComponent(ui->comp_Hotkeys);
@@ -35,9 +40,29 @@ namespace swift::gui::components
 
         // no other versions, skip copy pages
         // disabled afetr discussion with RP as it is confusing
-        // if (!CApplicationInfoList::hasOtherSwiftDataDirectories()) { this->setStartId(ConfigSimulator); }
+        // if (!CApplicationInfoList::hasOtherSwiftDataDirectories()) { this->setStartId(SelectSimulator); }
 
         ui->tb_SimulatorSpecific->setCurrentWidget(ui->comp_InstallXSwiftBus);
+
+        // Qt's internal title/subtitle QLabels have no objectName, so stylesheets and
+        // findChild() both miss them. ClassicStyle also gives title and subtitle the
+        // same point size by default. Switch to rich-text titles so inline HTML font
+        // sizing is actually honored by QLabel.
+        this->setTitleFormat(Qt::RichText);
+        this->setSubTitleFormat(Qt::RichText);
+        for (int id : this->pageIds())
+        {
+            QWizardPage *p = this->page(id);
+            if (!p) { continue; }
+            p->setTitle(QStringLiteral("<span style=\"font-size:14pt; font-weight:700;\">%1</span>")
+                            .arg(p->title().toHtmlEscaped()));
+            p->setSubTitle(QStringLiteral("<span style=\"font-size:9pt; font-weight:400;\">%1</span>")
+                               .arg(p->subTitle().toHtmlEscaped()));
+        }
+
+
+        // Silently trigger background data loading — no page visit needed
+        QTimer::singleShot(500, this, [this] { ui->comp_DataLoad->loadAllFromShared(); });
 
         const QList<int> ids = this->pageIds();
         const auto mm = std::minmax_element(ids.begin(), ids.end());
@@ -64,6 +89,40 @@ namespace swift::gui::components
     CConfigurationWizard::~CConfigurationWizard() = default;
 
     bool CConfigurationWizard::lastStepSkipped() const { return m_skipped; }
+
+    int CConfigurationWizard::nextId() const
+    {
+        const int id = currentId();
+        const bool hasOtherVersions = CApplicationInfoList::hasOtherSwiftDataDirectories();
+
+        switch (id)
+        {
+        case Legal:
+            // DataLoad is handled silently; skip import pages when no previous version exists
+            return hasOtherVersions ? CopyModels : SelectSimulator;
+
+        case DataLoad:
+            // Should not be reached in normal flow, but handle gracefully
+            return hasOtherVersions ? CopyModels : SelectSimulator;
+
+        case CopyModels:
+            return CopySettingsAndCaches;
+
+        case FirstModelSet:
+        {
+            // Skip simulator-specific installs when the user does not use X-Plane or FSX/P3D
+            const QStringList enabled = m_enabledSimulators.get();
+            const bool needsPlugin =
+                enabled.contains(CSimulatorPluginInfo::xplanePluginIdentifier()) ||
+                enabled.contains(CSimulatorPluginInfo::fsxPluginIdentifier()) ||
+                enabled.contains(CSimulatorPluginInfo::p3dPluginIdentifier());
+            return needsPlugin ? XSwiftBus : ConfigHotkeys;
+        }
+
+        default:
+            return QWizard::nextId();
+        }
+    }
 
     bool CConfigurationWizard::lastWizardStepSkipped(const QWizard *standardWizard)
     {

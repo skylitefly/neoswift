@@ -3,7 +3,7 @@
  <class>CConfigurationWizard</class>
  <widget class="QWizard" name="CConfigurationWizard">
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::WindowModality::ApplicationModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -26,10 +26,10 @@
    <bool>true</bool>
   </property>
   <property name="wizardStyle">
-   <enum>QWizard::ClassicStyle</enum>
+   <enum>QWizard::WizardStyle::ClassicStyle</enum>
   </property>
   <property name="options">
-   <set>QWizard::HaveCustomButton1</set>
+   <set>QWizard::WizardOption::HaveCustomButton1</set>
   </property>
   <widget class="swift::gui::components::CLegalInfoWizardPage" name="wp_Legal">
    <property name="title">
@@ -61,7 +61,7 @@
     <string>Data loading</string>
    </property>
    <property name="subTitle">
-    <string>Caches model and ICAO data</string>
+    <string>Loading data in the background — you can continue to the next step</string>
    </property>
    <layout class="QVBoxLayout" name="vl_DataLoad">
     <property name="leftMargin">
@@ -90,10 +90,10 @@
   </widget>
   <widget class="swift::gui::components::CCopyModelsFromOtherSwiftVersionsWizardPage" name="wp_CopyModels">
    <property name="title">
-    <string>Copy models</string>
+    <string>Import models</string>
    </property>
    <property name="subTitle">
-    <string>Copy model data from other swift versions. Here you can copy your model set or model cache from another swift version.</string>
+    <string>Import your model set or model cache from a previous version.</string>
    </property>
    <layout class="QVBoxLayout" name="vl_CopyModels">
     <property name="leftMargin">
@@ -115,10 +115,10 @@
   </widget>
   <widget class="swift::gui::components::CCopySettingsAndCachesWizardPage" name="wp_CopySettingsAndCaches">
    <property name="title">
-    <string>Copy settings and caches</string>
+    <string>Import settings</string>
    </property>
    <property name="subTitle">
-    <string>Copy settings and caches from other swift versions</string>
+    <string>Import settings from a previous version (optional)</string>
    </property>
    <layout class="QVBoxLayout" name="vl_CopySettingsAndCache">
     <property name="leftMargin">
@@ -143,8 +143,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>90</width>
-         <height>20</height>
+         <width>668</width>
+         <height>468</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="vl_CopySettingsAndCacheWidget">
@@ -171,10 +171,10 @@
   </widget>
   <widget class="swift::gui::components::CConfigSimulatorWizardPage" name="wp_Simulator">
    <property name="title">
-    <string>Simulator</string>
+    <string>Select simulators</string>
    </property>
    <property name="subTitle">
-    <string>Simulator(s) you are using</string>
+    <string>Which simulator(s) do you use?</string>
    </property>
    <layout class="QVBoxLayout" name="vl_SimulatorSetup">
     <property name="leftMargin">
@@ -201,18 +201,50 @@
     </item>
    </layout>
   </widget>
-  <widget class="swift::gui::components::CFirstModelSetWizardPage" name="wp_FirstModelSet">
+  <widget class="swift::gui::components::CConfigSimulatorSetupWizardPage" name="wp_SimulatorSetup">
    <property name="title">
-    <string>First model set</string>
+    <string>Simulator setup</string>
    </property>
    <property name="subTitle">
-    <string>Create a simple model set (for a start)</string>
+    <string>Configure paths for each of your selected simulators. In most cases the defaults are correct.</string>
+   </property>
+   <layout class="QVBoxLayout" name="vl_SimulatorSetup2">
+    <property name="leftMargin">
+     <number>4</number>
+    </property>
+    <property name="topMargin">
+     <number>4</number>
+    </property>
+    <property name="rightMargin">
+     <number>4</number>
+    </property>
+    <property name="bottomMargin">
+     <number>4</number>
+    </property>
+    <item>
+     <widget class="swift::gui::components::CConfigSimulatorSetupComponent" name="comp_SimulatorSetup">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>125</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="swift::gui::components::CFirstModelSetWizardPage" name="wp_FirstModelSet">
+   <property name="title">
+    <string>Aircraft models</string>
+   </property>
+   <property name="subTitle">
+    <string>Tell swift which aircraft models you have installed. You can skip this and do it later from the main window.</string>
    </property>
    <layout class="QVBoxLayout" name="vl_FirstModelSet">
-    <item alignment="Qt::AlignRight">
+    <item alignment="Qt::AlignmentFlag::AlignRight">
      <widget class="QPushButton" name="pb_SkipFirstModelSet">
       <property name="text">
-       <string>  I do this later / do not need this  </string>
+       <string>Skip, I'll set this up later</string>
       </property>
      </widget>
     </item>
@@ -230,31 +262,31 @@
   </widget>
   <widget class="swift::gui::components::CInstallSimulatorSpecificWizardPage" name="wp_SimulatorSpecific">
    <property name="title">
-    <string>Simulator specific installations</string>
+    <string>Install simulator plugin</string>
    </property>
    <property name="subTitle">
-    <string>Install xswiftbus (X-Plane only) or swift terrain probe (FSX/P3D only)</string>
+    <string>X-Plane users: install xswiftbus into your X-Plane folder. FSX/P3D users: install the terrain probe if prompted.</string>
    </property>
    <layout class="QVBoxLayout" name="vl_SimulatorSpecific">
     <item>
      <widget class="QToolBox" name="tb_SimulatorSpecific">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pg_InstallFsxTerrainProbe">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>89</width>
-         <height>64</height>
+         <width>656</width>
+         <height>369</height>
         </rect>
        </property>
        <attribute name="label">
         <string extracomment="FSX/P3D: Needed with the x86 legacy 32bit SimConnect">Install FSX terrain probe</string>
        </attribute>
        <layout class="QVBoxLayout" name="vl_P3DFsx">
-        <item alignment="Qt::AlignTop">
+        <item alignment="Qt::AlignmentFlag::AlignTop">
          <widget class="swift::gui::components::CInstallFsxTerrainProbeComponent" name="comp_InstallFsxTerrainProbe">
           <property name="minimumSize">
            <size>
@@ -271,15 +303,15 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>75</width>
-         <height>64</height>
+         <width>656</width>
+         <height>369</height>
         </rect>
        </property>
        <attribute name="label">
         <string extracomment="Install the xswiftbus component">XPlane: Install xswiftbus</string>
        </attribute>
        <layout class="QVBoxLayout" name="vl_XPlane">
-        <item alignment="Qt::AlignTop">
+        <item alignment="Qt::AlignmentFlag::AlignTop">
          <widget class="swift::gui::components::CInstallXSwiftBusComponent" name="comp_InstallXSwiftBus">
           <property name="minimumSize">
            <size>
@@ -297,10 +329,10 @@
   </widget>
   <widget class="swift::gui::components::CConfigHotkeyWizardPage" name="wp_Hotkeys">
    <property name="title">
-    <string>Hotkeys</string>
+    <string>Push-to-talk key</string>
    </property>
    <property name="subTitle">
-    <string>Configure (at least) your PTT key</string>
+    <string>Assign a key or button to transmit voice on the radio. Press &quot;Add&quot; and then press the key you want to use.</string>
    </property>
    <layout class="QVBoxLayout" name="vl_Hotkeys">
     <property name="leftMargin">
@@ -437,6 +469,18 @@
    <class>swift::gui::components::CInstallFsxTerrainProbeComponent</class>
    <extends>QFrame</extends>
    <header>gui/components/installfsxterrainprobecomponent.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>swift::gui::components::CConfigSimulatorSetupComponent</class>
+   <extends>QFrame</extends>
+   <header>gui/components/configsimulatorsetupcomponent.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>swift::gui::components::CConfigSimulatorSetupWizardPage</class>
+   <extends>QWizardPage</extends>
+   <header>gui/components/configsimulatorsetupcomponent.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

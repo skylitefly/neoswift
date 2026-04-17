@@ -9,7 +9,9 @@
 #include <QScopedPointer>
 #include <QWizard>
 
+#include "core/application/applicationsettings.h"
 #include "gui/swiftguiexport.h"
+#include "misc/settingscache.h"
 
 namespace Ui
 {
@@ -32,7 +34,8 @@ namespace swift::gui::components
             DataLoad,
             CopyModels,
             CopySettingsAndCaches,
-            ConfigSimulator,
+            SelectSimulator,    //!< checkboxes only
+            SetupSimulators,    //!< per-simulator tab config
             FirstModelSet,
             XSwiftBus,
             ConfigHotkeys
@@ -46,6 +49,9 @@ namespace swift::gui::components
 
         //! Was the last step skipped?
         bool lastStepSkipped() const;
+
+        //! \copydoc QWizard::nextId
+        int nextId() const override;
 
         //! Static version of CConfigurationWizard::lastStepSkipped
         static bool lastWizardStepSkipped(const QWizard *standardWizard);
@@ -71,6 +77,7 @@ namespace swift::gui::components
         int m_minId = -1;
         int m_maxId = -1;
         bool m_skipped = false;
+        swift::misc::CSetting<swift::core::application::TEnabledSimulators> m_enabledSimulators { this };
     };
 } // namespace swift::gui::components
 #endif // SWIFT_GUI_COMPONENTS_CONFIGURATIONWIZARD_H
