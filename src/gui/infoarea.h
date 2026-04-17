@@ -190,6 +190,9 @@ namespace swift::gui
         //! Toogle lock tabbar
         void toggleTabBarLocked(bool locked);
 
+        //! Show tab bar
+        void showTabBar(bool show);
+
     private:
         QList<CDockWidgetInfoArea *> m_dockWidgetInfoAreas;
         QList<CInfoArea *> m_childInfoAreas;
@@ -252,9 +255,6 @@ namespace swift::gui
 
         //! Show the tab texts, or just the icons
         void showTabTexts(bool show);
-
-        //! Show tab bar
-        void showTabBar(bool show);
 
         //! Set dock area used
         void setDockArea(Qt::DockWidgetArea area);

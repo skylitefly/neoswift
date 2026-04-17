@@ -287,7 +287,7 @@ namespace swift::gui
         if (t == c) { return true; }
 
         // further unify
-        if (!tsRegex.hasLocalData()) { tsRegex.setLocalData(QRegularExpression("[^a-z0-9\\s]")); }
+        if (!tsRegex.hasLocalData()) { tsRegex.setLocalData(QRegularExpression("[^\\p{L}\\p{N}\\s]")); }
         const QRegularExpression &regexp = tsRegex.localData();
         t = t.remove(regexp);
         c = c.remove(regexp);

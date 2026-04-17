@@ -28,9 +28,5 @@ namespace swift::gui::components
         QTimer::singleShot(500, m_config, [=] { m_config->loadAllFromShared(); });
     }
 
-    bool CInitialDataLoadWizardPage::validatePage()
-    {
-        Q_ASSERT_X(m_config, Q_FUNC_INFO, "Missing config");
-        return !m_config->isLoadInProgress();
-    }
+    bool CInitialDataLoadWizardPage::validatePage() { return true; }
 } // namespace swift::gui::components

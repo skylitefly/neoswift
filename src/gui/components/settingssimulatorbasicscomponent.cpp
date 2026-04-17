@@ -60,7 +60,11 @@ namespace swift::gui::components
 
     CSettingsSimulatorBasicsComponent::~CSettingsSimulatorBasicsComponent() = default;
 
-    void CSettingsSimulatorBasicsComponent::hideSelector(bool show) { ui->comp_SimulatorSelector->setVisible(show); }
+    void CSettingsSimulatorBasicsComponent::hideSelector(bool show)
+    {
+        ui->comp_SimulatorSelector->setVisible(show);
+        ui->lbl_Simulator->setVisible(show);
+    }
 
     bool CSettingsSimulatorBasicsComponent::hasAnyValues() const
     {
