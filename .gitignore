@@ -43,6 +43,9 @@ desktop.ini
 # VATSIM key
 /vatsim.json
 
+# Compiled translations (generated from .ts in CI, do not commit)
+/translations/*.qm
+
 # Jetbrains stuff
 .idea/**
 cmake-build-*/

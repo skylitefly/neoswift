@@ -23,6 +23,7 @@
 #include <QStyle>
 #include <QStyleFactory>
 #include <QToolBar>
+#include <QTranslator>
 #include <QUrl>
 #include <QWhatsThis>
 #include <QWidget>
@@ -113,6 +114,12 @@ namespace swift::gui
         {
             CGuiApplication::registerMetadata();
             CApplication::init(false); // base class without metadata
+            auto *translator = new QTranslator(qApp);
+            const QString locale = QLocale::system().name();
+            if (translator->load(QStringLiteral("neoswift_") + locale,
+                                 QCoreApplication::applicationDirPath() + "/translations")) {
+                QCoreApplication::installTranslator(translator);
+            }
             CGuiApplication::adjustPalette();
             CGuiApplication::setWindowIcon(icon);
             this->settingsChanged();

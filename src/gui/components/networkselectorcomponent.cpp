@@ -26,12 +26,12 @@ namespace swift::gui::components
         auto *rowNetwork = new QHBoxLayout;
         m_cbNetwork = new QComboBox(this);
         m_cbNetwork->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-        m_cbNetwork->setToolTip("Select the flight network to connect to");
+        m_cbNetwork->setToolTip(tr("Select the flight network to connect to"));
 
-        m_pbNetworkSettings = new QPushButton("Settings", this);
-        m_pbNetworkSettings->setToolTip("Open network settings");
+        m_pbNetworkSettings = new QPushButton(tr("Settings"), this);
+        m_pbNetworkSettings->setToolTip(tr("Open network settings"));
 
-        rowNetwork->addWidget(new QLabel("Network:", this));
+        rowNetwork->addWidget(new QLabel(tr("Network:"), this));
         rowNetwork->addWidget(m_cbNetwork);
         rowNetwork->addWidget(m_pbNetworkSettings);
 
@@ -41,23 +41,23 @@ namespace swift::gui::components
         m_serverSelector->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
         m_pbRefresh = new QPushButton("\u21bb", this);
-        m_pbRefresh->setToolTip("Re-fetch network configuration and server list");
+        m_pbRefresh->setToolTip(tr("Re-fetch network configuration and server list"));
         m_pbRefresh->setFixedWidth(30);
 
-        rowServer->addWidget(new QLabel("Server:", this));
+        rowServer->addWidget(new QLabel(tr("Server:"), this));
         rowServer->addWidget(m_serverSelector);
         rowServer->addWidget(m_pbRefresh);
 
         // ── Options row ───────────────────────────────────────────────────
         auto *rowOptions = new QHBoxLayout;
-        m_cbObserver = new QCheckBox("Observer", this);
-        m_cbObserver->setToolTip("Connect as observer (read-only, not visible to others)");
+        m_cbObserver = new QCheckBox(tr("Observer"), this);
+        m_cbObserver->setToolTip(tr("Connect as observer (read-only, not visible to others)"));
 
-        auto *lblPartner = new QLabel("Co-pilot:", this);
+        auto *lblPartner = new QLabel(tr("Co-pilot:"), this);
         m_lePartnerCallsign = new QLineEdit(this);
         m_lePartnerCallsign->setMaxLength(10);
-        m_lePartnerCallsign->setPlaceholderText("callsign");
-        m_lePartnerCallsign->setToolTip("Optional: callsign of your co-pilot / partner");
+        m_lePartnerCallsign->setPlaceholderText(tr("callsign"));
+        m_lePartnerCallsign->setToolTip(tr("Optional: callsign of your co-pilot / partner"));
 
         constexpr int MaxLen = 10;
         auto *ucv = new CUpperCaseValidator(0, MaxLen, m_lePartnerCallsign);

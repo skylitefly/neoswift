@@ -117,7 +117,30 @@ if(MSVC)
 endif()
 
 # Find dependencies
-find_package(Qt6 REQUIRED COMPONENTS Core DBus Gui Multimedia Network OpenGL Concurrent Xml Qml Widgets Svg Test)
+find_package(Qt6 REQUIRED COMPONENTS Core DBus Gui Multimedia Network OpenGL Concurrent Xml Qml Widgets Svg Test LinguistTools)
+
+add_custom_target(update_translations
+    COMMAND $<TARGET_FILE:Qt6::lupdate>
+            ${CMAKE_SOURCE_DIR}/src
+            -ts ${CMAKE_SOURCE_DIR}/translations/neoswift_zh_CN.ts
+            -no-obsolete
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Updating translation template from source..."
+    VERBATIM
+)
+
+add_custom_target(release_translations
+    COMMAND $<TARGET_FILE:Qt6::lrelease>
+            ${CMAKE_SOURCE_DIR}/translations/neoswift_zh_CN.ts
+            -qm ${CMAKE_SOURCE_DIR}/translations/neoswift_zh_CN.qm
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Compiling translations to .qm..."
+    VERBATIM
+)
+
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/translations/
+        DESTINATION bin/translations
+        FILES_MATCHING PATTERN "*.qm")
 find_package(Opus REQUIRED)
 find_package(libsodium REQUIRED)
 find_package(nlohmann_json REQUIRED)

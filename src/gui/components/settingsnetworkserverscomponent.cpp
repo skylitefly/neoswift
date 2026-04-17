@@ -31,7 +31,7 @@ namespace swift::gui::components
     {
         // ── Table ─────────────────────────────────────────────────────────
         m_table = new QTableWidget(0, 3, this);
-        m_table->setHorizontalHeaderLabels({ "Name", "Description", "Domain" });
+        m_table->setHorizontalHeaderLabels({ tr("Name"), tr("Description"), tr("Domain") });
         m_table->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
         m_table->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
         m_table->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
@@ -41,14 +41,14 @@ namespace swift::gui::components
         m_table->verticalHeader()->setVisible(false);
 
         // ── Buttons ───────────────────────────────────────────────────────
-        m_pbAdd = new QPushButton("Add", this);
-        m_pbAdd->setToolTip("Add a new network by domain name");
-        m_pbDelete = new QPushButton("Delete", this);
-        m_pbDelete->setToolTip("Remove the selected network");
-        m_pbRefreshSelected = new QPushButton("Refresh selected", this);
-        m_pbRefreshSelected->setToolTip("Re-fetch fsd-configuration for the selected network");
-        m_pbRefreshAll = new QPushButton("Refresh all", this);
-        m_pbRefreshAll->setToolTip("Re-fetch fsd-configuration for all networks");
+        m_pbAdd = new QPushButton(tr("Add"), this);
+        m_pbAdd->setToolTip(tr("Add a new network by domain name"));
+        m_pbDelete = new QPushButton(tr("Delete"), this);
+        m_pbDelete->setToolTip(tr("Remove the selected network"));
+        m_pbRefreshSelected = new QPushButton(tr("Refresh selected"), this);
+        m_pbRefreshSelected->setToolTip(tr("Re-fetch fsd-configuration for the selected network"));
+        m_pbRefreshAll = new QPushButton(tr("Refresh all"), this);
+        m_pbRefreshAll->setToolTip(tr("Re-fetch fsd-configuration for all networks"));
 
         auto *btnRow = new QHBoxLayout;
         btnRow->addWidget(m_pbRefreshSelected);
@@ -58,11 +58,11 @@ namespace swift::gui::components
         btnRow->addWidget(m_pbDelete);
 
         // ── Group box ─────────────────────────────────────────────────────
-        auto *gb = new QGroupBox("Networks", this);
+        auto *gb = new QGroupBox(tr("Networks"), this);
         auto *gbLayout = new QVBoxLayout(gb);
         gbLayout->setContentsMargins(4, 4, 4, 4);
         gbLayout->addWidget(
-            new QLabel("Manage flight networks. Networks are discovered automatically from their domain.", gb));
+            new QLabel(tr("Manage flight networks. Networks are discovered automatically from their domain."), gb));
         gbLayout->addWidget(m_table);
         gbLayout->addLayout(btnRow);
 
@@ -100,7 +100,7 @@ namespace swift::gui::components
     void CSettingsNetworkServersComponent::onAddPressed()
     {
         bool ok = false;
-        QString domain = QInputDialog::getText(this, "Add Network", "Enter network's domain name:", QLineEdit::Normal,
+        QString domain = QInputDialog::getText(this, tr("Add Network"), tr("Enter network's domain name:"), QLineEdit::Normal,
                                                QString(), &ok);
         if (!ok || domain.trimmed().isEmpty()) { return; }
 
@@ -111,13 +111,13 @@ namespace swift::gui::components
 
         if (domain.isEmpty())
         {
-            QMessageBox::warning(this, "Add Network", "Invalid domain name.");
+            QMessageBox::warning(this, tr("Add Network"), tr("Invalid domain name."));
             return;
         }
 
         if (m_networks.get().containsDomain(domain))
         {
-            QMessageBox::information(this, "Add Network", QString("'%1' is already in your network list.").arg(domain));
+            QMessageBox::information(this, tr("Add Network"), tr("'%1' is already in your network list.").arg(domain));
             return;
         }
 
@@ -130,15 +130,15 @@ namespace swift::gui::components
             network, { this, [=](bool success, const CNetwork &discovered) mutable {
                           if (!myself) { return; }
                           m_pbAdd->setEnabled(true);
-                          m_pbAdd->setText("Add");
+                          m_pbAdd->setText(tr("Add"));
 
                           if (!success)
                           {
-                              QMessageBox::warning(this, "Add Network",
-                                                   QString("Discovery of '%1' failed.\n"
-                                                           "Make sure the domain serves\n"
-                                                           "https://%1/.well-known/fsd-configuration.json\n"
-                                                           "with correct CORS headers.")
+                              QMessageBox::warning(this, tr("Add Network"),
+                                                   tr("Discovery of '%1' failed.\n"
+                                                      "Make sure the domain serves\n"
+                                                      "https://%1/.well-known/fsd-configuration.json\n"
+                                                      "with correct CORS headers.")
                                                        .arg(domain));
                               return;
                           }
@@ -157,8 +157,8 @@ namespace swift::gui::components
         if (row < 0 || row >= networks.size()) { return; }
 
         const CNetwork &net = networks[row];
-        const int res = QMessageBox::question(this, "Delete Network",
-                                              QString("Remove '%1' from the network list?").arg(net.getDomain()),
+        const int res = QMessageBox::question(this, tr("Delete Network"),
+                                              tr("Remove '%1' from the network list?").arg(net.getDomain()),
                                               QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
         if (res != QMessageBox::Yes) { return; }
 

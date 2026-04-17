@@ -230,6 +230,8 @@ jobs:
           NETWORK_CLIENT_ID: ${{ secrets.NETWORK_CLIENT_ID }}
           NETWORK_CLIENT_KEY: ${{ secrets.NETWORK_CLIENT_KEY }}
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
+      - name: Compile translations
+        run: lrelease translations/neoswift_zh_CN.ts -qm translations/neoswift_zh_CN.qm
       - name: Build neoswift (without symbols)
         if: ${{ env.do_symbols != 'true' }}
         run: |
@@ -333,6 +335,8 @@ jobs:
           NETWORK_CLIENT_ID: ${{ secrets.NETWORK_CLIENT_ID }}
           NETWORK_CLIENT_KEY: ${{ secrets.NETWORK_CLIENT_KEY }}
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
+      - name: Compile translations
+        run: lrelease translations/neoswift_zh_CN.ts -qm translations/neoswift_zh_CN.qm
       - name: Build neoswift (without symbols)
         if: ${{ env.do_symbols != 'true' }}
         shell: cmd
@@ -435,6 +439,8 @@ jobs:
           NETWORK_CLIENT_ID: ${{ secrets.NETWORK_CLIENT_ID }}
           NETWORK_CLIENT_KEY: ${{ secrets.NETWORK_CLIENT_KEY }}
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
+      - name: Compile translations
+        run: lrelease translations/neoswift_zh_CN.ts -qm translations/neoswift_zh_CN.qm
       - name: Build neoswift (without symbols)
         if: ${{ env.do_symbols != 'true' }}
         run: |
