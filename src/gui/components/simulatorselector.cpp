@@ -369,20 +369,20 @@ namespace swift::gui::components
 
     void CSimulatorSelector::changedLastSelection()
     {
-        // force decoupled update
+        if (!m_rememberSelection) { return; }
         this->triggerSetToLastSelection();
     }
 
     void CSimulatorSelector::changedLastSelectionRb()
     {
-        // force decoupled update
+        if (!m_rememberSelection) { return; }
         if (m_mode != RadioButtons) { return; }
         this->triggerSetToLastSelection();
     }
 
     void CSimulatorSelector::changedLastSelectionCb()
     {
-        // force decoupled update
+        if (!m_rememberSelection) { return; }
         if (m_mode != CheckBoxes) { return; }
         this->triggerSetToLastSelection();
     }

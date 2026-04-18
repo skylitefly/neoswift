@@ -64,6 +64,7 @@ namespace swift::gui::components
     {
         ui->comp_SimulatorSelector->setVisible(show);
         ui->lbl_Simulator->setVisible(show);
+        if (!show) { ui->comp_SimulatorSelector->setRememberSelection(false); }
     }
 
     bool CSettingsSimulatorBasicsComponent::hasAnyValues() const
