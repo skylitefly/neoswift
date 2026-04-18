@@ -105,17 +105,13 @@ namespace swift::misc::simulation::fscommon
             if (!d.exists()) { continue; }
             return msfsPackage;
         }
-        // then we look for steam-edition
-        for (QString path : locations)
+        // Steam edition: user data lives in %APPDATA% (Roaming).
+        const QString appData = QDir::fromNativeSeparators(qgetenv("APPDATA"));
+        if (!appData.isEmpty())
         {
-            // there seems to be no constant for the roaming directory, so we have to do some magic
-            // https://doc.qt.io/qt-6/qstandardpaths.html
-            path.replace("Local", "Roaming");
-            const QString msfsPackage = CFileUtils::appendFilePaths(path, "Microsoft Flight Simulator");
+            const QString msfsPackage = CFileUtils::appendFilePaths(appData, "Microsoft Flight Simulator");
             const QString fileName = CFileUtils::appendFilePaths(msfsPackage, "UserCfg.opt");
-            const QFileInfo fi(fileName);
-            if (!fi.exists()) { continue; }
-            return msfsPackage;
+            if (QFileInfo(fileName).exists()) { return msfsPackage; }
         }
         return {};
     }
@@ -181,16 +177,14 @@ namespace swift::misc::simulation::fscommon
             if (!d.exists()) { continue; }
             return msfs2024Package;
         }
-        // Steam edition: data is in %APPDATA% (Roaming), use GenericConfigLocation instead of string manipulation
-        const QStringList roamingLocations =
-            QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
-        for (const QString &path : roamingLocations)
+        // Steam edition: user data lives in %APPDATA% (Roaming).
+        // Read the env var directly — QStandardPaths has no GenericDataLocation equivalent for Roaming on Windows.
+        const QString appData = QDir::fromNativeSeparators(qgetenv("APPDATA"));
+        if (!appData.isEmpty())
         {
-            const QString msfsPackage = CFileUtils::appendFilePaths(path, "Microsoft Flight Simulator 2024");
+            const QString msfsPackage = CFileUtils::appendFilePaths(appData, "Microsoft Flight Simulator 2024");
             const QString fileName = CFileUtils::appendFilePaths(msfsPackage, "UserCfg.opt");
-            const QFileInfo fi(fileName);
-            if (!fi.exists()) { continue; }
-            return msfsPackage;
+            if (QFileInfo(fileName).exists()) { return msfsPackage; }
         }
         return {};
     }
