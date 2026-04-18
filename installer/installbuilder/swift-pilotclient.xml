@@ -100,6 +100,16 @@ This installs the binaries to run all swift applications.</detailedDescription>
                 </distributionFile>
             </distributionFileList>
         </folder>
+        <folder destination="${installdir}/bin/translations" name="translations">
+            <description>translations</description>
+            <platforms>all</platforms>
+            <distributionFileList>
+                <distributionFile>
+                    <allowWildcards>1</allowWildcards>
+                    <origin>../../dist/bin/translations/*.qm</origin>
+                </distributionFile>
+            </distributionFileList>
+        </folder>
         <folder destination="${installdir}/" name="share">
             <description>share</description>
             <platforms>all</platforms>
