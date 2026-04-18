@@ -142,6 +142,13 @@ jobs:
           repository: ${{ env.externals }}
           token: ${{ env.EXTERNALS_PAT }}
           path: 'third_party/externals'
+      - name: Cache Conan packages
+        if: ${{ steps.check_need_clang_tidy.outputs.should_run_clang_tidy == 'true' }}
+        uses: actions/cache@v4
+        with:
+          path: ~/.conan2
+          key: conan-linux-${{ hashFiles('conanfile.py', 'ci/profile_linux') }}
+          restore-keys: conan-linux-
       - name: Install conan dependencies
         if: ${{ steps.check_need_clang_tidy.outputs.should_run_clang_tidy == 'true' }}
         shell: bash
@@ -210,6 +217,12 @@ jobs:
           repository: ${{ env.externals }}
           token: ${{ env.EXTERNALS_PAT }}
           path: 'third_party/externals'
+      - name: Cache Conan packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.conan2
+          key: conan-linux-${{ hashFiles('conanfile.py', 'ci/profile_linux') }}
+          restore-keys: conan-linux-
       - name: Install conan dependencies
         shell: bash
         run: |
@@ -320,6 +333,12 @@ jobs:
           repository: ${{ env.externals }}
           token: ${{ env.EXTERNALS_PAT }}
           path: 'third_party/externals'
+      - name: Cache Conan packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.conan2
+          key: conan-windows-${{ hashFiles('conanfile.py', 'ci/profile_win') }}
+          restore-keys: conan-windows-
       - name: Install conan dependencies
         shell: bash
         run: |
@@ -419,6 +438,12 @@ jobs:
           repository: ${{ env.externals }}
           token: ${{ env.EXTERNALS_PAT }}
           path: 'third_party/externals'
+      - name: Cache Conan packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.conan2
+          key: conan-macos-${{ hashFiles('conanfile.py', 'ci/profile_mac', 'ci/profile_mac_arm') }}
+          restore-keys: conan-macos-
       - name: Install conan dependencies
         shell: bash
         run: |
