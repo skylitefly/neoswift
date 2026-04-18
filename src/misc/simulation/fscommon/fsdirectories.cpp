@@ -172,8 +172,8 @@ namespace swift::misc::simulation::fscommon
 
     static QString msfs2024DirImpl()
     {
-        const QStringList locations = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
-        for (const QString &path : locations)
+        const QStringList localLocations = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+        for (const QString &path : localLocations)
         {
             const QString msfs2024Package = CFileUtils::appendFilePaths(CFileUtils::appendFilePaths(path, "Packages"),
                                                                         "Microsoft.Limitless_8wekyb3d8bbwe");
@@ -181,12 +181,11 @@ namespace swift::misc::simulation::fscommon
             if (!d.exists()) { continue; }
             return msfs2024Package;
         }
-        // then we look for steam-edition
-        for (QString path : locations)
+        // Steam edition: data is in %APPDATA% (Roaming), use GenericConfigLocation instead of string manipulation
+        const QStringList roamingLocations =
+            QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
+        for (const QString &path : roamingLocations)
         {
-            // there seems to be no constant for the roaming directory, so we have to do some magic
-            // https://doc.qt.io/qt-6/qstandardpaths.html
-            path.replace("Local", "Roaming");
             const QString msfsPackage = CFileUtils::appendFilePaths(path, "Microsoft Flight Simulator 2024");
             const QString fileName = CFileUtils::appendFilePaths(msfsPackage, "UserCfg.opt");
             const QFileInfo fi(fileName);

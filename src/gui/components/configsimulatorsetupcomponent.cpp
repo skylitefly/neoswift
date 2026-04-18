@@ -9,6 +9,7 @@
 #include "config/buildconfig.h"
 #include "gui/components/settingssimulatorbasicscomponent.h"
 #include "misc/simulation/simulatorinfo.h"
+#include "misc/simulation/simulatorplugininfo.h"
 
 using namespace swift::config;
 using namespace swift::misc::simulation;
@@ -37,34 +38,24 @@ namespace swift::gui::components
         {
             CSimulatorInfo sim;
             bool compiled;
+            QString canonicalId;
         };
 
         const QList<SimEntry> order = {
-            { CSimulatorInfo(CSimulatorInfo::FSX), CBuildConfig::isCompiledWithFsxSupport() },
-            { CSimulatorInfo(CSimulatorInfo::FS9), CBuildConfig::isCompiledWithFs9Support() },
-            { CSimulatorInfo(CSimulatorInfo::P3D), CBuildConfig::isCompiledWithP3DSupport() },
-            { CSimulatorInfo(CSimulatorInfo::MSFS), CBuildConfig::isCompiledWithMSFSSupport() },
-            { CSimulatorInfo(CSimulatorInfo::MSFS2024), CBuildConfig::isCompiledWithMSFS2024Support() },
-            { CSimulatorInfo(CSimulatorInfo::XPLANE), CBuildConfig::isCompiledWithXPlaneSupport() },
-            { CSimulatorInfo(CSimulatorInfo::FG), CBuildConfig::isCompiledWithFGSupport() },
+            { CSimulatorInfo(CSimulatorInfo::FSX), CBuildConfig::isCompiledWithFsxSupport(), CSimulatorPluginInfo::fsxPluginIdentifier() },
+            { CSimulatorInfo(CSimulatorInfo::FS9), CBuildConfig::isCompiledWithFs9Support(), CSimulatorPluginInfo::fs9PluginIdentifier() },
+            { CSimulatorInfo(CSimulatorInfo::P3D), CBuildConfig::isCompiledWithP3DSupport(), CSimulatorPluginInfo::p3dPluginIdentifier() },
+            { CSimulatorInfo(CSimulatorInfo::MSFS), CBuildConfig::isCompiledWithMSFSSupport(), CSimulatorPluginInfo::msfsPluginIdentifier() },
+            { CSimulatorInfo(CSimulatorInfo::MSFS2024), CBuildConfig::isCompiledWithMSFS2024Support(), CSimulatorPluginInfo::msfs2024PluginIdentifier() },
+            { CSimulatorInfo(CSimulatorInfo::XPLANE), CBuildConfig::isCompiledWithXPlaneSupport(), CSimulatorPluginInfo::xplanePluginIdentifier() },
+            { CSimulatorInfo(CSimulatorInfo::FG), CBuildConfig::isCompiledWithFGSupport(), CSimulatorPluginInfo::fgPluginIdentifier() },
         };
 
         int tabsAdded = 0;
         for (const SimEntry &entry : order)
         {
             if (!entry.compiled) { continue; }
-            // Check if this simulator is in the enabled list
-            const QString pluginId = entry.sim.toQString(false);
-            bool enabled = false;
-            for (const QString &id : enabledIds)
-            {
-                if (id.contains(pluginId, Qt::CaseInsensitive))
-                {
-                    enabled = true;
-                    break;
-                }
-            }
-            if (enabled)
+            if (enabledIds.contains(entry.canonicalId))
             {
                 addSimulatorTab(entry.sim);
                 tabsAdded++;
