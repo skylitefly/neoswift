@@ -4284,7 +4284,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/firstmodelsetcomponent.ui" line="30"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The model set defines aircraft you will use in the simulator. From all models you have installed on your disk you can select a subset actually being used for model matching.&lt;br/&gt;&lt;br/&gt;Hint: If you already have a model set, or you have copied the model set, you can skip this step.&lt;br/&gt;&lt;br/&gt;1) Reload your models if not already done&lt;br/&gt;2) Create your model set and SAVE the model set&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;模型集定义了使用哪些模型来映射其他用户的飞机. 你可以从所有安装了的模型中选取一部分作为模型映射的子集（如：去除机模的模型以降低显存占用）.&lt;br/&gt;&lt;br/&gt;如果你已经有了一个模型集，或是在之前导入了一个，那么你可以直接跳过这一步&lt;br/&gt;&lt;br/&gt;1) 如果下面没看到模型列表，试试刷新&lt;br/&gt;2) 选择需要使用的模型并点击保存&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;模型集定义了使用哪些模型来映射其他用户的飞机.&lt;br/&gt;如果你已经有了一个模型集，或是在之前导入了一个，那么你可以直接跳过这一步&lt;br/&gt;&lt;br/&gt;如果右侧“模型”框的第二个Models提示No models so far，试试点击右侧的刷新按钮，如果还是识别不到模型那么你应该返回上一步检查路径是否设置错了&lt;br/&gt;1) 在底部选择需要使用的模型提供方 （提示：按住Ctrl可以多选）&lt;br/&gt;2) 点击 创建模型集 再点最右侧的 &quot;Save &apos;[模拟器名称]&apos;&quot; 保存这个模拟器的模型集&lt;br/&gt;你可以根据需要再次切换模拟器并为每一个你需要使用的模拟器创建一个模型集&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/gui/components/firstmodelsetcomponent.ui" line="76"/>
@@ -4345,7 +4345,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/firstmodelsetcomponent.ui" line="181"/>
         <source>create</source>
-        <translation type="unfinished"></translation>
+        <translation>创建模型集</translation>
     </message>
     <message>
         <location filename="../src/gui/components/firstmodelsetcomponent.ui" line="198"/>
@@ -4360,17 +4360,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/firstmodelsetcomponent.ui" line="215"/>
         <source> reload </source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
         <location filename="../src/gui/components/firstmodelsetcomponent.ui" line="222"/>
         <source>change</source>
-        <translation type="unfinished"></translation>
+        <translation>修改</translation>
     </message>
     <message>
         <location filename="../src/gui/components/firstmodelsetcomponent.ui" line="241"/>
         <source>Distributions</source>
-        <translation type="unfinished"></translation>
+        <translation>提供方</translation>
     </message>
 </context>
 <context>
