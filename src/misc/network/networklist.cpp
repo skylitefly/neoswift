@@ -23,4 +23,10 @@ namespace swift::misc::network
         return std::any_of(cbegin(), cend(),
                            [&](const CNetwork &n) { return n.getDomain().compare(domain, Qt::CaseInsensitive) == 0; });
     }
+
+    bool CNetworkList::containsConfigUrl(const QString &url) const
+    {
+        return std::any_of(cbegin(), cend(),
+                           [&](const CNetwork &n) { return n.getConfigUrl().compare(url, Qt::CaseInsensitive) == 0; });
+    }
 } // namespace swift::misc::network

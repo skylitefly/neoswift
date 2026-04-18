@@ -70,6 +70,15 @@ namespace swift::misc::network
         //! or if a valid config was restored from persisted settings/cache.
         bool hasLoadedConfig() const { return m_isConfigLoaded || m_config.isValid(); }
 
+        //! Exact config URL (for URL-based discovery; empty means use well-known URL from domain)
+        const QString &getConfigUrl() const { return m_configUrl; }
+
+        //! Set exact config URL
+        void setConfigUrl(const QString &url) { m_configUrl = url; }
+
+        //! True if an exact config URL has been set
+        bool hasConfigUrl() const { return !m_configUrl.isEmpty(); }
+
         //! URL at which the well-known config JSON is served
         QString getWellKnownUrl() const;
 
@@ -90,6 +99,7 @@ namespace swift::misc::network
 
     private:
         QString m_domain;
+        QString m_configUrl;
         CUser m_user;
         CNetworkConfig m_config;
         CServerList m_servers;
@@ -100,6 +110,7 @@ namespace swift::misc::network
         SWIFT_METACLASS(
             CNetwork,
             SWIFT_METAMEMBER(domain),
+            SWIFT_METAMEMBER(configUrl),
             SWIFT_METAMEMBER(user),
             SWIFT_METAMEMBER(config),
             SWIFT_METAMEMBER(servers),

@@ -5,6 +5,7 @@
 
 #include <memory>
 
+#include <QApplication>
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QHeaderView>
@@ -15,6 +16,7 @@
 #include <QPointer>
 #include <QRegularExpression>
 #include <QTableWidgetItem>
+#include <QUrl>
 #include <QVBoxLayout>
 
 #include "misc/network/network.h"
@@ -42,7 +44,7 @@ namespace swift::gui::components
 
         // ── Buttons ───────────────────────────────────────────────────────
         m_pbAdd = new QPushButton(tr("Add"), this);
-        m_pbAdd->setToolTip(tr("Add a new network by domain name"));
+        m_pbAdd->setToolTip(tr("Add a new network by domain name.\nShift+click to add by exact config URL."));
         m_pbDelete = new QPushButton(tr("Delete"), this);
         m_pbDelete->setToolTip(tr("Remove the selected network"));
         m_pbRefreshSelected = new QPushButton(tr("Refresh selected"), this);
@@ -71,7 +73,12 @@ namespace swift::gui::components
         vl->addWidget(gb);
         vl->addStretch();
 
-        connect(m_pbAdd, &QPushButton::clicked, this, &CSettingsNetworkServersComponent::onAddPressed);
+        connect(m_pbAdd, &QPushButton::clicked, this, [this]() {
+            if (QApplication::keyboardModifiers() & Qt::ShiftModifier)
+                onAddByUrlPressed();
+            else
+                onAddPressed();
+        });
         connect(m_pbDelete, &QPushButton::clicked, this, &CSettingsNetworkServersComponent::onDeletePressed);
         connect(m_pbRefreshSelected, &QPushButton::clicked, this,
                 &CSettingsNetworkServersComponent::onRefreshSelectedPressed);
@@ -93,7 +100,7 @@ namespace swift::gui::components
             const QString desc = net.hasLoadedConfig() ? net.getConfig().getNetworkDescription() : QString();
             m_table->setItem(i, 0, new QTableWidgetItem(name));
             m_table->setItem(i, 1, new QTableWidgetItem(desc));
-            m_table->setItem(i, 2, new QTableWidgetItem(net.getDomain()));
+            m_table->setItem(i, 2, new QTableWidgetItem(net.hasConfigUrl() ? net.getConfigUrl() : net.getDomain()));
         }
     }
 
@@ -140,6 +147,52 @@ namespace swift::gui::components
                                                       "https://%1/.well-known/fsd-configuration.json\n"
                                                       "with correct CORS headers.")
                                                        .arg(domain));
+                              return;
+                          }
+
+                          CNetworkList networks = m_networks.get();
+                          networks.push_back(discovered);
+                          m_networks.set(networks);
+                          reloadTable();
+                      } });
+    }
+
+    void CSettingsNetworkServersComponent::onAddByUrlPressed()
+    {
+        bool ok = false;
+        QString url = QInputDialog::getText(this, tr("Add Network (Advanced)"),
+                                            tr("Enter the exact URL of the fsd-configuration.json file:"),
+                                            QLineEdit::Normal, QString(), &ok);
+        if (!ok || url.trimmed().isEmpty()) { return; }
+        url = url.trimmed();
+
+        if (m_networks.get().containsConfigUrl(url))
+        {
+            QMessageBox::information(this, tr("Add Network"),
+                                     tr("A network with this URL is already in your list."));
+            return;
+        }
+
+        const QUrl qurl(url);
+        const QString domain = qurl.host().isEmpty() ? url : qurl.host();
+
+        m_pbAdd->setEnabled(false);
+        m_pbAdd->setText("…");
+
+        CNetwork network(domain);
+        network.setConfigUrl(url);
+
+        QPointer<CSettingsNetworkServersComponent> myself(this);
+        m_discoveryService.discoverAndFetchAll(
+            network, { this, [=](bool success, const CNetwork &discovered) mutable {
+                          if (!myself) { return; }
+                          m_pbAdd->setEnabled(true);
+                          m_pbAdd->setText(tr("Add"));
+
+                          if (!success)
+                          {
+                              QMessageBox::warning(this, tr("Add Network"),
+                                                   tr("Failed to fetch fsd-configuration.json from:\n%1").arg(url));
                               return;
                           }
 

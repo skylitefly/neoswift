@@ -34,6 +34,11 @@ namespace swift::core::network
         discoverNetwork(const QString &domain,
                         const swift::misc::CSlot<void(bool, const swift::misc::network::CNetworkConfig &)> &callback);
 
+        //! Fetch the fsd-configuration.json from an exact URL and invoke \a callback(success, config)
+        void discoverNetworkByUrl(
+            const swift::misc::network::CUrl &exactUrl,
+            const swift::misc::CSlot<void(bool, const swift::misc::network::CNetworkConfig &)> &callback);
+
         //! Convenience: discover config + fetch servers, update \a network, call \a callback(success, network)
         void
         discoverAndFetchAll(swift::misc::network::CNetwork network,

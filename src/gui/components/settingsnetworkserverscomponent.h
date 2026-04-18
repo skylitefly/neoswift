@@ -33,6 +33,7 @@ namespace swift::gui::components
     private:
         void reloadTable();
         void onAddPressed();
+        void onAddByUrlPressed();
         void onDeletePressed();
         void onRefreshSelectedPressed();
         void onRefreshAllPressed();

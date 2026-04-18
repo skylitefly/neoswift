@@ -36,6 +36,9 @@ namespace swift::misc::network
 
         //! True if a network with this domain is in the list
         bool containsDomain(const QString &domain) const;
+
+        //! True if a network with this exact config URL is in the list
+        bool containsConfigUrl(const QString &url) const;
     };
 } // namespace swift::misc::network
 
