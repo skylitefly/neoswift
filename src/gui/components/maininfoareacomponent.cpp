@@ -21,8 +21,8 @@ namespace swift::gui::components
         : CInfoArea(parent), ui(new Ui::CMainInfoAreaComponent)
     {
         ui->setupUi(this);
-        CInfoArea::initInfoArea(); // init base class
         showTabBar(false);
+        CInfoArea::initInfoArea(); // init base class
         this->setWindowIcon(CIcons::swift64());
         this->getLogComponent()->showFilterDialog();
         connect(this->getLogComponent(), &CLogComponent::requestAttention, this, &CMainInfoAreaComponent::selectLog);

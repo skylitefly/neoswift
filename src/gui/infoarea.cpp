@@ -615,6 +615,9 @@ namespace swift::gui
         // set current index, and always set pixmaps
         if (this->countDockedWidgetInfoAreas() > 0) { m_tabBar->setCurrentIndex(0); }
         if (m_tabBar->count() > 0) { this->setTabPixmaps(); }
+
+        // apply initial tab bar visibility so layout never allocates space for it
+        if (!m_showTabBar) { m_tabBar->setFixedHeight(0); }
     }
 
     void CInfoArea::unTabifyAllWidgets()
@@ -862,8 +865,14 @@ namespace swift::gui
         if (show == m_showTabBar) return;
         m_showTabBar = show;
         if (!m_tabBar) return;
-        m_tabBar->setVisible(show); // not working, but setting right value will not harm anything
-        m_tabBar->setMaximumHeight(show ? 10000 : 0); // does the trick
+        m_tabBar->setVisible(show);
+        if (show)
+        {
+            m_tabBar->setMinimumHeight(0);
+            m_tabBar->setMaximumHeight(QWIDGETSIZE_MAX);
+        }
+        else { m_tabBar->setFixedHeight(0); }
+        m_tabBar->updateGeometry();
         this->adjustSizeForAllDockWidgets();
     }
 
