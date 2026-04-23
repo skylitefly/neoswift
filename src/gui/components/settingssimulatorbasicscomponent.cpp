@@ -164,8 +164,9 @@ namespace swift::gui::components
         const bool anyValues = this->hasAnyValues();
         if (anyValues)
         {
-            QMessageBox::StandardButton reply = QMessageBox::question(this, "Override", "Override existing values?",
-                                                                      QMessageBox::Yes | QMessageBox::No);
+            QMessageBox::StandardButton reply =
+                QMessageBox::question(this, tr("Override"), tr("Override existing values?"),
+                                      QMessageBox::Yes | QMessageBox::No);
             if (reply != QMessageBox::Yes) { return; }
         }
 

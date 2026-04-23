@@ -198,9 +198,10 @@ namespace swift::gui::components
 
         //! fixme Ref T253, once we have a zip library we will directly unzip
         const QMessageBox::StandardButton reply =
-            QMessageBox::question(this, "Install XSwiftXBus",
-                                  "You need to manually unzip xswiftbus into the plugins directory.\nIt needs to look "
-                                  "like 'plugin/xswiftbus'.\n\nOpen the archive?",
+            QMessageBox::question(this, tr("Install XSwiftXBus"),
+                                  tr("You need to manually unzip xswiftbus into the plugins directory.\n"
+                                     "It needs to look like 'plugin/xswiftbus'.\n\n"
+                                     "Open the archive?"),
                                   QMessageBox::Yes | QMessageBox::No);
 
         if (reply == QMessageBox::Yes) { QDesktopServices::openUrl(QUrl::fromLocalFile(destFile.absoluteFilePath())); }
@@ -214,11 +215,11 @@ namespace swift::gui::components
         if (!rf.getBaseName().contains(CBuildConfig::getVersionString()))
         {
             const QMessageBox::StandardButton reply = QMessageBox::question(
-                this, "Download xswiftbus",
-                QStringLiteral(u"The xswiftbus versions seems to be for a different version\n"
-                               u"Your version is '%1'. Use this version.\n\n"
-                               u"If not available, you can try the version next to your version number.\n\n"
-                               u"Continue with this version?")
+                this, tr("Download xswiftbus"),
+                tr("The xswiftbus versions seems to be for a different version\n"
+                   "Your version is '%1'. Use this version.\n\n"
+                   "If not available, you can try the version next to your version number.\n\n"
+                   "Continue with this version?")
                     .arg(CBuildConfig::getVersionString()),
                 QMessageBox::Yes | QMessageBox::No);
             if (reply != QMessageBox::Yes) { return; }

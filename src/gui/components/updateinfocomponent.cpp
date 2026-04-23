@@ -138,10 +138,10 @@ namespace swift::gui::components
 
         if (!stringCompare(currentXsb, currentSwift, Qt::CaseInsensitive))
         {
-            const QString msg = QStringLiteral("xswiftbus '%1' does NOT match swift version, download anyway?")
-                                    .arg(currentXsb, currentSwift);
-            const QMessageBox::StandardButton reply = QMessageBox::question(this, QStringLiteral("Download xswiftbus"),
-                                                                            msg, QMessageBox::Yes | QMessageBox::No);
+            const QString msg =
+                tr("xswiftbus '%1' does NOT match swift version '%2', download anyway?").arg(currentXsb, currentSwift);
+            const QMessageBox::StandardButton reply =
+                QMessageBox::question(this, tr("Download xswiftbus"), msg, QMessageBox::Yes | QMessageBox::No);
             if (reply != QMessageBox::Yes) { return; }
         }
 
@@ -163,9 +163,9 @@ namespace swift::gui::components
         if (!CPlatform::isCurrentPlatform(platform))
         {
             const QMessageBox::StandardButton ret =
-                QMessageBox::warning(this, "Download installer",
-                                     QStringLiteral("The platform '%1' does not match your current platform '%2'.\n"
-                                                    "Do you want to continue?")
+                QMessageBox::warning(this, tr("Download installer"),
+                                     tr("The platform '%1' does not match your current platform '%2'.\n"
+                                        "Do you want to continue?")
                                          .arg(platform, CPlatform::currentPlatform().getPlatformName()),
                                      QMessageBox::Yes | QMessageBox::No);
             if (ret != QMessageBox::Yes) { return; }

@@ -195,7 +195,7 @@ namespace swift::gui
 
         m_splashScreen.reset(new CSplashScreen(pixmap.scaled(256, 256), splashFont));
         m_splashScreen->show();
-        m_splashScreen->showStatusMessage("Version " + CBuildConfig::getVersionString());
+        m_splashScreen->showStatusMessage(tr("Version %1").arg(CBuildConfig::getVersionString()));
     }
 
     void CGuiApplication::processEventsToRefreshGui() const
@@ -215,10 +215,10 @@ namespace swift::gui
     {
         if (this->getGlobalSetup().isSwiftVersionMinimumMappingVersion()) { return true; }
 
-        const QString msg =
-            QStringLiteral("Your are using swift version: '%1'.\nCreating mappings requires at least '%2'.")
-                .arg(CBuildConfig::getVersionString(), this->getGlobalSetup().getMappingMinimumVersionString());
-        QMessageBox::warning(CGuiApplication::mainApplicationWindow(), "Version check", msg, QMessageBox::Close);
+        const QString msg = tr("Your are using swift version: '%1'.\nCreating mappings requires at least '%2'.")
+                                .arg(CBuildConfig::getVersionString(),
+                                     this->getGlobalSetup().getMappingMinimumVersionString());
+        QMessageBox::warning(CGuiApplication::mainApplicationWindow(), tr("Version check"), msg, QMessageBox::Close);
         return false;
     }
 

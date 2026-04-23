@@ -116,7 +116,8 @@ CSwiftLauncher::CSwiftLauncher(bool installerMode, QWidget *parent)
     {
         QTimer::singleShot(1000, this, [=] {
             if (!sGui || sGui->isShuttingDown() || !myself) { return; }
-            ui->fr_SwiftLauncherMain->showOverlayHTMLMessage("Checking installation!<br>One moment please ....");
+            ui->fr_SwiftLauncherMain->showOverlayHTMLMessage(
+                tr("Checking installation!<br>One moment please ...."));
             this->raise();
         });
     }
@@ -407,10 +408,11 @@ bool CSwiftLauncher::warnAboutOtherSwiftApplications()
     if (running.isEmpty()) { return true; }
 
     // getting here means another application is running
-    const QString msg = u"While using the wizard no other application should run.\nClose applications and try "
-                        u"again.\nCurrently running: " %
-                        running.processNames().join(',');
-    QMessageBox::question(this, "Wizard", msg, QMessageBox::StandardButtons(QMessageBox::StandardButton::Close));
+    const QString msg = tr("While using the wizard no other application should run.\n"
+                           "Close applications and try again.\n"
+                           "Currently running: %1")
+                            .arg(running.processNames().join(','));
+    QMessageBox::question(this, tr("Wizard"), msg, QMessageBox::StandardButtons(QMessageBox::StandardButton::Close));
     return false;
 }
 
@@ -534,7 +536,10 @@ void CSwiftLauncher::onCoreModeReleased()
     this->saveSetup();
 }
 
-void CSwiftLauncher::popupExecutableArgs() { QMessageBox::information(this, "Command line", this->getCmdLine()); }
+void CSwiftLauncher::popupExecutableArgs()
+{
+    QMessageBox::information(this, tr("Command line"), this->getCmdLine());
+}
 
 void CSwiftLauncher::showSimulatorConfigDirs()
 {
