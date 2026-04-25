@@ -200,12 +200,12 @@ namespace swift::gui::components
     {
         if (CBuildConfig::isReleaseBuild())
         {
-            QMessageBox::information(this, "crash simulation", "Not possible in release builds!");
+            QMessageBox::information(this, tr("crash simulation"), tr("Not possible in release builds!"));
             return;
         }
 
         const QMessageBox::StandardButton reply = QMessageBox::question(
-            this, "crash simulation", "Really simulate crash?", QMessageBox::Yes | QMessageBox::No);
+            this, tr("crash simulation"), tr("Really simulate crash?"), QMessageBox::Yes | QMessageBox::No);
         if (!sGui || reply != QMessageBox::Yes) { return; }
         sGui->simulateCrash();
     }
@@ -214,12 +214,12 @@ namespace swift::gui::components
     {
         if (CBuildConfig::isReleaseBuild())
         {
-            QMessageBox::information(this, "ASSERT simulation", "Not possible in release builds!");
+            QMessageBox::information(this, tr("ASSERT simulation"), tr("Not possible in release builds!"));
             return;
         }
 
         const QMessageBox::StandardButton reply = QMessageBox::question(
-            this, "ASSERT simulation", "Really create an ASSERT?", QMessageBox::Yes | QMessageBox::No);
+            this, tr("ASSERT simulation"), tr("Really create an ASSERT?"), QMessageBox::Yes | QMessageBox::No);
         if (!sGui || reply != QMessageBox::Yes) { return; }
         sGui->simulateAssert();
     }

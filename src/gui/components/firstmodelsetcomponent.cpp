@@ -178,7 +178,8 @@ namespace swift::gui::components
             if (!sGui->getWebDataServices()->hasDbModelData())
             {
                 const QMessageBox::StandardButton reply = QMessageBox::warning(
-                    this->mainWindow(), "DB data", "No DB data, models cannot be consolidated. Load anyway?",
+                    this->mainWindow(), tr("DB data"),
+                    tr("No DB data, models cannot be consolidated. Load anyway?"),
                     QMessageBox::Yes | QMessageBox::No);
                 if (reply != QMessageBox::Yes) { return; }
             }
@@ -187,8 +188,8 @@ namespace swift::gui::components
             if (m_modelsDialog->getOwnModelsCount() > 0)
             {
                 const QMessageBox::StandardButton reply =
-                    QMessageBox::warning(this->mainWindow(), "Model loading",
-                                         "Reload the models?\nThe existing cache data will we overridden.",
+                    QMessageBox::warning(this->mainWindow(), tr("Model loading"),
+                                         tr("Reload the models?\nThe existing cache data will we overridden."),
                                          QMessageBox::Yes | QMessageBox::No);
                 if (reply == QMessageBox::Yes) { loadOnlyIfNotEmpty = false; }
             }
@@ -253,7 +254,8 @@ namespace swift::gui::components
         if (!ui->comp_Distributors->hasSelectedDistributors())
         {
             const QMessageBox::StandardButton reply =
-                QMessageBox::question(this->mainWindow(), "Models", "No distributors selected, use all models?",
+                QMessageBox::question(this->mainWindow(), tr("Models"),
+                                      tr("No distributors selected, use all models?"),
                                       QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes) { useAllModels = true; }
             else
@@ -273,7 +275,7 @@ namespace swift::gui::components
         if (ui->cb_DbDataOnly->isChecked()) { modelsForSet.removeObjectsWithoutDbKey(); }
         if (modelsForSet.isEmpty())
         {
-            this->showOverlayHTMLMessage("Selection yielded no result!");
+            this->showOverlayHTMLMessage(tr("Selection yielded no result!"));
             return;
         }
 

@@ -42,10 +42,10 @@ namespace swift::gui::views
     {
         if (callsign.isEmpty())
         {
-            this->setWindowTitle("Flight plan");
+            this->setWindowTitle(tr("Flight plan"));
             return;
         }
-        this->setWindowTitle("Flight plan for " + callsign.asString());
+        this->setWindowTitle(tr("Flight plan for %1").arg(callsign.asString()));
     }
 
     void CFlightPlanDialog::loadFp()

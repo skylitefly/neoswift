@@ -42,7 +42,7 @@ namespace swift::gui::views
     {
         if (!this->hasSelection()) { return; }
         const QMessageBox::StandardButton reply = QMessageBox::question(
-            this, "Delete?", "Delete selected data directories?", QMessageBox::Yes | QMessageBox::No);
+            this, tr("Delete?"), tr("Delete selected data directories?"), QMessageBox::Yes | QMessageBox::No);
         if (reply != QMessageBox::Yes) { return; }
 
         QStringList deletedDirectories;
@@ -63,7 +63,8 @@ namespace swift::gui::views
         if (!this->view()->isEmpty())
         {
             m_menuActionDeleteDirectory = menuActions.addAction(
-                m_menuActionDeleteDirectory, CIcons::delete16(), "Delete data directories", CMenuAction::pathNone(),
+                m_menuActionDeleteDirectory, CIcons::delete16(), tr("Delete data directories"),
+                CMenuAction::pathNone(),
                 this, { this->view(), &CApplicationInfoView::deleteSelectedDataDirectories });
         }
         this->nestedCustomMenu(menuActions);

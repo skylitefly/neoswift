@@ -21,7 +21,7 @@ namespace swift::gui::components
 
     void CDownloadDialog::setDownloadFile(const CRemoteFile &remoteFile)
     {
-        setWindowTitle("Downloading " + remoteFile.getName());
+        setWindowTitle(tr("Downloading %1").arg(remoteFile.getName()));
         ui->comp_Download->setDownloadFile(remoteFile);
     }
 
@@ -51,9 +51,9 @@ namespace swift::gui::components
     {
         if (!ui->comp_Download->haveAllDownloadsCompleted())
         {
-            const QString msg = QStringLiteral("Download ongoing. Do you want to abort it?");
+            const QString msg = tr("Download ongoing. Do you want to abort it?");
             QMessageBox::StandardButton reply =
-                QMessageBox::question(this, "Abort?", msg, QMessageBox::Yes | QMessageBox::No);
+                QMessageBox::question(this, tr("Abort?"), msg, QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes)
             {
                 ui->comp_Download->cancelOngoingDownloads();
