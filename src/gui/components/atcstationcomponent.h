@@ -75,6 +75,12 @@ namespace swift::gui
             //! Get METAR for given ICAO airport code
             void getMetar(const QString &airportIcaoCode);
 
+            //! Show or hide the METAR/ATIS details panel.
+            void showDetails(bool show);
+
+            //! Use the compact grouped station list intended for lightweight pilot windows.
+            void setCompactMode(bool compact);
+
             //! \copydoc CEnableForDockWidgetInfoArea::setParentDockWidgetInfoArea
             bool setParentDockWidgetInfoArea(swift::gui::CDockWidgetInfoArea *parentDockableWidget) override;
 

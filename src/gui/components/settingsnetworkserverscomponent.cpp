@@ -6,6 +6,8 @@
 #include <memory>
 
 #include <QApplication>
+#include <QDialog>
+#include <QDialogButtonBox>
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QHeaderView>
@@ -19,10 +21,12 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
+#include "gui/editors/pilotform.h"
 #include "misc/network/network.h"
 #include "misc/network/networklist.h"
 
 using namespace swift::core::network;
+using namespace swift::gui::editors;
 using namespace swift::misc;
 using namespace swift::misc::network;
 using namespace swift::misc::network::settings;
@@ -32,11 +36,12 @@ namespace swift::gui::components
     CSettingsNetworkServersComponent::CSettingsNetworkServersComponent(QWidget *parent) : QFrame(parent)
     {
         // ── Table ─────────────────────────────────────────────────────────
-        m_table = new QTableWidget(0, 3, this);
-        m_table->setHorizontalHeaderLabels({ tr("Name"), tr("Description"), tr("Domain") });
+        m_table = new QTableWidget(0, 4, this);
+        m_table->setHorizontalHeaderLabels({ tr("Name"), tr("User"), tr("Description"), tr("Domain") });
         m_table->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
-        m_table->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
-        m_table->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+        m_table->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
+        m_table->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
+        m_table->horizontalHeader()->setSectionResizeMode(3, QHeaderView::ResizeToContents);
         m_table->setSelectionBehavior(QAbstractItemView::SelectRows);
         m_table->setSelectionMode(QAbstractItemView::SingleSelection);
         m_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -47,6 +52,8 @@ namespace swift::gui::components
         m_pbAdd->setToolTip(tr("Add a new network by domain name.\nShift+click to add by exact config URL."));
         m_pbDelete = new QPushButton(tr("Delete"), this);
         m_pbDelete->setToolTip(tr("Remove the selected network"));
+        m_pbEditUser = new QPushButton(tr("Edit info"), this);
+        m_pbEditUser->setToolTip(tr("Edit the selected network's pilot id, password, name, and home airport"));
         m_pbRefreshSelected = new QPushButton(tr("Refresh selected"), this);
         m_pbRefreshSelected->setToolTip(tr("Re-fetch fsd-configuration for the selected network"));
         m_pbRefreshAll = new QPushButton(tr("Refresh all"), this);
@@ -57,6 +64,7 @@ namespace swift::gui::components
         btnRow->addWidget(m_pbRefreshAll);
         btnRow->addStretch();
         btnRow->addWidget(m_pbAdd);
+        btnRow->addWidget(m_pbEditUser);
         btnRow->addWidget(m_pbDelete);
 
         // ── Group box ─────────────────────────────────────────────────────
@@ -80,6 +88,7 @@ namespace swift::gui::components
                 onAddPressed();
         });
         connect(m_pbDelete, &QPushButton::clicked, this, &CSettingsNetworkServersComponent::onDeletePressed);
+        connect(m_pbEditUser, &QPushButton::clicked, this, &CSettingsNetworkServersComponent::onEditUserPressed);
         connect(m_pbRefreshSelected, &QPushButton::clicked, this,
                 &CSettingsNetworkServersComponent::onRefreshSelectedPressed);
         connect(m_pbRefreshAll, &QPushButton::clicked, this, &CSettingsNetworkServersComponent::onRefreshAllPressed);
@@ -97,10 +106,15 @@ namespace swift::gui::components
         {
             const CNetwork &net = networks[i];
             const QString name = net.hasLoadedConfig() ? net.getConfig().getNetworkName() : QString();
+            const CUser user = net.getUser();
+            const QString userText = user.hasId() ? (user.getId() + (user.hasRealName() ? " - " + user.getRealName() :
+                                                                                          QString())) :
+                                                    QString();
             const QString desc = net.hasLoadedConfig() ? net.getConfig().getNetworkDescription() : QString();
             m_table->setItem(i, 0, new QTableWidgetItem(name));
-            m_table->setItem(i, 1, new QTableWidgetItem(desc));
-            m_table->setItem(i, 2, new QTableWidgetItem(net.hasConfigUrl() ? net.getConfigUrl() : net.getDomain()));
+            m_table->setItem(i, 1, new QTableWidgetItem(userText));
+            m_table->setItem(i, 2, new QTableWidgetItem(desc));
+            m_table->setItem(i, 3, new QTableWidgetItem(net.hasConfigUrl() ? net.getConfigUrl() : net.getDomain()));
         }
     }
 
@@ -129,7 +143,7 @@ namespace swift::gui::components
         }
 
         m_pbAdd->setEnabled(false);
-        m_pbAdd->setText("…");
+        m_pbAdd->setText(QStringLiteral("..."));
 
         CNetwork network(domain);
         QPointer<CSettingsNetworkServersComponent> myself(this);
@@ -154,6 +168,17 @@ namespace swift::gui::components
                           networks.push_back(discovered);
                           m_networks.set(networks);
                           reloadTable();
+                          m_table->selectRow(networks.size() - 1);
+                          if (!editNetworkUser(networks.size() - 1, true))
+                          {
+                              CNetworkList updated = m_networks.get();
+                              if (!updated.isEmpty())
+                              {
+                                  updated.erase(updated.begin() + updated.size() - 1);
+                                  m_networks.set(updated);
+                                  reloadTable();
+                              }
+                          }
                       } });
     }
 
@@ -177,7 +202,7 @@ namespace swift::gui::components
         const QString domain = qurl.host().isEmpty() ? url : qurl.host();
 
         m_pbAdd->setEnabled(false);
-        m_pbAdd->setText("…");
+        m_pbAdd->setText(QStringLiteral("..."));
 
         CNetwork network(domain);
         network.setConfigUrl(url);
@@ -200,6 +225,17 @@ namespace swift::gui::components
                           networks.push_back(discovered);
                           m_networks.set(networks);
                           reloadTable();
+                          m_table->selectRow(networks.size() - 1);
+                          if (!editNetworkUser(networks.size() - 1, true))
+                          {
+                              CNetworkList updated = m_networks.get();
+                              if (!updated.isEmpty())
+                              {
+                                  updated.erase(updated.begin() + updated.size() - 1);
+                                  m_networks.set(updated);
+                                  reloadTable();
+                              }
+                          }
                       } });
     }
 
@@ -218,6 +254,59 @@ namespace swift::gui::components
         networks.erase(networks.begin() + row);
         m_networks.set(networks);
         reloadTable();
+    }
+
+    void CSettingsNetworkServersComponent::onEditUserPressed()
+    {
+        editNetworkUser(m_table->currentRow(), false);
+    }
+
+    bool CSettingsNetworkServersComponent::editNetworkUser(int row, bool required)
+    {
+        CNetworkList networks = m_networks.get();
+        if (row < 0 || row >= networks.size()) { return false; }
+
+        QDialog dialog(this);
+        dialog.setWindowTitle(required ? tr("Pilot info required") : tr("Edit pilot info"));
+        dialog.setModal(true);
+
+        auto *layout = new QVBoxLayout(&dialog);
+        layout->addWidget(new QLabel(tr("These details are saved for '%1' and reused when connecting.")
+                                         .arg(networks[row].hasLoadedConfig() ? networks[row].getConfig().getNetworkName() :
+                                                                                networks[row].getDomain()),
+                                     &dialog));
+
+        auto *form = new CPilotForm(&dialog);
+        form->setUser(networks[row].getUser());
+        layout->addWidget(form);
+
+        auto *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &dialog);
+        layout->addWidget(buttons);
+        connect(buttons, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+        connect(buttons, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+
+        while (dialog.exec() == QDialog::Accepted)
+        {
+            const CStatusMessageList validation = form->validate();
+            if (validation.isFailure())
+            {
+                QMessageBox::warning(&dialog, tr("Pilot info"), tr("Please enter id, password, real name, and home airport."));
+                continue;
+            }
+
+            CUser user = form->getUser();
+            networks = m_networks.get();
+            if (row >= networks.size()) { return false; }
+            CNetwork network = networks[row];
+            network.setUser(user);
+            networks[row] = network;
+            m_networks.set(networks);
+            reloadTable();
+            m_table->selectRow(row);
+            return true;
+        }
+
+        return !required;
     }
 
     void CSettingsNetworkServersComponent::onRefreshSelectedPressed()
@@ -239,7 +328,9 @@ namespace swift::gui::components
                                                     CNetworkList updated = m_networks.get();
                                                     if (row < updated.size())
                                                     {
-                                                        updated[row] = discovered;
+                                                        CNetwork network = discovered;
+                                                        network.setUser(updated[row].getUser());
+                                                        updated[row] = network;
                                                         m_networks.set(updated);
                                                     }
                                                 } });
@@ -266,7 +357,9 @@ namespace swift::gui::components
                                                             CNetworkList updated = m_networks.get();
                                                             if (i < updated.size())
                                                             {
-                                                                updated[i] = discovered;
+                                                                CNetwork network = discovered;
+                                                                network.setUser(updated[i].getUser());
+                                                                updated[i] = network;
                                                                 m_networks.set(updated);
                                                             }
                                                         }

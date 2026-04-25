@@ -8,6 +8,7 @@
 #include <QObject>
 #include <QPointer>
 #include <QTimer>
+#include <QWidget>
 #include <QtGlobal>
 
 #include "gui/dockwidgetinfoarea.h"
@@ -66,7 +67,8 @@ namespace swift::gui
     {
         if (!m_parentDockableInfoArea)
         {
-            return false;
+            const auto *widget = dynamic_cast<const QWidget *>(this);
+            return widget && widget->isVisible();
         } // can happen function is used while dock widget not yet fully initialized
         return m_parentDockableInfoArea->isVisibleWidget();
     }

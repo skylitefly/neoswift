@@ -915,6 +915,8 @@ namespace swift::gui::components
 
     void CTextMessageComponent::showSettings(bool show) { ui->gb_Settings->setVisible(show); }
 
+    void CTextMessageComponent::showRecipientSelector(bool show) { ui->gb_MessageTo->setVisible(show); }
+
     void CTextMessageComponent::showTextMessageEntry(bool show) { ui->fr_TextMessage->setVisible(show); }
 
     void CTextMessageComponent::focusTextEntry()

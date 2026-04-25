@@ -6,7 +6,12 @@
 #include <QAction>
 #include <QComboBox>
 #include <QLineEdit>
-#include <QTabBar>
+#include <QListWidget>
+#include <QPushButton>
+#include <QScrollArea>
+#include <QSizePolicy>
+#include <QWidget>
+#include <QStringList>
 #include <QToolButton>
 #include <QtGlobal>
 
@@ -30,30 +35,44 @@ using namespace swift::config;
 
 namespace swift::gui::components
 {
-    CSettingsComponent::CSettingsComponent(QWidget *parent) : QTabWidget(parent), ui(new Ui::CSettingsComponent)
+    CSettingsComponent::CSettingsComponent(QWidget *parent) : QFrame(parent), ui(new Ui::CSettingsComponent)
     {
         ui->setupUi(this);
 
-        this->tabBar()->setExpanding(false);
-        this->tabBar()->setUsesScrollButtons(true);
-        this->setCurrentIndex(0); // 1st tab
+        const QStringList settingsPages {
+            tr("Network Servers"),      tr("GUI"),      tr("Network"),            tr("Hotkeys"),
+            tr("Audio"),                tr("Data/Caches"), tr("Simulator"),       tr("Simulator Basics"),
+            tr("Simulator Messages"),   tr("Matching"), tr("Advanced")
+        };
+        ui->lw_SettingsNavigation->addItems(settingsPages);
+        ui->lw_SettingsNavigation->setCurrentRow(0);
+
+        const int pageCount = ui->sw_SettingsPages->count();
+        for (int i = 0; i < pageCount; ++i)
+        {
+            QWidget *page = ui->sw_SettingsPages->widget(i);
+            if (!page) { continue; }
+
+            auto *scrollArea = new QScrollArea(this);
+            scrollArea->setObjectName(page->objectName() + QStringLiteral("_ScrollArea"));
+            scrollArea->setWidgetResizable(true);
+            scrollArea->setFrameShape(QFrame::NoFrame);
+            scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+            scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+
+            ui->sw_SettingsPages->removeWidget(page);
+            scrollArea->setWidget(page);
+            ui->sw_SettingsPages->insertWidget(i, scrollArea);
+        }
+
+        this->setCurrentIndex(0);
         ui->comp_DataLoadOverview->showVisibleDbRefreshButtons(CBuildConfig::isDebugBuild() ||
                                                                sGui->isDeveloperFlagSet());
         ui->comp_DataLoadOverview->showVisibleLoadAllButtons(false, false, false);
 
+        connect(ui->lw_SettingsNavigation, &QListWidget::currentRowChanged, this, &CSettingsComponent::setCurrentIndex);
         connect(ui->comp_SettingsGuiGeneral, &CSettingsGuiComponent::changedWindowsOpacity, this,
                 &CSettingsComponent::changedWindowsOpacity);
-        connect(ui->pb_Advanced, &QPushButton::released, this, &CSettingsComponent::onOverviewButtonClicked);
-        connect(ui->pb_Audio, &QPushButton::released, this, &CSettingsComponent::onOverviewButtonClicked);
-        connect(ui->pb_Gui, &QPushButton::released, this, &CSettingsComponent::onOverviewButtonClicked);
-        connect(ui->pb_Hotkeys, &QPushButton::released, this, &CSettingsComponent::onOverviewButtonClicked);
-        connect(ui->pb_Network, &QPushButton::released, this, &CSettingsComponent::onOverviewButtonClicked);
-        connect(ui->pb_Servers, &QPushButton::released, this, &CSettingsComponent::onOverviewButtonClicked);
-        connect(ui->pb_Simulator, &QPushButton::released, this, &CSettingsComponent::onOverviewButtonClicked);
-        connect(ui->pb_SimulatorBasics, &QPushButton::released, this, &CSettingsComponent::onOverviewButtonClicked);
-        connect(ui->pb_SimulatorMessages, &QPushButton::released, this, &CSettingsComponent::onOverviewButtonClicked);
-        connect(ui->pb_Matching, &QPushButton::released, this, &CSettingsComponent::onOverviewButtonClicked);
-        connect(ui->pb_DataLoadAndCaches, &QPushButton::released, this, &CSettingsComponent::onOverviewButtonClicked);
     }
 
     CSettingsComponent::~CSettingsComponent() =
@@ -66,71 +85,22 @@ namespace swift::gui::components
 
     void CSettingsComponent::setTab(CSettingsComponent::SettingTab tab)
     {
-        this->setCurrentIndex(static_cast<int>(tab));
+        if (tab == SettingTabOverview)
+        {
+            this->setCurrentIndex(0);
+            return;
+        }
+        this->setCurrentIndex(static_cast<int>(tab) - 1);
     }
 
-    void CSettingsComponent::setSettingsOverviewTab() { this->setTab(SettingTabOverview); }
+    void CSettingsComponent::setSettingsOverviewTab() { this->setTab(SettingTabServers); }
 
     void CSettingsComponent::setGuiOpacity(double value) { ui->comp_SettingsGuiGeneral->setGuiOpacity(value); }
 
-    void CSettingsComponent::onOverviewButtonClicked()
+    void CSettingsComponent::setCurrentIndex(int index)
     {
-        const QObject *sender = QObject::sender();
-        if (sender == ui->pb_Advanced)
-        {
-            this->setCurrentIndex(SettingTabAdvanced);
-            return;
-        }
-        if (sender == ui->pb_Audio)
-        {
-            this->setCurrentIndex(SettingTabAudio);
-            return;
-        }
-        if (sender == ui->pb_Gui)
-        {
-            this->setCurrentIndex(SettingTabGui);
-            return;
-        }
-        if (sender == ui->pb_Hotkeys)
-        {
-            this->setCurrentIndex(SettingTabHotkeys);
-            return;
-        }
-        if (sender == ui->pb_Network)
-        {
-            this->setCurrentIndex(SettingTabNetwork);
-            return;
-        }
-        if (sender == ui->pb_Servers)
-        {
-            this->setCurrentIndex(SettingTabServers);
-            return;
-        }
-        if (sender == ui->pb_Simulator)
-        {
-            this->setCurrentIndex(SettingTabSimulator);
-            return;
-        }
-        if (sender == ui->pb_SimulatorBasics)
-        {
-            this->setCurrentIndex(SettingTabSimulatorBasics);
-            return;
-        }
-        if (sender == ui->pb_DataLoadAndCaches)
-        {
-            this->setCurrentIndex(SettingTabDataAndCaches);
-            return;
-        }
-        if (sender == ui->pb_SimulatorMessages)
-        {
-            this->setCurrentIndex(SettingTabSimulatorMessages);
-            return;
-        }
-        if (sender == ui->pb_Matching)
-        {
-            this->setCurrentIndex(SettingTabMatching);
-            return;
-        }
-        this->setCurrentIndex(SettingTabOverview);
+        if (index < 0 || index >= ui->sw_SettingsPages->count()) { return; }
+        if (ui->sw_SettingsPages->currentIndex() != index) { ui->sw_SettingsPages->setCurrentIndex(index); }
+        if (ui->lw_SettingsNavigation->currentRow() != index) { ui->lw_SettingsNavigation->setCurrentRow(index); }
     }
 } // namespace swift::gui::components

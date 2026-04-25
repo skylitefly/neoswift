@@ -69,6 +69,9 @@ namespace swift::gui::components
         //! Login requested
         void toggleNetworkConnection();
 
+        //! Refresh visible state from current contexts before showing the component.
+        void refreshFromContexts();
+
     signals:
         //! Login
         void loginOrLogoffSuccessful();

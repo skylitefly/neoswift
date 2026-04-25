@@ -8,12 +8,12 @@
 
 #include <QMainWindow>
 #include <QObject>
+#include <QPointer>
 #include <QScopedPointer>
 #include <QString>
 
 #include "core/actionbind.h"
 #include "gui/components/aircraftmodelsetvalidationdialog.h"
-#include "gui/components/maininfoareacomponent.h"
 #include "gui/components/navigatordialog.h"
 #include "gui/components/textmessagecomponenttab.h"
 #include "gui/enableforframelesswindow.h"
@@ -38,16 +38,32 @@ class QCloseEvent;
 class QEvent;
 class QMouseEvent;
 class QTimer;
+class QDialog;
 
 namespace swift::misc::aviation
 {
     class CAltitude;
+    class CCallsign;
 }
 namespace swift::gui::components
 {
+    class CAircraftComponent;
     class CDbLoadDataDialog;
     class CAutoPublishDialog;
+    class CAtcStationComponent;
+    class CCockpitComponent;
+    class CFlightPlanComponent;
+    class CInternalsComponent;
+    class CInterpolationComponent;
+    class CLogComponent;
+    class CLoginComponent;
+    class CMappingComponent;
     class CModelBrowserDialog;
+    class CRadarComponent;
+    class CSettingsComponent;
+    class CSimulatorComponent;
+    class CTextMessageComponent;
+    class CUserComponent;
 } // namespace swift::gui::components
 namespace Ui
 {
@@ -65,26 +81,11 @@ class SwiftGuiStd :
     Q_INTERFACES(swift::gui::IMainWindowAccess)
 
 public:
-    //! Main page indexes
-    //! \remarks keep the values in sync with the real tab indexes
-    enum MainPageIndex
-    {
-        MainPageInfoArea = 0,
-        MainPageLogin = 1,
-        MainPageInternals = 2,
-        MainPageInvisible = 3
-    };
-
     //! Constructor
     SwiftGuiStd(WindowMode windowMode, QWidget *parent = nullptr);
 
     //! Destructor
     ~SwiftGuiStd() override;
-
-signals:
-    //! Main info area has changed
-    //! \remarks using widget pointer allows the component itself to identify if it is current
-    void currentMainInfoAreaChanged(const QWidget *currentWidget);
 
 protected:
     //! \name QMainWindow events
@@ -126,6 +127,32 @@ private:
     QScopedPointer<swift::gui::components::CModelBrowserDialog> m_modelBrower; //!< model browser
     QScopedPointer<swift::gui::components::CAircraftModelSetValidationDialog>
         m_validationDialog; //!< aircraft model validation dialog
+    QScopedPointer<QDialog> m_loginDialog;
+    QScopedPointer<QDialog> m_atcDetailsDialog;
+    QScopedPointer<QDialog> m_cockpitDialog;
+    QScopedPointer<QDialog> m_aircraftDialog;
+    QScopedPointer<QDialog> m_usersDialog;
+    QScopedPointer<QDialog> m_simulatorDialog;
+    QScopedPointer<QDialog> m_flightPlanDialog;
+    QScopedPointer<QDialog> m_mappingDialog;
+    QScopedPointer<QDialog> m_interpolationDialog;
+    QScopedPointer<QDialog> m_radarDialog;
+    QScopedPointer<QDialog> m_logDialog;
+    QScopedPointer<QDialog> m_settingsDialog;
+    QScopedPointer<QDialog> m_internalsDialog;
+    QPointer<swift::gui::components::CLoginComponent> m_loginComponent;
+    QPointer<swift::gui::components::CAtcStationComponent> m_atcDetailsComponent;
+    QPointer<swift::gui::components::CCockpitComponent> m_cockpitComponent;
+    QPointer<swift::gui::components::CAircraftComponent> m_aircraftComponent;
+    QPointer<swift::gui::components::CUserComponent> m_userComponent;
+    QPointer<swift::gui::components::CSimulatorComponent> m_simulatorComponent;
+    QPointer<swift::gui::components::CFlightPlanComponent> m_flightPlanComponent;
+    QPointer<swift::gui::components::CMappingComponent> m_mappingComponent;
+    QPointer<swift::gui::components::CInterpolationComponent> m_interpolationComponent;
+    QPointer<swift::gui::components::CRadarComponent> m_radarComponent;
+    QPointer<swift::gui::components::CLogComponent> m_logComponent;
+    QPointer<swift::gui::components::CSettingsComponent> m_settingsComponent;
+    QPointer<swift::gui::components::CInternalsComponent> m_internalsComponent;
     swift::misc::CData<swift::misc::simulation::data::TLastAutoPublish> m_lastAutoPublish { this };
     swift::core::CActionBind m_actionPtt { swift::misc::input::pttHotkeyAction(),
                                            swift::misc::CIcons::StandardIconRadio16, this, &SwiftGuiStd::onPttChanged };
@@ -142,6 +169,7 @@ private:
     bool m_coreAvailable = false; //!< core already available?
     bool m_contextNetworkAvailable = false; //!< network context available?
     bool m_contextAudioAvailable = false; //!< audio context available?
+    bool m_pttActive = false; //!< PTT hotkey currently active
     bool m_displayingDBusReconnect = false; //!< currently displaying reconnect dialog
     bool m_dbDataLoading = false; //!< DB or shared data loading in progress
     QTimer m_timerContextWatchdog; //!< core available?
@@ -149,6 +177,12 @@ private:
 
     //! GUI status update
     void updateGuiStatusInformation();
+
+    //! Compact tooltip with hidden diagnostic status details.
+    QString buildStatusInfoTooltip() const;
+
+    //! Refresh compact status info affordance.
+    void updateStatusInfoTooltip();
 
     //! Set style sheet
     void initStyleSheet();
@@ -181,10 +215,6 @@ private:
     void setTestPosition(const QString &wgsLatitude, const QString &wgsLongitude,
                          const swift::misc::aviation::CAltitude &altitude,
                          const swift::misc::aviation::CAltitude &pressureAltitude);
-
-    //! Is given main page selected?
-    //! \param mainPage index to be checked
-    bool isMainPageSelected(MainPageIndex mainPage) const;
 
     //! Stop all timers
     //! \param disconnectSignalSlots also disconnect signal/slots
@@ -222,23 +252,47 @@ private:
     // GUI related functions
     //
 
-    //! Set \sa MainPageInfoArea
-    void setMainPageToInfoArea() { this->setMainPage(MainPageInfoArea); }
-
-    //! Set one of the main pages
-    void setMainPage(MainPageIndex mainPage);
-
-    //! Set the main info area
-    void setMainPageInfoArea(swift::gui::components::CMainInfoAreaComponent::InfoArea infoArea);
-
     //! Display the settings page
     void setSettingsPage(int settingsTabIndex = -1);
 
     //! Login requested
     void loginRequested();
 
+    //! Show login/logoff component without applying the main Connect button shortcut behavior.
+    void showLoginWindow();
+
     //! Menu item clicked
     void onMenuClicked();
+
+    //! Tool windows
+    void showAtcDetailsWindow();
+    void showCockpitWindow();
+    void showAircraftWindow();
+    void showUsersWindow();
+    void showSimulatorWindow();
+    void showFlightPlanWindow();
+    void showMappingWindow();
+    void showInterpolationWindow();
+    void showRadarWindow();
+    void showLogWindow();
+    void showSettingsWindow();
+    void showInternalsWindow();
+    void showToolDialog(QDialog *dialog);
+
+    //! Lazy component accessors
+    swift::gui::components::CLoginComponent *ensureLoginComponent();
+    swift::gui::components::CAtcStationComponent *ensureAtcDetailsComponent();
+    swift::gui::components::CCockpitComponent *ensureCockpitComponent();
+    swift::gui::components::CAircraftComponent *ensureAircraftComponent();
+    swift::gui::components::CUserComponent *ensureUserComponent();
+    swift::gui::components::CSimulatorComponent *ensureSimulatorComponent();
+    swift::gui::components::CFlightPlanComponent *ensureFlightPlanComponent();
+    swift::gui::components::CMappingComponent *ensureMappingComponent();
+    swift::gui::components::CInterpolationComponent *ensureInterpolationComponent();
+    swift::gui::components::CRadarComponent *ensureRadarComponent();
+    swift::gui::components::CLogComponent *ensureLogComponent();
+    swift::gui::components::CSettingsComponent *ensureSettingsComponent();
+    swift::gui::components::CInternalsComponent *ensureInternalsComponent();
 
     //! Kicked from network
     void onKickedFromNetwork(const QString &kickMessage);
@@ -262,12 +316,6 @@ private:
 
     //! Toggle window on top
     void onToggledWindowsOnTop(bool onTop);
-
-    //! Main info area current widget changed
-    void onCurrentMainWidgetChanged(int currentIndex);
-
-    //! Whole main info area floating
-    void onChangedMainInfoAreaFloating(bool floating);
 
     //! Reported issue with the client
     void onAudioClientFailure(const swift::misc::CStatusMessage &msg);

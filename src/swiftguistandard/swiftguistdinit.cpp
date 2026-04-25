@@ -4,11 +4,13 @@
 #include <QAction>
 #include <QHBoxLayout>
 #include <QPointer>
+#include <QPushButton>
 #include <QScopedPointer>
 #include <QStackedWidget>
 #include <QStatusBar>
 #include <QString>
 #include <QTimer>
+#include <QToolButton>
 #include <QVBoxLayout>
 
 #include "swiftguistd.h"
@@ -17,23 +19,26 @@
 #include "config/buildconfig.h"
 #include "core/context/contextaudio.h"
 #include "core/context/contextnetwork.h"
+#include "core/context/contextownaircraft.h"
 #include "core/context/contextsimulator.h"
+#include "core/corefacade.h"
 #include "core/webdataservices.h"
 #include "gui/components/aircraftcomponent.h"
 #include "gui/components/atcstationcomponent.h"
 #include "gui/components/cockpitcomponent.h"
+#include "gui/components/commandinput.h"
 #include "gui/components/flightplancomponent.h"
 #include "gui/components/interpolationcomponent.h"
+#include "gui/components/internalscomponent.h"
 #include "gui/components/logcomponent.h"
 #include "gui/components/logincomponent.h"
-#include "gui/components/maininfoareacomponent.h"
-#include "gui/components/mainkeypadareacomponent.h"
 #include "gui/components/mappingcomponent.h"
 #include "gui/components/navigatordialog.h"
+#include "gui/components/radarcomponent.h"
 #include "gui/components/settingscomponent.h"
+#include "gui/components/simulatorcomponent.h"
 #include "gui/components/textmessagecomponent.h"
 #include "gui/components/usercomponent.h"
-#include "gui/dockwidgetinfobar.h"
 #include "gui/guiapplication.h"
 #include "gui/managedstatusbar.h"
 #include "gui/overlaymessagesframe.h"
@@ -41,10 +46,13 @@
 #include "misc/loghandler.h"
 #include "misc/logmessage.h"
 #include "misc/logpattern.h"
+#include "misc/identifier.h"
 #include "misc/network/networkutils.h"
 #include "misc/sharedstate/datalinkdbus.h"
+#include "misc/simulation/simulatedaircraft.h"
 #include "misc/slot.h"
 #include "misc/statusmessage.h"
+#include "misc/aviation/transponder.h"
 #include "sound/audioutilities.h"
 
 using namespace swift::config;
@@ -66,12 +74,9 @@ void SwiftGuiStd::init()
 
     if (m_init) { return; }
 
-    ui->dw_InfoBarStatus->initialFloating();
-
     this->setVisible(false); // hide all, so no flashing windows during init
     m_mwaStatusBar = &m_statusBar;
     m_mwaOverlayFrame = ui->fr_CentralFrameInside;
-    m_mwaLogComponent = ui->comp_MainInfoArea->getLogComponent();
     sGui->initMainApplicationWidget(this);
 
     // log messages
@@ -102,9 +107,6 @@ void SwiftGuiStd::init()
         QHBoxLayout *menuBarLayout = this->addFramelessCloseButton(ui->mb_MainMenuBar);
         ui->vl_CentralWidgetOutside->insertLayout(0, menuBarLayout, 0);
 
-        // now insert the dock widget info bar into the widget
-        ui->vl_CentralWidgetOutside->insertWidget(1, ui->dw_InfoBarStatus);
-
         // move the status bar into the frame
         // (otherwise it is dangling outside the frame as it belongs to the window)
         ui->sb_MainStatusBar->setParent(ui->wi_CentralWidgetOutside);
@@ -119,15 +121,10 @@ void SwiftGuiStd::init()
 
     // info bar and status bar
     m_statusBar.initStatusBar(ui->sb_MainStatusBar);
-    connect(&m_statusBar, &CManagedStatusBar::requestLogPage, ui->comp_MainInfoArea,
-            &CMainInfoAreaComponent::displayLog);
-    ui->dw_InfoBarStatus->allowStatusBar(false);
-    ui->dw_InfoBarStatus->setPreferredSizeWhenFloating(ui->dw_InfoBarStatus->size()); // set floating size
+    connect(&m_statusBar, &CManagedStatusBar::requestLogPage, this, &SwiftGuiStd::displayLog);
 
     // navigator
     m_navigator->addAction(this->getToggleWindowVisibilityAction(m_navigator.data()));
-    m_navigator->addActions(ui->comp_MainInfoArea->getInfoAreaToggleFloatingActions(
-        m_navigator.data())); // here we add the actions for the main windows
     m_navigator->addAction(this->getWindowNormalAction(m_navigator.data()));
     m_navigator->addAction(this->getWindowMinimizeAction(m_navigator.data()));
     m_navigator->addAction(this->getToggleStayOnTopAction(m_navigator.data()));
@@ -158,6 +155,31 @@ void SwiftGuiStd::init()
                     &SwiftGuiStd::onAudioClientFailure, Qt::QueuedConnection);
         Q_ASSERT(s);
     }
+    if (sGui->getCContextAudioBase())
+    {
+        connect(sGui->getCContextAudioBase(), &CContextAudioBase::changedOutputMute, this,
+                [this](bool muted) {
+                    ui->pb_SoundMute->setChecked(muted);
+                    this->updateStatusInfoTooltip();
+                },
+                Qt::QueuedConnection);
+    }
+    if (sGui->getIContextOwnAircraft())
+    {
+        connect(sGui->getIContextOwnAircraft(), &IContextOwnAircraft::changedAircraftCockpit, this,
+                [this](const swift::misc::simulation::CSimulatedAircraft &aircraft, const CIdentifier &) {
+                    const CTransponder transponder = aircraft.getTransponder();
+                    const bool ident = transponder.getTransponderMode() == CTransponder::StateIdent;
+                    ui->pb_CockpitModeC->setText(transponder.getModeAsShortString());
+                    ui->pb_CockpitModeC->setToolTip(transponder.toQString());
+                    ui->pb_CockpitIdent->setChecked(ident);
+                    ui->pb_CockpitIdent->setText(ident ? tr("Ident") : tr("Ident"));
+                },
+                Qt::QueuedConnection);
+        const CTransponder transponder = sGui->getIContextOwnAircraft()->getOwnAircraft().getTransponder();
+        ui->pb_CockpitModeC->setText(transponder.getModeAsShortString());
+        ui->pb_CockpitModeC->setToolTip(transponder.toQString());
+    }
     Q_UNUSED(s)
 
     // check if DB data have been loaded
@@ -174,13 +196,8 @@ void SwiftGuiStd::init()
     // data
     this->initialContextDataReads();
 
-    // start screen and complete menu
-    this->setMainPageToInfoArea();
+    // complete menu
     this->initMenus();
-
-    // info
-    connect(ui->comp_InfoBarStatus, &CInfoBarStatusComponent::transponderModeChanged, ui->dw_InfoBarStatus,
-            &CDockWidgetInfoBar::reloadStyleSheet, Qt::QueuedConnection);
 
     // do this as last statement, so it can be used as flag
     // whether init has been completed
@@ -212,27 +229,56 @@ void SwiftGuiStd::initStyleSheet()
 
 void SwiftGuiStd::initGuiSignals()
 {
-    // main window
-    connect(ui->sw_MainMiddle, &QStackedWidget::currentChanged, this, &SwiftGuiStd::onCurrentMainWidgetChanged);
+    // primary controls
+    ui->comp_AtcStations->setCompactMode(true);
+    ui->comp_TextMessages->showRecipientSelector(false);
+    ui->comp_TextMessages->showSettings(false);
+    ui->comp_TextMessages->showTextMessageEntry(false);
+    ui->comp_InfoBarStatus->setVisible(false);
+    ui->sp_MainOperations->setSizes({ 190, 540 });
 
-    // main keypad
-    connect(ui->comp_MainKeypadArea, &CMainKeypadAreaComponent::selectedMainInfoAreaDockWidget, this,
-            &SwiftGuiStd::setMainPageInfoArea);
-    connect(ui->comp_MainKeypadArea, &CMainKeypadAreaComponent::connectPressed, this, &SwiftGuiStd::loginRequested);
-    connect(ui->comp_MainKeypadArea, &CMainKeypadAreaComponent::identPressed,
-            ui->comp_MainInfoArea->getCockpitComponent(), &CCockpitComponent::setSelectedTransponderModeStateIdent);
-    connect(ui->comp_MainKeypadArea, &CMainKeypadAreaComponent::textEntered,
-            ui->comp_MainInfoArea->getTextMessageComponent(), &CTextMessageComponent::handleGlobalCommandLineText);
-    connect(ui->comp_MainInfoArea, &CMainInfoAreaComponent::changedInfoAreaStatus, ui->comp_MainKeypadArea,
-            &CMainKeypadAreaComponent::onMainInfoAreaChanged);
+    connect(ui->pb_Connect, &QPushButton::released, this, &SwiftGuiStd::loginRequested);
+    connect(ui->pb_CockpitModeC, &QPushButton::released, this, []() {
+        if (!sGui || !sGui->getIContextOwnAircraft()) { return; }
+        CTransponder transponder = sGui->getIContextOwnAircraft()->getOwnAircraft().getTransponder();
+        transponder.toggleTransponderMode();
+        sGui->getIContextOwnAircraft()->setTransponderMode(transponder.getTransponderMode());
+    });
+    connect(ui->pb_CockpitIdent, &QPushButton::released, this, [this]() {
+        this->ensureCockpitComponent()->setSelectedTransponderModeStateIdent();
+    });
+    connect(ui->pb_SoundMaxVolume, &QPushButton::pressed, this, []() {
+        if (sGui && sGui->getCContextAudioBase()) { sGui->getCContextAudioBase()->setMasterOutputVolume(100); }
+    });
+    connect(ui->pb_SoundMute, &QPushButton::released, this, [this]() {
+        if (!sGui || !sGui->getCContextAudioBase()) { return; }
+        const bool mute = sGui->getCContextAudioBase()->isOutputMuted();
+        sGui->getCContextAudioBase()->setOutputMute(!mute);
+    });
+    connect(ui->pb_Audio, &QPushButton::released, this, [this]() {
+        this->ensureCockpitComponent()->showAudio();
+        this->showToolDialog(m_cockpitDialog.data());
+    });
+    connect(ui->pb_FlightPlan, &QPushButton::released, this, &SwiftGuiStd::showFlightPlanWindow);
+    connect(ui->pb_Settings, &QPushButton::released, this, &SwiftGuiStd::showSettingsWindow);
+    connect(ui->tb_StatusInfo, &QToolButton::released, this, &SwiftGuiStd::showLogWindow);
+    this->updateStatusInfoTooltip();
+
+    ui->lep_CommandLineInput->setIdentifier(this->identifier());
+    connect(ui->lep_CommandLineInput, &CCommandInput::commandEntered, sGui->getCoreFacade(),
+            &CCoreFacade::parseCommandLine);
+    connect(ui->lep_CommandLineInput, &CCommandInput::textEntered, ui->comp_TextMessages,
+            &CTextMessageComponent::handleGlobalCommandLineText);
 
     // text component
-    connect(ui->comp_MainInfoArea->getTextMessageComponent(), &CTextMessageComponent::textMessageTabSelected, this,
+    connect(ui->comp_TextMessages, &CTextMessageComponent::textMessageTabSelected, this,
             &SwiftGuiStd::focusInTextMessageEntryField, Qt::QueuedConnection);
 
     // audio
-    connect(ui->comp_MainInfoArea->getAtcStationComponent(), &CAtcStationComponent::requestAudioWidget,
-            ui->comp_MainInfoArea, &CMainInfoAreaComponent::selectAudioTab);
+    connect(ui->comp_AtcStations, &CAtcStationComponent::requestAudioWidget, this, [this]() {
+        this->ensureCockpitComponent()->showAudio();
+        this->showToolDialog(m_cockpitDialog.data());
+    });
 
     // menu
     connect(ui->menu_TestLocationsEDDF, &QAction::triggered, this, &SwiftGuiStd::onMenuClicked);
@@ -247,6 +293,17 @@ void SwiftGuiStd::initGuiSignals()
     connect(ui->menu_WindowMinimize, &QAction::triggered, this, &SwiftGuiStd::onMenuClicked);
     connect(ui->menu_WindowToggleOnTop, &QAction::triggered, this, &SwiftGuiStd::onMenuClicked);
     connect(ui->menu_InternalsPage, &QAction::triggered, this, &SwiftGuiStd::onMenuClicked);
+    connect(ui->menu_AtcDetails, &QAction::triggered, this, &SwiftGuiStd::showAtcDetailsWindow);
+    connect(ui->menu_Cockpit, &QAction::triggered, this, &SwiftGuiStd::showCockpitWindow);
+    connect(ui->menu_Aircraft, &QAction::triggered, this, &SwiftGuiStd::showAircraftWindow);
+    connect(ui->menu_Users, &QAction::triggered, this, &SwiftGuiStd::showUsersWindow);
+    connect(ui->menu_Simulator, &QAction::triggered, this, &SwiftGuiStd::showSimulatorWindow);
+    connect(ui->menu_FlightPlan, &QAction::triggered, this, &SwiftGuiStd::showFlightPlanWindow);
+    connect(ui->menu_Mapping, &QAction::triggered, this, &SwiftGuiStd::showMappingWindow);
+    connect(ui->menu_Interpolation, &QAction::triggered, this, &SwiftGuiStd::showInterpolationWindow);
+    connect(ui->menu_Radar, &QAction::triggered, this, &SwiftGuiStd::showRadarWindow);
+    connect(ui->menu_Log, &QAction::triggered, this, &SwiftGuiStd::showLogWindow);
+    connect(ui->menu_SettingsPage, &QAction::triggered, this, &SwiftGuiStd::showSettingsWindow);
     connect(ui->menu_AutoPublish, &QAction::triggered, this, &SwiftGuiStd::onMenuClicked);
     connect(ui->menu_ToggleIncognito, &QAction::triggered, this, &SwiftGuiStd::onMenuClicked);
     connect(ui->menu_ModelBrowser, &QAction::triggered, this, &SwiftGuiStd::startModelBrowser, Qt::QueuedConnection);
@@ -256,64 +313,26 @@ void SwiftGuiStd::initGuiSignals()
             Qt::QueuedConnection);
     m_navigator->setMainWindow(this);
 
-    // settings (GUI component), styles
-    connect(ui->comp_MainInfoArea->getSettingsComponent(), &CSettingsComponent::changedWindowsOpacity, this,
-            &SwiftGuiStd::onChangedWindowOpacity);
+    // styles
     connect(sGui, &CGuiApplication::styleSheetsChanged, this, &SwiftGuiStd::onStyleSheetsChanged, Qt::QueuedConnection);
 
-    // login
-    connect(ui->comp_Login, &CLoginComponent::loginOrLogoffCancelled, this, &SwiftGuiStd::setMainPageToInfoArea);
-    connect(ui->comp_Login, &CLoginComponent::loginOrLogoffSuccessful, this, &SwiftGuiStd::setMainPageToInfoArea);
-    connect(ui->comp_Login, &CLoginComponent::loginOrLogoffSuccessful, ui->comp_MainInfoArea->getFlightPlanComponent(),
-            &CFlightPlanComponent::loginDataSet);
-    connect(ui->comp_Login, &CLoginComponent::loginDataChangedDigest, ui->comp_MainInfoArea->getFlightPlanComponent(),
-            &CFlightPlanComponent::loginDataSet);
-    connect(ui->comp_Login, &CLoginComponent::requestNetworkSettings, this, &SwiftGuiStd::displayNetworkSettings);
-    connect(ui->comp_Login, &CLoginComponent::requestLoginPage, [this]() {
-        if (!sApp || sApp->isShuttingDown()) { return; }
-        ui->sw_MainMiddle->setCurrentIndex(MainPageLogin);
-    });
-    connect(this, &SwiftGuiStd::currentMainInfoAreaChanged, ui->comp_Login, &CLoginComponent::mainInfoAreaChanged,
-            Qt::QueuedConnection);
-
     // text messages
-    connect(ui->comp_MainInfoArea->getAtcStationComponent(), &CAtcStationComponent::requestTextMessageWidget,
-            ui->comp_MainInfoArea->getTextMessageComponent(), &CTextMessageComponent::showCorrespondingTab,
-            Qt::QueuedConnection);
-    connect(ui->comp_MainInfoArea->getMappingComponent(), &CMappingComponent::requestTextMessageWidget,
-            ui->comp_MainInfoArea->getTextMessageComponent(), &CTextMessageComponent::showCorrespondingTab,
-            Qt::QueuedConnection);
-    connect(ui->comp_MainInfoArea->getAircraftComponent(), &CAircraftComponent::requestTextMessageWidget,
-            ui->comp_MainInfoArea->getTextMessageComponent(), &CTextMessageComponent::showCorrespondingTab,
-            Qt::QueuedConnection);
-    connect(ui->comp_MainInfoArea->getUserComponent(), &CUserComponent::requestTextMessageWidget,
-            ui->comp_MainInfoArea->getTextMessageComponent(), &CTextMessageComponent::showCorrespondingTab,
+    connect(ui->comp_AtcStations, &CAtcStationComponent::requestTextMessageWidget, ui->comp_TextMessages,
+            &CTextMessageComponent::showCorrespondingTab,
             Qt::QueuedConnection);
 
     // command line / text messages
     // here we display SUP messages and such in a central window
     ui->fr_CentralFrameInside->activateTextMessages(true);
-    connect(ui->comp_MainInfoArea->getTextMessageComponent(), &CTextMessageComponent::displayInInfoWindow, this,
+    connect(ui->comp_TextMessages, &CTextMessageComponent::displayInInfoWindow, this,
             &SwiftGuiStd::onShowOverlayVariant, Qt::QueuedConnection);
-    connect(ui->comp_MainInfoArea->getAtcStationComponent(), &CAtcStationComponent::requestTextMessageEntryTab, this,
+    connect(ui->comp_AtcStations, &CAtcStationComponent::requestTextMessageEntryTab, this,
             &SwiftGuiStd::onShowOverlayInlineTextMessageTab, Qt::QueuedConnection);
-    connect(ui->comp_MainInfoArea->getAtcStationComponent(), &CAtcStationComponent::requestTextMessageEntryCallsign,
-            this, &SwiftGuiStd::onShowOverlayInlineTextMessageCallsign, Qt::QueuedConnection);
-    connect(ui->comp_MainInfoArea->getCockpitComponent(), &CCockpitComponent::requestTextMessageEntryTab, this,
-            &SwiftGuiStd::onShowOverlayInlineTextMessageTab, Qt::QueuedConnection);
-    connect(ui->comp_MainInfoArea->getCockpitComponent(), &CCockpitComponent::requestTextMessageEntryCallsign, this,
+    connect(ui->comp_AtcStations, &CAtcStationComponent::requestTextMessageEntryCallsign, this,
             &SwiftGuiStd::onShowOverlayInlineTextMessageCallsign, Qt::QueuedConnection);
-
-    // interpolation and validation
-    connect(ui->comp_MainInfoArea->getMappingComponent(), &CMappingComponent::requestValidationDialog, this,
-            &SwiftGuiStd::displayValidationDialog);
 
     // on top
     connect(sGui, &CGuiApplication::alwaysOnTop, this, &SwiftGuiStd::onToggledWindowsOnTop, Qt::QueuedConnection);
-
-    // main info area
-    connect(ui->comp_MainInfoArea, &CMainInfoAreaComponent::changedWholeInfoAreaFloating, this,
-            &SwiftGuiStd::onChangedMainInfoAreaFloating, Qt::QueuedConnection);
 }
 
 void SwiftGuiStd::initialContextDataReads()

@@ -6,44 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>800</height>
+    <width>760</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>425</width>
-    <height>650</height>
+    <width>640</width>
+    <height>240</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>swift GUI</string>
   </property>
-  <property name="dockOptions">
-   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks</set>
-  </property>
   <widget class="QWidget" name="wi_CentralWidgetOutside">
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>350</width>
-     <height>500</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>16777215</width>
-     <height>16777215</height>
-    </size>
-   </property>
    <layout class="QVBoxLayout" name="vl_CentralWidgetOutside">
     <property name="spacing">
-     <number>0</number>
+     <number>2</number>
     </property>
     <property name="leftMargin">
      <number>2</number>
@@ -59,19 +38,10 @@
     </property>
     <item>
      <widget class="swift::gui::COverlayMessagesFrame" name="fr_CentralFrameInside">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="lineWidth">
-       <number>0</number>
-      </property>
       <layout class="QVBoxLayout" name="vl_CentralFrameInside">
+       <property name="spacing">
+        <number>2</number>
+       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -85,110 +55,220 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QStackedWidget" name="sw_MainMiddle">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+        <widget class="QFrame" name="fr_PrimaryControls">
+         <layout class="QHBoxLayout" name="hl_PrimaryControls">
+          <property name="spacing">
+           <number>4</number>
+          </property>
+          <property name="leftMargin">
+           <number>2</number>
+          </property>
+          <property name="topMargin">
+           <number>2</number>
+          </property>
+          <property name="rightMargin">
+           <number>2</number>
+          </property>
+          <property name="bottomMargin">
+           <number>2</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="pb_Connect">
+            <property name="minimumSize">
+             <size>
+              <width>78</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Connect</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pb_CockpitModeC">
+            <property name="minimumSize">
+             <size>
+              <width>72</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Mode C</string>
+            </property>
+            <property name="toolTip">
+             <string>Open cockpit transponder controls</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pb_CockpitIdent">
+            <property name="minimumSize">
+             <size>
+              <width>64</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Ident</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pb_FlightPlan">
+            <property name="minimumSize">
+             <size>
+              <width>82</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Flight Plan</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pb_Settings">
+            <property name="minimumSize">
+             <size>
+              <width>72</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Settings</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pb_Audio">
+            <property name="minimumSize">
+             <size>
+              <width>58</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Audio</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pb_SoundMute">
+            <property name="minimumSize">
+             <size>
+              <width>54</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Mute</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pb_SoundMaxVolume">
+            <property name="minimumSize">
+             <size>
+              <width>64</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="statusTip">
+             <string>Maximum volume</string>
+            </property>
+            <property name="text">
+             <string>Max vol.</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="sp_PrimaryControls">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QToolButton" name="tb_StatusInfo">
+            <property name="maximumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>Status details</string>
+            </property>
+            <property name="text">
+             <string>i</string>
+            </property>
+            <property name="autoRaise">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="swift::gui::components::CInfoBarStatusComponent" name="comp_InfoBarStatus" native="true">
+            <property name="maximumSize">
+             <size>
+              <width>190</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSplitter" name="sp_MainOperations">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <italic>false</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="currentIndex">
-          <number>0</number>
-         </property>
-         <widget class="QWidget" name="pg_MainInfoArea">
-          <layout class="QVBoxLayout" name="vl_MainInfoArea">
-           <property name="spacing">
-            <number>0</number>
-           </property>
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <widget class="swift::gui::components::CMainInfoAreaComponent" name="comp_MainInfoArea" native="true"/>
-           </item>
-          </layout>
+         <widget class="swift::gui::components::CAtcStationComponent" name="comp_AtcStations">
+          <property name="minimumSize">
+           <size>
+            <width>185</width>
+            <height>120</height>
+           </size>
+          </property>
          </widget>
-         <widget class="QWidget" name="pg_LoginConfirmation">
-          <layout class="QVBoxLayout" name="vl_LoginConfirmation">
-           <property name="spacing">
-            <number>0</number>
-           </property>
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <widget class="swift::gui::components::CLoginComponent" name="comp_Login" native="true"/>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="pg_Internals">
-          <layout class="QVBoxLayout" name="vl_Internals">
-           <property name="spacing">
-            <number>0</number>
-           </property>
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <widget class="swift::gui::components::CInternalsComponent" name="comp_Internals" native="true"/>
-           </item>
-          </layout>
+         <widget class="swift::gui::components::CTextMessageComponent" name="comp_TextMessages">
+          <property name="minimumSize">
+           <size>
+            <width>360</width>
+            <height>120</height>
+           </size>
+          </property>
          </widget>
         </widget>
        </item>
        <item>
-        <widget class="swift::gui::components::CMainKeypadAreaComponent" name="comp_MainKeypadArea">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
+        <widget class="swift::gui::components::CCommandInput" name="lep_CommandLineInput">
+         <property name="maximumSize">
           <size>
-           <width>0</width>
-           <height>0</height>
+           <width>16777215</width>
+           <height>24</height>
           </size>
+         </property>
+         <property name="toolTip">
+          <string>command line (e.g. &quot;.com1&quot;, &quot;.x&quot;, &quot;.msg com1&quot;)</string>
+         </property>
+         <property name="placeholderText">
+          <string>.dot commands or text message</string>
          </property>
         </widget>
        </item>
@@ -199,41 +279,59 @@
   </widget>
   <widget class="QMenuBar" name="mb_MainMenuBar">
    <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>450</width>
+   <rect>
+    <x>0</x>
+    <y>0</y>
+     <width>760</width>
      <height>25</height>
     </rect>
    </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>16777215</width>
-     <height>16777215</height>
-    </size>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <widget class="QMenu" name="menu_Test">
-    <property name="styleSheet">
-     <string notr="true"/>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
     </property>
+   </widget>
+   <widget class="QMenu" name="menu_Window">
+    <property name="title">
+     <string>&amp;Window</string>
+    </property>
+    <addaction name="menu_WindowFont"/>
+    <addaction name="menu_WindowToggleNavigator"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menu_Tools">
+   <property name="title">
+    <string>Tools</string>
+   </property>
+   <addaction name="menu_AtcDetails"/>
+   <addaction name="menu_Cockpit"/>
+    <addaction name="menu_Aircraft"/>
+    <addaction name="menu_Users"/>
+    <addaction name="menu_Simulator"/>
+    <addaction name="menu_FlightPlan"/>
+    <addaction name="menu_Mapping"/>
+    <addaction name="menu_Interpolation"/>
+    <addaction name="menu_Radar"/>
+    <addaction name="menu_Log"/>
+    <addaction name="menu_SettingsPage"/>
+    <addaction name="separator"/>
+    <addaction name="menu_AutoPublish"/>
+    <addaction name="menu_ToggleIncognito"/>
+    <addaction name="menu_ModelBrowser"/>
+    <addaction name="menu_AfvMap"/>
+   </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_Test">
     <property name="title">
      <string>Test</string>
     </property>
     <widget class="QMenu" name="menu_PlanePositions">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="title">
-      <string>Set plane positions </string>
+      <string>Set plane positions</string>
      </property>
      <addaction name="menu_TestLocationsEDRY"/>
      <addaction name="menu_TestLocationsEDDF"/>
@@ -250,42 +348,8 @@
     <addaction name="menu_Internals"/>
     <addaction name="menu_PlanePositions"/>
    </widget>
-   <widget class="QMenu" name="menu_Help">
-    <property name="title">
-     <string>&amp;Help</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_File">
-    <property name="title">
-     <string>&amp;File</string>
-    </property>
-    <addaction name="separator"/>
-   </widget>
-   <widget class="QMenu" name="menu_InfoAreas">
-    <property name="title">
-     <string>&amp;Info areas</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_Window">
-    <property name="title">
-     <string>&amp;Window</string>
-    </property>
-    <addaction name="menu_WindowFont"/>
-    <addaction name="menu_WindowToggleNavigator"/>
-    <addaction name="separator"/>
-   </widget>
-   <widget class="QMenu" name="menu_Tools">
-    <property name="title">
-     <string>Tools</string>
-    </property>
-    <addaction name="menu_AutoPublish"/>
-    <addaction name="menu_ToggleIncognito"/>
-    <addaction name="menu_ModelBrowser"/>
-    <addaction name="menu_AfvMap"/>
-   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Window"/>
-   <addaction name="menu_InfoAreas"/>
    <addaction name="menu_Tools"/>
    <addaction name="menu_Help"/>
    <addaction name="menu_Test"/>
@@ -300,49 +364,6 @@
    <property name="sizeGripEnabled">
     <bool>false</bool>
    </property>
-  </widget>
-  <widget class="swift::gui::CDockWidgetInfoBar" name="dw_InfoBarStatus">
-   <property name="features">
-    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable|QDockWidget::DockWidgetFloatable</set>
-   </property>
-   <property name="allowedAreas">
-    <set>Qt::TopDockWidgetArea</set>
-   </property>
-   <property name="windowTitle">
-    <string>Info status bar</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>4</number>
-   </attribute>
-   <widget class="QWidget" name="qw_InfoBarStatusInner">
-    <layout class="QVBoxLayout" name="vl_InfoBarStatusOuter">
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <property name="leftMargin">
-      <number>0</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
-     <item alignment="Qt::AlignLeft|Qt::AlignTop">
-      <widget class="swift::gui::components::CInfoBarStatusComponent" name="comp_InfoBarStatus" native="true">
-       <property name="minimumSize">
-        <size>
-         <width>250</width>
-         <height>25</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
   </widget>
   <action name="menu_TestLocationsEDDF">
    <property name="text">
@@ -359,24 +380,19 @@
     <string>Position EDRY (Speyer, GER)</string>
    </property>
   </action>
-  <action name="menu_ReloadSettings">
-   <property name="text">
-    <string>Reload settings</string>
-   </property>
-  </action>
   <action name="menu_TestLocationsEDNX">
    <property name="text">
-    <string>Position EDNX (Schleißheim, GER)</string>
-   </property>
-  </action>
-  <action name="menu_WindowFont">
-   <property name="text">
-    <string>Font</string>
+    <string>Position EDNX (Schleissheim, GER)</string>
    </property>
   </action>
   <action name="menu_TestLocationsLOWW">
    <property name="text">
     <string>Position LOWW (Vienna, AUT)</string>
+   </property>
+  </action>
+  <action name="menu_WindowFont">
+   <property name="text">
+    <string>Font</string>
    </property>
   </action>
   <action name="menu_WindowMinimize">
@@ -405,14 +421,65 @@
   </action>
   <action name="menu_InternalsPage">
    <property name="text">
-    <string>Internals page</string>
+    <string>Internals</string>
+   </property>
+  </action>
+  <action name="menu_Cockpit">
+   <property name="text">
+    <string>Cockpit</string>
+   </property>
+  </action>
+  <action name="menu_AtcDetails">
+   <property name="text">
+    <string>Controllers / ATIS / METAR</string>
+   </property>
+  </action>
+  <action name="menu_Aircraft">
+   <property name="text">
+    <string>Aircraft</string>
+   </property>
+  </action>
+  <action name="menu_Users">
+   <property name="text">
+    <string>Users</string>
+   </property>
+  </action>
+  <action name="menu_Simulator">
+   <property name="text">
+    <string>Simulator</string>
+   </property>
+  </action>
+  <action name="menu_FlightPlan">
+   <property name="text">
+    <string>Flight Plan</string>
+   </property>
+  </action>
+  <action name="menu_Mapping">
+   <property name="text">
+    <string>Models</string>
+   </property>
+  </action>
+  <action name="menu_Interpolation">
+   <property name="text">
+    <string>Interpolation</string>
+   </property>
+  </action>
+  <action name="menu_Radar">
+   <property name="text">
+    <string>Radar</string>
+   </property>
+  </action>
+  <action name="menu_Log">
+   <property name="text">
+    <string>Log</string>
+   </property>
+  </action>
+  <action name="menu_SettingsPage">
+   <property name="text">
+    <string>Settings</string>
    </property>
   </action>
   <action name="menu_AutoPublish">
-   <property name="icon">
-    <iconset resource="../misc/misc.qrc">
-     <normaloff>:/diagona/icons/diagona/icons/paper-plane--plus.png</normaloff>:/diagona/icons/diagona/icons/paper-plane--plus.png</iconset>
-   </property>
    <property name="text">
     <string>Auto-publish</string>
    </property>
@@ -429,11 +496,10 @@
   </action>
   <action name="menu_AfvMap">
    <property name="text">
-    <string>AFV online map</string>
+    <string>AFV map</string>
    </property>
   </action>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>swift::gui::COverlayMessagesFrame</class>
@@ -448,38 +514,38 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>swift::gui::components::CMainInfoAreaComponent</class>
-   <extends>QWidget</extends>
-   <header>gui/components/maininfoareacomponent.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>swift::gui::CDockWidgetInfoBar</class>
-   <extends>QDockWidget</extends>
-   <header>gui/dockwidgetinfobar.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>swift::gui::components::CMainKeypadAreaComponent</class>
+   <class>swift::gui::components::CAtcStationComponent</class>
    <extends>QFrame</extends>
-   <header>gui/components/mainkeypadareacomponent.h</header>
+   <header>gui/components/atcstationcomponent.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>swift::gui::components::CLoginComponent</class>
-   <extends>QWidget</extends>
-   <header>gui/components/logincomponent.h</header>
+   <class>swift::gui::components::CTextMessageComponent</class>
+   <extends>QFrame</extends>
+   <header>gui/components/textmessagecomponent.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>swift::gui::components::CInternalsComponent</class>
-   <extends>QWidget</extends>
-   <header>gui/components/internalscomponent.h</header>
+   <class>swift::gui::components::CCommandInput</class>
+   <extends>QLineEdit</extends>
+   <header>gui/components/commandinput.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../misc/misc.qrc"/>
- </resources>
+ <tabstops>
+  <tabstop>comp_AtcStations</tabstop>
+  <tabstop>comp_TextMessages</tabstop>
+  <tabstop>lep_CommandLineInput</tabstop>
+  <tabstop>pb_Connect</tabstop>
+  <tabstop>pb_CockpitModeC</tabstop>
+  <tabstop>pb_CockpitIdent</tabstop>
+  <tabstop>pb_FlightPlan</tabstop>
+  <tabstop>pb_SoundMute</tabstop>
+  <tabstop>pb_SoundMaxVolume</tabstop>
+  <tabstop>pb_Audio</tabstop>
+  <tabstop>pb_Settings</tabstop>
+  <tabstop>tb_StatusInfo</tabstop>
+ </tabstops>
+ <resources/>
  <connections/>
 </ui>

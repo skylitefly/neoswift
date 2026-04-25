@@ -645,7 +645,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/filters/aircraftmodelfilterbar.ui" line="262"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">简介</translation>
     </message>
     <message>
         <location filename="../src/gui/filters/aircraftmodelfilterbar.ui" line="269"/>
@@ -715,7 +715,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/views/aircraftmodelstatisticsdialog.ui" line="30"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">常规</translation>
     </message>
     <message>
         <location filename="../src/gui/views/aircraftmodelstatisticsdialog.ui" line="36"/>
@@ -1600,7 +1600,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/audionotificationcomponent.ui" line="63"/>
         <source>Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">通知</translation>
     </message>
     <message>
         <location filename="../src/gui/components/audionotificationcomponent.ui" line="66"/>
@@ -1620,7 +1620,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/audionotificationcomponent.ui" line="111"/>
         <source>reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重置</translation>
     </message>
     <message>
         <location filename="../src/gui/components/audionotificationcomponent.ui" line="118"/>
@@ -1800,7 +1800,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/cockpitcomaudiodialog.ui" line="57"/>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">音频</translation>
     </message>
 </context>
 <context>
@@ -2363,7 +2363,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/copysettingsandcachescomponent.ui" line="51"/>
         <source>Model</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">模型</translation>
     </message>
     <message>
         <location filename="../src/gui/components/copysettingsandcachescomponent.ui" line="58"/>
@@ -2373,7 +2373,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/copysettingsandcachescomponent.ui" line="68"/>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">音频</translation>
     </message>
     <message>
         <location filename="../src/gui/components/copysettingsandcachescomponent.ui" line="74"/>
@@ -3706,7 +3706,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/gui/components/dbquickmappingwizard.ui" line="27"/>
         <location filename="../src/gui/components/dbquickmappingwizard.ui" line="73"/>
         <source>Model</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">模型</translation>
     </message>
     <message>
         <location filename="../src/gui/components/dbquickmappingwizard.ui" line="30"/>
@@ -3741,7 +3741,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/dbquickmappingwizard.ui" line="152"/>
         <source>Airline</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">航空公司</translation>
     </message>
     <message>
         <location filename="../src/gui/components/dbquickmappingwizard.ui" line="158"/>
@@ -3786,7 +3786,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/dbquickmappingwizard.ui" line="324"/>
         <source>Aircraft</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">机型</translation>
     </message>
     <message>
         <location filename="../src/gui/components/dbquickmappingwizard.ui" line="327"/>
@@ -5091,7 +5091,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/infobarstatuscomponent.ui" line="20"/>
         <source>Info status bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">状态栏</translation>
     </message>
     <message>
         <location filename="../src/gui/components/infobarstatuscomponent.ui" line="51"/>
@@ -5141,7 +5141,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/infobarstatuscomponent.ui" line="151"/>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">音频</translation>
     </message>
     <message>
         <location filename="../src/gui/components/infobarstatuscomponent.ui" line="154"/>
@@ -5536,7 +5536,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/internalscomponent.ui" line="268"/>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">音频</translation>
     </message>
     <message>
         <location filename="../src/gui/components/internalscomponent.ui" line="275"/>
@@ -6439,7 +6439,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/maininfoareacomponent.ui" line="105"/>
         <source>Aircraft</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">机型</translation>
     </message>
     <message>
         <location filename="../src/gui/components/maininfoareacomponent.ui" line="177"/>
@@ -6572,7 +6572,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/mainkeypadareacomponent.ui" line="224"/>
         <source>Aircraft</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">机型</translation>
     </message>
     <message>
         <location filename="../src/gui/components/mainkeypadareacomponent.ui" line="240"/>
@@ -6680,7 +6680,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/mappingcomponent.ui" line="213"/>
         <source>reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重置</translation>
     </message>
     <message>
         <location filename="../src/gui/components/mappingcomponent.ui" line="224"/>
@@ -6797,7 +6797,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/editors/matchingform.ui" line="118"/>
         <source>Matching</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">映射</translation>
     </message>
     <message>
         <location filename="../src/gui/editors/matchingform.ui" line="125"/>
@@ -7352,7 +7352,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/modelbrowsercomponent.ui" line="14"/>
         <source>Model browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">模型浏览器</translation>
     </message>
     <message>
         <location filename="../src/gui/components/modelbrowsercomponent.ui" line="36"/>
@@ -7362,7 +7362,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/modelbrowsercomponent.ui" line="54"/>
         <source>Model</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">模型</translation>
     </message>
     <message>
         <location filename="../src/gui/components/modelbrowsercomponent.ui" line="88"/>
@@ -7450,7 +7450,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/modelbrowserdialog.ui" line="20"/>
         <source>Model browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">模型浏览器</translation>
     </message>
 </context>
 <context>
@@ -7837,17 +7837,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/networkaircraftvaluescomponent.ui" line="69"/>
         <source>Callsign</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">呼号</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkaircraftvaluescomponent.ui" line="76"/>
         <source>Aircraft</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">机型</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkaircraftvaluescomponent.ui" line="83"/>
         <source>Airline</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">航空公司</translation>
     </message>
 </context>
 <context>
@@ -7885,7 +7885,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/networkdetailscomponent.ui" line="221"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">登录</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkdetailscomponent.ui" line="228"/>
@@ -7908,7 +7908,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/editors/serverform.ui" line="39"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">常规</translation>
     </message>
     <message>
         <location filename="../src/gui/editors/serverform.ui" line="72"/>
@@ -8492,7 +8492,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/radarcomponent.ui" line="113"/>
         <source>Callsign</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">呼号</translation>
     </message>
     <message>
         <location filename="../src/gui/components/radarcomponent.ui" line="123"/>
@@ -8683,81 +8683,6 @@ p, li { white-space: pre-wrap; }
         <source>Settings</source>
         <translation>设置</translation>
     </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="21"/>
-        <source>Overview</source>
-        <translation>概览</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="42"/>
-        <location filename="../src/gui/components/settingscomponent.ui" line="303"/>
-        <source>Network</source>
-        <translation>网络</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="68"/>
-        <location filename="../src/gui/components/settingscomponent.ui" line="209"/>
-        <source>Servers</source>
-        <translation>连飞平台</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="81"/>
-        <location filename="../src/gui/components/settingscomponent.ui" line="367"/>
-        <source>Audio</source>
-        <translation>音频</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="94"/>
-        <location filename="../src/gui/components/settingscomponent.ui" line="257"/>
-        <source>GUI</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="107"/>
-        <location filename="../src/gui/components/settingscomponent.ui" line="335"/>
-        <source>Hotkeys</source>
-        <translation>热键</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="120"/>
-        <source>Data load and caches</source>
-        <translation>数据载入和缓存</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="149"/>
-        <location filename="../src/gui/components/settingscomponent.ui" line="609"/>
-        <source>Advanced</source>
-        <translation>高级</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="162"/>
-        <location filename="../src/gui/components/settingscomponent.ui" line="580"/>
-        <source>Matching</source>
-        <translation>映射</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="175"/>
-        <location filename="../src/gui/components/settingscomponent.ui" line="542"/>
-        <source>Simulator (messages)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="188"/>
-        <location filename="../src/gui/components/settingscomponent.ui" line="497"/>
-        <source>Simulator (basics)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="201"/>
-        <location filename="../src/gui/components/settingscomponent.ui" line="465"/>
-        <source>Simulator</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingscomponent.ui" line="399"/>
-        <source>Data and caches</source>
-        <translation>数据和缓存</translation>
-    </message>
 </context>
 <context>
     <name>CSettingsFontComponent</name>
@@ -8877,7 +8802,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/settingsfontdialog.ui" line="20"/>
         <source>Font settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">字体设置</translation>
     </message>
 </context>
 <context>
@@ -8890,12 +8815,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/settingsguicomponent.ui" line="38"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">字体</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsguicomponent.ui" line="69"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">常规</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsguicomponent.ui" line="93"/>
@@ -9107,7 +9032,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/settingssimulatorbasicscomponent.ui" line="99"/>
         <source>reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重置</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingssimulatorbasicscomponent.ui" line="106"/>
@@ -9455,7 +9380,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/settingstextmessageinlinecomponent.ui" line="118"/>
         <source>reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重置</translation>
     </message>
 </context>
 <context>
@@ -9488,7 +9413,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/settingstextmessagestyle.ui" line="60"/>
         <source>reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重置</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingstextmessagestyle.ui" line="67"/>
@@ -9564,7 +9489,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/settingsviewupdatetimes.ui" line="127"/>
         <source>Aircraft</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">机型</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsviewupdatetimes.ui" line="178"/>
@@ -9597,7 +9522,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/settingsxswiftbuscomponent.ui" line="58"/>
         <source>reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重置</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsxswiftbuscomponent.ui" line="65"/>
@@ -9810,7 +9735,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/plugins/simulator/emulated/simulatoremulatedmonitordialog.ui" line="178"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">常规</translation>
     </message>
     <message>
         <location filename="../src/plugins/simulator/emulated/simulatoremulatedmonitordialog.ui" line="184"/>
@@ -9962,7 +9887,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/plugins/simulator/emulated/simulatoremulatedmonitordialog.ui" line="537"/>
         <source>reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重置</translation>
     </message>
     <message>
         <location filename="../src/plugins/simulator/emulated/simulatoremulatedmonitordialog.ui" line="544"/>
@@ -10633,7 +10558,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/swiftdata/swiftdata.ui" line="91"/>
         <source>&amp;Info areas</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;显示</translation>
     </message>
     <message>
         <location filename="../src/swiftdata/swiftdata.ui" line="96"/>
@@ -10653,7 +10578,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/swiftdata/swiftdata.ui" line="122"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">字体</translation>
     </message>
     <message>
         <location filename="../src/swiftdata/swiftdata.ui" line="127"/>
@@ -11509,139 +11434,378 @@ This cannot be undone!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="229"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="330"/>
         <source>Test</source>
         <translation>测试</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="236"/>
-        <source>Set plane positions </source>
-        <translation>设置飞机位置</translation>
-    </message>
-    <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="246"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="344"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="424"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="812"/>
         <source>Internals</source>
         <translation>内部</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="255"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="325"/>
         <source>&amp;Help</source>
         <translation>&amp;帮助</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="260"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="291"/>
         <source>&amp;File</source>
         <translation>&amp;文件</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="266"/>
-        <source>&amp;Info areas</source>
-        <translation>&amp;显示</translation>
-    </message>
-    <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="271"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="296"/>
         <source>&amp;Window</source>
         <translation>&amp;窗口</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="279"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="304"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="312"/>
-        <source>Info status bar</source>
-        <translation>状态栏</translation>
-    </message>
-    <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="349"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="370"/>
         <source>Position EDDF (Frankfurt, GER)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="354"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="375"/>
         <source>Position EDDM (Munich, GER)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="359"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="380"/>
         <source>Position EDRY (Speyer, GER)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="364"/>
-        <source>Reload settings</source>
-        <translation>重载设置</translation>
-    </message>
-    <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="369"/>
-        <source>Position EDNX (Schleißheim, GER)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="374"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="395"/>
         <source>Font</source>
         <translation>字体</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="379"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="390"/>
         <source>Position LOWW (Vienna, AUT)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="384"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="84"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="305"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="696"/>
+        <source>Connect</source>
+        <translation type="unfinished">连接</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="100"/>
+        <source>Mode C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="103"/>
+        <source>Open cockpit transponder controls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="116"/>
+        <location filename="../src/swiftguistandard/swiftguistdinit.cpp" line="176"/>
+        <location filename="../src/swiftguistandard/swiftguistdinit.cpp" line="176"/>
+        <source>Ident</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="129"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="454"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="763"/>
+        <source>Flight Plan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="142"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="479"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="803"/>
+        <source>Settings</source>
+        <translation type="unfinished">设置</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="155"/>
+        <source>Audio</source>
+        <translation type="unfinished">音频</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="168"/>
+        <source>Mute</source>
+        <translation type="unfinished">静音</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="184"/>
+        <source>Maximum volume</source>
+        <translation type="unfinished">最大音量</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="187"/>
+        <source>Max vol.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="213"/>
+        <source>Status details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="216"/>
+        <source>i</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="268"/>
+        <source>command line (e.g. &quot;.com1&quot;, &quot;.x&quot;, &quot;.msg com1&quot;)</source>
+        <translation type="unfinished">命令行 (如：&quot;.com1&quot;, &quot;.x&quot;, &quot;.msg com1&quot;)</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="271"/>
+        <source>.dot commands or text message</source>
+        <translation type="unfinished">.命令 或文本消息</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="334"/>
+        <source>Set plane positions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="385"/>
+        <source>Position EDNX (Schleissheim, GER)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="400"/>
         <source>Minimize</source>
         <translation>最小化</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="387"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="403"/>
         <source>Ctrl+W, Ctrl+M</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="392"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="408"/>
         <source>Toggle stay on top</source>
         <translation>始终显示在前端</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="395"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="411"/>
         <source>Ctrl+W, Ctrl+T</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="400"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="416"/>
         <source>Navigator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="403"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="419"/>
         <source>Ctrl+W, Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="408"/>
-        <source>Internals page</source>
-        <translation>内部页面</translation>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="429"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="726"/>
+        <source>Cockpit</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="417"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="434"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="716"/>
+        <source>Controllers / ATIS / METAR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="439"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="739"/>
+        <source>Aircraft</source>
+        <translation type="unfinished">机型</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="444"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="749"/>
+        <source>Users</source>
+        <translation type="unfinished">在线用户</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="449"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="758"/>
+        <source>Simulator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="459"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="770"/>
+        <source>Models</source>
+        <translation type="unfinished">模型</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="464"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="781"/>
+        <source>Interpolation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="469"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="787"/>
+        <source>Radar</source>
+        <translation type="unfinished">雷达</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="474"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="793"/>
+        <source>Log</source>
+        <translation type="unfinished">日志</translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="499"/>
+        <source>AFV map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="484"/>
         <source>Auto-publish</source>
         <translation>自动发布</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="422"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="489"/>
         <source>Toggle incognito mode</source>
         <translation>切换无痕模式</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="427"/>
+        <location filename="../src/swiftguistandard/swiftguistd.ui" line="494"/>
         <source>Model browser</source>
         <translation>模型浏览器</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.ui" line="432"/>
-        <source>AFV online map</source>
-        <translation>AFV地图</translation>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="300"/>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="385"/>
+        <source>Application: shutting down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="393"/>
+        <source>Network: disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="393"/>
+        <source>Network: connected (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="395"/>
+        <source>Network: unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="403"/>
+        <source>Simulator: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="404"/>
+        <source>Simulator: %1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="405"/>
+        <source>Mapper: %1 models</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="409"/>
+        <source>Simulator: unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="410"/>
+        <source>Mapper: unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="417"/>
+        <source>PTT: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="417"/>
+        <source>active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="417"/>
+        <source>idle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="418"/>
+        <source>Audio: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="418"/>
+        <source>stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="418"/>
+        <source>muted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="418"/>
+        <source>ready</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="422"/>
+        <source>PTT: unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="423"/>
+        <source>Audio: unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="428"/>
+        <source>DBus: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="428"/>
+        <source>connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="429"/>
+        <source>local</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="431"/>
+        <source>DBus: unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistdmenus.cpp" line="97"/>
+        <source>Open Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/swiftguistandard/swiftguistdmenus.cpp" line="109"/>
+        <source>Opacity</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11812,12 +11976,12 @@ This cannot be undone!</source>
 <context>
     <name>swift::gui::components::CConfigSimulatorSetupComponent</name>
     <message>
-        <location filename="../src/gui/components/configsimulatorsetupcomponent.cpp" line="76"/>
+        <location filename="../src/gui/components/configsimulatorsetupcomponent.cpp" line="67"/>
         <source>No simulators selected. Please go back and select at least one simulator.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configsimulatorsetupcomponent.cpp" line="80"/>
+        <location filename="../src/gui/components/configsimulatorsetupcomponent.cpp" line="71"/>
         <source>No simulators</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11940,6 +12104,64 @@ This cannot be undone!</source>
     </message>
 </context>
 <context>
+    <name>swift::gui::components::CSettingsComponent</name>
+    <message>
+        <location filename="../src/gui/components/settingscomponent.cpp" line="43"/>
+        <source>Network Servers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingscomponent.cpp" line="43"/>
+        <source>GUI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingscomponent.cpp" line="43"/>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingscomponent.cpp" line="43"/>
+        <source>Hotkeys</source>
+        <translation type="unfinished">热键</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingscomponent.cpp" line="44"/>
+        <source>Audio</source>
+        <translation type="unfinished">音频</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingscomponent.cpp" line="44"/>
+        <source>Data/Caches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingscomponent.cpp" line="44"/>
+        <source>Simulator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingscomponent.cpp" line="44"/>
+        <source>Simulator Basics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingscomponent.cpp" line="45"/>
+        <source>Simulator Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingscomponent.cpp" line="45"/>
+        <source>Matching</source>
+        <translation type="unfinished">映射</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingscomponent.cpp" line="45"/>
+        <source>Advanced</source>
+        <translation type="unfinished">高级</translation>
+    </message>
+</context>
+<context>
     <name>swift::gui::components::CSettingsGuiComponent</name>
     <message>
         <location filename="../src/gui/components/settingsguicomponent.cpp" line="100"/>
@@ -11959,96 +12181,115 @@ Do you want to save your changes?</source>
 <context>
     <name>swift::gui::components::CSettingsNetworkServersComponent</name>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="34"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="40"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="34"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="40"/>
         <source>Description</source>
         <translation>简介</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="34"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="40"/>
         <source>Domain</source>
         <translation>域名</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="44"/>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="133"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="40"/>
+        <source>User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="51"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="154"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="215"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="45"/>
-        <source>Add a new network by domain name</source>
-        <translation>使用平台域名添加一个新平台</translation>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="52"/>
+        <source>Add a new network by domain name.
+Shift+click to add by exact config URL.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="46"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="53"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="47"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="54"/>
         <source>Remove the selected network</source>
         <translation>删除选中的平台</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="48"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="55"/>
+        <source>Edit info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="56"/>
+        <source>Edit the selected network&apos;s pilot id, password, name, and home airport</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="57"/>
         <source>Refresh selected</source>
         <translation>刷新选中</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="49"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="58"/>
         <source>Re-fetch fsd-configuration for the selected network</source>
         <translation>刷新选中平台的配置</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="50"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="59"/>
         <source>Refresh all</source>
         <translation>刷新所有</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="51"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="60"/>
         <source>Re-fetch fsd-configuration for all networks</source>
         <translation>刷新所有平台的配置</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="61"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="71"/>
         <source>Networks</source>
         <translation>连飞平台</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="65"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="75"/>
         <source>Manage flight networks. Networks are discovered automatically from their domain.</source>
         <translation>管理连飞平台。NeoSwift使用平台的域名（如 example.com）自动配置平台。</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="103"/>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="114"/>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="120"/>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="137"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="124"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="135"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="141"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="158"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="196"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="219"/>
         <source>Add Network</source>
         <translation>添加平台</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="103"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="124"/>
         <source>Enter network&apos;s domain name:</source>
         <translation>输入平台的域名：</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="114"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="135"/>
         <source>Invalid domain name.</source>
         <translation>无效域名</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="120"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="141"/>
         <source>&apos;%1&apos; is already in your network list.</source>
         <translation>%1 已经在你的平台列表了</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="138"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="159"/>
         <source>Discovery of &apos;%1&apos; failed.
 Make sure the domain serves
 https://%1/.well-known/fsd-configuration.json
@@ -12058,30 +12299,76 @@ with correct CORS headers.</source>
 且配置了正确的CORS标头。</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="160"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="188"/>
+        <source>Add Network (Advanced)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="189"/>
+        <source>Enter the exact URL of the fsd-configuration.json file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="197"/>
+        <source>A network with this URL is already in your list.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="220"/>
+        <source>Failed to fetch fsd-configuration.json from:
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="249"/>
         <source>Delete Network</source>
         <translation>删除平台</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="161"/>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="250"/>
         <source>Remove &apos;%1&apos; from the network list?</source>
         <translation>从平台列表删除 “%1”？</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="270"/>
+        <source>Pilot info required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="270"/>
+        <source>Edit pilot info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="274"/>
+        <source>These details are saved for &apos;%1&apos; and reused when connecting.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="293"/>
+        <source>Pilot info</source>
+        <translation type="unfinished">飞行员信息</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="293"/>
+        <source>Please enter id, password, real name, and home airport.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>swift::gui::components::CSettingsSimulatorBasicsComponent</name>
     <message>
-        <location filename="../src/gui/components/settingssimulatorbasicscomponent.cpp" line="92"/>
+        <location filename="../src/gui/components/settingssimulatorbasicscomponent.cpp" line="93"/>
         <source>Simulator directory</source>
         <translation>模拟器路径</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingssimulatorbasicscomponent.cpp" line="103"/>
+        <location filename="../src/gui/components/settingssimulatorbasicscomponent.cpp" line="104"/>
         <source>Model directory</source>
         <translation>映射包路径</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingssimulatorbasicscomponent.cpp" line="114"/>
+        <location filename="../src/gui/components/settingssimulatorbasicscomponent.cpp" line="115"/>
         <source>Exclude directory</source>
         <translation>排除路径</translation>
     </message>

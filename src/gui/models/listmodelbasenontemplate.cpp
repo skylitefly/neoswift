@@ -33,7 +33,8 @@ namespace swift::gui::models
 
     QModelIndex CListModelBaseNonTemplate::index(int row, int column, const QModelIndex &parent) const
     {
-        Q_UNUSED(parent)
+        if (parent.isValid()) { return {}; }
+        if (row < 0 || row >= this->rowCount() || column < 0 || column >= this->columnCount()) { return {}; }
         return QStandardItemModel::createIndex(row, column);
     }
 
@@ -149,9 +150,10 @@ namespace swift::gui::models
 
         const int columns = columnCount();
         const int rows = rowCount();
-        if (columns < 1) { return; }
+        if (columns < 1 || rows < 1) { return; }
         startRowIndex = std::max(startRowIndex, 0);
         if (endRowIndex >= rows) { endRowIndex = rows - 1; }
+        if (startRowIndex > endRowIndex) { return; }
         const QModelIndex topLeft(createIndex(startRowIndex, 0));
         const QModelIndex bottomRight(createIndex(endRowIndex, columns - 1));
         emit this->dataChanged(topLeft, bottomRight);

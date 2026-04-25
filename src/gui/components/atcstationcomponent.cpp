@@ -10,9 +10,9 @@
 #include <QModelIndex>
 #include <QPointer>
 #include <QPushButton>
+#include <QTabBar>
 #include <QStandardItemModel>
 #include <QStringBuilder>
-#include <QTabBar>
 #include <QTableView>
 #include <QTextEdit>
 #include <QTimer>
@@ -247,6 +247,20 @@ namespace swift::gui::components
     }
 
     void CAtcStationComponent::getMetarAsEntered() { this->getMetar(""); }
+
+    void CAtcStationComponent::showDetails(bool show)
+    {
+        ui->gb_Details->setVisible(show);
+        if (!show) { return; }
+        this->onDetailsToggled(ui->gb_Details->isChecked());
+    }
+
+    void CAtcStationComponent::setCompactMode(bool compact)
+    {
+        ui->tw_Atc->tabBar()->setVisible(!compact);
+        if (compact) { this->setTab(TabAtcOnlineTree); }
+        this->showDetails(!compact);
+    }
 
     void CAtcStationComponent::getMetar(const QString &airportIcaoCode)
     {

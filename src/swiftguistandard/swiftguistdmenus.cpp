@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-swift-pilot-client-1
 
 #include <QAction>
+#include <QDateTime>
 #include <QDesktopServices>
 #include <QMenu>
 #include <QMessageBox>
@@ -15,7 +16,6 @@
 
 #include "config/buildconfig.h"
 #include "gui/components/autopublishdialog.h"
-#include "gui/components/maininfoareacomponent.h"
 #include "gui/components/settingscomponent.h"
 #include "gui/guiactionbind.h"
 #include "gui/guiapplication.h"
@@ -68,10 +68,10 @@ void SwiftGuiStd::onMenuClicked()
     }
     else if (sender == ui->menu_WindowFont)
     {
-        this->setMainPageToInfoArea();
-        ui->comp_MainInfoArea->selectSettingsTab(swift::gui::components::CSettingsComponent::SettingTabGui);
+        this->setSettingsPage(swift::gui::components::CSettingsComponent::SettingTabGui);
+        this->showSettingsWindow();
     }
-    else if (sender == ui->menu_InternalsPage) { ui->sw_MainMiddle->setCurrentIndex(MainPageInternals); }
+    else if (sender == ui->menu_InternalsPage) { this->showInternalsWindow(); }
     else if (sender == ui->menu_AutoPublish) { this->autoPublishDialog(); }
     else if (sender == ui->menu_ToggleIncognito)
     {
@@ -86,31 +86,41 @@ void SwiftGuiStd::onMenuClicked()
 
 void SwiftGuiStd::initMenus()
 {
-    Q_ASSERT_X(ui->menu_InfoAreas, Q_FUNC_INFO, "No menu");
     Q_ASSERT_X(ui->menu_Window, Q_FUNC_INFO, "No menu");
-    Q_ASSERT_X(ui->comp_MainInfoArea, Q_FUNC_INFO, "no main area");
     sGui->addMenuFile(*ui->menu_File);
+
+    for (QAction *action : ui->menu_File->actions())
+    {
+        QMenu *settingsMenu = action ? action->menu() : nullptr;
+        if (!settingsMenu || settingsMenu->title() != QLatin1String("Settings")) { continue; }
+
+        QAction *openSettings = new QAction(tr("Open Settings"), settingsMenu);
+        connect(openSettings, &QAction::triggered, this, &SwiftGuiStd::showSettingsWindow);
+        settingsMenu->insertAction(settingsMenu->actions().value(0), openSettings);
+        settingsMenu->insertSeparator(settingsMenu->actions().value(1));
+        break;
+    }
+
     sGui->addMenuInternals(*ui->menu_Internals);
     sGui->addMenuWindow(*ui->menu_Window);
 
     // Opacity submenu
     ui->menu_Window->addSeparator();
-    QMenu *opacityMenu = ui->menu_Window->addMenu("Opacity");
-    QAction *opacity50 = opacityMenu->addAction("50%");
+    QMenu *opacityMenu = ui->menu_Window->addMenu(tr("Opacity"));
+    QAction *opacity50 = opacityMenu->addAction(QStringLiteral("50%"));
     connect(opacity50, &QAction::triggered, this, [this]() { onChangedWindowOpacity(50); });
-    QAction *opacity100 = opacityMenu->addAction("100%");
+    QAction *opacity100 = opacityMenu->addAction(QStringLiteral("100%"));
     connect(opacity100, &QAction::triggered, this, [this]() { onChangedWindowOpacity(100); });
 
     sGui->addMenuHelp(*ui->menu_Help);
-    ui->menu_InfoAreas->addActions(ui->comp_MainInfoArea->getInfoAreaSelectActions(true, ui->menu_InfoAreas));
 
     // for hotkeys
     const QString swift(CGuiActionBindHandler::pathSwiftPilotClient());
     static const CActionBind swiftRoot(swift, CIcons::Swift16); // inserts action for root folder
     Q_UNUSED(swiftRoot)
-    m_menuHotkeyHandlers.append(CGuiActionBindHandler::bindMenu(ui->menu_InfoAreas, swift + "Info areas"));
     m_menuHotkeyHandlers.append(CGuiActionBindHandler::bindMenu(ui->menu_File, swift + "File"));
     m_menuHotkeyHandlers.append(CGuiActionBindHandler::bindMenu(ui->menu_Window, swift + "Window"));
+    m_menuHotkeyHandlers.append(CGuiActionBindHandler::bindMenu(ui->menu_Tools, swift + "Tools"));
 }
 
 int SwiftGuiStd::autoPublishDialog()

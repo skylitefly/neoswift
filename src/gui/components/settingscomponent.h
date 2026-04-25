@@ -7,9 +7,9 @@
 #define SWIFT_GUI_COMPONENTS_SETTINGSCOMPONENT_H
 
 #include <QColor>
+#include <QFrame>
 #include <QObject>
 #include <QScopedPointer>
-#include <QTabWidget>
 
 #include "gui/swiftguiexport.h"
 #include "misc/simulation/settings/simulatorsettings.h"
@@ -23,7 +23,7 @@ namespace Ui
 namespace swift::gui::components
 {
     //! Settings component
-    class SWIFT_GUI_EXPORT CSettingsComponent : public QTabWidget
+    class SWIFT_GUI_EXPORT CSettingsComponent : public QFrame
     {
         Q_OBJECT
 
@@ -70,8 +70,8 @@ namespace swift::gui::components
         void changedWindowsOpacity(int opacity);
 
     private:
-        //! An overview button was clicked
-        void onOverviewButtonClicked();
+        //! Set the current settings page by index.
+        void setCurrentIndex(int index);
 
         QScopedPointer<Ui::CSettingsComponent> ui;
     };

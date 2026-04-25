@@ -35,12 +35,15 @@ namespace swift::gui::components
         void onAddPressed();
         void onAddByUrlPressed();
         void onDeletePressed();
+        void onEditUserPressed();
         void onRefreshSelectedPressed();
         void onRefreshAllPressed();
+        bool editNetworkUser(int row, bool required);
 
         QTableWidget *m_table = nullptr;
         QPushButton *m_pbAdd = nullptr;
         QPushButton *m_pbDelete = nullptr;
+        QPushButton *m_pbEditUser = nullptr;
         QPushButton *m_pbRefreshSelected = nullptr;
         QPushButton *m_pbRefreshAll = nullptr;
 

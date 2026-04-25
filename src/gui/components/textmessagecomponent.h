@@ -73,6 +73,9 @@ namespace swift::gui
             //! Show the settings
             void showSettings(bool show);
 
+            //! Show recipient selector
+            void showRecipientSelector(bool show);
+
             //! Show an text entry field
             void showTextMessageEntry(bool show);
 

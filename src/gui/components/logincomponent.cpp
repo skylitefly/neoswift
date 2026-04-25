@@ -112,6 +112,7 @@ namespace swift::gui::components
         // server and UI elements when in disconnect state
         ui->frp_CurrentServer->setReadOnly(true);
         ui->frp_CurrentServer->showPasswordField(false);
+        ui->gb_PilotsDetails->setVisible(false);
         ui->tb_Timeout->setIcon(m_iconPause);
         connect(ui->tb_Timeout, &QToolButton::clicked, this, &CLoginComponent::toggleTimeout);
 
@@ -296,6 +297,7 @@ namespace swift::gui::components
     {
         if (!m_updatePilotOnServerChanges) { return; }
         if (server.getUser().hasCredentials()) { ui->form_Pilot->setUser(server.getUser()); }
+        else { ui->form_Pilot->clear(); }
     }
 
     void CLoginComponent::onSimulatorStatusChanged(int status)
@@ -317,9 +319,7 @@ namespace swift::gui::components
     void CLoginComponent::onNetworkStatusChanged(const CConnectionStatus &from, const CConnectionStatus &to)
     {
         Q_UNUSED(from)
-        if (to != CConnectionStatus::Connected) { return; }
-
-        m_networkConnected = true;
+        m_networkConnected = to == CConnectionStatus::Connected;
         this->updateUiConnectState();
         this->updateGui();
     }
@@ -342,6 +342,17 @@ namespace swift::gui::components
     }
 
     CServer CLoginComponent::getCurrentServer() const { return ui->comp_NetworkDetails->getCurrentServer(); }
+
+    void CLoginComponent::refreshFromContexts()
+    {
+        if (!this->hasValidContexts()) { return; }
+        m_networkConnected = sGui->getIContextNetwork()->isConnected();
+        m_simulatorConnected =
+            sGui->getIContextSimulator()->getSimulatorStatus().testFlag(ISimulator::Connected);
+        this->updateUiConnectState();
+        if (m_networkConnected) { this->updateGui(); }
+        else { this->loadRememberedUserData(); }
+    }
 
     void CLoginComponent::startLogoffTimerCountdown()
     {

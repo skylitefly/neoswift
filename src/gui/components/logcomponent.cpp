@@ -58,8 +58,8 @@ namespace swift::gui::components
             clearMessages();
             m_history.setFilter(filter.to<CLogPattern>());
         });
-        m_history.setFilter(CLogPattern().withSeverityAtOrAbove(CStatusMessage::SeverityInfo));
         m_history.initialize(sApp->getDataLinkDBus());
+        m_history.setFilter(CLogPattern().withSeverityAtOrAbove(CStatusMessage::SeverityInfo));
     }
 
     CLogComponent::~CLogComponent() = default;

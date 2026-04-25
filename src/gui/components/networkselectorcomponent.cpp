@@ -185,17 +185,20 @@ namespace swift::gui::components
                                                     const int currentIdx = m_cbNetwork->currentIndex();
                                                     if (currentIdx >= 0 && currentIdx < updated.size())
                                                     {
-                                                        updated[currentIdx] = discovered;
+                                                        CNetwork network = discovered;
+                                                        network.setUser(updated[currentIdx].getUser());
+                                                        updated[currentIdx] = network;
                                                         m_networks.set(updated);
-                                                        this->populateServers(discovered);
-                                                        m_lastNetwork.set(discovered);
+                                                        this->populateServers(network);
+                                                        m_lastNetwork.set(network);
                                                     }
                                                 } });
     }
 
     void CNetworkSelectorComponent::populateServers(const CNetwork &network)
     {
-        const CServerList servers = network.getServers();
+        CServerList servers = network.getServers();
+        for (CServer &server : servers) { server.setUser(network.getUser()); }
         m_serverSelector->setServers(servers);
         // Try to preselect the last used server name for this network
         if (!servers.isEmpty()) { m_serverSelector->preSelect(servers.front().getName()); }
