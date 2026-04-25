@@ -194,10 +194,10 @@ namespace swift::gui::components
         const QFileInfo fiSaveAs(saveAsFile);
         if (fiSaveAs.exists())
         {
-            const QString msg = QStringLiteral("File '%1' already exists locally.\n\nDo you want to reload the file?")
+            const QString msg = tr("File '%1' already exists locally.\n\nDo you want to reload the file?")
                                     .arg(fiSaveAs.absoluteFilePath());
             QMessageBox::StandardButton reply =
-                QMessageBox::question(this, "File exists", msg, QMessageBox::Yes | QMessageBox::No);
+                QMessageBox::question(this, tr("File exists"), msg, QMessageBox::Yes | QMessageBox::No);
             if (reply != QMessageBox::Yes)
             {
                 const QPointer<CDownloadComponent> myself(this);
@@ -278,11 +278,13 @@ namespace swift::gui::components
         QString msg;
         if (CBuildConfig::isRunningOnMacOSPlatform())
         {
-            msg = "To install close swift, "
-                  "mount the disk image '%1' and run the installer inside "
-                  "to proceed with the update.";
+            msg = tr("To install close swift, mount the disk image '%1' and run the installer inside "
+                     "to proceed with the update.");
         }
-        else { msg = ui->cb_Shutdown->isChecked() ? QString("Start '%1' and close swift?") : QString("Start '%1'?"); }
+        else
+        {
+            msg = ui->cb_Shutdown->isChecked() ? tr("Start '%1' and close swift?") : tr("Start '%1'?");
+        }
 
         for (const CRemoteFile &rf : executables)
         {
@@ -291,7 +293,7 @@ namespace swift::gui::components
             if (!executableFile.exists()) { continue; }
 
             QMessageBox::StandardButton reply =
-                QMessageBox::question(this, "Start?", msg.arg(rf.getName()), QMessageBox::Yes | QMessageBox::No);
+                QMessageBox::question(this, tr("Start?"), msg.arg(rf.getName()), QMessageBox::Yes | QMessageBox::No);
             if (reply != QMessageBox::Yes) { return; }
 
             const CPlatform p = CArtifact::artifactNameToPlatform(rf.getName());

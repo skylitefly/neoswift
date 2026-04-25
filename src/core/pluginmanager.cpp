@@ -29,7 +29,7 @@ namespace swift::core
         QDir pluginDir(pluginDirectory());
         if (!pluginDir.exists())
         {
-            CLogMessage(this).warning(u"No such directory: %1") << pluginDir.path();
+            CLogMessage(this).warning(tr("No such directory: %1")) << pluginDir.path();
             return;
         }
 
@@ -76,7 +76,7 @@ namespace swift::core
         const QJsonObject json = loader.metaData();
         if (!isValid(json))
         {
-            CLogMessage(this).warning(u"Plugin '%1' invalid, not loading it") << path;
+            CLogMessage(this).warning(tr("Plugin '%1' invalid, not loading it")) << path;
             return false;
         }
 
@@ -99,7 +99,7 @@ namespace swift::core
 
         if (!m_paths.contains(identifier))
         {
-            CLogMessage(this).warning(u"Plugin with id '%1' does not exist") << identifier;
+            CLogMessage(this).warning(tr("Plugin with id '%1' does not exist")) << identifier;
             return nullptr;
         }
 

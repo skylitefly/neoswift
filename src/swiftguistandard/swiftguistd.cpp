@@ -831,10 +831,11 @@ void SwiftGuiStd::displayDBusReconnectDialog()
     if (!sGui->getCoreFacadeConfig().requiresDBusConnection()) { return; }
     m_displayingDBusReconnect = true;
     const QString dBusAddress = sGui->getCoreFacade()->getDBusAddress();
-    static const QString informativeText("Do you want to try to reconnect? 'Abort' will close the GUI.\n\nDBus: '%1'");
+    const QString informativeText =
+        tr("Do you want to try to reconnect? 'Abort' will close the GUI.\n\nDBus: '%1'");
     QMessageBox msgBox(this);
     msgBox.setIcon(QMessageBox::Critical);
-    msgBox.setText("neoswift core not reachable!");
+    msgBox.setText(tr("neoswift core not reachable!"));
     msgBox.setInformativeText(informativeText.arg(dBusAddress));
     msgBox.setStandardButtons(QMessageBox::Retry | QMessageBox::Abort);
     msgBox.setDefaultButton(QMessageBox::Retry);
@@ -884,8 +885,8 @@ bool SwiftGuiStd::triggerAutoPublishDialog()
     if (!showAutoPublish) { return false; }
 
     const QMessageBox::StandardButton reply =
-        QMessageBox::question(this, QStringLiteral("Upload data?"),
-                              QStringLiteral("Do you want to help improving swift by uploading anonymized data?"),
+        QMessageBox::question(this, tr("Upload data?"),
+                              tr("Do you want to help improving swift by uploading anonymized data?"),
                               QMessageBox::Yes | QMessageBox::No);
 
     if (reply != QMessageBox::Yes)

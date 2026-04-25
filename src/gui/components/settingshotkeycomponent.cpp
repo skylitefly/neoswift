@@ -160,15 +160,15 @@ namespace swift::gui::components
         if (!conflicts.isEmpty())
         {
             QString message =
-                QStringLiteral("The selected combination conflicts with the following %1 combination(s):\n\n")
+                tr("The selected combination conflicts with the following %1 combination(s):\n\n")
                     .arg(conflicts.size());
             for (const CActionHotkey &conflict : conflicts)
             {
                 message += conflict.toQString();
                 message += "\n";
             }
-            message += "\n Do you want to use it anway?";
-            const auto reply = QMessageBox::warning(this, "SettingsHotkeyComponent", message,
+            message += tr("\n Do you want to use it anway?");
+            const auto reply = QMessageBox::warning(this, tr("SettingsHotkeyComponent"), message,
                                                     QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
             if (reply == QMessageBox::No) { return false; }
         }
@@ -214,8 +214,8 @@ namespace swift::gui::components
             auto *msgBox = new QMessageBox(this);
             msgBox->setAttribute(Qt::WA_DeleteOnClose);
             msgBox->setStandardButtons(QMessageBox::Ok);
-            msgBox->setWindowTitle("Test");
-            msgBox->setText("Hotkey test");
+            msgBox->setWindowTitle(tr("Test"));
+            msgBox->setText(tr("Hotkey test"));
             msgBox->setIcon(QMessageBox::Information);
             msgBox->setModal(false);
             msgBox->open();

@@ -600,10 +600,11 @@ namespace swift::gui::components
             if (CDirectoryUtils::isInApplicationDirectory(fpDir.absolutePath()))
             {
                 const int ret =
-                    QMessageBox::warning(this, "swift flight plan",
-                                         "You try to save inside the swift directory '" + fpDir.absolutePath() +
-                                             "'\n\nThis is not recommended!"
-                                             "\n\nDo you want to really do this?",
+                    QMessageBox::warning(this, tr("swift flight plan"),
+                                         tr("You try to save inside the swift directory '%1'\n\n"
+                                            "This is not recommended!\n\n"
+                                            "Do you want to really do this?")
+                                             .arg(fpDir.absolutePath()),
                                          QMessageBox::Save | QMessageBox::Cancel);
                 if (ret != QMessageBox::Save) { return; }
             }
@@ -681,7 +682,7 @@ namespace swift::gui::components
         if (loadedPlan.wasSentOrLoaded())
         {
             const QMessageBox::StandardButton r = QMessageBox::warning(
-                this, "Loaded FP", "Override current flight plan data?", QMessageBox::Yes | QMessageBox::No);
+                this, tr("Loaded FP"), tr("Override current flight plan data?"), QMessageBox::Yes | QMessageBox::No);
             if (r != QMessageBox::Yes) { return; }
             this->fillWithFlightPlanData(loadedPlan);
             CLogMessage(this).info(u"Updated with loaded flight plan");
@@ -801,7 +802,7 @@ namespace swift::gui::components
     {
         if (!ui->pte_Remarks->toPlainText().trimmed().isEmpty())
         {
-            const int reply = QMessageBox::question(this, "Remarks", "Override existing remarks?",
+            const int reply = QMessageBox::question(this, tr("Remarks"), tr("Override existing remarks?"),
                                                     QMessageBox::Yes | QMessageBox::No);
             if (reply != QMessageBox::Yes) { return false; }
         }
