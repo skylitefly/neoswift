@@ -412,6 +412,7 @@ namespace swift::core::afv::clients
 
         std::atomic_int m_fsdConnectMismatches { 0 }; //!< FSD no longer connected?
         std::atomic_int m_retryConnectAttempt { 0 }; //!< try to connect the n-th time
+        std::atomic_int m_connectionGeneration { 0 }; //!< invalidates pending reconnect attempts after disconnect
         std::atomic_int m_heartBeatFailures { 0 }; //!< voice server heartbeat failures
         std::atomic_bool m_isStarted { false };
         std::atomic_bool m_loopbackOn { false };

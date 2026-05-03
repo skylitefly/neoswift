@@ -613,6 +613,16 @@ namespace swift::core::context
             if (!m_voiceClient) { this->initVoiceClient(); }
             if (!m_voiceClient) { return; }
 
+            const QString afvApiUrl =
+                (m_currentNetworkConfig.isValid() && !m_currentNetworkConfig.getVoiceApiUrl().isEmpty()) ?
+                    m_currentNetworkConfig.getVoiceApiUrl().toQString() :
+                    sApp->getGlobalSetup().getAfvApiServerUrl().toQString();
+            if (!afvApiUrl.isEmpty() && m_voiceClient->updateVoiceServerUrl(afvApiUrl))
+            {
+                m_voiceClient->disconnectFrom();
+                CLogMessage(this).info(u"Updated AFV API URL for current network: '%1'") << afvApiUrl;
+            }
+
             const bool connected = this->connectAudioWithNetworkCredentials();
             Q_UNUSED(connected)
         }

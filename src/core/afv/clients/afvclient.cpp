@@ -149,6 +149,7 @@ namespace swift::core::afv::clients
         // called in CAfvClient thread
         this->connectWithContexts();
         this->setCallsign(callsign);
+        const int connectionGeneration = m_connectionGeneration.load();
 
         QPointer<CAfvClient> myself(this);
         if (!this->isConnected() && m_retryConnectAttempt == 0)
@@ -156,6 +157,7 @@ namespace swift::core::afv::clients
             // check if connect simply did NOT receive an answer
             QTimer::singleShot(20 * 1000, this, [=] {
                 if (!myself) { return; }
+                if (m_connectionGeneration.load() != connectionGeneration) { return; }
                 if (m_retryConnectAttempt > 0) { return; } // already handled
 
                 // this will reconnect ONLY if not already connected
@@ -173,6 +175,15 @@ namespace swift::core::afv::clients
                 { // this is the callback when the connection has been established
                   this, [=](bool authenticated) {
                       if (!myself) { return; } // cppcheck-suppress knownConditionTrueFalse
+                      if (m_connectionGeneration.load() != connectionGeneration)
+                      {
+                          if (authenticated)
+                          {
+                              QMutexLocker lock(&m_mutexConnection);
+                              m_connection->disconnectFrom(QStringLiteral("Stale AFV connection"));
+                          }
+                          return;
+                      }
 
                       // HF stations aliased
                       const QVector<StationDto> aliasedStations = m_connection->getAllAliasedStations();
@@ -215,6 +226,7 @@ namespace swift::core::afv::clients
         }
 
         // we intentionally DO NOT STOP the timer here, but keep it for preset (own aircraft pos.)
+        ++m_connectionGeneration;
         // threadsafe
         {
             QMutexLocker lock(&m_mutexConnection);
@@ -1076,8 +1088,10 @@ namespace swift::core::afv::clients
         if (this->isConnected()) { this->disconnectFrom(false); }
 
         QPointer<CAfvClient> myself(this);
+        const int connectionGeneration = m_connectionGeneration.load();
         QTimer::singleShot(5 * 1000, this, [=] {
             if (!myself) { return; }
+            if (m_connectionGeneration.load() != connectionGeneration) { return; }
             const QString reason = QStringLiteral("Heartbeat failed %1 times").arg(failures);
             this->retryConnectTo(un, pw, cs, client, reason);
         });
@@ -1284,8 +1298,10 @@ namespace swift::core::afv::clients
         }
 
         QPointer<CAfvClient> myself(this);
+        const int connectionGeneration = m_connectionGeneration.load();
         QTimer::singleShot(delayMs, this, [=] {
             if (!myself) { return; }
+            if (m_connectionGeneration.load() != connectionGeneration) { return; }
             if (myself->isConnected()) { return; }
             this->connectTo(cid, password, callsign, client);
         });
