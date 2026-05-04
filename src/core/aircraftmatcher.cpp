@@ -374,7 +374,7 @@ namespace swift::core
         else if (modelSet.isEmpty())
         {
             CMatchingUtils::addLogDetailsToList(log, remoteAircraft,
-                                                QStringLiteral("No models for matching, using default"),
+                                                tr("No models for matching, using default"),
                                                 getLogCategories(), CStatusMessage::SeverityError);
             matchedModel = this->getDefaultModel();
             resolvedInPrephase = true;
@@ -1657,18 +1657,18 @@ namespace swift::core
         if (modelsCleaned.isEmpty())
         {
             // error to force popup
-            CLogMessage(this).error(u"No models for matching ('%1'), swift without a model set will not work!")
+            CLogMessage(this).error(tr("No models for matching ('%1'), swift without a model set will not work!"))
                 << simulator.toQString();
         }
         else if (!duplicateModels.isEmpty())
         {
-            CLogMessage(this).error(u"Found model duplicate strings, check models: '%1'")
+            CLogMessage(this).error(tr("Found model duplicate strings, check models: '%1'"))
                 << duplicateModels.dbKeysAsString(", ");
         }
         else if (!warnings.isEmpty()) { CLogMessage(this).validationWarning(warnings); }
         else
         {
-            CLogMessage(this).validationInfo(u"Set %1 models in matcher, simulator '%2'")
+            CLogMessage(this).validationInfo(tr("Set %1 models in matcher, simulator '%2'"))
                 << modelsCleaned.size() << simulator.toQString();
         }
 

@@ -535,7 +535,7 @@ void SwiftGuiStd::verifyPrerequisites()
         // But this happens way before initializing the GUI. Hence do the check here again to show an error message
         // to the user
         msgs.push_back(
-            CLogMessage(this).error(u"Cannot access the keyboard. Is \"Input Monitoring\" for swift enabled?"));
+            CLogMessage(this).error(tr("Cannot access the keyboard. Is \"Input Monitoring\" for swift enabled?")));
     }
 #endif
 

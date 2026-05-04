@@ -1567,57 +1567,57 @@ namespace swift::core::fsd
         const ServerError serverError = ServerError::fromTokens(tokens);
         switch (serverError.m_errorNumber)
         {
-        case ServerErrorCode::CallsignInUse: CLogMessage(this).error(u"The requested callsign is already taken"); break;
-        case ServerErrorCode::InvalidCallsign: CLogMessage(this).error(u"The requested callsign is not valid"); break;
+        case ServerErrorCode::CallsignInUse: CLogMessage(this).error(tr("The requested callsign is already taken")); break;
+        case ServerErrorCode::InvalidCallsign: CLogMessage(this).error(tr("The requested callsign is not valid")); break;
         case ServerErrorCode::InvalidCidPassword:
-            CLogMessage(this).error(u"Wrong user ID or password, inactive account");
+            CLogMessage(this).error(tr("Wrong user ID or password, inactive account"));
             break;
         case ServerErrorCode::InvalidRevision:
-            CLogMessage(this).error(u"This server does not support our protocol version");
+            CLogMessage(this).error(tr("This server does not support our protocol version"));
             break;
-        case ServerErrorCode::ServerFull: CLogMessage(this).error(u"The server is full"); break;
-        case ServerErrorCode::CidSuspended: CLogMessage(this).error(u"Your user account is suspended"); break;
+        case ServerErrorCode::ServerFull: CLogMessage(this).error(tr("The server is full")); break;
+        case ServerErrorCode::CidSuspended: CLogMessage(this).error(tr("Your user account is suspended")); break;
         case ServerErrorCode::RatingTooLow:
-            CLogMessage(this).error(u"You are not authorized to use the requested rating");
+            CLogMessage(this).error(tr("You are not authorized to use the requested rating"));
             break;
         case ServerErrorCode::InvalidClient:
-            CLogMessage(this).error(u"This software is not authorized for use on this network");
+            CLogMessage(this).error(tr("This software is not authorized for use on this network"));
             break;
         case ServerErrorCode::RequestedLevelTooHigh:
-            CLogMessage(this).error(u"You are not authorized to use the requested pilot rating");
+            CLogMessage(this).error(tr("You are not authorized to use the requested pilot rating"));
             break;
 
-        case ServerErrorCode::NoError: CLogMessage(this).info(u"OK"); break;
+        case ServerErrorCode::NoError: CLogMessage(this).info(tr("OK")); break;
         case ServerErrorCode::SyntaxError:
             CLogMessage(this).error(
-                u"Malformed packet, syntax error: '%1'. This can also occur if an OBS sends frequency text messages.")
+                tr("Malformed packet, syntax error: '%1'. This can also occur if an OBS sends frequency text messages."))
                 << serverError.getCausingParameter();
             break;
         case ServerErrorCode::InvalidSrcCallsign:
-            CLogMessage(this).info(u"FSD message was using an invalid callsign: %1 (%2)")
+            CLogMessage(this).info(tr("FSD message was using an invalid callsign: %1 (%2)"))
                 << serverError.getCausingParameter() << serverError.getDescription();
             break;
         case ServerErrorCode::NoSuchCallsign:
-            CLogMessage(this).info(u"FSD Server: no such callsign: %1 %2")
+            CLogMessage(this).info(tr("FSD Server: no such callsign: %1 %2"))
                 << serverError.getCausingParameter() << serverError.getDescription();
             break;
-        case ServerErrorCode::NoFlightPlan: CLogMessage(this).info(u"FSD Server: no flight plan"); break;
+        case ServerErrorCode::NoFlightPlan: CLogMessage(this).info(tr("FSD Server: no flight plan")); break;
         case ServerErrorCode::NoWeatherProfile:
-            CLogMessage(this).info(u"FSD Server: requested weather profile does not exist");
+            CLogMessage(this).info(tr("FSD Server: requested weather profile does not exist"));
             break;
 
         // we have no idea what these mean
         case ServerErrorCode::AlreadyRegistered:
-            CLogMessage(this).warning(u"Server says already registered: %1") << serverError.getDescription();
+            CLogMessage(this).warning(tr("Server says already registered: %1")) << serverError.getDescription();
             break;
         case ServerErrorCode::InvalidCtrl:
-            CLogMessage(this).warning(u"Server invalid control: %1") << serverError.getDescription();
+            CLogMessage(this).warning(tr("Server invalid control: %1")) << serverError.getDescription();
             break;
         case ServerErrorCode::Unknown:
-            CLogMessage(this).warning(u"Server sent unknown error code: %1 (%2)")
+            CLogMessage(this).warning(tr("Server sent unknown error code: %1 (%2)"))
                 << serverError.getCausingParameter() << serverError.getDescription();
             break;
-        case ServerErrorCode::AuthTimeout: CLogMessage(this).warning(u"Client did not authenticate in time"); break;
+        case ServerErrorCode::AuthTimeout: CLogMessage(this).warning(tr("Client did not authenticate in time")); break;
         }
         if (serverError.isFatalError()) { disconnectFromServer(); }
     }
