@@ -561,25 +561,9 @@
           </item>
          </layout>
         </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="gb_AutoPublish">
-         <property name="title">
-          <string>Auto publish</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
-          <item alignment="Qt::AlignRight">
-           <widget class="QPushButton" name="pb_AddAutoPublishData">
-            <property name="text">
-             <string>add</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="gb_LogMessages">
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gb_LogMessages">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
            <horstretch>0</horstretch>
@@ -732,7 +716,6 @@
   <tabstop>le_SituationAdded</tabstop>
   <tabstop>le_PartsAdded</tabstop>
   <tabstop>le_PartsEnabledAircraft</tabstop>
-  <tabstop>pb_AddAutoPublishData</tabstop>
   <tabstop>sa_LogMessages</tabstop>
  </tabstops>
  <resources/>

@@ -11,7 +11,6 @@
 #include "core/corefacadeconfig.h"
 #include "core/simulator.h"
 #include "core/webdataservices.h"
-#include "gui/components/autopublishdialog.h"
 #include "gui/components/dbloaddatadialog.h"
 #include "gui/components/aircraftcomponent.h"
 #include "gui/components/atcstationcomponent.h"
@@ -190,12 +189,6 @@ void SwiftGuiStd::closeEvent(QCloseEvent *event)
                 if (!myself) { return; }
                 myself->showLoginWindow();
             });
-            return;
-        }
-
-        if (this->triggerAutoPublishDialog())
-        {
-            event->ignore();
             return;
         }
 
@@ -873,30 +866,6 @@ void SwiftGuiStd::onShowOverlayInlineTextMessageCallsign(const CCallsign &callsi
     if (!sGui || sGui->isShuttingDown()) { return; }
     ui->comp_TextMessages->showCorrespondingTab(callsign);
     ui->comp_TextMessages->focusTextEntry();
-}
-
-bool SwiftGuiStd::triggerAutoPublishDialog()
-{
-    if (!CAutoPublishData::existAutoPublishFiles()) { return false; }
-
-    constexpr qint64 deltaT = 48 * 60 * 60 * 1000;
-    const qint64 lastDialogTs = m_lastAutoPublish.get();
-    bool showAutoPublish = lastDialogTs < 0 || (QDateTime::currentMSecsSinceEpoch() - lastDialogTs) > deltaT;
-    if (!showAutoPublish) { return false; }
-
-    const QMessageBox::StandardButton reply =
-        QMessageBox::question(this, tr("Upload data?"),
-                              tr("Do you want to help improving swift by uploading anonymized data?"),
-                              QMessageBox::Yes | QMessageBox::No);
-
-    if (reply != QMessageBox::Yes)
-    {
-        m_lastAutoPublish.set(QDateTime::currentMSecsSinceEpoch());
-        return false;
-    }
-
-    this->autoPublishDialog(); // updates m_lastAutoPublish
-    return true;
 }
 
 bool SwiftGuiStd::startModelBrowser()

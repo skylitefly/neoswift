@@ -538,13 +538,6 @@
                  </property>
                 </widget>
                </item>
-               <item>
-                <widget class="QPushButton" name="pb_DumpDir">
-                 <property name="text">
-                  <string>dump files</string>
-                 </property>
-                </widget>
-               </item>
               </layout>
              </widget>
             </item>
@@ -849,7 +842,6 @@
   <tabstop>sa_DataUpdates</tabstop>
   <tabstop>pb_Log</tabstop>
   <tabstop>pb_LogDir</tabstop>
-  <tabstop>pb_DumpDir</tabstop>
   <tabstop>pb_P3DConfigDirs</tabstop>
   <tabstop>pb_FSXConfigDirs</tabstop>
   <tabstop>tb_BackToMain</tabstop>

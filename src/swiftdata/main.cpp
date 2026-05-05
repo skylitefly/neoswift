@@ -8,7 +8,6 @@
 
 #include "core/webreaderflags.h"
 #include "gui/guiapplication.h"
-#include "misc/crashhandler.h"
 #include "misc/icons.h"
 #include "swiftdata.h"
 #include "swiftdataapplication.h"
@@ -22,8 +21,6 @@ int main(int argc, char *argv[])
 {
     QApplication qa(argc, argv);
     Q_UNUSED(qa)
-
-    CCrashHandler::instance()->init();
 
     int r = 0;
     {

@@ -62,15 +62,6 @@ namespace swift::gui::components
         //! Set the context flags
         void contextFlagsToGui();
 
-        //! Simulate a crash
-        void simulateCrash();
-
-        //! Simulate ASSERT
-        void simulateAssert();
-
-        //! Checkbox toggled
-        void onCrashDumpUploadToggled(bool checked);
-
         //! Show network statistics
         void networkStatistics();
 

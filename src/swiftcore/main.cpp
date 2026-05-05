@@ -10,7 +10,6 @@
 
 #include "core/corefacadeconfig.h"
 #include "gui/guiapplication.h"
-#include "misc/crashhandler.h"
 #include "misc/icons.h"
 #include "swiftcore.h"
 
@@ -23,7 +22,6 @@ int main(int argc, char *argv[])
     QApplication qa(argc, argv);
     Q_UNUSED(qa) // init of qa is required, but qa not used
 
-    CCrashHandler::instance()->init();
     CGuiApplication a(CApplicationInfo::swiftCore(), CApplicationInfo::PilotClientCore, CIcons::swiftCore24());
     a.addWindowStateOption();
     a.addDBusAddressOption();

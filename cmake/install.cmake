@@ -7,20 +7,6 @@ set(GENERAL_FILES
         )
 install(FILES ${GENERAL_FILES} DESTINATION bin)
 
-# Crashpad
-if(UNIX AND NOT APPLE)
-    set(crashpad_handler_path ${CMAKE_SOURCE_DIR}/third_party/externals/linux-g++/64/bin/swift_crashpad_handler)
-elseif(SWIFT_WIN32)
-    set(crashpad_handler_path ${CMAKE_SOURCE_DIR}/third_party/externals/win32-msvc/32/bin/swift_crashpad_handler.exe)
-elseif(SWIFT_WIN64)
-    set(crashpad_handler_path ${CMAKE_SOURCE_DIR}/third_party/externals/win32-msvc/64/bin/swift_crashpad_handler.exe)
-elseif(APPLE)
-    set(crashpad_handler_path ${CMAKE_SOURCE_DIR}/third_party/externals/macx-clang/64/bin/swift_crashpad_handler)
-endif()
-if(EXISTS "${crashpad_handler_path}")
-    install(PROGRAMS ${crashpad_handler_path} DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
-endif()
-
 # Deploy qt libs
 
 # Workaround to get Qt paths for deployment (until switching to Qt6 deployment tool)

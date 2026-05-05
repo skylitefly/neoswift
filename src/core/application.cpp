@@ -39,7 +39,6 @@
 #include "core/setupreader.h"
 #include "core/webdataservices.h"
 #include "misc/applicationinfo.h"
-#include "misc/crashhandler.h"
 #include "misc/datacache.h"
 #include "misc/dbusserver.h"
 #include "misc/eventloop.h"
@@ -300,16 +299,6 @@ namespace swift::core
             {
                 const QStringList files(CApplication::clearCaches());
                 msgs.push_back(CLogMessage(this).debug() << "Cleared cache, " << files.size() << " files");
-            }
-
-            // crashpad dump
-            if (this->isSet(m_cmdTestCrashpad))
-            {
-                msgs.push_back(CLogMessage(this).info(u"About to simulate crash"));
-                QTimer::singleShot(10 * 1000, [=] {
-                    if (!sApp || sApp->isShuttingDown()) { return; }
-                    this->simulateCrash();
-                });
             }
 
             Q_ASSERT_X(m_setupReader && m_setupReader->isSetupAvailable(), Q_FUNC_INFO, "Setup not available");
@@ -791,10 +780,6 @@ namespace swift::core
                                              QCoreApplication::translate("application", "Clear (reset) the caches."));
         this->addParserOption(m_cmdClearCache);
 
-        // test crashpad upload
-        m_cmdTestCrashpad = QCommandLineOption(
-            { "testcp", "testcrashpad" }, QCoreApplication::translate("application", "Trigger crashpad situation."));
-        this->addParserOption(m_cmdTestCrashpad);
     }
 
     bool CApplication::isSet(const QCommandLineOption &option) const { return (m_parser.isSet(option)); }
@@ -1253,27 +1238,6 @@ namespace swift::core
         if (m_shutdown || !m_setupReader) { return {}; }
 
         return m_setupReader->getSetup().getVatsimFsdHttpUrl();
-    }
-
-    void CApplication::onCrashDumpUploadEnabledChanged()
-    {
-        const bool enabled = CBuildConfig::isReleaseBuild() && m_crashDumpUploadEnabled.getThreadLocal();
-        this->enableCrashDumpUpload(enabled);
-    }
-
-    void CApplication::simulateCrash() { CCrashHandler::instance()->simulateCrash(); }
-
-    void CApplication::simulateAssert() { CCrashHandler::instance()->simulateAssert(); }
-
-    void CApplication::enableCrashDumpUpload(bool enable) { CCrashHandler::instance()->setUploadsEnabled(enable); }
-
-    bool CApplication::isSupportingCrashpad() const
-    {
-#ifdef SWIFT_USE_CRASHPAD
-        return true;
-#else
-        return false;
-#endif
     }
 
     void CApplication::httpRequestImplInQAMThread(const QNetworkRequest &request, int logId,

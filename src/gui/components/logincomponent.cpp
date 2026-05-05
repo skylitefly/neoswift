@@ -33,7 +33,6 @@
 #include "misc/aviation/aircrafticaocode.h"
 #include "misc/aviation/airlineicaocode.h"
 #include "misc/aviation/airporticaocode.h"
-#include "misc/crashhandler.h"
 #include "misc/icons.h"
 #include "misc/logmessage.h"
 #include "misc/network/connectionstatus.h"
@@ -254,8 +253,6 @@ namespace swift::gui::components
             {
                 Q_ASSERT_X(currentServer.isValidForLogin(), Q_FUNC_INFO, "invalid server");
                 sGui->setExtraWindowTitle(QStringLiteral("[%1]").arg(ownAircraft.getCallsignAsString()));
-                CCrashHandler::instance()->crashAndLogInfoUserName(currentServer.getUser().getRealNameAndId());
-                CCrashHandler::instance()->crashAndLogAppendInfo(currentServer.getServerSessionId(false));
                 m_networkSetup.setLastServer(currentServer);
 
                 const CAircraftModel ownModel = ownAircraft.getModel();

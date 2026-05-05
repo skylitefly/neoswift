@@ -9,10 +9,6 @@
 
 #include "misc/logcategories.h"
 
-#ifdef SWIFT_USE_CRASHPAD
-#    include "crashpad/client/simulate_crash.h"
-#endif
-
 #ifdef Q_CC_MSVC
 #    include <Windows.h>
 #    include <intrin.h>
@@ -71,9 +67,6 @@ namespace swift::misc::private_ns
             log = QStringLiteral("Failed to verify: %1 in %2 line %3").arg(condition, filename, QString::number(line));
         }
         QMessageLogger().warning(QLoggingCategory(qPrintable(CLogCategories::verification()))) << log;
-#    if defined(SWIFT_USE_CRASHPAD)
-        CRASHPAD_SIMULATE_CRASH();
-#    endif
 #endif
     }
 } // namespace swift::misc::private_ns

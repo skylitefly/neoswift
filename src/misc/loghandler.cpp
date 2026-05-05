@@ -10,10 +10,6 @@
 #include "misc/mixin/mixincompare.h"
 #include "misc/threadutils.h"
 
-#ifdef SWIFT_USE_CRASHPAD
-#    include "crashpad/client/simulate_crash.h"
-#endif
-
 #include <algorithm>
 
 #include <QAbstractNativeEventFilter>
@@ -69,9 +65,6 @@ namespace swift::misc
             MessageBoxW(nullptr, message.toStdWString().c_str(), nullptr,
                         MB_OK); // display assert dialog in release build
             qApp->removeNativeEventFilter(&ef);
-#    if defined(SWIFT_USE_CRASHPAD)
-            CRASHPAD_SIMULATE_CRASH(); // workaround inability to catch __fastfail
-#    endif
         }
 #endif
         QMetaObject::invokeMethod(CLogHandler::instance(), [statusMessage = CStatusMessage(type, context, message)] {

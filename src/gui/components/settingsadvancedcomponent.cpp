@@ -5,32 +5,14 @@
 
 #include "ui_settingsadvancedcomponent.h"
 
-using namespace swift::misc;
-
 namespace swift::gui::components
 {
     CSettingsAdvancedComponent::CSettingsAdvancedComponent(QWidget *parent)
         : QFrame(parent), ui(new Ui::CSettingsAdvancedComponent)
     {
         ui->setupUi(this);
-
-        const bool crashDumpUploadEnabled = m_crashDumpUploadEnabled.getThreadLocal();
-        ui->cb_crashDumpsUpload->setChecked(crashDumpUploadEnabled);
-        connect(ui->cb_crashDumpsUpload, &QCheckBox::checkStateChanged, this,
-                &CSettingsAdvancedComponent::crashDumpUploadEnabledChanged);
     }
 
     CSettingsAdvancedComponent::~CSettingsAdvancedComponent() = default;
-
-    void CSettingsAdvancedComponent::crashDumpUploadEnabledChanged(Qt::CheckState state)
-    {
-        auto text = ui->cb_crashDumpsUpload->text();
-        if (!text.endsWith("(restart needed)"))
-        {
-            ui->cb_crashDumpsUpload->setText(ui->cb_crashDumpsUpload->text() + " (restart needed)");
-        }
-
-        m_crashDumpUploadEnabled.set(state == Qt::Checked);
-    }
 
 } // namespace swift::gui::components

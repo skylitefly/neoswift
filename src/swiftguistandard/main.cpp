@@ -11,8 +11,6 @@
 #include "gui/enableforframelesswindow.h"
 #include "gui/guiapplication.h"
 #include "gui/guiutility.h"
-#include "misc/crashhandler.h"
-
 using namespace swift::gui;
 using namespace swift::misc;
 using namespace swift::misc::audio;
@@ -22,8 +20,6 @@ int main(int argc, char *argv[])
 {
     QApplication qa(argc, argv);
     Q_UNUSED(qa) // application init needed
-
-    CCrashHandler::instance()->init();
 
     // at shutdown the whole application will be "deleted" outside the block
     // that should already delete all widgets

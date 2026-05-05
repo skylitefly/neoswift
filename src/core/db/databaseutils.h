@@ -15,7 +15,7 @@
 #include "core/progress.h"
 #include "core/swiftcoreexport.h"
 #include "misc/simulation/aircraftmodel.h"
-#include "misc/simulation/autopublishdata.h"
+#include "misc/simulation/aircraftmodellist.h"
 
 namespace swift::core::db
 {
@@ -125,18 +125,6 @@ namespace swift::core::db
         //! Multipart with DEBUG FLAG for server
         static QHttpPart getMultipartWithDebugFlag();
 
-        //! Which auto-publish data did change?
-        //! \sa CAutoPublishData::analyzeAgainstDBData
-        static swift::misc::simulation::ChangedAutoPublishData
-        autoPublishDataChanged(const QString &modelString, const swift::misc::physical_quantities::CLength &cg,
-                               const swift::misc::simulation::CSimulatorInfo &simulator);
-
-        //! Which auto-publish data did change?
-        //! \sa CAutoPublishData::analyzeAgainstDBData
-        static swift::misc::simulation::ChangedAutoPublishData
-        autoPublishDataChanged(const swift::misc::simulation::CAircraftModel &model,
-                               const swift::misc::physical_quantities::CLength &cg,
-                               const swift::misc::simulation::CSimulatorInfo &simulator);
     };
 } // namespace swift::core::db
 #endif // SWIFT_CORE_DB_DATABASEUTILS_H

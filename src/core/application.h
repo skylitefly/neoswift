@@ -281,21 +281,6 @@ namespace swift::core
 
         //! @}
 
-        //! Simulate a crash
-        //! \private only for testing purposes
-        void simulateCrash();
-
-        //! Simulate an ASSERT
-        //! \private only for testing purposes
-        void simulateAssert();
-
-        //! Enable crash upload
-        //! \remark only change for testing
-        void enableCrashDumpUpload(bool enable);
-
-        //! Has crashpad support?
-        bool isSupportingCrashpad() const;
-
         // ----------------------- Input ----------------------------------------
 
         //! The input manager, if available
@@ -571,7 +556,6 @@ namespace swift::core
         QCommandLineOption m_cmdDBusAddress { "emptyDBus" }; //!< DBus address
         QCommandLineOption m_cmdDevelopment { "dev" }; //!< Development flag
         QCommandLineOption m_cmdClearCache { "clearcache" }; //!< Clear cache
-        QCommandLineOption m_cmdTestCrashpad { "testcrashpad" }; //!< Test a crasphpad upload
         QCommandLineOption m_cmdSkipSingleApp { "skipsa" }; //!< Skip test for single application
         bool m_parsed = false; //!< Parsing accomplished?
         bool m_started = false; //!< Started with success?
@@ -657,13 +641,6 @@ namespace swift::core
         bool m_saveSettingsOnShutdown = true; //!< saving all settings on shutdown
         bool m_localSettingsLoaded = false; //!< local settings loaded?
 
-        // -------------- crashpad -----------------
-        swift::misc::CSettingReadOnly<application::TCrashDumpUploadEnabled> m_crashDumpUploadEnabled {
-            this, &CApplication::onCrashDumpUploadEnabledChanged
-        };
-
-        //! Upload settings changed
-        void onCrashDumpUploadEnabledChanged();
     };
 } // namespace swift::core
 

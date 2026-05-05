@@ -28,7 +28,6 @@
 #include "misc/loghandler.h"
 #include "misc/loghistory.h"
 #include "misc/network/connectionstatus.h"
-#include "misc/simulation/autopublishdata.h"
 #include "misc/simulation/simulatedaircraft.h"
 #include "misc/statusmessage.h"
 #include "misc/variant.h"
@@ -49,7 +48,6 @@ namespace swift::gui::components
 {
     class CAircraftComponent;
     class CDbLoadDataDialog;
-    class CAutoPublishDialog;
     class CAtcStationComponent;
     class CCockpitComponent;
     class CFlightPlanComponent;
@@ -123,7 +121,6 @@ private:
         new swift::gui::components::CNavigatorDialog()
     }; //!< navigator dialog bar, if I pass the parent, the dialog is always centered over the parent
     QScopedPointer<swift::gui::components::CDbLoadDataDialog> m_dbLoadDialog; //!< load DB data, lazy init UI component
-    QScopedPointer<swift::gui::components::CAutoPublishDialog> m_autoPublishDialog; //!< auto publish dialog
     QScopedPointer<swift::gui::components::CModelBrowserDialog> m_modelBrower; //!< model browser
     QScopedPointer<swift::gui::components::CAircraftModelSetValidationDialog>
         m_validationDialog; //!< aircraft model validation dialog
@@ -153,7 +150,6 @@ private:
     QPointer<swift::gui::components::CLogComponent> m_logComponent;
     QPointer<swift::gui::components::CSettingsComponent> m_settingsComponent;
     QPointer<swift::gui::components::CInternalsComponent> m_internalsComponent;
-    swift::misc::CData<swift::misc::simulation::data::TLastAutoPublish> m_lastAutoPublish { this };
     swift::core::CActionBind m_actionPtt { swift::misc::input::pttHotkeyAction(),
                                            swift::misc::CIcons::StandardIconRadio16, this, &SwiftGuiStd::onPttChanged };
     swift::core::CActionBindings m_menuHotkeyHandlers;
@@ -349,12 +345,6 @@ private:
 
     //! Ckeck if the DB data have been loaded
     void checkDbDataLoaded();
-
-    //! Auto publish diloag
-    int autoPublishDialog();
-
-    //! Show auto publish dialog if appropriate
-    bool triggerAutoPublishDialog();
 
     //! Start the model browser
     bool startModelBrowser();

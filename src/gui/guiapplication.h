@@ -175,9 +175,6 @@ namespace swift::gui
         //! Opens the standard log directory
         bool openStandardLogDirectory();
 
-        //! Opens the standard dumps directory
-        bool openStandardCrashDumpDirectory();
-
         //! Update the fonts
         bool updateFont(const QString &fontFamily, const QString &fontSize, const QString &fontStyle,
                         const QString &fontWeight, const QString &fontColor);

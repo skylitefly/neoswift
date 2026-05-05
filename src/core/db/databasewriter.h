@@ -18,10 +18,6 @@
 
 class QNetworkReply;
 
-namespace swift::misc::simulation
-{
-    class CAutoPublishData;
-}
 namespace swift::core::db
 {
     //! Write to the swift DB
@@ -40,9 +36,6 @@ namespace swift::core::db
         //! Write models to DB
         swift::misc::CStatusMessageList asyncPublishModels(const swift::misc::simulation::CAircraftModelList &models,
                                                            const QString &extraInfo);
-
-        //! Write auto publis data
-        swift::misc::CStatusMessageList asyncAutoPublish(const swift::misc::simulation::CAutoPublishData &data);
 
         //! Shutdown
         void gracefulShutdown();
@@ -69,24 +62,15 @@ namespace swift::core::db
         void publishedModelsSimplified(const swift::misc::simulation::CAircraftModelList &modelsPublished,
                                        bool directWrite);
 
-        //! Auto publishing completed
-        void autoPublished(bool success, const QString &url, const swift::misc::CStatusMessageList &msgs);
-
     private:
         swift::misc::network::CUrlLogList m_writeLog;
         swift::misc::network::CUrl m_modelPublishUrl; //!< model publishing
-        swift::misc::network::CUrl m_autoPublishUrl; //!< auto publish data
         QNetworkReply *m_pendingModelPublishReply = nullptr;
-        QNetworkReply *m_pendingAutoPublishReply = nullptr;
         qint64 m_modelReplyPendingSince = -1;
-        qint64 m_autoPublishReplyPendingSince = -1;
         bool m_shutdown = false;
 
         //! Post response for models
         void postedModelsResponse(QNetworkReply *nwReplyPtr);
-
-        //! Post response for auto publish
-        void postedAutoPublishResponse(QNetworkReply *nwReplyPtr);
 
         //! Kill the pending reply
         bool killPendingModelReply();
@@ -96,9 +80,6 @@ namespace swift::core::db
 
         //! URL model web service
         static swift::misc::network::CUrl getModelPublishUrl(const swift::misc::network::CUrl &baseUrl);
-
-        //! URL auto publish web service
-        static swift::misc::network::CUrl getAutoPublishUrl(const swift::misc::network::CUrl &baseUrl);
 
         //! Split data array
         static QList<QByteArray> splitData(const QByteArray &data, int size);

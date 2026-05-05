@@ -31,32 +31,7 @@
   <property name="options">
    <set>QWizard::WizardOption::HaveCustomButton1</set>
   </property>
-  <widget class="swift::gui::components::CLegalInfoWizardPage" name="wp_Legal">
-   <property name="title">
-    <string>Legal</string>
-   </property>
-   <property name="subTitle">
-    <string>Please confirm you know and understand our license and privacy policy</string>
-   </property>
-   <layout class="QVBoxLayout" name="vl_Legal">
-    <property name="leftMargin">
-     <number>4</number>
-    </property>
-    <property name="topMargin">
-     <number>4</number>
-    </property>
-    <property name="rightMargin">
-     <number>4</number>
-    </property>
-    <property name="bottomMargin">
-     <number>4</number>
-    </property>
-    <item>
-     <widget class="swift::gui::components::CLegalInfoComponent" name="comp_LegalInformation"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="swift::gui::components::CInitialDataLoadWizardPage" name="wp_DataLoad">
+   <widget class="swift::gui::components::CInitialDataLoadWizardPage" name="wp_DataLoad">
    <property name="title">
     <string>Data loading</string>
    </property>
@@ -435,19 +410,7 @@
    <header>gui/components/copymodelsfromotherswiftversionscomponent.h</header>
    <container>1</container>
   </customwidget>
-  <customwidget>
-   <class>swift::gui::components::CLegalInfoComponent</class>
-   <extends>QFrame</extends>
-   <header>gui/components/legalinfocomponent.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>swift::gui::components::CLegalInfoWizardPage</class>
-   <extends>QWizardPage</extends>
-   <header>gui/components/legalinfocomponent.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
+   <customwidget>
    <class>swift::gui::components::CCopySettingsAndCachesComponent</class>
    <extends>QFrame</extends>
    <header>gui/components/copysettingsandcachescomponent.h</header>

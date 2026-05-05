@@ -553,13 +553,6 @@ namespace swift::gui
         });
         Q_ASSERT_X(c, Q_FUNC_INFO, "Connect failed");
 
-        a = menu.addAction(CIcons::disk16(), "Crash dumps directory");
-        c = connect(a, &QAction::triggered, this, [=]() {
-            if (!sGui || sGui->isShuttingDown()) { return; }
-            this->openStandardCrashDumpDirectory();
-        });
-        Q_ASSERT_X(c, Q_FUNC_INFO, "Connect failed");
-
         a = menu.addAction(CIcons::swift24(), "Check for updates");
         c = connect(a, &QAction::triggered, this, &CGuiApplication::checkNewVersionMenu);
         Q_ASSERT_X(c, Q_FUNC_INFO, "Connect failed");
@@ -807,13 +800,6 @@ namespace swift::gui
     bool CGuiApplication::openStandardLogDirectory()
     {
         const QString path(QDir::toNativeSeparators(CSwiftDirectories::logDirectory()));
-        if (!QDir(path).exists()) { return false; }
-        return QDesktopServices::openUrl(QUrl::fromLocalFile(path));
-    }
-
-    bool CGuiApplication::openStandardCrashDumpDirectory()
-    {
-        const QString path(QDir::toNativeSeparators(CSwiftDirectories::crashpadDatabaseDirectory()));
         if (!QDir(path).exists()) { return false; }
         return QDesktopServices::openUrl(QUrl::fromLocalFile(path));
     }

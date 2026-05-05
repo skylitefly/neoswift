@@ -30,7 +30,6 @@ namespace swift::gui::components
         //! Page ids
         enum Pages
         {
-            Legal,
             DataLoad,
             CopyModels,
             CopySettingsAndCaches,

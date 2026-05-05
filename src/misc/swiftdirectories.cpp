@@ -318,24 +318,6 @@ namespace swift::misc
         return d;
     }
 
-    const QString &CSwiftDirectories::crashpadDirectory()
-    {
-        static const QString p = CFileUtils::appendFilePaths(normalizedApplicationDataDirectory(), "/crashpad");
-        return p;
-    }
-
-    const QString &CSwiftDirectories::crashpadDatabaseDirectory()
-    {
-        static const QString p = CFileUtils::appendFilePaths(crashpadDirectory(), "/database");
-        return p;
-    }
-
-    const QString &CSwiftDirectories::crashpadMetricsDirectory()
-    {
-        static const QString p = CFileUtils::appendFilePaths(crashpadDirectory(), "/metrics");
-        return p;
-    }
-
     QStringList CSwiftDirectories::verifyRuntimeDirectoriesAndFiles()
     {
         QStringList failed;

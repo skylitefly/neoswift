@@ -21,7 +21,6 @@ env:
   # Without these, the client falls back to dummy values (0 / all-zeros) and
   # challenge-response auth will fail, but JWT-auth networks still work fine.
   do_client_key: ${{ secrets.NETWORK_CLIENT_ID != '' }}
-  do_symbols:    ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.BACKTRACE_SYMBOL_TOKEN != '' }}
   do_doxygen:    ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
   do_static_analysis: ${{ github.event_name == 'push' && github.ref != 'refs/heads/main' }}
   qt_version:    6.10.1
@@ -57,7 +56,6 @@ jobs:
           name: |
             xswiftbus-thin-*
             xswiftbus-fat-*
-            neoswiftsymbols-*
             neoswiftinstaller-*
           failOnError: false
 
@@ -168,8 +166,6 @@ jobs:
     runs-on: ubuntu-22.04
     needs: [preBuild, checks]
     env:
-      BACKTRACE_SYMBOL_TOKEN: ${{ secrets.BACKTRACE_SYMBOL_TOKEN }}
-      BACKTRACE_MINIDUMP_TOKEN: ${{ secrets.BACKTRACE_MINIDUMP_TOKEN }}
       BITROCK_BUILDER: ~/installbuilder/bin/builder
 
     steps:
@@ -245,25 +241,14 @@ jobs:
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
       - name: Compile translations
         run: lrelease translations/neoswift_zh_CN.ts -qm translations/neoswift_zh_CN.qm
-      - name: Build neoswift (without symbols)
-        if: ${{ env.do_symbols != 'true' }}
+      - name: Build neoswift
         run: |
           python3 -u scripts/build.py -w 64 -t gcc
-      - name: Build neoswift (with symbols)
-        if: ${{ env.do_symbols == 'true' }}
-        run: |
-          python3 -u scripts/build.py -w 64 -t gcc --upload-symbols
       - name: Upload installer
         uses: actions/upload-artifact@v7
         with:
           name: neoswiftinstaller-linux-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/neoswiftinstaller-*
-      - name: Upload symbols
-        uses: actions/upload-artifact@v7
-        if: ${{ env.do_symbols == 'true' }}
-        with:
-          name: neoswiftsymbols-linux-64-${{ needs.preBuild.outputs.version }}
-          path: ${{ github.workspace }}/neoswiftsymbols-*
       - name: Upload xswiftbus
         uses: actions/upload-artifact@v7
         with:
@@ -274,8 +259,6 @@ jobs:
     runs-on: windows-2022
     needs: [preBuild, checks]
     env:
-      BACKTRACE_SYMBOL_TOKEN: ${{ secrets.BACKTRACE_SYMBOL_TOKEN }}
-      BACKTRACE_MINIDUMP_TOKEN: ${{ secrets.BACKTRACE_MINIDUMP_TOKEN }}
       BITROCK_BUILDER: "~/installbuilder/bin/builder-cli.exe"
 
     steps:
@@ -356,27 +339,15 @@ jobs:
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
       - name: Compile translations
         run: lrelease translations/neoswift_zh_CN.ts -qm translations/neoswift_zh_CN.qm
-      - name: Build neoswift (without symbols)
-        if: ${{ env.do_symbols != 'true' }}
+      - name: Build neoswift
         shell: cmd
         run: |
           build_conan\\build\\RelWithDebInfo\\generators\\conanrun.bat && python -u scripts/build.py -w 64 -t msvc
-      - name: Build neoswift (with symbols)
-        if: ${{ env.do_symbols == 'true' }}
-        shell: cmd
-        run: |
-          build_conan\\build\\RelWithDebInfo\\generators\\conanrun.bat && python -u scripts/build.py -w 64 -t msvc --upload-symbols
       - name: Upload installer
         uses: actions/upload-artifact@v7
         with:
           name: neoswiftinstaller-windows-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/neoswiftinstaller-*
-      - name: Upload symbols
-        uses: actions/upload-artifact@v7
-        if: ${{ env.do_symbols == 'true' }}
-        with:
-          name: neoswiftsymbols-windows-64-${{ needs.preBuild.outputs.version }}
-          path: ${{ github.workspace }}/neoswiftsymbols-*
       - name: Upload xswiftbus
         uses: actions/upload-artifact@v7
         with:
@@ -387,8 +358,6 @@ jobs:
     runs-on: macos-15
     needs: [preBuild, checks]
     env:
-      BACKTRACE_SYMBOL_TOKEN: ${{ secrets.BACKTRACE_SYMBOL_TOKEN }}
-      BACKTRACE_MINIDUMP_TOKEN: ${{ secrets.BACKTRACE_MINIDUMP_TOKEN }}
       BITROCK_BUILDER: /Applications/installbuilder/bin/Builder.app/Contents/MacOS/installbuilder.sh
 
     steps:
@@ -466,25 +435,14 @@ jobs:
       - uses: Trass3r/setup-cpp@1b63900ecf3f0b7c60ee53aa7be122f2c4fe7a2c
       - name: Compile translations
         run: lrelease translations/neoswift_zh_CN.ts -qm translations/neoswift_zh_CN.qm
-      - name: Build neoswift (without symbols)
-        if: ${{ env.do_symbols != 'true' }}
+      - name: Build neoswift
         run: |
           python3 -u scripts/build.py -w 64 -t clang
-      - name: Build neoswift (with symbols)
-        if: ${{ env.do_symbols == 'true' }}
-        run: |
-          python3 -u scripts/build.py -w 64 -t clang --upload-symbols
       - name: Upload installer
         uses: actions/upload-artifact@v7
         with:
           name: neoswiftinstaller-macos-64-${{ needs.preBuild.outputs.version }}
           path: ${{ github.workspace }}/neoswiftinstaller-*
-      - name: Upload symbols
-        uses: actions/upload-artifact@v7
-        if: ${{ env.do_symbols == 'true' }}
-        with:
-          name: neoswiftsymbols-macos-64-${{ needs.preBuild.outputs.version }}
-          path: ${{ github.workspace }}/neoswiftsymbols-*
       - name: Upload xswiftbus
         uses: actions/upload-artifact@v7
         with:
@@ -534,8 +492,6 @@ jobs:
         run: |
           mv neoswiftinstaller-*/* .
           mv xswiftbus-*/* .
-          mkdir neoswiftsymbols
-          mv neoswiftsymbols-*/* neoswiftsymbols || true
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:

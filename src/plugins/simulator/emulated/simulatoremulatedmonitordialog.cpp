@@ -78,8 +78,6 @@ namespace swift::simplugin::emulated
         connect(ui->pb_InterpolatorFetch, &QPushButton::clicked, this,
                 &CSimulatorEmulatedMonitorDialog::interpolatorLogButton);
         connect(ui->pb_EmitAddedFailed, &QPushButton::clicked, this, &CSimulatorEmulatedMonitorDialog::emitSignal);
-        connect(ui->pb_AddAutoPublishData, &QPushButton::clicked, this,
-                &CSimulatorEmulatedMonitorDialog::addAutoPublishTestData);
 
         ui->led_Receiving->setToolTips("receiving", "idle");
         ui->led_Receiving->setShape(CLedWidget::Rounded);
@@ -307,12 +305,6 @@ namespace swift::simplugin::emulated
                                      "Simulated driver driver failed for " + cs.asString());
             emit m_simulator->physicallyAddingRemoteModelFailed(aircraft, true, ui->cb_Failover->isChecked(), msg);
         }
-    }
-
-    void CSimulatorEmulatedMonitorDialog::addAutoPublishTestData()
-    {
-        if (!this->canUseSimulator()) { return; }
-        m_simulator->m_autoPublishing.testData();
     }
 
     bool CSimulatorEmulatedMonitorDialog::canUseSimulator() const

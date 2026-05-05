@@ -20,7 +20,6 @@
 #include "core/application.h"
 #include "core/db/databaseutils.h"
 #include "core/webdataservices.h"
-#include "misc/crashhandler.h"
 #include "misc/directoryutils.h"
 #include "misc/logmessage.h"
 #include "misc/math/mathutils.h"
@@ -803,15 +802,6 @@ namespace swift::core
             }
 
             // here we know we have a valid model and CG did change
-            const CSimulatorInfo sim = this->getSimulatorInfo();
-            m_autoPublishing.insert(modelString,
-                                    simulatorCG); // still using simulator CG here, not the overridden value
-
-            // if simulator did change, add as well
-            if (!model.getSimulator().matchesAll(sim))
-            {
-                m_autoPublishing.insert(modelString, this->getSimulatorInfo());
-            }
         }
     }
 
@@ -853,10 +843,6 @@ namespace swift::core
         const bool r = setup.isRenderingRestricted();
         const bool e = setup.isRenderingEnabled();
 
-        if (!this->isShuttingDown())
-        {
-            CCrashHandler::instance()->crashAndLogAppendInfo(u"Rendering setup: " % setup.toQString(true));
-        }
         emit this->renderRestrictionsChanged(r, e, setup.getMaxRenderedAircraft(), setup.getMaxRenderedDistance());
         return true;
     }
@@ -946,9 +932,6 @@ namespace swift::core
     void ISimulator::unload()
     {
         this->disconnectFrom(); // disconnect from simulator
-        const bool saved = m_autoPublishing.writeJsonToFile(); // empty data are ignored
-        if (saved) { emit this->autoPublishDataWritten(this->getSimulatorInfo()); }
-        m_autoPublishing.clear();
         m_remoteAircraftProviderConnections.disconnectAll(); // disconnect signals from provider
     }
 

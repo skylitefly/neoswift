@@ -34,7 +34,6 @@ namespace swift::gui::components
         ui->wp_SimulatorSpecific->setConfigComponent(ui->comp_InstallXSwiftBus, ui->comp_InstallFsxTerrainProbe);
         ui->wp_DataLoad->setConfigComponent(ui->comp_DataLoad);
         ui->wp_Hotkeys->setConfigComponent(ui->comp_Hotkeys);
-        ui->wp_Legal->setConfigComponent(ui->comp_LegalInformation);
         ui->comp_Hotkeys->registerDummyPttEntry();
         this->setButtonText(CustomButton1, "skip");
 
@@ -97,10 +96,6 @@ namespace swift::gui::components
 
         switch (id)
         {
-        case Legal:
-            // DataLoad is handled silently; skip import pages when no previous version exists
-            return hasOtherVersions ? CopyModels : SelectSimulator;
-
         case DataLoad:
             // Should not be reached in normal flow, but handle gracefully
             return hasOtherVersions ? CopyModels : SelectSimulator;

@@ -299,38 +299,8 @@
           </item>
          </layout>
         </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="gb_CrashDumps">
-         <property name="title">
-          <string>Crash dumps</string>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QCheckBox" name="cb_CrashDumpUpload">
-            <property name="text">
-             <string>uploads enabled</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_SimulateCrash">
-            <property name="text">
-             <string>crash!</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pb_SimulateAssert">
-            <property name="text">
-             <string>assert!</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
+        </item>
+        <item>
         <spacer name="vs_Debug">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -527,16 +497,13 @@
   <tabstop>cb_DebugContextOwnAircraft</tabstop>
   <tabstop>cb_DebugContextSimulator</tabstop>
   <tabstop>cb_DebugContextApplication</tabstop>
-  <tabstop>cb_CrashDumpUpload</tabstop>
-  <tabstop>pb_SimulateCrash</tabstop>
-  <tabstop>pb_SimulateAssert</tabstop>
   <tabstop>pb_LatestInterpolationLog</tabstop>
   <tabstop>pb_LatestPartsLog</tabstop>
-  <tabstop>pte_NetworkCalls</tabstop>
-  <tabstop>cb_NetworkStatistics</tabstop>
   <tabstop>pb_NetworkUpdate</tabstop>
   <tabstop>pb_NetworkUpdateAndReset</tabstop>
- </tabstops>
+  <tabstop>cb_NetworkStatistics</tabstop>
+  <tabstop>pte_NetworkCalls</tabstop>
+  </tabstops>
  <resources>
   <include location="../../misc/misc.qrc"/>
  </resources>

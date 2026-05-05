@@ -15,7 +15,6 @@
 #include "core/webdataservices.h"
 #include "gui/guiapplication.h"
 #include "gui/uppercasevalidator.h"
-#include "misc/crashhandler.h"
 #include "misc/logmessage.h"
 #include "misc/simulation/aircraftmodel.h"
 
@@ -296,8 +295,7 @@ namespace swift::gui::components
             m_lastAircraftModel.set(model);
 
             const CSimulatorInternals simulatorInternals = sGui->getIContextSimulator()->getSimulatorInternals();
-            const QString simStr = sim.toQString() + QStringLiteral(" ") + simulatorInternals.getSimulatorVersion();
-            CCrashHandler::instance()->crashAndLogInfoSimulator(simStr);
+            
         }
         else
         {

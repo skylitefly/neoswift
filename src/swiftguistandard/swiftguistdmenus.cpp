@@ -15,7 +15,6 @@
 #include "ui_swiftguistd.h"
 
 #include "config/buildconfig.h"
-#include "gui/components/autopublishdialog.h"
 #include "gui/components/settingscomponent.h"
 #include "gui/guiactionbind.h"
 #include "gui/guiapplication.h"
@@ -72,7 +71,6 @@ void SwiftGuiStd::onMenuClicked()
         this->showSettingsWindow();
     }
     else if (sender == ui->menu_InternalsPage) { this->showInternalsWindow(); }
-    else if (sender == ui->menu_AutoPublish) { this->autoPublishDialog(); }
     else if (sender == ui->menu_ToggleIncognito)
     {
         if (sGui)
@@ -123,9 +121,3 @@ void SwiftGuiStd::initMenus()
     m_menuHotkeyHandlers.append(CGuiActionBindHandler::bindMenu(ui->menu_Tools, swift + "Tools"));
 }
 
-int SwiftGuiStd::autoPublishDialog()
-{
-    if (!m_autoPublishDialog) { m_autoPublishDialog.reset(new CAutoPublishDialog(this)); }
-    m_lastAutoPublish.set(QDateTime::currentMSecsSinceEpoch());
-    return m_autoPublishDialog->readAndShow();
-}

@@ -8,7 +8,6 @@ import os
 import os.path as path
 import platform
 
-import requests
 import subprocess
 import datastore
 import tarfile
@@ -153,65 +152,6 @@ class Builder:
                     arcname = os.path.join(os.path.relpath(os.path.dirname(content_file_path), base_path), file)
                     zip_file.write(content_file_path, arcname)
 
-    def symbols(self, upload_symbols):
-        """
-        Generates the binary symbols and archives them into a gzip archive, located in the swift source root.
-        """
-        # Do not even generate symbols if they aren't used. They got so big now, that we cannot afford to archive them.
-        if not upload_symbols:
-            return
-
-        if self._should_create_symbols():
-            build_path = self._get_swift_build_path()
-            os.chdir(build_path)
-            print('Creating symbols')
-
-            # Debug symbols for Windows are in the build folder
-            # and for OSX and Linux in dist/install folder (after splitting)
-            if platform.system() == 'Windows':
-                binary_path = path.abspath(path.join(build_path, 'out'))
-            else:
-                binary_path = path.abspath(path.join(utils.get_swift_source_path(), 'dist'))
-
-            os_map = {'Linux': 'linux', 'Darwin': 'macos', 'Windows': 'windows'}
-            tar_filename = '-'.join(
-                ['swiftsymbols', os_map[platform.system()], self.word_size, self.version]) + '.tar.gz'
-            tar_path = path.abspath(path.join(utils.get_swift_source_path(), tar_filename))
-            tar = tarfile.open(tar_path, "w:gz")
-
-            ignore_list = ['sample', 'test', 'win', 'liblin.so', 'libmac.dylib']
-            for root, dirs, files in os.walk(binary_path):
-                if platform.system() == 'Windows':
-                    for f in files:
-                        if f.endswith('.pdb') and not f.startswith(tuple(ignore_list)):
-                            symbol_path = path.abspath(path.join(root, f))
-                            print('Adding ' + symbol_path)
-                            tar.add(symbol_path, f)
-                            if self.word_size == '64':
-                                # Add also *.exe/*.dll with the same name if existing
-                                exe_path = symbol_path.replace('.pdb', '.exe')
-                                if os.path.isfile(exe_path):
-                                    print('Adding ' + exe_path)
-                                    tar.add(exe_path, f.replace('.pdb', '.exe'))
-                                dll_path = symbol_path.replace('.pdb', '.dll')
-                                if os.path.isfile(dll_path):
-                                    print('Adding ' + dll_path)
-                                    tar.add(dll_path, f.replace('.pdb', '.dll'))
-                elif platform.system() == 'Darwin':
-                    for d in dirs:
-                        if d.endswith('.dSYM') and not d.startswith(tuple(ignore_list)):
-                            symbol_path = path.abspath(path.join(root, d))
-                            print('Adding ' + symbol_path)
-                            tar.add(symbol_path, d)
-                elif platform.system() == 'Linux':
-                    for f in files:
-                        if f.endswith('.debug') and not f.startswith(tuple(ignore_list)):
-                            symbol_path = path.abspath(path.join(root, f))
-                            print('Adding ' + symbol_path)
-                            tar.add(symbol_path, f)
-            tar.close()
-            self.__upload_symbol_files(tar_path)
-
     def bundle_csl2xsb(self):
         pass
 
@@ -273,21 +213,6 @@ class Builder:
         self.word_size = word_size
         self.version = utils.get_swift_version()
 
-
-
-    def __upload_symbol_files(self, symbols_package):
-        print('Uploading symbols')
-        url = 'https://swift-project.sp.backtrace.io:6098/post'
-        token = os.environ['BACKTRACE_SYMBOL_TOKEN']
-
-        data = open(symbols_package, 'rb').read()
-        params = (
-            ('format', 'symbols'),
-            ('token', token),
-            ('tag', self.version),
-        )
-        r = requests.post(url, params=params, data=data)
-        r.raise_for_status()
 
 
 class MSVCBuilder(Builder):
@@ -429,8 +354,6 @@ def main():
     parser = argparse.ArgumentParser(prog="swift build helper")
     parser.add_argument("-w", "--wordsize", choices=supported_wordsizes, required=True, help='Wordsize for the build')
     parser.add_argument("-t", "--toolchain", choices=supported_toolchains, required=True, help='Toolchain for the build')
-    parser.add_argument("-u", "--upload-symbols", action='store_true', help='Upload the symbols')
-
     args = parser.parse_args()
 
     builder = builders[platform.system()][args.toolchain](args.wordsize)
@@ -443,8 +366,6 @@ def main():
     builder.publish()
     if args.wordsize == '64':
         builder.package_xswiftbus()
-    builder.symbols(args.upload_symbols)
-
 
 # run main if run directly
 if __name__ == "__main__":

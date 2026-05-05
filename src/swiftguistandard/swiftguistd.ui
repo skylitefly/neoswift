@@ -315,7 +315,6 @@
     <addaction name="menu_Log"/>
     <addaction name="menu_SettingsPage"/>
     <addaction name="separator"/>
-    <addaction name="menu_AutoPublish"/>
     <addaction name="menu_ToggleIncognito"/>
     <addaction name="menu_ModelBrowser"/>
     <addaction name="menu_AfvMap"/>
@@ -477,11 +476,6 @@
   <action name="menu_SettingsPage">
    <property name="text">
     <string>Settings</string>
-   </property>
-  </action>
-  <action name="menu_AutoPublish">
-   <property name="text">
-    <string>Auto-publish</string>
    </property>
   </action>
   <action name="menu_ToggleIncognito">

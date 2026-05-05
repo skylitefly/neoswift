@@ -65,12 +65,6 @@ add_library(gui SHARED
         components/audionotificationcomponent.cpp
         components/audionotificationcomponent.h
         components/audionotificationcomponent.ui
-        components/autopublishcomponent.cpp
-        components/autopublishcomponent.h
-        components/autopublishcomponent.ui
-        components/autopublishdialog.cpp
-        components/autopublishdialog.h
-        components/autopublishdialog.ui
         components/callsigncompleter.cpp
         components/callsigncompleter.h
         components/callsigncompleter.ui
@@ -300,9 +294,6 @@ add_library(gui SHARED
         components/interpolationsetupcomponent.cpp
         components/interpolationsetupcomponent.h
         components/interpolationsetupcomponent.ui
-        components/legalinfocomponent.cpp
-        components/legalinfocomponent.h
-        components/legalinfocomponent.ui
         components/logcomponent.cpp
         components/logcomponent.h
         components/logcomponent.ui

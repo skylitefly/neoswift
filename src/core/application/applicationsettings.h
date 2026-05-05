@@ -67,22 +67,6 @@ namespace swift::core::application
         }
     };
 
-    //! Uploading of crash dumps is enabled or disabled
-    struct TCrashDumpUploadEnabled : misc::TSettingTrait<bool>
-    {
-        //! \copydoc swift::misc::TSettingTrait::key
-        static const char *key() { return "application/crashdumpuploadenabled"; }
-
-        //! \copydoc swift::misc::TSettingTrait::humanReadable
-        static const QString &humanReadable()
-        {
-            static const QString name("Crash dumps");
-            return name;
-        }
-
-        //! \copydoc swift::misc::TSettingTrait::defaultValue
-        static bool defaultValue() { return false; }
-    };
 } // namespace swift::core::application
 
 #endif // SWIFT_CORE_APPLICATION_APPLICATIONSETTINGS_H

@@ -26,11 +26,6 @@ namespace swift::core
 {
     class CWebDataServices;
 } // namespace swift::core
-namespace swift::gui::components
-{
-    class CAutoPublishDialog;
-}
-
 /*!
  * swift data entry control (aka mapping tool)
  */
@@ -70,12 +65,6 @@ private:
     void initDynamicMenus();
     //! @}
 
-    //! Check auto-publishing
-    void checkAutoPublishing();
-
-    //! Show auto publishing
-    void showAutoPublishing();
-
     void performGracefulShutdown();
     void consolidationSettingChanged();
     void displayLog();
@@ -89,8 +78,6 @@ private:
     }; //!< consolidation time
     swift::misc::CLogHistoryReplica m_logHistory { this };
 
-    // auto update
-    swift::gui::components::CAutoPublishDialog *m_autoPublishDialog = nullptr; //!< auto publishing dialog
 };
 
 #endif // SWIFTDATA_H

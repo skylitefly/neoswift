@@ -155,12 +155,6 @@ namespace swift::core
         return {};
     }
 
-    CStatusMessageList CWebDataServices::asyncAutoPublish(const CAutoPublishData &data) const
-    {
-        if (m_databaseWriter) { return m_databaseWriter->asyncAutoPublish(data); }
-        return {};
-    }
-
     void CWebDataServices::triggerReadOfDbInfoObjects() { initDbInfoObjectReaderAndTriggerRead(); }
 
     void CWebDataServices::triggerReadOfSharedInfoObjects() { initSharedInfoObjectReaderAndTriggerRead(); }

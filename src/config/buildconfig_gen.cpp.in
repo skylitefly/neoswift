@@ -19,12 +19,6 @@ const QString &swift::config::CBuildConfig::vatsimPrivateKey()
 }
 #endif
 
-const QString &swift::config::CBuildConfig::backtraceToken()
-{
-    static const auto bt = QString { "$ENV{BACKTRACE_MINIDUMP_TOKEN}" };
-    return bt;
-}
-
 const QString &swift::config::CBuildConfig::gitHeadSha1()
 {
     static const QString gitHeadSha1("${swift_git_head}");

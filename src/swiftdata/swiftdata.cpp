@@ -14,7 +14,6 @@
 
 #include "config/buildconfig.h"
 #include "core/data/globalsetup.h"
-#include "gui/components/autopublishdialog.h"
 #include "gui/components/datamaininfoareacomponent.h"
 #include "gui/components/datasettingscomponent.h"
 #include "gui/components/dbmappingcomponent.h"
@@ -26,7 +25,6 @@
 #include "misc/logpattern.h"
 #include "misc/network/url.h"
 #include "misc/sharedstate/datalinkdbus.h"
-#include "misc/simulation/autopublishdata.h"
 #include "misc/simulation/distributorlist.h"
 #include "misc/statusmessage.h"
 
@@ -99,7 +97,6 @@ void CSwiftData::init()
     QTimer::singleShot(15 * 1000, this, [=] {
         if (!myself || !sGui || sGui->isShuttingDown()) { return; }
         this->checkMinimumVersion();
-        this->checkAutoPublishing();
     });
 }
 
@@ -187,15 +184,3 @@ void CSwiftData::checkMinimumVersion()
     }
 }
 
-void CSwiftData::checkAutoPublishing()
-{
-    if (!CAutoPublishData::existAutoPublishFiles()) { return; }
-    this->showAutoPublishing();
-}
-
-void CSwiftData::showAutoPublishing()
-{
-    if (!sApp || sApp->isShuttingDown()) { return; }
-    if (!m_autoPublishDialog) { m_autoPublishDialog = new CAutoPublishDialog(this); }
-    m_autoPublishDialog->readAndShow();
-}

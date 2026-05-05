@@ -20,7 +20,6 @@
 #include "misc/db/datastoreutility.h"
 #include "misc/logcategories.h"
 #include "misc/network/networkutils.h"
-#include "misc/simulation/autopublishdata.h"
 #include "misc/statusmessage.h"
 
 using namespace swift::misc;
@@ -32,8 +31,7 @@ using namespace swift::core::db;
 namespace swift::core::db
 {
     CDatabaseWriter::CDatabaseWriter(const network::CUrl &baseUrl, QObject *parent)
-        : QObject(parent), m_modelPublishUrl(CDatabaseWriter::getModelPublishUrl(baseUrl)),
-          m_autoPublishUrl(CDatabaseWriter::getAutoPublishUrl(baseUrl))
+        : QObject(parent), m_modelPublishUrl(CDatabaseWriter::getModelPublishUrl(baseUrl))
     {
         // void
     }
@@ -85,45 +83,6 @@ namespace swift::core::db
         m_pendingModelPublishReply =
             sApp->postToNetwork(request, logId, multiPart, { this, &CDatabaseWriter::postedModelsResponse });
         m_modelReplyPendingSince = QDateTime::currentMSecsSinceEpoch();
-        return msgs;
-    }
-
-    CStatusMessageList CDatabaseWriter::asyncAutoPublish(const CAutoPublishData &data)
-    {
-        CStatusMessageList msgs;
-        if (m_shutdown || !sApp)
-        {
-            msgs.push_back(CStatusMessage(CStatusMessage::SeverityWarning, u"Database writer shutting down"));
-            return msgs;
-        }
-
-        if (data.isEmpty())
-        {
-            msgs.push_back(CStatusMessage(CStatusMessage::SeverityWarning, u"No auto update data"));
-            return msgs;
-        }
-
-        const QString json = data.toDatabaseJson();
-        const bool compress = json.size() > 2048;
-        auto *multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType, this);
-        multiPart->append(CDatabaseUtils::getJsonTextMultipart(json, compress));
-        if (sApp->getGlobalSetup().dbDebugFlag())
-        {
-            // add debug flag
-            multiPart->append(CDatabaseUtils::getMultipartWithDebugFlag());
-        }
-
-        // QUrl url("https://192.168.0.153/service/publishauto.php");
-        QUrl url(m_autoPublishUrl.toQUrl());
-        QUrlQuery query;
-        if (compress) { query = CDatabaseUtils::getCompressedQuery(); }
-        url.setQuery(query);
-
-        QNetworkRequest request(url);
-        const int logId = m_writeLog.addPendingUrl(url);
-        m_pendingAutoPublishReply =
-            sApp->postToNetwork(request, logId, multiPart, { this, &CDatabaseWriter::postedAutoPublishResponse });
-        m_autoPublishReplyPendingSince = QDateTime::currentMSecsSinceEpoch();
         return msgs;
     }
 
@@ -192,35 +151,6 @@ namespace swift::core::db
         }
     }
 
-    void CDatabaseWriter::postedAutoPublishResponse(QNetworkReply *nwReplyPtr)
-    {
-        static const CLogCategoryList cats(CLogCategoryList(this).join({ CLogCategories::swiftDbWebservice() }));
-        QScopedPointer<QNetworkReply, QScopedPointerDeleteLater> nwReply(nwReplyPtr);
-        if (m_shutdown || !sApp)
-        {
-            nwReply->abort();
-            return;
-        }
-
-        m_pendingAutoPublishReply = nullptr;
-        const QUrl url(nwReply->url());
-        const QString urlString(url.toString());
-        const QString responseData(nwReply->readAll().trimmed());
-        const QString error = nwReply->errorString();
-        nwReply->close(); // close asap
-
-        CStatusMessageList msgs;
-        const bool ok = CDatastoreUtility::parseAutoPublishResponse(responseData, msgs);
-
-        if (nwReply->error() == QNetworkReply::NoError)
-        {
-            // no error
-        }
-        else { msgs.push_back(CStatusMessage(cats, CStatusMessage::SeverityError, u"HTTP error: " % error)); }
-
-        emit this->autoPublished(ok, urlString, msgs);
-    }
-
     bool CDatabaseWriter::killPendingModelReply()
     {
         if (!m_pendingModelPublishReply) { return false; }
@@ -240,11 +170,6 @@ namespace swift::core::db
     CUrl CDatabaseWriter::getModelPublishUrl(const network::CUrl &baseUrl)
     {
         return baseUrl.withAppendedPath("service/publishmodels.php");
-    }
-
-    CUrl CDatabaseWriter::getAutoPublishUrl(const CUrl &baseUrl)
-    {
-        return baseUrl.withAppendedPath("service/publishauto.php");
     }
 
     QList<QByteArray> CDatabaseWriter::splitData(const QByteArray &data, int size)

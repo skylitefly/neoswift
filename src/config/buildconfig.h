@@ -86,9 +86,6 @@ namespace swift::config
         static const QString &vatsimPrivateKey(); // defined in buildconfig_gen.cpp.in
 #endif
 
-        //! Backtrace token for minidump uploads
-        static const QString &backtraceToken(); // defined in buildconfig_gen.cpp.in
-
         //! GitHub repository URL
         static const QString &gitHubRepoUrl();
 

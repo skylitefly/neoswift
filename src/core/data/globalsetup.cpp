@@ -11,7 +11,6 @@
 
 #include "config/buildconfig.h"
 #include "core/application.h"
-#include "misc/crashhandler.h"
 #include "misc/directoryutils.h"
 #include "misc/json.h"
 #include "misc/network/server.h"

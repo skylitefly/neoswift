@@ -10,9 +10,7 @@
 #include <QObject>
 #include <QScopedPointer>
 
-#include "core/application/applicationsettings.h"
 #include "gui/swiftguiexport.h"
-#include "misc/settingscache.h"
 
 namespace Ui
 {
@@ -33,10 +31,7 @@ namespace swift::gui::components
         ~CSettingsAdvancedComponent() override;
 
     private:
-        void crashDumpUploadEnabledChanged(Qt::CheckState state);
-
         QScopedPointer<Ui::CSettingsAdvancedComponent> ui;
-        swift::misc::CSetting<swift::core::application::TCrashDumpUploadEnabled> m_crashDumpUploadEnabled { this };
     };
 } // namespace swift::gui::components
 

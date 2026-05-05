@@ -191,10 +191,6 @@ add_library(misc SHARED
         countrylist.h
         cputime.cpp
         cputime.h
-        crashhandler.cpp
-        crashhandler.h
-        crashinfo.cpp
-        crashinfo.h
         datacache.cpp
         datacache.h
         dbus.cpp
@@ -521,8 +517,6 @@ add_library(misc SHARED
         simulation/aircraftmodelutils.h
         simulation/airspaceaircraftsnapshot.cpp
         simulation/airspaceaircraftsnapshot.h
-        simulation/autopublishdata.cpp
-        simulation/autopublishdata.h
         simulation/backgroundvalidation.cpp
         simulation/backgroundvalidation.h
         simulation/categorymatcher.cpp
@@ -713,9 +707,6 @@ target_link_libraries(misc
             SimpleCrypt
 )
 
-if(SWIFT_USE_CRASHPAD)
-    target_link_libraries(misc PUBLIC externals_crashpad)
-endif()
 
 if(WIN32)
     # Remove Advapi32 once the Reg functions are removed again from CIdentifier

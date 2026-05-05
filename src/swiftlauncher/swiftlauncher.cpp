@@ -86,8 +86,6 @@ CSwiftLauncher::CSwiftLauncher(bool installerMode, QWidget *parent)
 
     connect(ui->pb_LogDir, &QPushButton::released, sGui, &CGuiApplication::openStandardLogDirectory,
             Qt::QueuedConnection);
-    connect(ui->pb_DumpDir, &QPushButton::released, sGui, &CGuiApplication::openStandardCrashDumpDirectory,
-            Qt::QueuedConnection);
     connect(ui->pb_Log, &QPushButton::released, this, &CSwiftLauncher::showLogPage, Qt::QueuedConnection);
     connect(ui->pb_Log, &QPushButton::released, this, &CSwiftLauncher::showLogPage, Qt::QueuedConnection);
     connect(ui->pb_FSXConfigDirs, &QPushButton::released, this, &CSwiftLauncher::showSimulatorConfigDirs,

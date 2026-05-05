@@ -8,7 +8,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
         "SWIFT_MINIFY_DEBUG_SYMBOLS": "ON",
-        "SWIFT_USE_CRASHPAD": "OFF",
+
         "SWIFT_BUILD_SAMPLES": "OFF",
         "XP_SDK_PATH": "${sourceDir}/third_party/externals/XPLM/SDK",
         "VATSIM_KEY_JSON": "vatsim.json",
@@ -24,9 +24,6 @@
         "type": "equals",
         "lhs": "${hostSystemName}",
         "rhs": "Windows"
-      },
-      "cacheVariables": {
-        "SWIFT_USE_CRASHPAD": "OFF"
       }
     },
     {
@@ -40,7 +37,7 @@
         "rhs": "Darwin"
       },
       "cacheVariables": {
-        "SWIFT_USE_CRASHPAD": "OFF",
+
         "CMAKE_OSX_ARCHITECTURES": "x86_64"
       }
     },
@@ -56,7 +53,7 @@
         "rhs": "Darwin"
       },
       "cacheVariables": {
-        "SWIFT_USE_CRASHPAD": "OFF",
+
         "SWIFT_ONLY_XSWIFTBUS_WORKAROUND": "ON",
         "CMAKE_OSX_ARCHITECTURES": "arm64",
         "CMAKE_INSTALL_PREFIX": "${sourceDir}/dist_arm"
@@ -71,9 +68,6 @@
         "type": "equals",
         "lhs": "${hostSystemName}",
         "rhs": "Linux"
-      },
-      "cacheVariables": {
-        "SWIFT_USE_CRASHPAD": "OFF"
       }
     },
     {
@@ -100,7 +94,7 @@
       "toolchainFile": "build_conan/build/Debug/generators/conan_toolchain.cmake",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "SWIFT_USE_CRASHPAD": "OFF",
+
         "SWIFT_VATSIM_SUPPORT": "OFF",
         "SWIFT_MINIFY_DEBUG_SYMBOLS": "OFF",
         "SWIFT_BUILD_XSWIFTBUS": "OFF"

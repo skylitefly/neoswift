@@ -50,7 +50,6 @@ namespace swift::misc
     namespace simulation
     {
         class CSimulatedAircraft;
-        class CAutoPublishData;
     } // namespace simulation
 } // namespace swift::misc
 
@@ -399,9 +398,6 @@ namespace swift::core
         //! Publish models to database
         swift::misc::CStatusMessageList
         asyncPublishModels(const swift::misc::simulation::CAircraftModelList &modelsToBePublished) const;
-
-        //! Auto publish to database
-        swift::misc::CStatusMessageList asyncAutoPublish(const swift::misc::simulation::CAutoPublishData &data) const;
 
         //! Trigger read of DB info objects
         void triggerReadOfDbInfoObjects();

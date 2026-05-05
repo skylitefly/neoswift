@@ -19,7 +19,6 @@
 #include "gui/guiapplication.h"
 #include "gui/guiutility.h"
 #include "gui/overlaymessagesframe.h"
-#include "misc/crashhandler.h"
 #include "misc/htmlutils.h"
 #include "misc/logmessage.h"
 #include "misc/network/authenticateduser.h"
@@ -137,10 +136,6 @@ namespace swift::gui::components
             if (user.canDirectlyWriteModels()) { ui->le_Info->setText("You can directly update models"); }
             else { ui->le_Info->setText("You can create model change requests"); }
 
-            // crashpad info
-            CCrashHandler::instance()->crashAndLogInfoUserName(user.getRealNameAndId());
-            CCrashHandler::instance()->crashAndLogAppendInfo(
-                QStringLiteral("Login as user %1 %2").arg(user.getRealNameAndId(), user.getRolesAsString()));
         }
         else
         {

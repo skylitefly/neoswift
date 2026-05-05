@@ -26,7 +26,6 @@
 #include "gui/guiapplication.h"
 #include "gui/uppercasevalidator.h"
 #include "misc/aviation/callsign.h"
-#include "misc/crashhandler.h"
 #include "misc/logmessage.h"
 #include "misc/math/mathutils.h"
 #include "misc/network/client.h"
@@ -76,21 +75,6 @@ namespace swift::gui::components
         connect(ui->pb_NetworkUpdate, &QPushButton::released, this, &CInternalsComponent::networkStatistics);
         connect(ui->cb_NetworkStatistics, &QCheckBox::checkStateChanged, this,
                 &CInternalsComponent::onNetworkStatisticsToggled);
-
-        if (sGui && sGui->isSupportingCrashpad())
-        {
-            ui->cb_CrashDumpUpload->setChecked(CCrashHandler::instance()->isCrashDumpUploadEnabled());
-            connect(ui->pb_SimulateCrash, &QPushButton::released, this, &CInternalsComponent::simulateCrash,
-                    Qt::QueuedConnection);
-            connect(ui->pb_SimulateAssert, &QPushButton::released, this, &CInternalsComponent::simulateAssert,
-                    Qt::QueuedConnection);
-            connect(ui->cb_CrashDumpUpload, &QCheckBox::toggled, this, &CInternalsComponent::onCrashDumpUploadToggled);
-        }
-        else
-        {
-            ui->pb_SimulateCrash->setEnabled(false);
-            ui->cb_CrashDumpUpload->setEnabled(false);
-        }
 
         this->contextFlagsToGui();
     }
@@ -194,44 +178,6 @@ namespace swift::gui::components
         ui->cb_DebugContextNetwork->setChecked(sGui->getIContextNetwork()->isDebugEnabled());
         ui->cb_DebugContextOwnAircraft->setChecked(sGui->getIContextOwnAircraft()->isDebugEnabled());
         ui->cb_DebugContextSimulator->setChecked(sGui->getIContextSimulator()->isDebugEnabled());
-    }
-
-    void CInternalsComponent::simulateCrash()
-    {
-        if (CBuildConfig::isReleaseBuild())
-        {
-            QMessageBox::information(this, tr("crash simulation"), tr("Not possible in release builds!"));
-            return;
-        }
-
-        const QMessageBox::StandardButton reply = QMessageBox::question(
-            this, tr("crash simulation"), tr("Really simulate crash?"), QMessageBox::Yes | QMessageBox::No);
-        if (!sGui || reply != QMessageBox::Yes) { return; }
-        sGui->simulateCrash();
-    }
-
-    void CInternalsComponent::simulateAssert()
-    {
-        if (CBuildConfig::isReleaseBuild())
-        {
-            QMessageBox::information(this, tr("ASSERT simulation"), tr("Not possible in release builds!"));
-            return;
-        }
-
-        const QMessageBox::StandardButton reply = QMessageBox::question(
-            this, tr("ASSERT simulation"), tr("Really create an ASSERT?"), QMessageBox::Yes | QMessageBox::No);
-        if (!sGui || reply != QMessageBox::Yes) { return; }
-        sGui->simulateAssert();
-    }
-
-    void CInternalsComponent::onCrashDumpUploadToggled(bool checked)
-    {
-        if (sGui && sGui->isSupportingCrashpad())
-        {
-            const bool current = CCrashHandler::instance()->isCrashDumpUploadEnabled();
-            if (current == checked) { return; }
-            sGui->enableCrashDumpUpload(checked);
-        }
     }
 
     void CInternalsComponent::networkStatistics()

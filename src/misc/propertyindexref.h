@@ -35,8 +35,6 @@ namespace swift::misc
             GlobalIndexCPlatform = 1000,
             GlobalIndexCApplicationInfo = 1100,
             GlobalIndexCDirectories = 1200,
-            GlobalIndexCCrashInfo = 1300,
-            GlobalIndexCCrashSettings = 1400,
             GlobalIndexCAircraftVelocity = 1900,
             GlobalIndexCCallsign = 2000,
             GlobalIndexCAircraftSituation = 2100,

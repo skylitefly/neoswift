@@ -58,7 +58,6 @@ cmake_dependent_option(SWIFT_BUILD_MSFS2024_PLUGIN "Build MSFS2024 plugin" ON WI
 option(SWIFT_MINIFY_DEBUG_SYMBOLS "Minify debug symbols" OFF)
 option(SWIFT_ONLY_XSWIFTBUS_WORKAROUND "Only build xswiftbus (useful when compiling on ARM)" OFF)
 
-option(SWIFT_USE_CRASHPAD "Use crashpad" OFF)
 option(SWIFT_USE_PCH "Use precompiled headers" ON)
 option(SWIFT_FORCE_ASSERTS "Force Qt asserts also in release mode" ON)
 
@@ -180,9 +179,6 @@ elseif(${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
     add_compile_options("$<$<COMPILE_LANGUAGE:CXX,OBJCXX>:-Woverloaded-virtual;-Wzero-as-null-pointer-constant;-Wno-return-std-move>")
 endif()
 
-if(SWIFT_USE_CRASHPAD)
-    add_compile_definitions(SWIFT_USE_CRASHPAD)
-endif()
 
 if(APPLE)
     set(CMAKE_INSTALL_RPATH @loader_path/../../../../lib)

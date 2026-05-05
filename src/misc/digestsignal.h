@@ -41,7 +41,7 @@ namespace swift::misc
         }
 
         //! Destructor
-        ~CDigestSignal() override = default;
+        ~CDigestSignal() override;
 
     signals:
         //! Send digest signal

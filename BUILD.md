@@ -136,9 +136,6 @@ Configure these in **Settings → Secrets and variables → Actions** on your Gi
 | `NETWORK_CLIENT_ID` | Recommended | Integer client ID issued to neoswift by a network operator (e.g. Skylite). Baked into the binary for VATSIMAuth challenge-response. |
 | `NETWORK_CLIENT_KEY` | Recommended | 32-character private key matching the client ID above. |
 | `EXTERNALS_PAT` | Optional | GitHub PAT with `repo` scope for `${{ github.repository_owner }}/externals`. Only needed if you maintain a private externals repo containing proprietary SDKs (SimConnect etc.). If absent the externals checkout is skipped and SimConnect support is disabled. |
-| `BACKTRACE_SYMBOL_TOKEN` | Optional | Upload debug symbols to a Backtrace crash-reporting account. |
-| `BACKTRACE_MINIDUMP_TOKEN` | Optional | Backtrace minidump ingestion token. |
-
 > **Not needed (removed from upstream):**
 > `VATSIM_ID`, `VATSIM_KEY`, `ARTIFACTORY_USER`, `ARTIFACTORY_TOKEN`, `DISCORD_WEBHOOK`
 

@@ -108,15 +108,6 @@ namespace swift::misc
         //! \remark In swift::misc so it can also be used from swift::misc classes
         static const QString &logDirectory();
 
-        //! Directory for crashpad files
-        static const QString &crashpadDirectory();
-
-        //! Directory for crashpad database files
-        static const QString &crashpadDatabaseDirectory();
-
-        //! Directory for crashpad metrics files
-        static const QString &crashpadMetricsDirectory();
-
         //! Check if the (most important) runtime directories are available
         static QStringList verifyRuntimeDirectoriesAndFiles();
 

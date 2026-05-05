@@ -110,9 +110,6 @@ namespace swift::simplugin::emulated
         //! Emit a simulator signal
         void emitSignal();
 
-        //! Test data for auto publishing
-        void addAutoPublishTestData();
-
         //! Can use the emulated simulator
         bool canUseSimulator() const;
 

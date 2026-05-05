@@ -9,6 +9,8 @@
 
 namespace swift::misc
 {
+    CDigestSignal::~CDigestSignal() = default;
+
     void CDigestSignal::inputSignal()
     {
         if (!CThreadUtils::isInThisThread(this))
