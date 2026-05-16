@@ -2029,6 +2029,21 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../src/gui/components/configurationwizard.ui" line="36"/>
+        <source>Welcome to NeoSwift</source>
+        <translation>欢迎使用 NeoSwift</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/configurationwizard.ui" line="39"/>
+        <source>This wizard will guide you through the essential setup.</source>
+        <translation>此向导将引导你完成必要配置。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/configurationwizard.ui" line="60"/>
+        <source>Set up your simulator, flight network, model matching, and hotkeys in a few steps.</source>
+        <translation>只需几个步骤，即可配置模拟器、连飞平台、机模匹配和热键。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/configurationwizard.ui" line="36"/>
         <source>Legal</source>
         <translation>条款和条件</translation>
     </message>
@@ -2066,6 +2081,16 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/gui/components/configurationwizard.ui" line="121"/>
         <source>Import settings from a previous version (optional)</source>
         <translation>从过往版本中导入设置</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/configurationwizard.ui" line="149"/>
+        <source>Configure Flight Networks</source>
+        <translation>配置连飞平台</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/configurationwizard.ui" line="152"/>
+        <source>Add the flight networks you want to use. NeoSwift configures networks automatically from their domain.</source>
+        <translation>添加你想使用的连飞平台。NeoSwift 会通过平台域名自动配置平台。</translation>
     </message>
     <message>
         <location filename="../src/gui/components/configurationwizard.ui" line="174"/>
@@ -2127,14 +2152,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../src/gui/components/configurationwizard.ui" line="332"/>
-        <source>Push-to-talk key</source>
-        <translation>PTT按键</translation>
+        <source>Hotkey bindings</source>
+        <translation>热键绑定</translation>
     </message>
     <message>
         <location filename="../src/gui/components/configurationwizard.ui" line="335"/>
-        <source>Assign a key or button to transmit voice on the radio. Press &quot;Add&quot; and then press the key you want to use.</source>
-        <translation>绑定一个用于AFV语音的PTT按键（可选）
-如果你飞的平台不使用AFV，你应当跳过这一页并在你使用的语音软件（如TeamSpeak）内配置PTT按键。</translation>
+        <source>Assign keys or buttons for swift actions such as push-to-talk. Press &quot;Add&quot; and then press the key you want to use.</source>
+        <translation>为 NeoSwift 操作绑定键盘按键或按钮，例如一键通话。点击“Add”，然后按下你想使用的按键。</translation>
     </message>
     <message>
         <location filename="../src/gui/components/configurationwizard.ui" line="359"/>

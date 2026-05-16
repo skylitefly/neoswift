@@ -31,6 +31,51 @@
   <property name="options">
    <set>QWizard::WizardOption::HaveCustomButton1</set>
   </property>
+  <widget class="QWizardPage" name="wp_Welcome">
+   <property name="title">
+    <string>Welcome to NeoSwift</string>
+   </property>
+   <property name="subTitle">
+    <string>This wizard will guide you through the essential setup.</string>
+   </property>
+   <layout class="QVBoxLayout" name="vl_Welcome">
+    <property name="leftMargin">
+     <number>24</number>
+    </property>
+    <property name="topMargin">
+     <number>24</number>
+    </property>
+    <property name="rightMargin">
+     <number>24</number>
+    </property>
+    <property name="bottomMargin">
+     <number>24</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="lb_Welcome">
+      <property name="text">
+       <string>Set up your simulator, flight network, model matching, and hotkeys in a few steps.</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="vs_Welcome">
+      <property name="orientation">
+       <enum>Qt::Orientation::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
    <widget class="swift::gui::components::CInitialDataLoadWizardPage" name="wp_DataLoad">
    <property name="title">
     <string>Data loading</string>
@@ -140,6 +185,38 @@
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWizardPage" name="wp_NetworkDiscovery">
+   <property name="title">
+    <string>Configure Flight Networks</string>
+   </property>
+   <property name="subTitle">
+    <string>Add the flight networks you want to use. NeoSwift configures networks automatically from their domain.</string>
+   </property>
+   <layout class="QVBoxLayout" name="vl_NetworkDiscovery">
+    <property name="leftMargin">
+     <number>4</number>
+    </property>
+    <property name="topMargin">
+     <number>4</number>
+    </property>
+    <property name="rightMargin">
+     <number>4</number>
+    </property>
+    <property name="bottomMargin">
+     <number>4</number>
+    </property>
+    <item>
+     <widget class="swift::gui::components::CSettingsNetworkServersComponent" name="comp_NetworkDiscovery">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>250</height>
+       </size>
+      </property>
      </widget>
     </item>
    </layout>
@@ -304,10 +381,10 @@
   </widget>
   <widget class="swift::gui::components::CConfigHotkeyWizardPage" name="wp_Hotkeys">
    <property name="title">
-    <string>Push-to-talk key</string>
+    <string>Hotkey bindings</string>
    </property>
    <property name="subTitle">
-    <string>Assign a key or button to transmit voice on the radio. Press &quot;Add&quot; and then press the key you want to use.</string>
+    <string>Assign keys or buttons for swift actions such as push-to-talk. Press &quot;Add&quot; and then press the key you want to use.</string>
    </property>
    <layout class="QVBoxLayout" name="vl_Hotkeys">
     <property name="leftMargin">
@@ -378,6 +455,12 @@
    <class>swift::gui::components::CSettingsHotkeyComponent</class>
    <extends>QFrame</extends>
    <header>gui/components/settingshotkeycomponent.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>swift::gui::components::CSettingsNetworkServersComponent</class>
+   <extends>QFrame</extends>
+   <header>gui/components/settingsnetworkserverscomponent.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

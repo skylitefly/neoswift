@@ -37,9 +37,8 @@ namespace swift::gui::components
         ui->comp_Hotkeys->registerDummyPttEntry();
         this->setButtonText(CustomButton1, "skip");
 
-        // no other versions, skip copy pages
-        // disabled afetr discussion with RP as it is confusing
-        // if (!CApplicationInfoList::hasOtherSwiftDataDirectories()) { this->setStartId(SelectSimulator); }
+        // Data is loaded in the background, so the data-load page must not be part of the visible flow.
+        this->setStartId(Welcome);
 
         ui->tb_SimulatorSpecific->setCurrentWidget(ui->comp_InstallXSwiftBus);
 
@@ -96,9 +95,12 @@ namespace swift::gui::components
 
         switch (id)
         {
+        case Welcome:
+            return hasOtherVersions ? CopyModels : NetworkDiscovery;
+
         case DataLoad:
             // Should not be reached in normal flow, but handle gracefully
-            return hasOtherVersions ? CopyModels : SelectSimulator;
+            return hasOtherVersions ? CopyModels : NetworkDiscovery;
 
         case CopyModels:
             return CopySettingsAndCaches;
@@ -139,7 +141,7 @@ namespace swift::gui::components
         const QWizardPage *page = this->currentPage();
         Q_UNUSED(page);
 
-        this->setOption(HaveCustomButton1, id != m_maxId);
+        this->setOption(HaveCustomButton1, id != m_maxId && id != Welcome);
     }
 
     void CConfigurationWizard::clickedCustomButton(int which)

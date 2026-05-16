@@ -30,9 +30,11 @@ namespace swift::gui::components
         //! Page ids
         enum Pages
         {
+            Welcome,
             DataLoad,
             CopyModels,
             CopySettingsAndCaches,
+            NetworkDiscovery,
             SelectSimulator,    //!< checkboxes only
             SetupSimulators,    //!< per-simulator tab config
             FirstModelSet,
