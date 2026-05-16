@@ -2158,7 +2158,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/configurationwizard.ui" line="335"/>
         <source>Assign keys or buttons for swift actions such as push-to-talk. Press &quot;Add&quot; and then press the key you want to use.</source>
-        <translation>为 NeoSwift 操作绑定键盘按键或按钮，例如一键通话。点击“Add”，然后按下你想使用的按键。</translation>
+        <translation>为 NeoSwift 操作绑定键盘按键或按钮，例如 PTT。点击“Add”，然后按下你想使用的按键。</translation>
     </message>
     <message>
         <location filename="../src/gui/components/configurationwizard.ui" line="359"/>
@@ -4295,6 +4295,122 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>CFirstModelSetComponent</name>
+    <message>
+        <source>Create one model set for each simulator you use. The matching engine uses the saved model set for the selected simulator.</source>
+        <translation>为你使用的每个模拟器创建一个模型集。匹配引擎会使用所选模拟器已保存的模型集。</translation>
+    </message>
+    <message>
+        <source>Simulator</source>
+        <translation>模拟器</translation>
+    </message>
+    <message>
+        <source>Models</source>
+        <translation>模型</translation>
+    </message>
+    <message>
+        <source>Updated</source>
+        <translation>更新时间</translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translation>文件</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <source>New Model Set Wizard</source>
+        <translation>新建模型集向导</translation>
+    </message>
+    <message>
+        <source>Select Simulator</source>
+        <translation>选择模拟器</translation>
+    </message>
+    <message>
+        <source>Choose the simulator this model set is for.</source>
+        <translation>选择此模型集对应的模拟器。</translation>
+    </message>
+    <message>
+        <source>Scan Installed Models</source>
+        <translation>扫描已安装模型</translation>
+    </message>
+    <message>
+        <source>NeoSwift scans the selected simulator and continues automatically when models are found.</source>
+        <translation>NeoSwift 会扫描所选模拟器，找到模型后自动继续。</translation>
+    </message>
+    <message>
+        <source>Ready to scan installed models.</source>
+        <translation>准备扫描已安装模型。</translation>
+    </message>
+    <message>
+        <source>Scanning installed models...</source>
+        <translation>正在扫描已安装模型...</translation>
+    </message>
+    <message>
+        <source>Model scan complete. Continuing to model providers...</source>
+        <translation>模型扫描完成。正在继续到模型提供方...</translation>
+    </message>
+    <message>
+        <source>Model scan completed, but no models were found.</source>
+        <translation>模型扫描完成，但没有找到模型。</translation>
+    </message>
+    <message>
+        <source>Model Scan</source>
+        <translation>模型扫描</translation>
+    </message>
+    <message>
+        <source>No models were found yet. Wait for the scan to finish or check your simulator model paths.</source>
+        <translation>尚未找到模型。请等待扫描完成，或检查模拟器模型路径。</translation>
+    </message>
+    <message>
+        <source>Choose Model Providers</source>
+        <translation>选择模型提供方</translation>
+    </message>
+    <message>
+        <source>Select the model providers you want to include in this model set.</source>
+        <translation>选择要包含在此模型集中的模型提供方。</translation>
+    </message>
+    <message>
+        <source>Use models with DB data only</source>
+        <translation>仅使用带数据库资料的模型</translation>
+    </message>
+    <message>
+        <source>Preview Model Set</source>
+        <translation>预览模型集</translation>
+    </message>
+    <message>
+        <source>Review the model set before saving it.</source>
+        <translation>保存前预览模型集。</translation>
+    </message>
+    <message>
+        <source>This will save %1 models for %2.</source>
+        <translation>将为 %2 保存 %1 个模型。</translation>
+    </message>
+    <message>
+        <source>Model Set</source>
+        <translation>模型集</translation>
+    </message>
+    <message>
+        <source>The preview is empty. Choose another simulator or model provider.</source>
+        <translation>预览为空。请选择其他模拟器或模型提供方。</translation>
+    </message>
+    <message>
+        <source>Replace the existing model set for %1?</source>
+        <translation>替换 %1 现有的模型集？</translation>
+    </message>
+    <message>
+        <source>Delete Model Set</source>
+        <translation>删除模型集</translation>
+    </message>
+    <message>
+        <source>Delete the model set for %1?</source>
+        <translation>删除 %1 的模型集？</translation>
+    </message>
     <message>
         <location filename="../src/gui/components/firstmodelsetcomponent.ui" line="14"/>
         <source>Configure a 1st model set</source>

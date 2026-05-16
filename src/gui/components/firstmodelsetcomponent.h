@@ -17,6 +17,9 @@
 #include "misc/simulation/settings/simulatorsettings.h"
 #include "misc/simulation/simulatorinfo.h"
 
+class QPushButton;
+class QTableWidget;
+
 namespace Ui
 {
     class CFirstModelSetComponent;
@@ -48,6 +51,21 @@ namespace swift::gui::components
         QScopedPointer<CDbOwnModelsDialog> m_modelsDialog;
         QScopedPointer<CDbOwnModelSetDialog> m_modelSetDialog;
         swift::misc::simulation::settings::CMultiSimulatorSettings m_simulatorSettings { this };
+        QTableWidget *m_modelSetTable = nullptr;
+        QPushButton *m_pbAddModelSet = nullptr;
+        QPushButton *m_pbDeleteModelSet = nullptr;
+
+        //! Reload the model-set overview table
+        void reloadModelSetTable();
+
+        //! Create a new model set with the guided wizard
+        void addModelSet();
+
+        //! Delete the selected model set
+        void deleteSelectedModelSet();
+
+        //! Selected simulator in the model-set table
+        swift::misc::simulation::CSimulatorInfo selectedModelSetSimulator() const;
 
         //! Simulator has been changed
         void onSimulatorChanged(const swift::misc::simulation::CSimulatorInfo &simulator);
