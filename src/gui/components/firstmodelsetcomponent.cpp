@@ -39,6 +39,7 @@
 #include "misc/verify.h"
 
 using namespace swift::config;
+using namespace swift::core;
 using namespace swift::misc;
 using namespace swift::misc::simulation;
 using namespace swift::misc::simulation::data;
