@@ -176,7 +176,7 @@ static string generate_response(vatsim_auth *const auth,
     switch (auth->clientId % 3) {
     case 0: h = s1 + c1 + s2 + c2 + s3; break;
     case 1: h = s2 + c1 + s3 + c2 + s1; break;
-    case 2: h = ""; break;
+    case 2: h = s3 + c1 + s1 + c2 + s2; break;
     }
     return md5(h);
 }
