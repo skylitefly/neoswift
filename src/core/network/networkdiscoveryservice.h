@@ -8,6 +8,7 @@
 
 #include <QDateTime>
 #include <QHash>
+#include <QNetworkRequest>
 #include <QObject>
 #include <QString>
 
@@ -55,6 +56,13 @@ namespace swift::core::network
 
         //! True if the domain was discovered within the last 60 seconds (rate-limit)
         bool isRateLimited(const QString &domain) const;
+
+        //! Build a QNetworkRequest for \a url with SSL verification relaxed (for discovery)
+        static QNetworkRequest makeDiscoveryRequest(const swift::misc::network::CUrl &url);
+
+        //! Fetch and parse fsd-configuration.json from \a request, calling \a callback with the result
+        void fetchConfigJson(const QNetworkRequest &request, const QString &logKey,
+                             const swift::misc::CSlot<void(bool, const swift::misc::network::CNetworkConfig &)> &callback);
 
         QHash<QString, QDateTime> m_lastDiscovery;
     };

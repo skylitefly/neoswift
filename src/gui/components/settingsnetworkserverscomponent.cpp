@@ -159,14 +159,14 @@ namespace swift::gui::components
                                                    tr("Discovery of '%1' failed.\n"
                                                       "Make sure the domain serves\n"
                                                       "https://%1/.well-known/fsd-configuration.json\n"
-                                                      "with correct CORS headers.")
+                                                      "or http://%1/.well-known/fsd-configuration.json")
                                                        .arg(domain));
                               return;
                           }
 
                           CNetworkList networks = m_networks.get();
                           networks.push_back(discovered);
-                          m_networks.set(networks);
+                          m_networks.setAndSave(networks);
                           reloadTable();
                           m_table->selectRow(networks.size() - 1);
                           if (!editNetworkUser(networks.size() - 1, true))
@@ -175,7 +175,7 @@ namespace swift::gui::components
                               if (!updated.isEmpty())
                               {
                                   updated.erase(updated.begin() + updated.size() - 1);
-                                  m_networks.set(updated);
+                                  m_networks.setAndSave(updated);
                                   reloadTable();
                               }
                           }
@@ -221,22 +221,22 @@ namespace swift::gui::components
                               return;
                           }
 
-                          CNetworkList networks = m_networks.get();
-                          networks.push_back(discovered);
-                          m_networks.set(networks);
-                          reloadTable();
-                          m_table->selectRow(networks.size() - 1);
-                          if (!editNetworkUser(networks.size() - 1, true))
-                          {
-                              CNetworkList updated = m_networks.get();
-                              if (!updated.isEmpty())
-                              {
-                                  updated.erase(updated.begin() + updated.size() - 1);
-                                  m_networks.set(updated);
-                                  reloadTable();
-                              }
-                          }
-                      } });
+                           CNetworkList networks = m_networks.get();
+                           networks.push_back(discovered);
+                           m_networks.setAndSave(networks);
+                           reloadTable();
+                           m_table->selectRow(networks.size() - 1);
+                           if (!editNetworkUser(networks.size() - 1, true))
+                           {
+                               CNetworkList updated = m_networks.get();
+                               if (!updated.isEmpty())
+                               {
+                                   updated.erase(updated.begin() + updated.size() - 1);
+                                   m_networks.setAndSave(updated);
+                                   reloadTable();
+                               }
+                           }
+                       } });
     }
 
     void CSettingsNetworkServersComponent::onDeletePressed()
@@ -252,7 +252,7 @@ namespace swift::gui::components
         if (res != QMessageBox::Yes) { return; }
 
         networks.erase(networks.begin() + row);
-        m_networks.set(networks);
+        m_networks.setAndSave(networks);
         reloadTable();
     }
 
@@ -300,7 +300,7 @@ namespace swift::gui::components
             CNetwork network = networks[row];
             network.setUser(user);
             networks[row] = network;
-            m_networks.set(networks);
+            m_networks.setAndSave(networks);
             reloadTable();
             m_table->selectRow(row);
             return true;
@@ -326,14 +326,14 @@ namespace swift::gui::components
                                                     m_pbRefreshAll->setEnabled(true);
                                                     if (!success) { return; }
                                                     CNetworkList updated = m_networks.get();
-                                                    if (row < updated.size())
-                                                    {
-                                                        CNetwork network = discovered;
-                                                        network.setUser(updated[row].getUser());
-                                                        updated[row] = network;
-                                                        m_networks.set(updated);
-                                                    }
-                                                } });
+                                                     if (row < updated.size())
+                                                     {
+                                                         CNetwork network = discovered;
+                                                         network.setUser(updated[row].getUser());
+                                                         updated[row] = network;
+                                                         m_networks.setAndSave(updated);
+                                                     }
+                                                 } });
     }
 
     void CSettingsNetworkServersComponent::onRefreshAllPressed()
@@ -360,7 +360,7 @@ namespace swift::gui::components
                                                                 CNetwork network = discovered;
                                                                 network.setUser(updated[i].getUser());
                                                                 updated[i] = network;
-                                                                m_networks.set(updated);
+                                                                m_networks.setAndSave(updated);
                                                             }
                                                         }
                                                         if (--*pending <= 0)
