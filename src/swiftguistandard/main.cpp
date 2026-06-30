@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
         CSwiftGuiStdApplication a; // application with contexts
         if (!a.parseCommandLineArgsAndLoadSetup()) { return EXIT_FAILURE; }
         a.splashScreen(CIcons::swift256());
-        a.setMinimumSizeInCharacters(60, 42); // experimental
+        a.setMinimumSizeInCharacters(60, 21); // experimental
         if (!a.start())
         {
             a.gracefulShutdown();

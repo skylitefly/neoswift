@@ -65,6 +65,14 @@ using namespace swift::misc::input;
 using namespace swift::gui;
 using namespace swift::gui::components;
 
+namespace
+{
+    QString transponderModeButtonText(const CTransponder &transponder)
+    {
+        return transponder.getModeAsString();
+    }
+} // namespace
+
 void SwiftGuiStd::init()
 {
     // POST(!) GUI init
@@ -170,14 +178,14 @@ void SwiftGuiStd::init()
                 [this](const swift::misc::simulation::CSimulatedAircraft &aircraft, const CIdentifier &) {
                     const CTransponder transponder = aircraft.getTransponder();
                     const bool ident = transponder.getTransponderMode() == CTransponder::StateIdent;
-                    ui->pb_CockpitModeC->setText(transponder.getModeAsShortString());
+                    ui->pb_CockpitModeC->setText(transponderModeButtonText(transponder));
                     ui->pb_CockpitModeC->setToolTip(transponder.toQString());
                     ui->pb_CockpitIdent->setChecked(ident);
                     ui->pb_CockpitIdent->setText(ident ? tr("Ident") : tr("Ident"));
                 },
                 Qt::QueuedConnection);
         const CTransponder transponder = sGui->getIContextOwnAircraft()->getOwnAircraft().getTransponder();
-        ui->pb_CockpitModeC->setText(transponder.getModeAsShortString());
+        ui->pb_CockpitModeC->setText(transponderModeButtonText(transponder));
         ui->pb_CockpitModeC->setToolTip(transponder.toQString());
     }
     Q_UNUSED(s)
@@ -236,6 +244,9 @@ void SwiftGuiStd::initGuiSignals()
     ui->comp_TextMessages->showTextMessageEntry(false);
     ui->comp_InfoBarStatus->setVisible(false);
     ui->sp_MainOperations->setSizes({ 190, 540 });
+    ui->vl_CentralFrameInside->setStretchFactor(ui->fr_PrimaryControls, 0);
+    ui->vl_CentralFrameInside->setStretchFactor(ui->sp_MainOperations, 1);
+    ui->vl_CentralFrameInside->setStretchFactor(ui->lep_CommandLineInput, 0);
 
     connect(ui->pb_Connect, &QPushButton::released, this, &SwiftGuiStd::loginRequested);
     connect(ui->pb_CockpitModeC, &QPushButton::released, this, []() {
