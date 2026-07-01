@@ -12874,7 +12874,8 @@ with correct CORS headers.</source>
         <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="220"/>
         <source>Failed to fetch fsd-configuration.json from:
 %1</source>
-        <translation>此 URL 的平台已在您的列表中。</translation>
+        <translation>无法从以下地址获取 fsd-configuration.json：
+%1</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="249"/>
