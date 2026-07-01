@@ -5446,7 +5446,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/initialdataloadcomponent.ui" line="45"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;We recommend to download an initial data set. This may take some time, but then you can start to use all tools with full functionality. You can wait until the load is completed and you see entries for all cache values (C#). or you can click next without waiting, and data will &lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;continue to load in the background&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;我们建议下载初始数据集。这可能需要一些时间，但之后您可以开始使用全部功能。您可以等待加载完成并看到所有缓存值 (C#) 的条目，也可以不等直接点击下一步，数据将在后台继续加载。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;我们建议下载初始数据集。这可能需要一些时间，但之后您可以开始使用全部功能。您可以等待加载完成并看到所有缓存值 (C#) 的条目，也可以不等直接点击下一步，数据将&lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;在后台继续加载&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/gui/components/initialdataloadcomponent.ui" line="58"/>
@@ -6436,7 +6436,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/editors/liveryform.ui" line="88"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;set a &apos;no color&apos; livery, allowing to create a&lt;br/&gt;temp. DB entry which will later be specified.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;设置 &apos;无色&apos; 涂装，允许创建临时数据库条目供以后指定。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;设置 &apos;无色&apos; 涂装，允许创建&lt;br/&gt;临时数据库条目供以后指定。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/gui/editors/liveryform.ui" line="91"/>
@@ -12430,7 +12430,8 @@ Do you want to reload the file?</source>
         <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="192"/>
         <source>Reload the models?
 The existing cache data will we overridden.</source>
-        <translation>模型加载</translation>
+        <translation>重新加载模型？
+现有的缓存数据将被覆盖。</translation>
     </message>
     <message>
         <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="229"/>
@@ -12528,7 +12529,10 @@ Do you want to really do this?</source>
 It needs to look like &apos;plugin/xswiftbus&apos;.
 
 Open the archive?</source>
-        <translation>安装 XSwiftXBus</translation>
+        <translation>您需要手动将 xswiftbus 解压到插件目录。
+目录结构应为“plugin/xswiftbus”。
+
+打开该压缩包？</translation>
     </message>
     <message>
         <location filename="../src/gui/components/installxswiftbuscomponent.cpp" line="218"/>
@@ -12797,7 +12801,8 @@ Do you want to save your changes?</source>
         <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="52"/>
         <source>Add a new network by domain name.
 Shift+click to add by exact config URL.</source>
-        <translation>添加</translation>
+        <translation>按域名添加新平台。
+按住 Shift 点击可按精确配置 URL 添加。</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="53"/>
