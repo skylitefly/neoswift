@@ -94,7 +94,7 @@
     <message>
         <location filename="../src/gui/components/aboutdialog.ui" line="51"/>
         <source>about neoswift details</source>
-        <translation></translation>
+        <translation>关于 neoswift 的详细信息</translation>
     </message>
     <message>
         <location filename="../src/gui/components/aboutdialog.ui" line="67"/>
@@ -126,7 +126,11 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.1pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Loading credits and legal information, be patient ......&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>关于 swift</translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;title&gt;关于 swift&lt;/title&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.1pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;正在加载鸣谢和法律信息，请稍候......&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -1379,7 +1383,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/applicationclosedialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>对话框</translation>
     </message>
     <message>
         <location filename="../src/gui/components/applicationclosedialog.ui" line="29"/>
@@ -1512,7 +1516,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="50"/>
         <source>Info</source>
-        <translation></translation>
+        <translation>信息</translation>
     </message>
     <message>
         <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="67"/>
@@ -1527,7 +1531,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="84"/>
         <source>extra info goes here</source>
-        <translation></translation>
+        <translation>额外信息显示在此处</translation>
     </message>
     <message>
         <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="123"/>
@@ -1655,7 +1659,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/audionotificationcomponent.ui" line="163"/>
         <source>Dir.:</source>
-        <translation></translation>
+        <translation>目录：</translation>
     </message>
     <message>
         <location filename="../src/gui/components/audionotificationcomponent.ui" line="170"/>
@@ -2060,7 +2064,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/configurationwizard.ui" line="64"/>
         <source>Loading data in the background — you can continue to the next step</source>
-        <translation></translation>
+        <translation>正在后台加载数据，您可以继续下一步</translation>
     </message>
     <message>
         <location filename="../src/gui/components/configurationwizard.ui" line="93"/>
@@ -3519,7 +3523,14 @@ p, li { white-space: pre-wrap; }
 &lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-size:8pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You can go directly to the swift DB: ##swiftDb## &lt;/li&gt;
 &lt;li style=&quot; font-size:8pt;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;VATSIM SSO is not possible anymore&lt;/li&gt;
 &lt;li style=&quot; font-size:8pt;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you do not have credentials, you can request access via Discord.</source>
-        <translation>登录提示，故障排除</translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.1pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-size:8pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;您可以直接访问 swift 数据库：##swiftDb## &lt;/li&gt;
+&lt;li style=&quot; font-size:8pt;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;VATSIM SSO 已不再可用&lt;/li&gt;
+&lt;li style=&quot; font-size:8pt;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;如果您没有凭据，可以通过 Discord 申请访问权限。</translation>
     </message>
 </context>
 <context>
@@ -5523,7 +5534,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/installxswiftbuscomponent.ui" line="82"/>
         <source>X-Plane/Resources/plugins</source>
-        <translation></translation>
+        <translation>X-Plane/Resources/plugins</translation>
     </message>
     <message>
         <location filename="../src/gui/components/installxswiftbuscomponent.ui" line="92"/>
@@ -6511,7 +6522,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/logincomponent.ui" line="161"/>
         <source>color: orange; font-style: italic;</source>
-        <translation></translation>
+        <translation>color: orange; font-style: italic;</translation>
     </message>
     <message>
         <location filename="../src/gui/components/logincomponent.ui" line="205"/>
@@ -8240,7 +8251,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/ownaircraftcomponent.ui" line="89"/>
         <source>ICAO code e.g.  B737, A320, F18</source>
-        <translation></translation>
+        <translation>ICAO 代码，例如 B737、A320、F18</translation>
     </message>
     <message>
         <location filename="../src/gui/components/ownaircraftcomponent.ui" line="92"/>
@@ -8250,7 +8261,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/ownaircraftcomponent.ui" line="105"/>
         <source>Aircraft type e.g. L2J, L1P, ....</source>
-        <translation></translation>
+        <translation>航空器类型，例如 L2J、L1P 等</translation>
     </message>
     <message>
         <location filename="../src/gui/components/ownaircraftcomponent.ui" line="108"/>
@@ -8541,12 +8552,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/editors/pilotform.ui" line="80"/>
         <source>Home airport, e.g. &quot;KLAX&quot;</source>
-        <translation></translation>
+        <translation>常驻机场，例如“KLAX”</translation>
     </message>
     <message>
         <location filename="../src/gui/editors/pilotform.ui" line="83"/>
         <source>Home</source>
-        <translation></translation>
+        <translation>常驻机场</translation>
     </message>
     <message>
         <location filename="../src/gui/editors/pilotform.ui" line="90"/>
@@ -8561,7 +8572,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/editors/pilotform.ui" line="100"/>
         <source>e.g. Joe Doe</source>
-        <translation></translation>
+        <translation>例如 Joe Doe</translation>
     </message>
     <message>
         <location filename="../src/gui/editors/pilotform.ui" line="121"/>
@@ -8834,22 +8845,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="39"/>
         <source>normal</source>
-        <translation></translation>
+        <translation>常规</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="44"/>
         <source>bold</source>
-        <translation></translation>
+        <translation>粗体</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="49"/>
         <source>italic</source>
-        <translation></translation>
+        <translation>斜体</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="54"/>
         <source>bold italic</source>
-        <translation></translation>
+        <translation>粗斜体</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="96"/>
@@ -8869,52 +8880,52 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="139"/>
         <source>Font size in pt</source>
-        <translation></translation>
+        <translation>字体大小（pt）</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="143"/>
         <source>6</source>
-        <translation></translation>
+        <translation>6</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="148"/>
         <source>7</source>
-        <translation></translation>
+        <translation>7</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="153"/>
         <source>8</source>
-        <translation></translation>
+        <translation>8</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="158"/>
         <source>9</source>
-        <translation></translation>
+        <translation>9</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="163"/>
         <source>10</source>
-        <translation></translation>
+        <translation>10</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="168"/>
         <source>11</source>
-        <translation></translation>
+        <translation>11</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="173"/>
         <source>12</source>
-        <translation></translation>
+        <translation>12</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="178"/>
         <source>14</source>
-        <translation></translation>
+        <translation>14</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="183"/>
         <source>16</source>
-        <translation></translation>
+        <translation>16</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="191"/>
@@ -8924,7 +8935,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="198"/>
         <source>...</source>
-        <translation></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="205"/>
@@ -8934,7 +8945,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/settingsfontcomponent.ui" line="222"/>
         <source>None</source>
-        <translation></translation>
+        <translation>无</translation>
     </message>
 </context>
 <context>
@@ -10821,7 +10832,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="288"/>
         <source>DBus (core to GUI)</source>
-        <translation></translation>
+        <translation>DBus（核心到 GUI）</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="337"/>
@@ -10846,7 +10857,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="501"/>
         <source>P3D/FSX</source>
-        <translation></translation>
+        <translation>P3D/FSX</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="507"/>
@@ -10896,33 +10907,33 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="613"/>
         <source>start neoswift GUI</source>
-        <translation></translation>
+        <translation>启动 neoswift GUI</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="616"/>
         <source>neoswift GUI</source>
-        <translation></translation>
+        <translation>neoswift GUI</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="633"/>
         <source>start neoswift core</source>
-        <translation></translation>
+        <translation>启动 neoswift 核心</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="636"/>
         <source>neoswift core</source>
-        <translation></translation>
+        <translation>neoswift 核心</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="653"/>
         <source>start neoswift data (the mapping tool)</source>
-        <translation></translation>
+        <translation>启动 neoswift data（映射工具）</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="656"/>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="720"/>
         <source>mapping tool</source>
-        <translation></translation>
+        <translation>映射工具</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="673"/>
@@ -10932,22 +10943,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="686"/>
         <source>open browser for neoswift database</source>
-        <translation></translation>
+        <translation>打开 neoswift 数据库网页</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="689"/>
         <source>goto neoswift database</source>
-        <translation></translation>
+        <translation>前往 neoswift 数据库</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="706"/>
         <source>GUI</source>
-        <translation></translation>
+        <translation>GUI</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="713"/>
         <source>core</source>
-        <translation></translation>
+        <translation>核心</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="727"/>
@@ -10957,7 +10968,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="734"/>
         <source>goto DB</source>
-        <translation></translation>
+        <translation>前往数据库</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="741"/>
@@ -10972,7 +10983,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.ui" line="788"/>
         <source>Ctrl+M</source>
-        <translation></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.cpp" line="120"/>
@@ -10993,7 +11004,7 @@ Do you want to use that one?</source>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.cpp" line="178"/>
         <source>Registry neoswift applications</source>
-        <translation></translation>
+        <translation>注册 neoswift 应用程序</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.cpp" line="179"/>
@@ -11006,7 +11017,9 @@ This cannot be undone!</source>
         <source>While using the wizard no other application should run.
 Close applications and try again.
 Currently running: %1</source>
-        <translation>注册 neoswift 应用程序</translation>
+        <translation>使用向导时不应运行其他应用程序。
+请关闭相关应用程序后重试。
+当前正在运行：%1</translation>
     </message>
     <message>
         <location filename="../src/swiftlauncher/swiftlauncher.cpp" line="415"/>
@@ -11630,17 +11643,17 @@ Currently running: %1</source>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="370"/>
         <source>Position EDDF (Frankfurt, GER)</source>
-        <translation></translation>
+        <translation>定位到 EDDF（法兰克福，德国）</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="375"/>
         <source>Position EDDM (Munich, GER)</source>
-        <translation></translation>
+        <translation>定位到 EDDM（慕尼黑，德国）</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="380"/>
         <source>Position EDRY (Speyer, GER)</source>
-        <translation></translation>
+        <translation>定位到 EDRY（施派尔，德国）</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="395"/>
@@ -11748,7 +11761,7 @@ Currently running: %1</source>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="403"/>
         <source>Ctrl+W, Ctrl+M</source>
-        <translation></translation>
+        <translation>Ctrl+W, Ctrl+M</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="408"/>
@@ -11758,7 +11771,7 @@ Currently running: %1</source>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="411"/>
         <source>Ctrl+W, Ctrl+T</source>
-        <translation></translation>
+        <translation>Ctrl+W, Ctrl+T</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="416"/>
@@ -11969,7 +11982,9 @@ Currently running: %1</source>
         <source>Do you want to try to reconnect? &apos;Abort&apos; will close the GUI.
 
 DBus: &apos;%1&apos;</source>
-        <translation>DBus：不可用</translation>
+        <translation>是否尝试重新连接？“中止”将关闭图形界面。
+
+DBus：“%1”</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.cpp" line="838"/>
@@ -12002,12 +12017,12 @@ DBus: &apos;%1&apos;</source>
     <message>
         <location filename="../src/gui/qml/Transceiver.qml" line="70"/>
         <source>TX</source>
-        <translation></translation>
+        <translation>TX</translation>
     </message>
     <message>
         <location filename="../src/gui/qml/Transceiver.qml" line="79"/>
         <source>Enabled</source>
-        <translation></translation>
+        <translation>已启用</translation>
     </message>
 </context>
 <context>
@@ -12286,7 +12301,8 @@ DBus: &apos;%1&apos;</source>
         <location filename="../src/gui/guiapplication.cpp" line="218"/>
         <source>Your are using swift version: &apos;%1&apos;.
 Creating mappings requires at least &apos;%2&apos;.</source>
-        <translation>版本 %1</translation>
+        <translation>您正在使用 swift 版本：“%1”。
+创建映射至少需要版本“%2”。</translation>
     </message>
     <message>
         <location filename="../src/gui/guiapplication.cpp" line="221"/>
@@ -12345,7 +12361,9 @@ Creating mappings requires at least &apos;%2&apos;.</source>
         <source>File &apos;%1&apos; already exists locally.
 
 Do you want to reload the file?</source>
-        <translation>选择您的下载目录</translation>
+        <translation>文件“%1”已存在于本地。
+
+是否重新加载该文件？</translation>
     </message>
     <message>
         <location filename="../src/gui/components/downloadcomponent.cpp" line="200"/>
@@ -12450,7 +12468,7 @@ The existing cache data will we overridden.</source>
     <message>
         <location filename="../src/gui/components/flightplancomponent.cpp" line="590"/>
         <source>neoswift (*.json;*.txt)</source>
-        <translation></translation>
+        <translation>neoswift (*.json;*.txt)</translation>
     </message>
     <message>
         <location filename="../src/gui/components/flightplancomponent.cpp" line="603"/>
@@ -12464,7 +12482,11 @@ The existing cache data will we overridden.</source>
 This is not recommended!
 
 Do you want to really do this?</source>
-        <translation>swift 飞行计划</translation>
+        <translation>您正尝试保存到 swift 目录“%1”中。
+
+不建议这样做。
+
+确定要继续吗？</translation>
     </message>
     <message>
         <location filename="../src/gui/components/flightplancomponent.cpp" line="685"/>
@@ -12521,7 +12543,12 @@ Your version is &apos;%1&apos;. Use this version.
 If not available, you can try the version next to your version number.
 
 Continue with this version?</source>
-        <translation>下载 xswiftbus</translation>
+        <translation>xswiftbus 版本似乎适用于其他版本。
+您的版本是“%1”。请使用此版本。
+
+如果不可用，可以尝试与您的版本号相近的版本。
+
+是否继续使用此版本？</translation>
     </message>
 </context>
 <context>
@@ -12598,27 +12625,27 @@ Continue with this version?</source>
     <message>
         <location filename="../src/gui/components/networkselectorcomponent.cpp" line="53"/>
         <source>Observer</source>
-        <translation></translation>
+        <translation>观察员</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkselectorcomponent.cpp" line="54"/>
         <source>Connect as observer (read-only, not visible to others)</source>
-        <translation></translation>
+        <translation>以观察员身份连接（只读，对其他用户不可见）</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkselectorcomponent.cpp" line="56"/>
         <source>Co-pilot:</source>
-        <translation></translation>
+        <translation>副驾驶：</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkselectorcomponent.cpp" line="59"/>
         <source>callsign</source>
-        <translation></translation>
+        <translation>呼号</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkselectorcomponent.cpp" line="60"/>
         <source>Optional: callsign of your co-pilot / partner</source>
-        <translation></translation>
+        <translation>可选：副驾驶/搭档的呼号</translation>
     </message>
 </context>
 <context>
@@ -12711,7 +12738,9 @@ Do you want to save your changes?</source>
         <source>The selected combination conflicts with the following %1 combination(s):
 
 </source>
-        <translation>更改样式？</translation>
+        <translation>所选组合与以下 %1 个组合冲突：
+
+</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingshotkeycomponent.cpp" line="170"/>
@@ -12962,7 +12991,8 @@ with correct CORS headers.</source>
         <location filename="../src/gui/components/updateinfocomponent.cpp" line="167"/>
         <source>The platform &apos;%1&apos; does not match your current platform &apos;%2&apos;.
 Do you want to continue?</source>
-        <translation>下载安装程序</translation>
+        <translation>平台“%1”与当前平台“%2”不匹配。
+是否继续？</translation>
     </message>
 </context>
 <context>
@@ -13021,7 +13051,7 @@ Do you want to continue?</source>
         <location filename="../src/gui/views/viewbase.cpp" line="793"/>
         <location filename="../src/gui/views/viewbase.cpp" line="793"/>
         <source>neoswift (*.json *.txt)</source>
-        <translation></translation>
+        <translation>neoswift (*.json *.txt)</translation>
     </message>
     <message>
         <location filename="../src/gui/views/viewbase.cpp" line="792"/>
