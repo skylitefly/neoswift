@@ -171,6 +171,36 @@ Character encoding for FSD messages. Common values: `"UTF-8"`, `"ISO-8859-1"`. D
 
 ---
 
+#### `fsd.reconnect`
+
+Optional. Controls automatic reconnect after an unexpected FSD socket disconnect. It does not run after the user manually disconnects or after the server kicks the client.
+
+Default is no reconnect:
+
+```json
+"reconnect": {
+  "enabled": false,
+  "max_attempts": 0,
+  "initial_delay_sec": 5,
+  "backoff_multiplier": 2.0,
+  "max_delay_sec": 60,
+  "append_attempt_to_callsign": false
+}
+```
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `enabled` | bool | `false` | Enable reconnect attempts for network-style disconnects. |
+| `max_attempts` | int | `0` | Maximum attempts. `0` means disabled, even if `enabled` is true. |
+| `initial_delay_sec` | int | `5` | Delay before the first reconnect attempt. |
+| `backoff_multiplier` | number | `2.0` | Multiplier for each later attempt. Values below `1.0` are treated as `1.0`. |
+| `max_delay_sec` | int | `60` | Maximum delay cap for any attempt. |
+| `append_attempt_to_callsign` | bool | `false` | If true, append the attempt number directly to the original callsign. For example, `SKY123` reconnects as `SKY1231`, then `SKY1232`. No hyphen is added. |
+
+Use `append_attempt_to_callsign` only if your server can temporarily keep stale sessions and rejects a new login with the same callsign.
+
+---
+
 #### FSD flags
 
 These flags control which optional FSD message types are active.

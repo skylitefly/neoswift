@@ -68,7 +68,7 @@ namespace swift::core::context
         m_fsdClient->start(); // FSD thread
         connect(m_fsdClient, &CFSDClient::connectionStatusChanged, this, &CContextNetwork::onFsdConnectionStatusChanged,
                 Qt::QueuedConnection);
-        connect(m_fsdClient, &CFSDClient::killRequestReceived, this, &CContextNetwork::kicked, Qt::QueuedConnection);
+        connect(m_fsdClient, &CFSDClient::killRequestReceived, this, &CContextNetwork::onKicked, Qt::QueuedConnection);
         connect(m_fsdClient, &CFSDClient::textMessagesReceived, this, &CContextNetwork::onTextMessagesReceived,
                 Qt::QueuedConnection);
         connect(m_fsdClient, &CFSDClient::textMessageSent, this, &CContextNetwork::onTextMessageSent,
@@ -89,6 +89,11 @@ namespace swift::core::context
         connect(m_requestAtisTimer, &QTimer::timeout, this, &CContextNetwork::requestAtisUpdates);
         m_requestAtisTimer->start(13 * 1000); // should not be called at the same time as above
         m_requestAtisTimer->setObjectName("CContextNetwork::m_requestAtisTimer");
+
+        m_reconnectTimer = new QTimer(this);
+        m_reconnectTimer->setSingleShot(true);
+        m_reconnectTimer->setObjectName("CContextNetwork::m_reconnectTimer");
+        connect(m_reconnectTimer, &QTimer::timeout, this, &CContextNetwork::reconnectToNetwork);
 
         // 3. send staggered model matching signals, to avoid to many matchings at the same time
         m_staggeredMatchingTimer = new QTimer(this);
@@ -237,6 +242,16 @@ namespace swift::core::context
                                                      bool sendModelString, const CCallsign &partnerCallsign,
                                                      CLoginMode mode)
     {
+        const bool automaticReconnect = m_reconnectInProgress;
+        if (!automaticReconnect)
+        {
+            this->cancelReconnect();
+            m_reconnectAttempt = 0;
+            m_userDisconnectRequested = false;
+            m_kickedDisconnectRequested = false;
+            m_unexpectedDisconnectPending = false;
+        }
+
         if (!this->canUseFsd())
         {
             return { CStatusMessage({ CLogCategories::validation() }, CStatusMessage::SeverityInfo,
@@ -327,6 +342,18 @@ namespace swift::core::context
         m_fsdClient->setPilotRating(PilotRating::Student);
         m_fsdClient->setAtcRating(AtcRating::Observer);
 
+        if (!automaticReconnect)
+        {
+            m_reconnectLogin.server = server;
+            m_reconnectLogin.extraLiveryString = extraLiveryString;
+            m_reconnectLogin.sendLivery = sendLivery;
+            m_reconnectLogin.extraModelString = extraModelString;
+            m_reconnectLogin.sendModelString = sendModelString;
+            m_reconnectLogin.partnerCallsign = partnerCallsign;
+            m_reconnectLogin.mode = mode;
+            m_reconnectLogin.originalCallsign = ownAircraft.getCallsign();
+        }
+
         m_fsdClient->connectToServer();
         return CStatusMessage({ CLogCategories::validation() }, CStatusMessage::SeverityInfo,
                               u"Connection pending " % server.getAddress() % u' ' % QString::number(server.getPort()));
@@ -353,6 +380,9 @@ namespace swift::core::context
                                     u"Invalid FSD state (shutdown)") };
         }
         if (this->isDebugEnabled()) { CLogMessage(this, CLogCategories::contextSlot()).debug() << Q_FUNC_INFO; }
+        m_userDisconnectRequested = true;
+        m_unexpectedDisconnectPending = false;
+        this->cancelReconnect();
         if (m_fsdClient->isConnected() || m_fsdClient->isPendingConnection())
         {
             m_fsdClient->disconnectFromServer();
@@ -680,22 +710,120 @@ namespace swift::core::context
         return sApp->getWebDataServices()->getVatsimFsdServers();
     }
 
+    void CContextNetwork::onKicked(const QString &reason)
+    {
+        m_kickedDisconnectRequested = true;
+        m_unexpectedDisconnectPending = false;
+        this->cancelReconnect();
+        emit this->kicked(reason);
+    }
+
+    void CContextNetwork::cancelReconnect()
+    {
+        if (m_reconnectTimer) { m_reconnectTimer->stop(); }
+        m_reconnectInProgress = false;
+    }
+
+    void CContextNetwork::scheduleReconnect()
+    {
+        if (!m_fsdClient || !m_reconnectTimer) { return; }
+        if (sApp && sApp->isShuttingDown()) { return; }
+
+        const CNetworkConfig config = m_fsdClient->getNetworkConfig();
+        if (!config.isReconnectEnabled())
+        {
+            m_reconnectAttempt = 0;
+            return;
+        }
+        if (!m_reconnectLogin.isValid())
+        {
+            CLogMessage(this).warning(u"Automatic reconnect skipped: no previous login data");
+            m_reconnectAttempt = 0;
+            return;
+        }
+        if (m_reconnectAttempt >= config.getReconnectMaxAttempts())
+        {
+            CLogMessage(this).warning(u"Automatic reconnect stopped after %1 attempt(s)") << m_reconnectAttempt;
+            m_reconnectAttempt = 0;
+            return;
+        }
+
+        ++m_reconnectAttempt;
+        const int delayMs = config.reconnectDelayMsForAttempt(m_reconnectAttempt);
+        const QString callsign =
+            config.reconnectCallsignForAttempt(m_reconnectLogin.originalCallsign.asString(), m_reconnectAttempt);
+        CLogMessage(this).info(u"Scheduling automatic reconnect attempt %1/%2 in %3s as '%4'")
+            << m_reconnectAttempt << config.getReconnectMaxAttempts() << (delayMs / 1000.0) << callsign;
+        m_reconnectTimer->start(delayMs);
+    }
+
+    void CContextNetwork::reconnectToNetwork()
+    {
+        if (!this->canUseFsd()) { return; }
+        if (sApp && sApp->isShuttingDown()) { return; }
+        if (!m_reconnectLogin.isValid()) { return; }
+        if (m_userDisconnectRequested || m_kickedDisconnectRequested) { return; }
+        if (m_fsdClient->isConnected() || m_fsdClient->isPendingConnection()) { return; }
+
+        const CNetworkConfig config = m_fsdClient->getNetworkConfig();
+        CServer server = m_reconnectLogin.server;
+        CUser user = server.getUser();
+        user.setCallsign(CCallsign(config.reconnectCallsignForAttempt(m_reconnectLogin.originalCallsign.asString(),
+                                                                      m_reconnectAttempt),
+                                   CCallsign::Aircraft));
+        server.setUser(user);
+
+        m_reconnectInProgress = true;
+        m_userDisconnectRequested = false;
+        m_kickedDisconnectRequested = false;
+        m_unexpectedDisconnectPending = false;
+        const CStatusMessage msg =
+            this->connectToNetwork(server, m_reconnectLogin.extraLiveryString, m_reconnectLogin.sendLivery,
+                                   m_reconnectLogin.extraModelString, m_reconnectLogin.sendModelString,
+                                   m_reconnectLogin.partnerCallsign, m_reconnectLogin.mode);
+        m_reconnectInProgress = false;
+
+        if (!msg.isSuccess())
+        {
+            CLogMessage::preformatted(msg);
+            this->scheduleReconnect();
+        }
+    }
+
     void CContextNetwork::onFsdConnectionStatusChanged(const CConnectionStatus &from, const CConnectionStatus &to)
     {
         // if (this->isDebugEnabled()) { CLogMessage(this, CLogCategories::contextSlot()).debug() << Q_FUNC_INFO << from
         // << to; }
+
+        if (to.isDisconnecting())
+        {
+            m_unexpectedDisconnectPending =
+                (from.isConnected() || from.isConnecting()) && !m_userDisconnectRequested && !m_kickedDisconnectRequested;
+        }
 
         if (to.isDisconnected())
         {
             // make sure airspace is really cleaned up
             Q_ASSERT(m_airspace);
             m_airspace->clear();
+
+            const bool reconnect = (m_unexpectedDisconnectPending || from.isConnected() || from.isConnecting()) &&
+                                   !m_userDisconnectRequested && !m_kickedDisconnectRequested;
+            m_unexpectedDisconnectPending = false;
+            m_userDisconnectRequested = false;
+            m_kickedDisconnectRequested = false;
+            if (reconnect) { this->scheduleReconnect(); }
         }
 
         // send 1st position
         if (to.isConnected())
         {
             CLogMessage(this).info(u"Connected, own aircraft %1") << this->ownAircraft().getCallsignAsString();
+            m_reconnectAttempt = 0;
+            m_userDisconnectRequested = false;
+            m_kickedDisconnectRequested = false;
+            m_unexpectedDisconnectPending = false;
+            this->cancelReconnect();
 
             if (m_fsdClient)
             {

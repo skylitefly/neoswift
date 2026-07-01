@@ -461,6 +461,26 @@ namespace swift::core
             CAirspaceMonitor *m_airspace = nullptr;
             fsd::CFSDClient *m_fsdClient = nullptr;
             swift::core::data::CNetworkSetup m_networkSetup; //!< access to last-network data cache
+            struct ReconnectLoginSnapshot
+            {
+                swift::misc::network::CServer server;
+                QString extraLiveryString;
+                bool sendLivery = false;
+                QString extraModelString;
+                bool sendModelString = false;
+                swift::misc::aviation::CCallsign partnerCallsign;
+                swift::misc::network::CLoginMode mode = swift::misc::network::CLoginMode::Pilot;
+                swift::misc::aviation::CCallsign originalCallsign;
+
+                bool isValid() const { return server.isValidForLogin() && !originalCallsign.isEmpty(); }
+            };
+            ReconnectLoginSnapshot m_reconnectLogin;
+            QTimer *m_reconnectTimer = nullptr;
+            int m_reconnectAttempt = 0;
+            bool m_reconnectInProgress = false;
+            bool m_userDisconnectRequested = false;
+            bool m_kickedDisconnectRequested = false;
+            bool m_unexpectedDisconnectPending = false;
             QTimer *m_requestAircraftDataTimer =
                 nullptr; //!< general updates such as frequencies, see requestAircraftDataUpdates()
             QTimer *m_requestAtisTimer = nullptr; //!< general updates such as ATIS
@@ -494,12 +514,24 @@ namespace swift::core
             //! Text message has been sent
             void onTextMessageSent(const swift::misc::network::CTextMessage &message);
 
+            //! User has been kicked from network
+            void onKicked(const QString &reason);
+
             //! An ATIS has been received
             void onChangedAtisReceived(const swift::misc::aviation::CCallsign &callsign);
 
             //! Connection status changed
             void onFsdConnectionStatusChanged(const swift::misc::network::CConnectionStatus &from,
                                               const swift::misc::network::CConnectionStatus &to);
+
+            //! Cancel pending automatic reconnect
+            void cancelReconnect();
+
+            //! Queue the next automatic reconnect attempt
+            void scheduleReconnect();
+
+            //! Start the queued automatic reconnect attempt
+            void reconnectToNetwork();
 
             //! Ready for matching
             void onReadyForModelMatching(const swift::misc::simulation::CSimulatedAircraft &aircraft);

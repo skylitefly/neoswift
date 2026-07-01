@@ -3,6 +3,9 @@
 
 #include "misc/network/networkconfig.h"
 
+#include <algorithm>
+#include <cmath>
+
 #include <QtGlobal>
 
 #include "misc/comparefunctions.h"
@@ -29,11 +32,17 @@ namespace swift::misc::network
         cfg.m_fsdProtocol = fsd["protocol"].toString(QStringLiteral("classic"));
         cfg.m_fsdChallenge = fsd["challenge"].toBool(false);
         cfg.m_fsdAuth = fsd["auth"].toString(QStringLiteral("plain"));
-        if (!fsd["auth_url"].isNull()) { cfg.m_fsdAuthUrl = CUrl(fsd["auth_url"].toString()); }
-        cfg.m_fsdServersUrl = CUrl(fsd["servers_url"].toString());
-        if (!fsd["load_balancing_url"].isNull())
+        if (fsd["auth_url"].isString() && !fsd["auth_url"].toString().isEmpty())
         {
-            cfg.m_fsdLoadBalancingUrl = CUrl(fsd["load_balancing_url"].toString());
+            cfg.m_fsdAuthUrl.setFullUrl(fsd["auth_url"].toString());
+        }
+        if (fsd["servers_url"].isString() && !fsd["servers_url"].toString().isEmpty())
+        {
+            cfg.m_fsdServersUrl.setFullUrl(fsd["servers_url"].toString());
+        }
+        if (fsd["load_balancing_url"].isString() && !fsd["load_balancing_url"].toString().isEmpty())
+        {
+            cfg.m_fsdLoadBalancingUrl.setFullUrl(fsd["load_balancing_url"].toString());
         }
         cfg.m_fsdTextCodec = fsd["text_codec"].toString(QStringLiteral("UTF-8"));
 
@@ -56,18 +65,39 @@ namespace swift::misc::network
         cfg.m_receiveEuroscopeSimData = fsd["receive_euroscope_simdata"].toBool(false);
         cfg.m_force3LetterAirlineIcao = fsd["force_3_letter_airline_icao"].toBool(false);
 
+        const QJsonObject reconnect = fsd["reconnect"].toObject();
+        cfg.m_reconnectEnabled = reconnect["enabled"].toBool(false);
+        cfg.m_reconnectMaxAttempts = std::max(0, reconnect["max_attempts"].toInt(0));
+        cfg.m_reconnectInitialDelaySec = std::max(0, reconnect["initial_delay_sec"].toInt(5));
+        cfg.m_reconnectBackoffMultiplier = reconnect["backoff_multiplier"].toDouble(2.0);
+        if (cfg.m_reconnectBackoffMultiplier < 1.0) { cfg.m_reconnectBackoffMultiplier = 1.0; }
+        cfg.m_reconnectMaxDelaySec = std::max(0, reconnect["max_delay_sec"].toInt(60));
+        cfg.m_reconnectAppendAttemptToCallsign = reconnect["append_attempt_to_callsign"].toBool(false);
+
         // data section
         const QJsonObject data = json["data"].toObject();
-        cfg.m_networkDataUrl = CUrl(data["network_data_url"].toString());
-        cfg.m_metarUrl = CUrl(data["metar_url"].toString());
+        if (data["network_data_url"].isString() && !data["network_data_url"].toString().isEmpty())
+        {
+            cfg.m_networkDataUrl.setFullUrl(data["network_data_url"].toString());
+        }
+        if (data["metar_url"].isString() && !data["metar_url"].toString().isEmpty())
+        {
+            cfg.m_metarUrl.setFullUrl(data["metar_url"].toString());
+        }
         cfg.m_dataPollingIntervalSec = data["data_polling_interval_sec"].toInt(120);
         cfg.m_maxRangeNm = data["max_range_nm"].toInt(-1);
 
         // voice section
         const QJsonObject voice = json["voice"].toObject();
         cfg.m_voiceEnabled = voice["enabled"].toBool(false);
-        if (!voice["api_url"].isNull()) { cfg.m_voiceApiUrl = CUrl(voice["api_url"].toString()); }
-        if (!voice["map_url"].isNull()) { cfg.m_voiceMapUrl = CUrl(voice["map_url"].toString()); }
+        if (voice["api_url"].isString() && !voice["api_url"].toString().isEmpty())
+        {
+            cfg.m_voiceApiUrl.setFullUrl(voice["api_url"].toString());
+        }
+        if (voice["map_url"].isString() && !voice["map_url"].toString().isEmpty())
+        {
+            cfg.m_voiceMapUrl.setFullUrl(voice["map_url"].toString());
+        }
 
         return cfg;
     }
@@ -87,6 +117,21 @@ namespace swift::misc::network
                                     m_receiveEuroscopeSimData, m_sendFplIcaoEquipment);
         setup.setForce3LetterAirlineCodes(m_force3LetterAirlineIcao);
         return setup;
+    }
+
+    int CNetworkConfig::reconnectDelayMsForAttempt(int attempt) const
+    {
+        if (attempt <= 0) { return 0; }
+        const double delaySec =
+            static_cast<double>(m_reconnectInitialDelaySec) * std::pow(m_reconnectBackoffMultiplier, attempt - 1);
+        const double cappedDelaySec = std::min(delaySec, static_cast<double>(m_reconnectMaxDelaySec));
+        return static_cast<int>(std::round(cappedDelaySec * 1000.0));
+    }
+
+    QString CNetworkConfig::reconnectCallsignForAttempt(const QString &baseCallsign, int attempt) const
+    {
+        if (!m_reconnectAppendAttemptToCallsign || attempt <= 0) { return baseCallsign; }
+        return baseCallsign + QString::number(attempt);
     }
 
     bool CNetworkConfig::isValid() const { return !m_networkName.isEmpty() && !m_fsdServersUrl.isEmpty(); }

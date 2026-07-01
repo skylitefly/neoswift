@@ -102,6 +102,30 @@ namespace swift::misc::network
         //! AFV map URL
         const CUrl &getVoiceMapUrl() const { return m_voiceMapUrl; }
 
+        //! Whether unexpected FSD disconnects should be retried
+        bool isReconnectEnabled() const { return m_reconnectEnabled && m_reconnectMaxAttempts > 0; }
+
+        //! Maximum number of reconnect attempts
+        int getReconnectMaxAttempts() const { return m_reconnectMaxAttempts; }
+
+        //! Initial reconnect delay in seconds
+        int getReconnectInitialDelaySec() const { return m_reconnectInitialDelaySec; }
+
+        //! Reconnect delay multiplier for subsequent attempts
+        double getReconnectBackoffMultiplier() const { return m_reconnectBackoffMultiplier; }
+
+        //! Maximum reconnect delay in seconds
+        int getReconnectMaxDelaySec() const { return m_reconnectMaxDelaySec; }
+
+        //! Whether reconnect attempts append the attempt number to the callsign
+        bool appendReconnectAttemptToCallsign() const { return m_reconnectAppendAttemptToCallsign; }
+
+        //! Delay before a reconnect attempt, in milliseconds
+        int reconnectDelayMsForAttempt(int attempt) const;
+
+        //! Callsign to use for a reconnect attempt
+        QString reconnectCallsignForAttempt(const QString &baseCallsign, int attempt) const;
+
         //! Build a CFsdSetup from the boolean flags in this config
         CFsdSetup toFsdSetup() const;
 
@@ -149,6 +173,14 @@ namespace swift::misc::network
         bool m_receiveEuroscopeSimData = false;
         bool m_force3LetterAirlineIcao = false;
 
+        // fsd reconnect
+        bool m_reconnectEnabled = false;
+        int m_reconnectMaxAttempts = 0;
+        int m_reconnectInitialDelaySec = 5;
+        double m_reconnectBackoffMultiplier = 2.0;
+        int m_reconnectMaxDelaySec = 60;
+        bool m_reconnectAppendAttemptToCallsign = false;
+
         // --- data ---
         CUrl m_networkDataUrl;
         CUrl m_metarUrl;
@@ -182,6 +214,12 @@ namespace swift::misc::network
             SWIFT_METAMEMBER(sendFplIcaoEquipment),
             SWIFT_METAMEMBER(receiveEuroscopeSimData),
             SWIFT_METAMEMBER(force3LetterAirlineIcao),
+            SWIFT_METAMEMBER(reconnectEnabled),
+            SWIFT_METAMEMBER(reconnectMaxAttempts),
+            SWIFT_METAMEMBER(reconnectInitialDelaySec),
+            SWIFT_METAMEMBER(reconnectBackoffMultiplier),
+            SWIFT_METAMEMBER(reconnectMaxDelaySec),
+            SWIFT_METAMEMBER(reconnectAppendAttemptToCallsign),
             SWIFT_METAMEMBER(networkDataUrl),
             SWIFT_METAMEMBER(metarUrl),
             SWIFT_METAMEMBER(dataPollingIntervalSec),
