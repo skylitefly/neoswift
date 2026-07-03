@@ -7,11 +7,14 @@
 #define SWIFT_GUI_COMPONENTS_SETTINGSNETWORKSERVERSCOMPONENT_H
 
 #include <QFrame>
+#include <QGroupBox>
+#include <QLabel>
 #include <QPushButton>
 #include <QTableWidget>
 
 #include "core/network/networkdiscoveryservice.h"
 #include "gui/swiftguiexport.h"
+#include "misc/network/network.h"
 #include "misc/network/settings/networksettings.h"
 #include "misc/settingscache.h"
 
@@ -32,15 +35,23 @@ namespace swift::gui::components
 
     private:
         void reloadTable();
+        void updateReconnectPanel();
         void onAddPressed();
         void onAddByUrlPressed();
         void onDeletePressed();
         void onEditUserPressed();
+        void onConfigureReconnectPressed();
         void onRefreshSelectedPressed();
         void onRefreshAllPressed();
         bool editNetworkUser(int row, bool required);
+        void promptReconnectForRow(int row);
+        void copyPreservedNetworkFields(const swift::misc::network::CNetwork &from,
+                                        swift::misc::network::CNetwork &to) const;
 
         QTableWidget *m_table = nullptr;
+        QGroupBox *m_gbReconnect = nullptr;
+        QLabel *m_lblReconnectStatus = nullptr;
+        QPushButton *m_pbConfigureReconnect = nullptr;
         QPushButton *m_pbAdd = nullptr;
         QPushButton *m_pbDelete = nullptr;
         QPushButton *m_pbEditUser = nullptr;

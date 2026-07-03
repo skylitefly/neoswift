@@ -9,6 +9,7 @@
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QGroupBox>
+#include <QGroupBox>
 #include <QHBoxLayout>
 #include <QHeaderView>
 #include <QInputDialog>
@@ -21,6 +22,7 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
+#include "gui/components/networkreconnectdialog.h"
 #include "gui/editors/pilotform.h"
 #include "misc/network/network.h"
 #include "misc/network/networklist.h"
@@ -37,7 +39,7 @@ namespace swift::gui::components
     {
         // ── Table ─────────────────────────────────────────────────────────
         m_table = new QTableWidget(0, 4, this);
-        m_table->setHorizontalHeaderLabels({ tr("Name"), tr("User"), tr("Description"), tr("Domain") });
+        m_table->setHorizontalHeaderLabels({ tr("Name"), tr("User"), tr("Description"), tr("Auto-reconnect") });
         m_table->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
         m_table->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
         m_table->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
@@ -59,6 +61,14 @@ namespace swift::gui::components
         m_pbRefreshAll = new QPushButton(tr("Refresh all"), this);
         m_pbRefreshAll->setToolTip(tr("Re-fetch fsd-configuration for all networks"));
 
+        m_gbReconnect = new QGroupBox(tr("Auto-reconnect"), this);
+        m_lblReconnectStatus = new QLabel(m_gbReconnect);
+        m_pbConfigureReconnect = new QPushButton(tr("Configure…"), m_gbReconnect);
+        auto *reconnectLayout = new QHBoxLayout(m_gbReconnect);
+        reconnectLayout->addWidget(m_lblReconnectStatus, 1);
+        reconnectLayout->addWidget(m_pbConfigureReconnect);
+        m_gbReconnect->setVisible(false);
+
         auto *btnRow = new QHBoxLayout;
         btnRow->addWidget(m_pbRefreshSelected);
         btnRow->addWidget(m_pbRefreshAll);
@@ -74,6 +84,7 @@ namespace swift::gui::components
         gbLayout->addWidget(
             new QLabel(tr("Manage flight networks. Networks are discovered automatically from their domain."), gb));
         gbLayout->addWidget(m_table);
+        gbLayout->addWidget(m_gbReconnect);
         gbLayout->addLayout(btnRow);
 
         auto *vl = new QVBoxLayout(this);
@@ -92,8 +103,13 @@ namespace swift::gui::components
         connect(m_pbRefreshSelected, &QPushButton::clicked, this,
                 &CSettingsNetworkServersComponent::onRefreshSelectedPressed);
         connect(m_pbRefreshAll, &QPushButton::clicked, this, &CSettingsNetworkServersComponent::onRefreshAllPressed);
+        connect(m_table, &QTableWidget::itemSelectionChanged, this,
+                &CSettingsNetworkServersComponent::updateReconnectPanel);
+        connect(m_pbConfigureReconnect, &QPushButton::clicked, this,
+                &CSettingsNetworkServersComponent::onConfigureReconnectPressed);
 
         reloadTable();
+        updateReconnectPanel();
     }
 
     CSettingsNetworkServersComponent::~CSettingsNetworkServersComponent() = default;
@@ -114,8 +130,49 @@ namespace swift::gui::components
             m_table->setItem(i, 0, new QTableWidgetItem(name));
             m_table->setItem(i, 1, new QTableWidgetItem(userText));
             m_table->setItem(i, 2, new QTableWidgetItem(desc));
-            m_table->setItem(i, 3, new QTableWidgetItem(net.hasConfigUrl() ? net.getConfigUrl() : net.getDomain()));
+            m_table->setItem(i, 3, new QTableWidgetItem(net.reconnectStatusText()));
         }
+        updateReconnectPanel();
+    }
+
+    void CSettingsNetworkServersComponent::updateReconnectPanel()
+    {
+        const int row = m_table->currentRow();
+        const CNetworkList networks = m_networks.get();
+        if (row < 0 || row >= networks.size() || !networks[row].isReconnectSupported())
+        {
+            m_gbReconnect->setVisible(false);
+            return;
+        }
+
+        const CNetwork &net = networks[row];
+        m_gbReconnect->setVisible(true);
+        m_lblReconnectStatus->setText(tr("Current status: %1").arg(net.reconnectStatusText()));
+    }
+
+    void CSettingsNetworkServersComponent::copyPreservedNetworkFields(const CNetwork &from, CNetwork &to) const
+    {
+        to.setUser(from.getUser());
+        to.copyUserReconnectPreferenceFrom(from);
+    }
+
+    void CSettingsNetworkServersComponent::promptReconnectForRow(int row)
+    {
+        CNetworkList networks = m_networks.get();
+        if (row < 0 || row >= networks.size() || !networks[row].isReconnectSupported()) { return; }
+        CNetworkReconnectDialog::promptAndSave(this, row, m_networks, true);
+        reloadTable();
+        m_table->selectRow(row);
+    }
+
+    void CSettingsNetworkServersComponent::onConfigureReconnectPressed()
+    {
+        const int row = m_table->currentRow();
+        CNetworkList networks = m_networks.get();
+        if (row < 0 || row >= networks.size() || !networks[row].isReconnectSupported()) { return; }
+        CNetworkReconnectDialog::promptAndSave(this, row, m_networks, false);
+        reloadTable();
+        m_table->selectRow(row);
     }
 
     void CSettingsNetworkServersComponent::onAddPressed()
@@ -179,6 +236,7 @@ namespace swift::gui::components
                                   reloadTable();
                               }
                           }
+                          else { promptReconnectForRow(networks.size() - 1); }
                       } });
     }
 
@@ -236,6 +294,7 @@ namespace swift::gui::components
                                    reloadTable();
                                }
                            }
+                           else { promptReconnectForRow(networks.size() - 1); }
                        } });
     }
 
@@ -329,7 +388,7 @@ namespace swift::gui::components
                                                      if (row < updated.size())
                                                      {
                                                          CNetwork network = discovered;
-                                                         network.setUser(updated[row].getUser());
+                                                         copyPreservedNetworkFields(updated[row], network);
                                                          updated[row] = network;
                                                          m_networks.setAndSave(updated);
                                                      }
@@ -358,7 +417,7 @@ namespace swift::gui::components
                                                             if (i < updated.size())
                                                             {
                                                                 CNetwork network = discovered;
-                                                                network.setUser(updated[i].getUser());
+                                                                copyPreservedNetworkFields(updated[i], network);
                                                                 updated[i] = network;
                                                                 m_networks.setAndSave(updated);
                                                             }

@@ -85,6 +85,24 @@ namespace swift::misc::network
         //! True if the cached config is older than \a maxAgeMinutes
         bool isConfigStale(int maxAgeMinutes = 60) const;
 
+        //! True if the network operator allows automatic reconnect (fsd-configuration)
+        bool isReconnectSupported() const;
+
+        //! Effective user preference: supported networks without an explicit choice default to enabled (migration)
+        bool getUserReconnectEnabled() const;
+
+        //! Whether the user has explicitly chosen a reconnect preference
+        bool isUserReconnectExplicit() const { return m_userReconnectExplicit; }
+
+        //! Set user reconnect preference (marks preference as explicit)
+        void setUserReconnectEnabled(bool enabled);
+
+        //! Copy reconnect preference flags from another network entry
+        void copyUserReconnectPreferenceFrom(const CNetwork &other);
+
+        //! Localized reconnect status for UI: On / Off / Not supported
+        QString reconnectStatusText() const;
+
         //! \copydoc swift::misc::mixin::Index::propertyByIndex
         QVariant propertyByIndex(CPropertyIndexRef index) const;
 
@@ -103,6 +121,8 @@ namespace swift::misc::network
         CUser m_user;
         CNetworkConfig m_config;
         CServerList m_servers;
+        bool m_userReconnectExplicit = false;
+        bool m_userReconnectEnabled = false;
         // m_configFetchedAt and m_isConfigLoaded are runtime-only: not serialized to JSON
         QDateTime m_configFetchedAt;
         bool m_isConfigLoaded = false;
@@ -114,6 +134,8 @@ namespace swift::misc::network
             SWIFT_METAMEMBER(user),
             SWIFT_METAMEMBER(config),
             SWIFT_METAMEMBER(servers),
+            SWIFT_METAMEMBER(userReconnectExplicit),
+            SWIFT_METAMEMBER(userReconnectEnabled),
             SWIFT_METAMEMBER(configFetchedAt, 0, DisabledForJson | DisabledForComparison),
             SWIFT_METAMEMBER(isConfigLoaded, 0, DisabledForJson | DisabledForComparison));
     };

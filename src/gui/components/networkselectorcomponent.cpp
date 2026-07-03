@@ -187,6 +187,7 @@ namespace swift::gui::components
                                                     {
                                                         CNetwork network = discovered;
                                                         network.setUser(updated[currentIdx].getUser());
+                                                        network.copyUserReconnectPreferenceFrom(updated[currentIdx]);
                                                         updated[currentIdx] = network;
                                                         m_networks.setAndSave(updated);
                                                         this->populateServers(network);

@@ -735,6 +735,12 @@ namespace swift::core::context
             m_reconnectAttempt = 0;
             return;
         }
+        const CNetwork currentNet = m_networkSetup.getLastNetwork();
+        if (!currentNet.getUserReconnectEnabled())
+        {
+            m_reconnectAttempt = 0;
+            return;
+        }
         if (!m_reconnectLogin.isValid())
         {
             CLogMessage(this).warning(u"Automatic reconnect skipped: no previous login data");
@@ -766,6 +772,17 @@ namespace swift::core::context
         if (m_fsdClient->isConnected() || m_fsdClient->isPendingConnection()) { return; }
 
         const CNetworkConfig config = m_fsdClient->getNetworkConfig();
+        if (!config.isReconnectEnabled())
+        {
+            m_reconnectAttempt = 0;
+            return;
+        }
+        if (!m_networkSetup.getLastNetwork().getUserReconnectEnabled())
+        {
+            m_reconnectAttempt = 0;
+            return;
+        }
+
         CServer server = m_reconnectLogin.server;
         CUser user = server.getUser();
         user.setCallsign(CCallsign(config.reconnectCallsignForAttempt(m_reconnectLogin.originalCallsign.asString(),

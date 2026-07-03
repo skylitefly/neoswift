@@ -2052,11 +2052,6 @@ p, li { white-space: pre-wrap; }
         <translation>条款和条件</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="39"/>
-        <source>Please confirm you know and understand our license and privacy policy</source>
-        <translation>请确定你了解并同意以下条款和条件</translation>
-    </message>
-    <message>
         <location filename="../src/gui/components/configurationwizard.ui" line="61"/>
         <source>Data loading</source>
         <translation>载入数据</translation>
@@ -5710,21 +5705,6 @@ p, li { white-space: pre-wrap; }
         <translation>应用程序</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/internalscomponent.ui" line="306"/>
-        <source>Crash dumps</source>
-        <translation>崩溃转储</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/internalscomponent.ui" line="312"/>
-        <source>uploads enabled</source>
-        <translation>已启用上传</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/internalscomponent.ui" line="319"/>
-        <source>crash!</source>
-        <translation>崩溃！</translation>
-    </message>
-    <message>
         <location filename="../src/gui/components/internalscomponent.ui" line="326"/>
         <source>assert!</source>
         <translation>断言！</translation>
@@ -6321,16 +6301,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/gui/components/legalinfocomponent.ui" line="33"/>
         <source>HINT: Read the checklist before the first flight</source>
         <translation>提示：首次飞行前阅读检查单</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/legalinfocomponent.ui" line="56"/>
-        <source>I agree with the swift license and privacy policy</source>
-        <translation>我同意 swift 许可证和隐私政策</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/legalinfocomponent.ui" line="63"/>
-        <source>Enable sending crash reports to help improve the software</source>
-        <translation>启用崩溃报告以帮助改进软件</translation>
     </message>
 </context>
 <context>
@@ -8815,16 +8785,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/gui/components/settingsadvancedcomponent.ui" line="14"/>
         <source>sample_hotkeys</source>
         <translation>热键示例</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingsadvancedcomponent.ui" line="20"/>
-        <source>Upload crash dumps</source>
-        <translation>上传崩溃转储</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/settingsadvancedcomponent.ui" line="40"/>
-        <source>Info: By enabling &quot;crash dumps&quot; you will allow us to send information about your system, IP address and swift installation to our crash dump server. We will use these information to improve swift and then delete them. We appreciate if you help us by sending these information.</source>
-        <translation>信息：启用 &quot;崩溃转储&quot; 后，您将允许我们将有关您的系统、IP 地址和 swift 安装的信息发送到我们的崩溃转储服务器。我们将使用这些信息改进 swift 然后删除它们。感谢您帮助发送这些信息。</translation>
     </message>
 </context>
 <context>
@@ -12112,11 +12072,6 @@ DBus：“%1”</translation>
         <translation>清除（重置）缓存</translation>
     </message>
     <message>
-        <location filename="../src/core/application.cpp" line="796"/>
-        <source>Trigger crashpad situation.</source>
-        <translation>触发崩溃垫状况</translation>
-    </message>
-    <message>
         <location filename="../src/core/application.cpp" line="931"/>
         <source>DBus address (session, system, P2P IP e.g. 192.168.23.5)</source>
         <translation>DBus 地址（会话、系统、P2P IP 如 192.168.23.5）</translation>
@@ -12559,20 +12514,9 @@ Continue with this version?</source>
     <name>swift::gui::components::CInternalsComponent</name>
     <message>
         <location filename="../src/gui/components/internalscomponent.cpp" line="203"/>
-        <location filename="../src/gui/components/internalscomponent.cpp" line="208"/>
-        <source>crash simulation</source>
-        <translation>崩溃模拟</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/internalscomponent.cpp" line="203"/>
         <location filename="../src/gui/components/internalscomponent.cpp" line="217"/>
         <source>Not possible in release builds!</source>
         <translation>发布版本中不可用！</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/internalscomponent.cpp" line="208"/>
-        <source>Really simulate crash?</source>
-        <translation>真的要模拟崩溃？</translation>
     </message>
     <message>
         <location filename="../src/gui/components/internalscomponent.cpp" line="217"/>
@@ -12782,8 +12726,8 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="40"/>
-        <source>Domain</source>
-        <translation>域名</translation>
+        <source>Auto-reconnect</source>
+        <translation>自动重连</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="40"/>
@@ -12945,6 +12889,112 @@ with correct CORS headers.</source>
         <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="293"/>
         <source>Please enter id, password, real name, and home airport.</source>
         <translation>请输入编号、密码、真实姓名和基地机场。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="64"/>
+        <source>Configure…</source>
+        <translation>设置…</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="64"/>
+        <source>Current status: %1</source>
+        <translation>当前状态：%1</translation>
+    </message>
+</context>
+<context>
+    <name>CNetwork</name>
+    <message>
+        <location filename="../src/misc/network/network.cpp" line="62"/>
+        <source>Not supported</source>
+        <translation>不支持</translation>
+    </message>
+    <message>
+        <location filename="../src/misc/network/network.cpp" line="63"/>
+        <source>On</source>
+        <translation>开</translation>
+    </message>
+    <message>
+        <location filename="../src/misc/network/network.cpp" line="64"/>
+        <source>Off</source>
+        <translation>关</translation>
+    </message>
+</context>
+<context>
+    <name>swift::gui::components::CNetworkReconnectDialog</name>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.ui" line="14"/>
+        <source>Auto-reconnect settings</source>
+        <translation>自动重连设置</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.ui" line="33"/>
+        <source>Enable auto-reconnect</source>
+        <translation>启用自动重连</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.ui" line="40"/>
+        <source>Network parameters</source>
+        <translation>平台参数</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.ui" line="46"/>
+        <source>Max attempts:</source>
+        <translation>最大重试次数：</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.ui" line="60"/>
+        <source>Initial delay:</source>
+        <translation>初始延迟：</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.ui" line="74"/>
+        <source>Backoff multiplier:</source>
+        <translation>退避倍数：</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.ui" line="88"/>
+        <source>Max delay:</source>
+        <translation>最大延迟：</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.ui" line="102"/>
+        <source>Append attempt to callsign:</source>
+        <translation>重连时在呼号后追加尝试序号：</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.cpp" line="35"/>
+        <source>Enable auto-reconnect?</source>
+        <translation>启用自动重连？</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.cpp" line="37"/>
+        <source>%1 supports restoring the connection when it is unexpectedly lost. Enable auto-reconnect?</source>
+        <translation>%1 支持在连接意外断开时尝试恢复连接，要启用自动重连吗？</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.cpp" line="44"/>
+        <source>Auto-reconnect settings</source>
+        <translation>自动重连设置</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.cpp" line="46"/>
+        <source>Configure whether %1 should automatically try to reconnect after an unexpected disconnect.</source>
+        <translation>配置 %1 在连接意外断开后是否自动尝试重连。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.cpp" line="52"/>
+        <source>%1 s</source>
+        <translation>%1 秒</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.cpp" line="55"/>
+        <source>Yes</source>
+        <translation>是</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/networkreconnectdialog.cpp" line="55"/>
+        <source>No</source>
+        <translation>否</translation>
     </message>
 </context>
 <context>

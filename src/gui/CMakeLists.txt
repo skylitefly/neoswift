@@ -407,6 +407,9 @@ add_library(gui SHARED
         components/settingsnetworkcomponent.cpp
         components/settingsnetworkcomponent.h
         components/settingsnetworkcomponent.ui
+        components/networkreconnectdialog.cpp
+        components/networkreconnectdialog.h
+        components/networkreconnectdialog.ui
         components/settingsnetworkserverscomponent.cpp
         components/settingsnetworkserverscomponent.h
         components/settingssimulatorbasicscomponent.cpp

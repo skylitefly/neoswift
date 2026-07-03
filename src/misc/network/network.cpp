@@ -3,6 +3,7 @@
 
 #include "misc/network/network.h"
 
+#include <QObject>
 #include <QStringBuilder>
 #include <QtGlobal>
 
@@ -33,6 +34,34 @@ namespace swift::misc::network
         if (!m_isConfigLoaded) { return true; }
         if (!m_configFetchedAt.isValid()) { return true; }
         return m_configFetchedAt.secsTo(QDateTime::currentDateTimeUtc()) > maxAgeMinutes * 60;
+    }
+
+    bool CNetwork::isReconnectSupported() const { return m_config.isReconnectEnabled(); }
+
+    bool CNetwork::getUserReconnectEnabled() const
+    {
+        if (!isReconnectSupported()) { return false; }
+        if (!m_userReconnectExplicit) { return true; }
+        return m_userReconnectEnabled;
+    }
+
+    void CNetwork::setUserReconnectEnabled(bool enabled)
+    {
+        m_userReconnectExplicit = true;
+        m_userReconnectEnabled = enabled;
+    }
+
+    void CNetwork::copyUserReconnectPreferenceFrom(const CNetwork &other)
+    {
+        m_userReconnectExplicit = other.m_userReconnectExplicit;
+        m_userReconnectEnabled = other.m_userReconnectEnabled;
+    }
+
+    QString CNetwork::reconnectStatusText() const
+    {
+        if (!isReconnectSupported()) { return QObject::tr("Not supported", "CNetwork"); }
+        if (getUserReconnectEnabled()) { return QObject::tr("On", "CNetwork"); }
+        return QObject::tr("Off", "CNetwork");
     }
 
     QString CNetwork::convertToQString(bool i18n) const
