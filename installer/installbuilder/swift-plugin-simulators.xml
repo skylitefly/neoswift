@@ -1,13 +1,13 @@
 <componentGroup name="simulators">
-    <description>Simulator Plugins</description>
+    <description>${msg(component.simulators.description)}</description>
     <canBeEdited>1</canBeEdited>
     <selected>1</selected>
     <show>1</show>
     <componentList>
         <component name="fs2004">
-            <description>FS9: Flight Sim 2004</description>
+            <description>${msg(component.fs2004.description)}</description>
             <canBeEdited>1</canBeEdited>
-            <detailedDescription>MS Flight Simulator 2004 Simulator Plugin</detailedDescription>
+            <detailedDescription>${msg(component.fs2004.detailed)}</detailedDescription>
             <selected>1</selected>
             <show>1</show>
             <folderList>
@@ -33,12 +33,9 @@
             </shouldPackRuleList>
         </component>
         <component name="fsx">
-            <description>FSX: Flight Sim X</description>
+            <description>${msg(component.fsx.description)}</description>
             <canBeEdited>1</canBeEdited>
-            <detailedDescription>
-        MS Flight Simulator X Simulator Plugin
-        This plugin acts as the interface between swift and FSX.
-      </detailedDescription>
+            <detailedDescription>${msg(component.fsx.detailed)}</detailedDescription>
             <selected>1</selected>
             <show>1</show>
             <folderList>
@@ -67,12 +64,9 @@
             </shouldPackRuleList>
         </component>
         <component name="msfs">
-            <description>MSFS: Flight Sim 2020</description>
+            <description>${msg(component.msfs.description)}</description>
             <canBeEdited>1</canBeEdited>
-            <detailedDescription>
-        MS Flight Simulator 2020 Simulator Plugin
-        This plugin acts as the interface between swift and MSFS.
-      </detailedDescription>
+            <detailedDescription>${msg(component.msfs.detailed)}</detailedDescription>
             <selected>1</selected>
             <show>1</show>
             <folderList>
@@ -93,12 +87,9 @@
             </shouldPackRuleList>
         </component>
         <component name="msfs2024">
-            <description>MSFS2024: Flight Sim 2024</description>
+            <description>${msg(component.msfs2024.description)}</description>
             <canBeEdited>1</canBeEdited>
-            <detailedDescription>
-        MS Flight Simulator 2024 Simulator Plugin
-        This plugin acts as the interface between swift and MSFS2024.
-      </detailedDescription>
+            <detailedDescription>${msg(component.msfs2024.detailed)}</detailedDescription>
             <selected>1</selected>
             <show>1</show>
             <folderList>
@@ -119,12 +110,9 @@
             </shouldPackRuleList>
         </component>
         <component name="p3d">
-            <description>PREPAR3D</description>
+            <description>${msg(component.p3d.description)}</description>
             <canBeEdited>1</canBeEdited>
-            <detailedDescription>
-        LM Prepar3D Simulator Plugin
-        This plugin acts as the interface between swift and P3D.
-      </detailedDescription>
+            <detailedDescription>${msg(component.p3d.detailed)}</detailedDescription>
             <selected>1</selected>
             <show>1</show>
             <folderList>
@@ -148,12 +136,9 @@
             </shouldPackRuleList>
         </component>
         <component name="xplane">
-            <description>X-Plane</description>
+            <description>${msg(component.xplane.description)}</description>
             <canBeEdited>1</canBeEdited>
-            <detailedDescription>
-        X-Plane Simulator Plugin
-        This plugin acts as the interface between swift and X-Plane
-      </detailedDescription>
+            <detailedDescription>${msg(component.xplane.detailed)}</detailedDescription>
             <selected>1</selected>
             <show>1</show>
             <folderList>
@@ -171,12 +156,9 @@
             </folderList>
         </component>
         <component name="flightgear">
-            <description>FlightGear</description>
+            <description>${msg(component.flightgear.description)}</description>
             <canBeEdited>1</canBeEdited>
-            <detailedDescription>
-        FlightGear Simulator Plugin
-        This plugin acts as the interface between swift and FlightGear
-      </detailedDescription>
+            <detailedDescription>${msg(component.flightgear.detailed)}</detailedDescription>
             <selected>1</selected>
             <show>1</show>
             <folderList>
@@ -194,12 +176,9 @@
             </folderList>
         </component>
         <component name="emulated">
-            <description>Emulated Simulator</description>
+            <description>${msg(component.emulated.description)}</description>
             <canBeEdited>1</canBeEdited>
-            <detailedDescription>
-        Emulated Simulator Plugin
-        This plugin emulates a running simulator. Use this for testing swift only
-      </detailedDescription>
+            <detailedDescription>${msg(component.emulated.detailed)}</detailedDescription>
             <selected>0</selected>
             <show>1</show>
             <folderList>

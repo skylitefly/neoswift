@@ -1,7 +1,7 @@
 <componentGroup name="neoswift">
-    <description>neoswift ${versionFull}</description>
+    <description>${msg(component.neoswift.description)}</description>
     <canBeEdited>1</canBeEdited>
-    <detailedDescription>neoswift ${versionFull}</detailedDescription>
+    <detailedDescription>${msg(component.neoswift.detailed)}</detailedDescription>
     <selected>1</selected>
     <show>1</show>
     <componentList>

@@ -1,7 +1,7 @@
 <component name="csl2xsb">
-    <description>CSL2XSB script</description>
+    <description>${msg(component.csl2xsb.description)}</description>
     <canBeEdited>1</canBeEdited>
-    <detailedDescription>script needed to process X-CSL models for swift</detailedDescription>
+    <detailedDescription>${msg(component.csl2xsb.detailed)}</detailedDescription>
     <selected>1</selected>
     <show>1</show>
     <folderList>

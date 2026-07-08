@@ -1,0 +1,70 @@
+# NeoSwift installer custom strings (English)
+
+installer.waiting.title=Waiting for neoswift to be closed
+installer.waiting.progress=It seems that some neoswift application is still in use.\nIt must be closed before the installation can proceed
+installer.post.wizard=Run neoswift launcher wizard
+
+install.title=Installation
+install.createdesktopshortcut=Create desktop shortcut for neoswift GUI
+install.advanced.title=Advanced options
+install.advanced.description=Enable advanced options
+install.skipwizard=Don't run configuration wizard (neoswift must be configured manually!)
+
+component.neoswift.description=neoswift ${versionFull}
+component.neoswift.detailed=neoswift ${versionFull}
+
+component.suite.description=neoswift Software Suite
+component.suite.detailed=neoswift software suite.\nThis installs the binaries to run all swift applications.
+
+component.simulators.description=Simulator Plugins
+
+component.fs2004.description=FS9: Flight Sim 2004
+component.fs2004.detailed=MS Flight Simulator 2004 Simulator Plugin
+
+component.fsx.description=FSX: Flight Sim X
+component.fsx.detailed=MS Flight Simulator X Simulator Plugin\nThis plugin acts as the interface between swift and FSX.
+
+component.msfs.description=MSFS: Flight Sim 2020
+component.msfs.detailed=MS Flight Simulator 2020 Simulator Plugin\nThis plugin acts as the interface between swift and MSFS.
+
+component.msfs2024.description=MSFS2024: Flight Sim 2024
+component.msfs2024.detailed=MS Flight Simulator 2024 Simulator Plugin\nThis plugin acts as the interface between swift and MSFS2024.
+
+component.p3d.description=PREPAR3D
+component.p3d.detailed=LM Prepar3D Simulator Plugin\nThis plugin acts as the interface between swift and P3D.
+
+component.xplane.description=X-Plane
+component.xplane.detailed=X-Plane Simulator Plugin\nThis plugin acts as the interface between swift and X-Plane
+
+component.flightgear.description=FlightGear
+component.flightgear.detailed=FlightGear Simulator Plugin\nThis plugin acts as the interface between swift and FlightGear
+
+component.emulated.description=Emulated Simulator
+component.emulated.detailed=Emulated Simulator Plugin\nThis plugin emulates a running simulator. Use this for testing swift only
+
+component.qt6.description=Qt6 binaries
+component.qt6.detailed=Qt6 runtime binaries
+
+component.externals.description=Externals
+
+component.csl2xsb.description=CSL2XSB script
+component.csl2xsb.detailed=script needed to process X-CSL models for swift
+
+component.vcredist64.description=Visual Studio 2022 x64 Redistributables
+component.vcredist64.progress=Installing Visual Studio 2022 x64 Redistributables
+component.vcredist64.warning=Installation of MS Visual Studio 2022 x64 Redistributables failed!\nError Code: ${program_exit_code}\nCheck if another version was already installed and if not, try to run the installer manually from\n${installdir}\\vcredist\\\n\nThe installation will now continue, but swift might not work properly. If this is the case, raise an issue at https://github.com/swift-project/pilotclient/issues with the error code, you received.
+
+component.vcredist32.description=Visual Studio 2019 x86 Redistributables
+component.vcredist32.progress=Installing Visual Studio 2019 x86 Redistributables
+component.vcredist32.warning=Installation of MS Visual Studio 2019 x86 Redistributables failed!\nError Code: ${program_exit_code}\nCheck if another version was already installed and if not, try to run the installer manually from\n${installdir}\\vcredist\\\n\nThe installation will now continue, but swift might not work properly. If this is the case, raise an issue at https://github.com/swift-project/pilotclient/issues with the error code, you received.
+
+shortcut.gui.comment=Run neoswift GUI
+shortcut.gui.name=neoswift GUI ${project.version} (${architecture}bit)
+shortcut.core.comment=Run neoswift core
+shortcut.core.name=neoswift core ${project.version} (${architecture}bit)
+shortcut.data.comment=Run neoswift data
+shortcut.data.name=neoswift data ${project.version} (${architecture}bit)
+shortcut.launcher.comment=Run neoswift launcher
+shortcut.launcher.name=neoswift launcher ${project.version} (${architecture}bit)
+shortcut.uninstall.comment=Uninstall neoswift
+shortcut.uninstall.name=Uninstall neoswift ${project.version} (${architecture}bit)

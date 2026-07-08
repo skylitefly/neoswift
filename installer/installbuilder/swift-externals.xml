@@ -1,5 +1,5 @@
 <component name="externals">
-    <description>Externals</description>
+    <description>${msg(component.externals.description)}</description>
     <canBeEdited>1</canBeEdited>
     <selected>1</selected>
     <show>1</show>
