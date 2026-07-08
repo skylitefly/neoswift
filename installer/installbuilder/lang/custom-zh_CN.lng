@@ -1,0 +1,70 @@
+# NeoSwift 安装程序自定义字符串（简体中文）
+
+installer.waiting.title=正在等待 neoswift 关闭
+installer.waiting.progress=似乎仍有 neoswift 应用程序正在运行。\n安装继续前必须先将其关闭
+installer.post.wizard=运行 neoswift 启动器配置向导
+
+install.title=安装
+install.createdesktopshortcut=为 neoswift 图形界面创建桌面快捷方式
+install.advanced.title=高级选项
+install.advanced.description=启用高级选项
+install.skipwizard=不运行配置向导（需手动配置 neoswift！）
+
+component.neoswift.description=neoswift ${versionFull}
+component.neoswift.detailed=neoswift ${versionFull}
+
+component.suite.description=neoswift 软件套件
+component.suite.detailed=neoswift 软件套件。\n安装运行所有 swift 应用程序所需的二进制文件。
+
+component.simulators.description=模拟器插件
+
+component.fs2004.description=FS9：微软模拟飞行 2004
+component.fs2004.detailed=微软模拟飞行 2004 模拟器插件
+
+component.fsx.description=FSX：微软模拟飞行 X
+component.fsx.detailed=微软模拟飞行 X 模拟器插件\n该插件作为 swift 与 FSX 之间的接口。
+
+component.msfs.description=MSFS：微软模拟飞行 2020
+component.msfs.detailed=微软模拟飞行 2020 模拟器插件\n该插件作为 swift 与 MSFS 之间的接口。
+
+component.msfs2024.description=MSFS2024：微软模拟飞行 2024
+component.msfs2024.detailed=微软模拟飞行 2024 模拟器插件\n该插件作为 swift 与 MSFS2024 之间的接口。
+
+component.p3d.description=PREPAR3D
+component.p3d.detailed=Lockheed Martin Prepar3D 模拟器插件\n该插件作为 swift 与 P3D 之间的接口。
+
+component.xplane.description=X-Plane
+component.xplane.detailed=X-Plane 模拟器插件\n该插件作为 swift 与 X-Plane 之间的接口。
+
+component.flightgear.description=FlightGear
+component.flightgear.detailed=FlightGear 模拟器插件\n该插件作为 swift 与 FlightGear 之间的接口。
+
+component.emulated.description=模拟器仿真插件
+component.emulated.detailed=模拟器仿真插件\n该插件模拟一个正在运行的模拟器，仅用于测试 swift
+
+component.qt6.description=Qt6 运行库
+component.qt6.detailed=Qt6 运行时二进制文件
+
+component.externals.description=外部依赖
+
+component.csl2xsb.description=CSL2XSB 脚本
+component.csl2xsb.detailed=处理 X-CSL 模型所需的 swift 脚本
+
+component.vcredist64.description=Visual Studio 2022 x64 运行库
+component.vcredist64.progress=正在安装 Visual Studio 2022 x64 运行库
+component.vcredist64.warning=MS Visual Studio 2022 x64 运行库安装失败！\n错误代码：${program_exit_code}\n请检查是否已安装其他版本；如未安装，请尝试从以下路径手动运行安装程序：\n${installdir}\\vcredist\\\n\n安装将继续进行，但 swift 可能无法正常工作。如遇此情况，请在 https://github.com/swift-project/pilotclient/issues 提交问题并附上收到的错误代码。
+
+component.vcredist32.description=Visual Studio 2019 x86 运行库
+component.vcredist32.progress=正在安装 Visual Studio 2019 x86 运行库
+component.vcredist32.warning=MS Visual Studio 2019 x86 运行库安装失败！\n错误代码：${program_exit_code}\n请检查是否已安装其他版本；如未安装，请尝试从以下路径手动运行安装程序：\n${installdir}\\vcredist\\\n\n安装将继续进行，但 swift 可能无法正常工作。如遇此情况，请在 https://github.com/swift-project/pilotclient/issues 提交问题并附上收到的错误代码。
+
+shortcut.gui.comment=运行 neoswift 图形界面
+shortcut.gui.name=neoswift 图形界面 ${project.version} (${architecture}位)
+shortcut.core.comment=运行 neoswift 核心
+shortcut.core.name=neoswift 核心 ${project.version} (${architecture}位)
+shortcut.data.comment=运行 neoswift 数据
+shortcut.data.name=neoswift 数据 ${project.version} (${architecture}位)
+shortcut.launcher.comment=运行 neoswift 启动器
+shortcut.launcher.name=neoswift 启动器 ${project.version} (${architecture}位)
+shortcut.uninstall.comment=卸载 neoswift
+shortcut.uninstall.name=卸载 neoswift ${project.version} (${architecture}位)

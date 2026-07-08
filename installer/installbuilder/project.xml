@@ -18,11 +18,10 @@
             <name>checkForRunningSwift</name>
             <actionList>
                 <showProgressDialog>
-                    <title>Waiting for neoswift to be closed</title>
+                    <title>${msg(installer.waiting.title)}</title>
                     <actionList>
                         <while>
-                            <progressText>It seems that some neoswift application is still in use.
-It must be closed before the installation can proceed</progressText>
+                            <progressText>${msg(installer.waiting.progress)}</progressText>
                             <actionList>
                                 <wait>
                                     <ms>50</ms>
@@ -219,7 +218,7 @@ It must be closed before the installation can proceed</progressText>
         <runProgram>
             <program>${installdir}/bin/swiftlauncher</program>
             <programArguments>-i &amp;</programArguments>
-            <progressText>Run neoswift launcher wizard</progressText>
+            <progressText>${msg(installer.post.wizard)}</progressText>
             <ruleList>
                 <platformTest>
                     <negate>1</negate>
@@ -231,7 +230,7 @@ It must be closed before the installation can proceed</progressText>
         <runProgram>
             <program>open</program>
             <programArguments>${Installdir}/bin/swiftlauncher.app --args -i &amp;</programArguments>
-            <progressText>Run neoswift launcher wizard</progressText>
+            <progressText>${msg(installer.post.wizard)}</progressText>
             <ruleList>
                 <platformTest>
                     <type>osx</type>
@@ -277,7 +276,7 @@ It must be closed before the installation can proceed</progressText>
 
     <createOsxBundleDmg>1</createOsxBundleDmg>
 
-    <!--  <allowedLanguages>en fr es it de ja nl ru zh_CN no pt_BR</allowedLanguages> -->
+    <allowedLanguages>en zh_CN</allowedLanguages>
 
     <enableRollback>0</enableRollback>
     <enableTimestamp>1</enableTimestamp>
@@ -303,12 +302,16 @@ It must be closed before the installation can proceed</progressText>
 
     <windowsSigningTimestampServer>http://timestamp.digicert.com</windowsSigningTimestampServer>
     <customLanguageFileList>
-        <!-- <language>
+        <language>
             <code>en</code>
             <encoding>utf-8</encoding>
-            <file>${build_project_directory}/lang/alf-en.po</file>
-        </language> -->
-
+            <file>lang/custom-en.lng</file>
+        </language>
+        <language>
+            <code>zh_CN</code>
+            <encoding>utf-8</encoding>
+            <file>lang/custom-zh_CN.lng</file>
+        </language>
     </customLanguageFileList>
     <licenseFileList>
         <licenseFile>
@@ -321,7 +324,7 @@ It must be closed before the installation can proceed</progressText>
     <parameterList>
         <parameterGroup>
             <name>install</name>
-            <title>Installation</title>
+            <title>${msg(install.title)}</title>
             <explanation></explanation>
             <value></value>
             <default></default>
@@ -354,7 +357,7 @@ It must be closed before the installation can proceed</progressText>
                 </stringParameter>
                 <booleanParameter>
                     <name>createdesktopshortcut</name>
-                    <description>Create desktop shortcut for neoswift GUI</description>
+                    <description>${msg(install.createdesktopshortcut)}</description>
                     <explanation></explanation>
                     <value>1</value>
                     <default>1</default>
@@ -362,15 +365,15 @@ It must be closed before the installation can proceed</progressText>
                 </booleanParameter>
                 <booleanParameterGroup>
                     <name>advanced</name>
-                    <title>Advanced options</title>
-                    <description>Enable advanced options</description>
+                    <title>${msg(install.advanced.title)}</title>
+                    <description>${msg(install.advanced.description)}</description>
                     <explanation></explanation>
                     <value></value>
                     <default></default>
                     <parameterList>
                         <booleanParameter>
                             <name>skipwizard</name>
-                            <description>Don't run configuration wizard (neoswift must be configured manually!)</description>
+                            <description>${msg(install.skipwizard)}</description>
                             <explanation></explanation>
                             <value>0</value>
                             <default></default>

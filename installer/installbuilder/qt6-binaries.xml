@@ -1,7 +1,7 @@
 <componentGroup name="qt6binaries">
-    <description>Qt6 binaries</description>
+    <description>${msg(component.qt6.description)}</description>
     <canBeEdited>1</canBeEdited>
-    <detailedDescription>Qt6 runtime binaries</detailedDescription>
+    <detailedDescription>${msg(component.qt6.detailed)}</detailedDescription>
     <selected>1</selected>
     <show>1</show>
     <folderList>

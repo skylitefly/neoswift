@@ -1,8 +1,7 @@
 <component name="neoswiftsuite">
-    <description>neoswift Software Suite</description>
+    <description>${msg(component.suite.description)}</description>
     <canBeEdited>1</canBeEdited>
-    <detailedDescription>neoswift software suite.
-This installs the binaries to run all swift applications.</detailedDescription>
+    <detailedDescription>${msg(component.suite.detailed)}</detailedDescription>
     <selected>1</selected>
     <show>1</show>
     <folderList>
@@ -203,8 +202,8 @@ This installs the binaries to run all swift applications.</detailedDescription>
     </folderList>
     <desktopShortcutList>
         <shortcut>
-            <comment>Run neoswift GUI</comment>
-            <name>neoswift GUI ${project.version} (${architecture}bit)</name>
+            <comment>${msg(shortcut.gui.comment)}</comment>
+            <name>${msg(shortcut.gui.name)}</name>
             <exec>${installdir}/bin/swiftguistd</exec>
             <path>${installdir}/bin</path>
             <platforms>linux linux-x64 windows</platforms>
@@ -221,8 +220,8 @@ This installs the binaries to run all swift applications.</detailedDescription>
     </desktopShortcutList>
     <startMenuShortcutList>
         <startMenuShortcut>
-            <comment>Run neoswift GUI</comment>
-            <name>neoswift GUI ${project.version} (${architecture}bit)</name>
+            <comment>${msg(shortcut.gui.comment)}</comment>
+            <name>${msg(shortcut.gui.name)}</name>
             <runAsAdmin>0</runAsAdmin>
             <runInTerminal>0</runInTerminal>
             <windowsExec>${installdir}/bin/swiftguistd.exe</windowsExec>
@@ -231,8 +230,8 @@ This installs the binaries to run all swift applications.</detailedDescription>
             <windowsPath></windowsPath>
         </startMenuShortcut>
         <startMenuShortcut>
-            <comment>Run neoswift core</comment>
-            <name>neoswift core ${project.version} (${architecture}bit)</name>
+            <comment>${msg(shortcut.core.comment)}</comment>
+            <name>${msg(shortcut.core.name)}</name>
             <runAsAdmin>0</runAsAdmin>
             <runInTerminal>0</runInTerminal>
             <windowsExec>${installdir}/bin/swiftcore.exe</windowsExec>
@@ -241,8 +240,8 @@ This installs the binaries to run all swift applications.</detailedDescription>
             <windowsPath></windowsPath>
         </startMenuShortcut>
         <startMenuShortcut>
-            <comment>Run neoswift data</comment>
-            <name>neoswift data ${project.version} (${architecture}bit)</name>
+            <comment>${msg(shortcut.data.comment)}</comment>
+            <name>${msg(shortcut.data.name)}</name>
             <runAsAdmin>0</runAsAdmin>
             <runInTerminal>0</runInTerminal>
             <windowsExec>${installdir}/bin/swiftdata.exe</windowsExec>
@@ -251,8 +250,8 @@ This installs the binaries to run all swift applications.</detailedDescription>
             <windowsPath></windowsPath>
         </startMenuShortcut>
         <startMenuShortcut>
-            <comment>Run neoswift launcher</comment>
-            <name>neoswift launcher ${project.version} (${architecture}bit)</name>
+            <comment>${msg(shortcut.launcher.comment)}</comment>
+            <name>${msg(shortcut.launcher.name)}</name>
             <runAsAdmin>0</runAsAdmin>
             <runInTerminal>0</runInTerminal>
             <windowsExec>${installdir}/bin/swiftlauncher.exe</windowsExec>
@@ -261,8 +260,8 @@ This installs the binaries to run all swift applications.</detailedDescription>
             <windowsPath></windowsPath>
         </startMenuShortcut>
         <startMenuShortcut>
-            <comment>Uninstall neoswift</comment>
-            <name>Uninstall neoswift ${project.version} (${architecture}bit)</name>
+            <comment>${msg(shortcut.uninstall.comment)}</comment>
+            <name>${msg(shortcut.uninstall.name)}</name>
             <runAsAdmin>0</runAsAdmin>
             <runInTerminal>0</runInTerminal>
             <windowsExec>${installdir}/uninstall.exe</windowsExec>
