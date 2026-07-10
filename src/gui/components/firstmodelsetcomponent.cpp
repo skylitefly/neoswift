@@ -441,7 +441,7 @@ namespace swift::gui::components
     {
         if (!simulator.isSingleSimulator())
         {
-            //! \fixme KB 2019-01 reported by RR/crash dump sometimes happening and leading to ASSERT/CTD avoiding the
+            //! \fixme KB 2019-01 reported by RR, sometimes happening and leading to ASSERT/CTD, avoiding the
             //! "crash" for better infos
             if (CBuildConfig::isLocalDeveloperDebugBuild())
             {

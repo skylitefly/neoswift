@@ -51,7 +51,7 @@ namespace swift::core
         //! \threadsafe
         bool isSetupAvailable() const { return m_setupAvailable; }
 
-        //! Current setup (reader URLs, DB location, crash server)
+        //! Current setup (reader URLs and DB location)
         //! \remarks aka "bootstrap file"
         //! \threadsafe
         data::CGlobalSetup getSetup() const;
