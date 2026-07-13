@@ -111,6 +111,27 @@ namespace swift::gui::settings
         //! Maximum
         static int maxSecs() { return 3600; }
     };
+
+    //! Load new database data during startup
+    struct TLoadDbDataAtStartup : public swift::misc::TSettingTrait<bool>
+    {
+        //! \copydoc swift::misc::TSettingTrait::key
+        static const char *key() { return "loaddbdataatstartup"; }
+
+        //! \copydoc swift::misc::TSettingTrait::humanReadable
+        static const QString &humanReadable()
+        {
+            static const QString name("Load new DB data at startup");
+            return name;
+        }
+
+        //! \copydoc swift::misc::TSettingTrait::defaultValue
+        static const bool &defaultValue()
+        {
+            static const bool enabled = true;
+            return enabled;
+        }
+    };
 } // namespace swift::gui::settings
 
 Q_DECLARE_METATYPE(swift::gui::settings::CGeneralGuiSettings)

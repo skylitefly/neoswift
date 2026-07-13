@@ -20,6 +20,7 @@
 #include "gui/guiactionbind.h"
 #include "gui/mainwindowaccess.h"
 #include "gui/managedstatusbar.h"
+#include "gui/settings/guisettings.h"
 #include "misc/audio/audiosettings.h"
 #include "misc/audio/notificationsounds.h"
 #include "misc/icons.h"
@@ -157,6 +158,7 @@ private:
     swift::misc::CLogHistoryReplica m_logHistoryForLogButtons { this };
     swift::misc::CLogHistoryReplica m_logHistoryForOverlay { this };
     swift::misc::CSetting<swift::misc::audio::TSettings> m_audioSettings { this };
+    swift::misc::CSetting<swift::gui::settings::TLoadDbDataAtStartup> m_loadDbDataAtStartup { this };
 
     // contexts
     static constexpr int MaxCoreFailures = 5; //!< Failures counted before reconnecting

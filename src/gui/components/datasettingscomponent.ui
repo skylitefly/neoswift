@@ -251,6 +251,16 @@
      </layout>
     </widget>
    </item>
+   <item row="4" column="0" colspan="5">
+    <widget class="QCheckBox" name="cb_LoadDbDataAtStartup">
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Load new DB data at startup</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
