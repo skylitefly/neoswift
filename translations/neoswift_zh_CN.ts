@@ -7799,27 +7799,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="14"/>
         <source>Auto-reconnect settings</source>
-        <translation type="unfinished">自动重连设置</translation>
+        <translation>自动重连设置</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="23"/>
         <source>Description</source>
-        <translation type="unfinished">简介</translation>
+        <translation>简介</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="33"/>
         <source>Enable auto-reconnect</source>
-        <translation type="unfinished">启用自动重连</translation>
+        <translation>启用自动重连</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="40"/>
         <source>Network parameters</source>
-        <translation type="unfinished">平台参数</translation>
+        <translation>平台参数</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="46"/>
         <source>Max attempts:</source>
-        <translation type="unfinished">最大重试次数：</translation>
+        <translation>最大重试次数：</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="53"/>
@@ -7828,27 +7828,27 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="95"/>
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="109"/>
         <source>-</source>
-        <translation type="unfinished">-</translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="60"/>
         <source>Initial delay:</source>
-        <translation type="unfinished">初始延迟：</translation>
+        <translation>初始延迟：</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="74"/>
         <source>Backoff multiplier:</source>
-        <translation type="unfinished">退避倍数：</translation>
+        <translation>退避倍数：</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="88"/>
         <source>Max delay:</source>
-        <translation type="unfinished">最大延迟：</translation>
+        <translation>最大延迟：</translation>
     </message>
     <message>
         <location filename="../src/gui/components/networkreconnectdialog.ui" line="102"/>
         <source>Append attempt to callsign:</source>
-        <translation type="unfinished">重连时在呼号后追加尝试序号：</translation>
+        <translation>重连时在呼号后追加尝试序号：</translation>
     </message>
 </context>
 <context>
@@ -11338,19 +11338,19 @@ Currently running: %1</source>
         <location filename="../src/misc/network/network.cpp" line="62"/>
         <source>Not supported</source>
         <comment>CNetwork</comment>
-        <translation type="unfinished">不支持</translation>
+        <translation>不支持</translation>
     </message>
     <message>
         <location filename="../src/misc/network/network.cpp" line="63"/>
         <source>On</source>
         <comment>CNetwork</comment>
-        <translation type="unfinished">开</translation>
+        <translation>开</translation>
     </message>
     <message>
         <location filename="../src/misc/network/network.cpp" line="64"/>
         <source>Off</source>
         <comment>CNetwork</comment>
-        <translation type="unfinished">关</translation>
+        <translation>关</translation>
     </message>
 </context>
 <context>
@@ -11423,7 +11423,7 @@ Currently running: %1</source>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="106"/>
         <source>Mode S</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode S</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="303"/>
@@ -12683,7 +12683,10 @@ Shift+click to add by exact config URL.</source>
 Make sure the domain serves
 https://%1/.well-known/fsd-configuration.json
 or http://%1/.well-known/fsd-configuration.json</source>
-        <translation type="unfinished"></translation>
+        <translation>发现“%1”失败。
+请确保域名提供
+https://%1/.well-known/fsd-configuration.json
+或 http://%1/.well-known/fsd-configuration.json</translation>
     </message>
     <message>
         <location filename="../src/gui/components/settingsnetworkserverscomponent.cpp" line="246"/>
