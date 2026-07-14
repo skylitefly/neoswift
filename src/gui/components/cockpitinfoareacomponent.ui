@@ -102,8 +102,48 @@
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <item alignment="Qt::AlignTop">
-         <widget class="swift::gui::components::CAudioDeviceVolumeSetupComponent" name="comp_DeviceVolume"/>
+        <item>
+         <widget class="QScrollArea" name="sa_DeviceVolume">
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="sa_DeviceVolumeContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>320</width>
+             <height>430</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="vl_DeviceVolumeScrollContents">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="swift::gui::components::CAudioDeviceVolumeSetupComponent" name="comp_DeviceVolume"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -171,7 +211,7 @@
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <item alignment="Qt::AlignTop">
+        <item>
          <widget class="swift::gui::components::CAudioNotificationComponent" name="comp_AudioNotificaton">
           <property name="minimumSize">
            <size>
@@ -235,7 +275,7 @@
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <item alignment="Qt::AlignTop">
+        <item>
          <widget class="swift::gui::components::CAudioAdvancedDistributedComponent" name="comp_AudioAdv">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>

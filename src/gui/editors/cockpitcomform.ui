@@ -319,7 +319,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../misc/misc.qrc">
-          <normaloff>:/diagona/icons/diagona/icons/arrow-circle-double-135.png</normaloff>:/diagona/icons/diagona/icons/arrow-circle-double-135.png</iconset>
+          <normaloff>:/ant-design/icons/ant-design/swap.svg</normaloff>:/ant-design/icons/ant-design/swap.svg</iconset>
         </property>
        </widget>
       </item>
@@ -374,7 +374,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../misc/misc.qrc">
-          <normaloff>:/diagona/icons/diagona/icons/arrow-circle-double-135.png</normaloff>:/diagona/icons/diagona/icons/arrow-circle-double-135.png</iconset>
+          <normaloff>:/ant-design/icons/ant-design/swap.svg</normaloff>:/ant-design/icons/ant-design/swap.svg</iconset>
         </property>
        </widget>
       </item>
@@ -435,7 +435,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../misc/misc.qrc">
-          <normaloff>:/diagona/icons/diagona/icons/speaker-volume.png</normaloff>:/diagona/icons/diagona/icons/speaker-volume.png</iconset>
+          <normaloff>:/ant-design/icons/ant-design/sound.svg</normaloff>:/ant-design/icons/ant-design/sound.svg</iconset>
         </property>
        </widget>
       </item>

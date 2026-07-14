@@ -41,23 +41,29 @@
       <bool>true</bool>
      </property>
      <widget class="QWidget" name="sa_AudioComponentInner">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>440</height>
+       </size>
+      </property>
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>285</width>
-        <height>304</height>
+        <height>440</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="12" column="1">
+       <item row="10" column="1">
         <widget class="QCheckBox" name="cb_SetupAfvClicked">
          <property name="text">
           <string>AFV click</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="1" column="0">
         <widget class="QLabel" name="lbl_Notifications">
          <property name="toolTip">
           <string>Notifications</string>
@@ -67,7 +73,7 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="1" column="1">
         <widget class="QSpinBox" name="sb_NotificationValueVolume">
          <property name="suffix">
           <string> volume 25-100 (notifications)</string>
@@ -83,8 +89,14 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="0" column="1">
         <widget class="QWidget" name="wi_SoundDir" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <layout class="QHBoxLayout" name="hl_SoundDir" stretch="0,0,0">
           <property name="leftMargin">
            <number>0</number>
@@ -122,82 +134,98 @@
          </layout>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="2" column="1">
         <widget class="QCheckBox" name="cb_SetupAudioNotificationTextMessageFrequency">
          <property name="text">
           <string>Text message on ATC frequency</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
+       <item row="3" column="1">
         <widget class="QCheckBox" name="cb_SetupAudioNotificationTextMessageUnicom">
          <property name="text">
           <string>Text message on UNICOM</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="1">
+       <item row="4" column="1">
         <widget class="QCheckBox" name="cb_SetupAudioNotificationTextCallsignMentioned">
          <property name="text">
           <string>Text message mentions my callsign</string>
          </property>
         </widget>
        </item>
-       <item row="11" column="1">
+       <item row="9" column="1">
         <widget class="QCheckBox" name="cb_SetupAfvBlocked">
          <property name="text">
           <string>AFV blocking sound when more than station transmits</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="1">
+       <item row="5" column="1">
         <widget class="QCheckBox" name="cb_SetupAudioNotificationTextMessagePrivate">
          <property name="text">
           <string>Private text message</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="0" column="0">
         <widget class="QLabel" name="lbl_SoundDirectory">
          <property name="text">
           <string>Dir.:</string>
          </property>
         </widget>
        </item>
-       <item row="9" column="1">
+       <item row="7" column="1">
         <widget class="QCheckBox" name="cb_SetupAudioPTTClickDown">
          <property name="text">
           <string>PTT click (key down)</string>
          </property>
         </widget>
        </item>
-       <item row="8" column="1">
+       <item row="6" column="1">
         <widget class="QCheckBox" name="cb_SetupAudioNotificationTextMessageSupervisor">
          <property name="text">
           <string>Supervisor text message</string>
          </property>
         </widget>
        </item>
-       <item row="10" column="1">
+       <item row="8" column="1">
         <widget class="QCheckBox" name="cb_SetupAudioPTTClickUp">
          <property name="text">
           <string>PTT click (key up)</string>
          </property>
         </widget>
        </item>
-       <item row="13" column="1">
+       <item row="11" column="1">
         <widget class="QCheckBox" name="cb_SetupAudioNotificationLogin">
          <property name="text">
           <string>Login</string>
          </property>
         </widget>
        </item>
-       <item row="14" column="1">
+       <item row="12" column="1">
         <widget class="QCheckBox" name="cb_SetupAudioNotificationLogoff">
          <property name="text">
           <string>Logoff</string>
          </property>
         </widget>
+       </item>
+       <item row="13" column="0" colspan="2">
+        <spacer name="vs_NotificationContentBottom">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
