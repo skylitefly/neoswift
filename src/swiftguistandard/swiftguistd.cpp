@@ -11,10 +11,10 @@
 #include "core/corefacadeconfig.h"
 #include "core/simulator.h"
 #include "core/webdataservices.h"
-#include "gui/components/dbloaddatadialog.h"
 #include "gui/components/aircraftcomponent.h"
 #include "gui/components/atcstationcomponent.h"
 #include "gui/components/cockpitcomponent.h"
+#include "gui/components/dbloaddatadialog.h"
 #include "gui/components/flightplancomponent.h"
 #include "gui/components/infobarstatuscomponent.h"
 #include "gui/components/internalscomponent.h"
@@ -48,8 +48,8 @@
 #include <QMessageBox>
 #include <QPointer>
 #include <QSize>
-#include <QStringList>
 #include <QStackedWidget>
+#include <QStringList>
 #include <QStyle>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -93,7 +93,7 @@ namespace
         }
         return component;
     }
-}
+} // namespace
 
 using namespace swift::core;
 using namespace swift::core::context;
@@ -418,8 +418,8 @@ QString SwiftGuiStd::buildStatusInfoTooltip() const
 
     if (sGui->getIContextApplication())
     {
-        lines << tr("DBus: %1").arg(sGui->getIContextApplication()->isUsingImplementingObject() ? tr("connected") :
-                                                                                                  tr("local"));
+        lines << tr("DBus: %1")
+                     .arg(sGui->getIContextApplication()->isUsingImplementingObject() ? tr("connected") : tr("local"));
     }
     else { lines << tr("DBus: unavailable"); }
 
@@ -444,9 +444,9 @@ void SwiftGuiStd::updateStatusInfoTooltip()
     }
 
     ui->tb_StatusInfo->setToolTip(this->buildStatusInfoTooltip());
-    ui->tb_StatusInfo->setStyleSheet(error ? QStringLiteral("QToolButton { color: #ff5f57; font-weight: bold; }") :
-                                             (warning ? QStringLiteral("QToolButton { color: #ffd166; font-weight: bold; }") :
-                                                        QStringLiteral("QToolButton { color: #69b7ff; font-weight: bold; }")));
+    ui->tb_StatusInfo->setProperty(
+        "statusRole", error ? QStringLiteral("error") : (warning ? QStringLiteral("warning") : QStringLiteral("info")));
+    CGuiUtility::forceStyleSheetUpdate(ui->tb_StatusInfo);
 }
 
 void SwiftGuiStd::onChangedWindowOpacity(int opacity)
@@ -495,10 +495,7 @@ void SwiftGuiStd::onAudioClientFailure(const CStatusMessage &msg)
 
 void SwiftGuiStd::focusInMainEntryField() { ui->lep_CommandLineInput->setFocus(); }
 
-void SwiftGuiStd::focusInTextMessageEntryField()
-{
-    ui->comp_TextMessages->focusTextEntry();
-}
+void SwiftGuiStd::focusInTextMessageEntryField() { ui->comp_TextMessages->focusTextEntry(); }
 
 void SwiftGuiStd::showMinimized() { this->showMinimizedModeChecked(); }
 
@@ -705,9 +702,8 @@ CLoginComponent *SwiftGuiStd::ensureLoginComponent()
 CAtcStationComponent *SwiftGuiStd::ensureAtcDetailsComponent()
 {
     const bool created = !m_atcDetailsDialog;
-    CAtcStationComponent *component =
-        createToolDialog(m_atcDetailsDialog, m_atcDetailsComponent, this, tr("Controllers / ATIS / METAR"),
-                         QSize(760, 520));
+    CAtcStationComponent *component = createToolDialog(m_atcDetailsDialog, m_atcDetailsComponent, this,
+                                                       tr("Controllers / ATIS / METAR"), QSize(760, 520));
     if (created) { component->setCompactMode(false); }
     return component;
 }
@@ -824,8 +820,7 @@ void SwiftGuiStd::displayDBusReconnectDialog()
     if (!sGui->getCoreFacadeConfig().requiresDBusConnection()) { return; }
     m_displayingDBusReconnect = true;
     const QString dBusAddress = sGui->getCoreFacade()->getDBusAddress();
-    const QString informativeText =
-        tr("Do you want to try to reconnect? 'Abort' will close the GUI.\n\nDBus: '%1'");
+    const QString informativeText = tr("Do you want to try to reconnect? 'Abort' will close the GUI.\n\nDBus: '%1'");
     QMessageBox msgBox(this);
     msgBox.setIcon(QMessageBox::Critical);
     msgBox.setText(tr("neoswift core not reachable!"));

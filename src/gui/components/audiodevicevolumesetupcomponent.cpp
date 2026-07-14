@@ -350,17 +350,6 @@ namespace swift::gui::components
     {
         ui->hs_VolumeOutCom1->setDisabled(readonly);
         ui->hs_VolumeOutCom2->setDisabled(readonly);
-        if (readonly)
-        {
-            // \fixme hardcoded stylesheet setting, should come from stylesheet")
-            ui->hs_VolumeOutCom1->setStyleSheet("background: rgb(40,40,40)");
-            ui->hs_VolumeOutCom2->setStyleSheet("background: rgb(40,40,40)");
-        }
-        else
-        {
-            ui->hs_VolumeOutCom1->setStyleSheet("");
-            ui->hs_VolumeOutCom2->setStyleSheet("");
-        }
     }
 
     CAfvClient *CAudioDeviceVolumeSetupComponent::afvClient()

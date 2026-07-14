@@ -14,6 +14,7 @@ Rectangle {
     width: 1200
     height: 800
     visible: true
+    color: "#141414"
     // title: "Audio For VATSIM"
 
     Plugin {
@@ -65,7 +66,7 @@ Rectangle {
         Rectangle {
             width: 3
             height: 15
-            color: "blue"
+            color: "#1677ff"
             anchors.verticalCenter: map.verticalCenter
             anchors.horizontalCenter: map.horizontalCenter
         }
@@ -73,7 +74,7 @@ Rectangle {
         Rectangle {
             width: 15
             height: 3
-            color: "blue"
+            color: "#1677ff"
             anchors.verticalCenter: map.verticalCenter
             anchors.horizontalCenter: map.horizontalCenter
         }
@@ -83,6 +84,9 @@ Rectangle {
             width: 30
             height: 30
             text: "+"
+            palette.button: "#1f1f1f"
+            palette.buttonText: "#d9d9d9"
+            palette.highlight: "#1668dc"
             anchors.right: parent.right
             anchors.rightMargin: 20
             anchors.bottom: btZoomOut.top
@@ -95,6 +99,9 @@ Rectangle {
             width: 30
             height: 30
             text: "-"
+            palette.button: "#1f1f1f"
+            palette.buttonText: "#d9d9d9"
+            palette.highlight: "#1668dc"
             anchors.right: parent.right
             anchors.rightMargin: 20
             anchors.bottom: parent.bottom
@@ -110,6 +117,11 @@ Rectangle {
             to: 50000
             from: 0
             value: 1000
+            palette.base: "#141414"
+            palette.text: "#d9d9d9"
+            palette.button: "#1f1f1f"
+            palette.buttonText: "#d9d9d9"
+            palette.highlight: "#1668dc"
         }
     }
 

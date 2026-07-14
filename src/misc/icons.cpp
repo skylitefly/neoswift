@@ -21,37 +21,37 @@ namespace swift::misc
 {
     const QPixmap &CIcons::info16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/infomation.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/info.svg");
         return pm;
     }
 
     const QPixmap &CIcons::warning16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/bullet-error.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/warning.svg");
         return pm;
     }
 
     const QPixmap &CIcons::error16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/close-red.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/error.svg");
         return pm;
     }
 
     const QPixmap &CIcons::close16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/cross-button.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/close.svg");
         return pm;
     }
 
     const QPixmap &CIcons::color16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/color.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/colors.svg");
         return pm;
     }
 
     const QPixmap &CIcons::disk16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/disk.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/save.svg");
         return pm;
     }
 
@@ -61,133 +61,133 @@ namespace swift::misc
 
     const QPixmap &CIcons::colorPicker16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/ui-color-picker.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/colors.svg");
         return pm;
     }
 
     const QPixmap &CIcons::colorSwatch16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/color-swatches.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/colors.svg");
         return pm;
     }
 
     const QPixmap &CIcons::resize16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/arrow-resize-135.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/resize.svg");
         return pm;
     }
 
     const QPixmap &CIcons::resizeHorizontal16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/arrow-resize.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/resize-horizontal.svg");
         return pm;
     }
 
     const QPixmap &CIcons::resizeVertical16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/arrow-resize-090.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/resize-vertical.svg");
         return pm;
     }
 
     const QPixmap &CIcons::refresh16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/arrow-refresh.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/reload.svg");
         return pm;
     }
 
     const QPixmap &CIcons::text16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/application-view-text.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/text.svg");
         return pm;
     }
 
     const QPixmap &CIcons::globe16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/globe.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/global.svg");
         return pm;
     }
 
     const QPixmap &CIcons::headingOne16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/text-heading-1.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/font.svg");
         return pm;
     }
 
     const QPixmap &CIcons::user16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/user.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/user.svg");
         return pm;
     }
 
     const QPixmap &CIcons::users16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/users.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/team.svg");
         return pm;
     }
 
     const QPixmap &CIcons::viewMultiColumn()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/application-view-multicolumns.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/table.svg");
         return pm;
     }
 
     const QPixmap &CIcons::viewTile()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/application-view-tile.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/grid.svg");
         return pm;
     }
 
     const QPixmap &CIcons::tick16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/tick.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/check.svg");
         return pm;
     }
 
     const QPixmap &CIcons::tickRed16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/tick-red.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/error.svg");
         return pm;
     }
 
     const QPixmap &CIcons::tickWhite16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/tick-white.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/check.svg");
         return pm;
     }
 
     const QPixmap &CIcons::tickSmall16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/tick-small.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/check.svg");
         return pm;
     }
 
     const QPixmap &CIcons::cross16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/cross.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/close.svg");
         return pm;
     }
 
     const QPixmap &CIcons::crossWhite16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/cross-white.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/close.svg");
         return pm;
     }
 
     const QPixmap &CIcons::crossCircle16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/cross-circle.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/error.svg");
         return pm;
     }
 
     const QPixmap &CIcons::crossSmall16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/cross-small.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/close.svg");
         return pm;
     }
 
     const QPixmap &CIcons::delete16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/delete.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/delete.svg");
         return pm;
     }
 
@@ -199,7 +199,7 @@ namespace swift::misc
 
     const QPixmap &CIcons::speakerNetwork16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/speaker-network.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/audio.svg");
         return pm;
     }
 
@@ -211,79 +211,79 @@ namespace swift::misc
 
     const QPixmap &CIcons::lockOpen16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/lock-open.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/unlock.svg");
         return pm;
     }
 
     const QPixmap &CIcons::lockClosed16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/lock.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/lock.svg");
         return pm;
     }
 
     const QPixmap &CIcons::paintCan16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/paintcan.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/colors.svg");
         return pm;
     }
 
     const QPixmap &CIcons::plugin16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/plugin.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/plugin.svg");
         return pm;
     }
 
     const QPixmap &CIcons::dockTop16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/application-dock-090.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/up.svg");
         return pm;
     }
 
     const QPixmap &CIcons::dockBottom16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/application-dock-270.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/down.svg");
         return pm;
     }
 
     const QPixmap &CIcons::dragAndDrop16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/document-insert.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/resize.svg");
         return pm;
     }
 
     const QPixmap &CIcons::floatAll16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/application-cascade.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/grid.svg");
         return pm;
     }
 
     const QPixmap &CIcons::floatOne16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/application-double.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/resize.svg");
         return pm;
     }
 
     const QPixmap &CIcons::volumeHigh16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/speaker-volume.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/sound.svg");
         return pm;
     }
 
     const QPixmap &CIcons::volumeLow16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/speaker-volume-low.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/sound.svg");
         return pm;
     }
 
     const QPixmap &CIcons::volumeMuted16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/speaker-volume-control-mute.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/muted.svg");
         return pm;
     }
 
     const QPixmap &CIcons::wrench16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/wrench.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/tool.svg");
         return pm;
     }
 
@@ -295,43 +295,43 @@ namespace swift::misc
 
     const QPixmap &CIcons::tableRelationship16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/table-relationship.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/table.svg");
         return pm;
     }
 
     const QPixmap &CIcons::paperPlane16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/paper-plane.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/send.svg");
         return pm;
     }
 
     const QPixmap &CIcons::tableSheet16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/table-sheet.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/table.svg");
         return pm;
     }
 
     const QPixmap &CIcons::weatherCloudy16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/weather-cloudy.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/cloud.svg");
         return pm;
     }
 
     const QPixmap &CIcons::monitorError16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/monitor-error.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/monitor.svg");
         return pm;
     }
 
     const QPixmap &CIcons::statusBar16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/application-statusbar.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/monitor.svg");
         return pm;
     }
 
     const QPixmap &CIcons::unknown16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/help.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/question.svg");
         return pm;
     }
 
@@ -362,55 +362,55 @@ namespace swift::misc
 
     const QPixmap &CIcons::arrowMediumNorth16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/arrow-090-medium.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/up.svg");
         return pm;
     }
 
     const QPixmap &CIcons::arrowMediumSouth16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/arrow-270-medium.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/down.svg");
         return pm;
     }
 
     const QPixmap &CIcons::arrowMediumEast16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/arrow-000-medium.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/right.svg");
         return pm;
     }
 
     const QPixmap &CIcons::arrowMediumWest16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/arrow-180-medium.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/arrow-left.svg");
         return pm;
     }
 
     const QPixmap &CIcons::copy16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/document-copy.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/copy.svg");
         return pm;
     }
 
     const QPixmap &CIcons::paste16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/clipboard-paste.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/paste.svg");
         return pm;
     }
 
     const QPixmap &CIcons::cut16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/scissors.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/cut.svg");
         return pm;
     }
 
     const QPixmap &CIcons::zoomIn16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/magnifier-zoom-in.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/zoom-in.svg");
         return pm;
     }
 
     const QPixmap &CIcons::zoomOut16()
     {
-        static const QPixmap pm(":/diagona/icons/diagona/icons/magnifier-zoom-out.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/zoom-out.svg");
         return pm;
     }
 
@@ -420,71 +420,75 @@ namespace swift::misc
         return pm;
     }
 
-    const QPixmap &CIcons::filter16() { return tableSheet16(); }
+    const QPixmap &CIcons::filter16()
+    {
+        static const QPixmap pm(":/ant-design/icons/ant-design/filter.svg");
+        return pm;
+    }
 
     const QPixmap &CIcons::font16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/font.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/font.svg");
         return pm;
     }
 
     const QPixmap &CIcons::folder16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/folder.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/folder.svg");
         return pm;
     }
 
     const QPixmap &CIcons::folderEdit16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/folder-edit.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/edit.svg");
         return pm;
     }
 
     const QPixmap &CIcons::database16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/database.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/database.svg");
         return pm;
     }
 
     const QPixmap &CIcons::databaseAdd16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/database-add.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/database.svg");
         return pm;
     }
 
     const QPixmap &CIcons::databaseConnect16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/database-conenct.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/cloud.svg");
         return pm;
     }
 
     const QPixmap &CIcons::databaseDelete16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/database-delete.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/delete.svg");
         return pm;
     }
 
     const QPixmap &CIcons::databaseEdit16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/database-edit.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/edit.svg");
         return pm;
     }
 
     const QPixmap &CIcons::databaseError16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/database-error.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/error.svg");
         return pm;
     }
 
     const QPixmap &CIcons::databaseKey16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/database-key.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/lock.svg");
         return pm;
     }
 
     const QPixmap &CIcons::databaseTable16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/database-table.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/table.svg");
         return pm;
     }
 
@@ -712,7 +716,7 @@ namespace swift::misc
 
     const QPixmap &CIcons::appTerminal16()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/monitor-terminal.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/terminal.svg");
         return pm;
     }
 
@@ -865,7 +869,7 @@ namespace swift::misc
 
     const QPixmap &CIcons::roleUnknown()
     {
-        static const QPixmap pm(":/pastel/icons/pastel/16/help.png");
+        static const QPixmap pm(":/ant-design/icons/ant-design/question.svg");
         return pm;
     }
 

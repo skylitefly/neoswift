@@ -4,23 +4,9 @@
  */
 
 QDialog {
-  background-color: #1e1e1e;
+  background-color: #141414;
 }
 
 QPushButton {
-  background-color: #0e639c;
-  border: 1px solid #0e639c;
-  border-radius: 3px;
-  color: #ffffff;
-  padding: 3px 8px;
-  margin-right: 4px;
-}
-
-QPushButton:hover {
-  background-color: #1177bb;
-  border-color: #1177bb;
-}
-
-QPushButton:pressed {
-  background-color: #094771;
+  min-width: 64px;
 }

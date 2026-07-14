@@ -553,7 +553,7 @@ namespace swift::gui
         });
         Q_ASSERT_X(c, Q_FUNC_INFO, "Connect failed");
 
-        a = menu.addAction(CIcons::swift24(), "Check for updates");
+        a = menu.addAction(CIcons::refresh16(), "Check for updates");
         c = connect(a, &QAction::triggered, this, &CGuiApplication::checkNewVersionMenu);
         Q_ASSERT_X(c, Q_FUNC_INFO, "Connect failed");
         Q_UNUSED(c)

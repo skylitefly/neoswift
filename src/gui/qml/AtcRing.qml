@@ -22,10 +22,10 @@ MapItemGroup {
 
     MapCircle {
         id: mainCircle
-        color: 'green'
-        border.width: 3
-        border.color: 'green'
-        opacity: 0.3
+        color: "#49aa19"
+        border.width: 2
+        border.color: "#95de64"
+        opacity: 0.28
 
         MouseArea {
             anchors.fill: parent
@@ -40,7 +40,7 @@ MapItemGroup {
 
     MapQuickItem {
         id: circleCenter
-        sourceItem: Rectangle { width: 6; height: 6; color: "#000000"; border.width: 2; border.color: "#000000"; smooth: true; radius: 3 }
+        sourceItem: Rectangle { width: 8; height: 8; color: "#1677ff"; border.width: 2; border.color: "#69b1ff"; smooth: true; radius: 4 }
         coordinate: mainCircle.center
         opacity:1.0
         anchorPoint: Qt.point(sourceItem.width/2, sourceItem.height/2)
@@ -55,23 +55,23 @@ MapItemGroup {
         sourceItem: Item {
 
             Rectangle {
-                color: "#FFFFFF"
+                color: "#1f1f1f"
                 width: idCallsignText.width * 1.3
                 height: (idCallsignText.height + idFrequency.height) * 1.3
-                border.width: 2
-                border.color: "#000000"
-                radius: 5
+                border.width: 1
+                border.color: "#424242"
+                radius: 6
             }
 
             Text {
                 id: idCallsignText
-                color:"#000000"
+                color: "#d9d9d9"
                 font.bold: true
             }
 
             Text {
                 id: idFrequency
-                color:"#000000"
+                color: "#a6a6a6"
                 anchors.top: idCallsignText.bottom
             }
         }

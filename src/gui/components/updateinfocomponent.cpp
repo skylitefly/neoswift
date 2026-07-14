@@ -12,6 +12,7 @@
 #include "gui/components/downloaddialog.h"
 #include "gui/components/installxswiftbusdialog.h"
 #include "gui/guiapplication.h"
+#include "gui/guiutility.h"
 #include "misc/db/distributionlist.h"
 #include "misc/logmessage.h"
 #include "misc/network/networkutils.h"
@@ -232,11 +233,10 @@ namespace swift::gui::components
         // save the settings as this is needed afterwards
         this->saveSettings();
 
-        //! \fixme hardcoded stylesheet color
         const bool newer = this->isNewPilotClientVersionAvailable();
         ui->lbl_StatusInfo->setText(newer ? "New version available" : "Nothing new");
-        ui->lbl_StatusInfo->setStyleSheet(newer ? "background-color: green; color: white;" :
-                                                  "background-color: red; color: white;");
+        ui->lbl_StatusInfo->setProperty("statusRole", newer ? QStringLiteral("success") : QStringLiteral("info"));
+        CGuiUtility::forceStyleSheetUpdate(ui->lbl_StatusInfo);
 
         emit this->selectionChanged();
 

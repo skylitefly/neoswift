@@ -4,15 +4,15 @@
  */
 
 #lep_CommandLineInput {
-  background-color: #1e1e1e;
-  border: 1px solid #474747;
+  background-color: #141414;
+  border: 1px solid #424242;
   border-radius: 4px;
   margin-bottom: 4px;
   padding: 3px;
 }
 
 #lep_CommandLineInput:focus {
-  border-color: #007acc;
+  border-color: #1668dc;
 }
 
 #comp_Log {
@@ -20,9 +20,9 @@
 }
 
 #gb_DBusMode {
-  background-color: #252526;
+  background-color: #1f1f1f;
 }
 
 #gb_Controls {
-  background-color: #252526;
+  background-color: #1f1f1f;
 }

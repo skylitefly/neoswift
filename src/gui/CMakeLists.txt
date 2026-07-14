@@ -858,7 +858,15 @@ add_library(gui SHARED
         views/viewtimestampobjects.h
         )
 
-# Copy resources
+# Keep runtime QSS synchronized even when only a stylesheet changes. A POST_BUILD
+# command alone does not run unless the GUI library itself is relinked.
+add_custom_target(gui_resources
+        COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different share ${PROJECT_BINARY_DIR}/out/share
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Synchronizing GUI stylesheets")
+add_dependencies(gui gui_resources)
+
+# Copy resources after a GUI relink as well, for standalone target builds.
 add_custom_command(TARGET gui
                     POST_BUILD
                     COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different share ${PROJECT_BINARY_DIR}/out/share

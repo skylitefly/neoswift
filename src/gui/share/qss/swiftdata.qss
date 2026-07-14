@@ -8,9 +8,9 @@
 }
 
 #gb_DBusMode {
-  background-color: #252526;
+  background-color: #1f1f1f;
 }
 
 #gb_Controls {
-  background-color: #252526;
+  background-color: #1f1f1f;
 }

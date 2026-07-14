@@ -105,8 +105,8 @@ namespace swift::gui::components
         connect(ui->pb_DoMatchingAgain, &QPushButton::clicked, this, &CMappingComponent::doMatchingsAgain);
         connect(ui->pb_ValidateModelSet, &QPushButton::clicked, this, &CMappingComponent::requestValidationDialog);
 
-        m_currentMappingsViewDelegate = new CCheckBoxDelegate(":/diagona/icons/diagona/icons/tick.png",
-                                                              ":/diagona/icons/diagona/icons/cross.png", this);
+        m_currentMappingsViewDelegate = new CCheckBoxDelegate(":/ant-design/icons/ant-design/check.svg",
+                                                              ":/ant-design/icons/ant-design/close.svg", this);
         ui->tvp_RenderedAircraft->setItemDelegateForColumn(0, m_currentMappingsViewDelegate);
 
         // overlay

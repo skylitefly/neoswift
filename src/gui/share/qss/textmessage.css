@@ -12,15 +12,15 @@ table { font-size: 9pt; }
 
 tr { }
 td { vertical-align: top; }
-td.timestamp { color: #4ec994; }
+td.timestamp { color: #49aa19; }
 td.message{ }
 
 /** recipient info normal/supervisor **/
-td.recipient{ color: #4dabff; }
-.sent td.recipient{ color: #858585; }
-.supervisor td.recipient{ background-color: #5a1d1d; color: #f14c4c; }
+td.recipient{ color: #69b1ff; }
+.sent td.recipient{ color: #8c8c8c; }
+.supervisor td.recipient{ background-color: #2c1618; color: #dc4446; }
 
 /** sent info normal/supervisor **/
-td.sender{ color: #4dabff; }
-.sent td.sender{ color: #c678dd; }
-.supervisor td.sender{ background-color: #5a1d1d; color: #f14c4c; }
+td.sender{ color: #69b1ff; }
+.sent td.sender{ color: #b37feb; }
+.supervisor td.sender{ background-color: #2c1618; color: #dc4446; }

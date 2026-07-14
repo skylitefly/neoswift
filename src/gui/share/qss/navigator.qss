@@ -4,8 +4,8 @@
  */
 
 QDialog {
-  background-color: #252526;
-  border: 1px solid #474747;
+  background-color: #1f1f1f;
+  border: 1px solid #424242;
   border-radius: 6px;
 }
 

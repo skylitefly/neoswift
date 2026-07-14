@@ -264,9 +264,9 @@ namespace swift::misc
     const QString &CStatusMessage::convertToIconResource(CStatusMessage::StatusSeverity severity)
     {
         static const QString d;
-        static const QString i(":/pastel/icons/pastel/16/infomation.png");
-        static const QString w(":/pastel/icons/pastel/16/bullet-error.png");
-        static const QString e(":/pastel/icons/pastel/16/close-red.png");
+        static const QString i(":/ant-design/icons/ant-design/info.svg");
+        static const QString w(":/ant-design/icons/ant-design/warning.svg");
+        static const QString e(":/ant-design/icons/ant-design/error.svg");
 
         switch (severity)
         {

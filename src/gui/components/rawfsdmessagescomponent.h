@@ -45,6 +45,7 @@ namespace swift::gui::components
         void addFsdMessage(const swift::misc::network::CRawFsdMessage &rawFsdMessage);
         void clearAllMessages();
         void readSettings();
+        void updateEnabledStatus(bool enabled);
 
         static QString rawFsdMessageToString(const swift::misc::network::CRawFsdMessage &rawFsdMessage);
 

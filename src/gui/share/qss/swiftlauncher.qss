@@ -7,33 +7,34 @@
  Works around an issue on macOS where the launcher dialog was entirely transparent.
 */
 QStackedWidget#sw_SwiftLauncher {
-  background-color: #252526;
+  background-color: #141414;
 }
 
 /* Start page launch buttons */
 #pg_Start QToolButton {
-  background-color: #2d2d2d;
-  border: 1px solid #474747;
-  border-radius: 6px;
-  color: #cccccc;
-  padding: 6px;
+  background-color: #1f1f1f;
+  border: 1px solid #424242;
+  border-radius: 8px;
+  color: #d9d9d9;
+  padding: 8px;
 }
 
 #pg_Start QToolButton:hover {
-  background-color: #094771;
-  border: 2px solid #007acc;
-  border-radius: 6px;
+  background-color: #111a2c;
+  border: 1px solid #3c89e8;
+  border-radius: 8px;
+  color: #69b1ff;
   min-width: 30px;
   min-height: 30px;
 }
 
 #pg_Start QToolButton:pressed {
-  background-color: #0e639c;
-  border-color: #1177bb;
+  background-color: #15325b;
+  border-color: #1668dc;
 }
 
 #pg_start QToolTip {
-  color: #cccccc;
-  background-color: #252526;
-  border: 1px solid #474747;
+  color: #d9d9d9;
+  background-color: #1f1f1f;
+  border: 1px solid #424242;
 }

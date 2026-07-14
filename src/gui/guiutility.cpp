@@ -453,24 +453,19 @@ namespace swift::gui
         SWIFT_VERIFY_X(checkBox, Q_FUNC_INFO, "no checkbox");
         if (!checkBox) { return; }
 
-        static const QString background(
-            "background: rgb(40,40,40)"); //! \fixme hardcoded stylesheet setting, should come from stylesheet
         if (readOnly)
         {
             checkBox->setAttribute(Qt::WA_TransparentForMouseEvents);
             checkBox->setFocusPolicy(Qt::NoFocus);
-
-            // without that, the checkboxes appear not readonly
-            // obviously style sheet only does not work
-            checkBox->setStyleSheet(background); //! fixme hardcoded stylesheet setting
         }
         else
         {
             checkBox->setAttribute(Qt::WA_TransparentForMouseEvents,
                                    defaultBox.testAttribute(Qt::WA_TransparentForMouseEvents));
             checkBox->setFocusPolicy(defaultBox.focusPolicy());
-            checkBox->setStyleSheet("");
         }
+        checkBox->setProperty("readOnly", readOnly);
+        CGuiUtility::forceStyleSheetUpdate(checkBox);
     }
 
     void CGuiUtility::checkBoxesReadOnly(QWidget *parent, bool readOnly)

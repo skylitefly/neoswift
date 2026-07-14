@@ -75,9 +75,6 @@ namespace swift::gui::components
         const CSimulatorInfo simulator = ui->comp_SimulatorSelector->getValue();
         ui->le_Simulator->setText(simulator.toQString(true));
 
-        //! \fixme hardcoded style sheet
-        ui->pb_SaveAsSetForSimulator->setStyleSheet("padding-left: 3px; padding-right: 3px;");
-
         connect(ui->pb_CreateNewSet, &QPushButton::clicked, this, &CDbOwnModelSetComponent::buttonClicked,
                 Qt::QueuedConnection);
         connect(ui->pb_LoadExistingSet, &QPushButton::clicked, this, &CDbOwnModelSetComponent::buttonClicked,

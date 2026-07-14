@@ -509,6 +509,60 @@
         <file>icons/own/swift3D/sw3DYellow-512.png</file>
         <file>icons/own/swift3D/sw3DYellow-1024.png</file>
     </qresource>
+    <qresource prefix="/ant-design">
+        <file>icons/ant-design/info.svg</file>
+        <file>icons/ant-design/warning.svg</file>
+        <file>icons/ant-design/error.svg</file>
+        <file>icons/ant-design/close.svg</file>
+        <file>icons/ant-design/save.svg</file>
+        <file>icons/ant-design/reload.svg</file>
+        <file>icons/ant-design/text.svg</file>
+        <file>icons/ant-design/global.svg</file>
+        <file>icons/ant-design/user.svg</file>
+        <file>icons/ant-design/team.svg</file>
+        <file>icons/ant-design/grid.svg</file>
+        <file>icons/ant-design/check.svg</file>
+        <file>icons/ant-design/delete.svg</file>
+        <file>icons/ant-design/unlock.svg</file>
+        <file>icons/ant-design/lock.svg</file>
+        <file>icons/ant-design/tool.svg</file>
+        <file>icons/ant-design/sound.svg</file>
+        <file>icons/ant-design/muted.svg</file>
+        <file>icons/ant-design/copy.svg</file>
+        <file>icons/ant-design/cut.svg</file>
+        <file>icons/ant-design/zoom-in.svg</file>
+        <file>icons/ant-design/zoom-out.svg</file>
+        <file>icons/ant-design/folder.svg</file>
+        <file>icons/ant-design/edit.svg</file>
+        <file>icons/ant-design/database.svg</file>
+        <file>icons/ant-design/cloud.svg</file>
+        <file>icons/ant-design/download.svg</file>
+        <file>icons/ant-design/table.svg</file>
+        <file>icons/ant-design/filter.svg</file>
+        <file>icons/ant-design/colors.svg</file>
+        <file>icons/ant-design/font.svg</file>
+        <file>icons/ant-design/terminal.svg</file>
+        <file>icons/ant-design/send.svg</file>
+        <file>icons/ant-design/audio.svg</file>
+        <file>icons/ant-design/monitor.svg</file>
+        <file>icons/ant-design/undo.svg</file>
+        <file>icons/ant-design/redo.svg</file>
+        <file>icons/ant-design/paste.svg</file>
+        <file>icons/ant-design/question.svg</file>
+        <file>icons/ant-design/play.svg</file>
+        <file>icons/ant-design/pause.svg</file>
+        <file>icons/ant-design/search.svg</file>
+        <file>icons/ant-design/folder-add.svg</file>
+        <file>icons/ant-design/swap.svg</file>
+        <file>icons/ant-design/arrow-left.svg</file>
+        <file>icons/ant-design/up.svg</file>
+        <file>icons/ant-design/down.svg</file>
+        <file>icons/ant-design/right.svg</file>
+        <file>icons/ant-design/resize.svg</file>
+        <file>icons/ant-design/resize-horizontal.svg</file>
+        <file>icons/ant-design/resize-vertical.svg</file>
+        <file>icons/ant-design/plugin.svg</file>
+    </qresource>
     <qresource prefix="/qled">
         <file>icons/qled/circle_black.svg</file>
         <file>icons/qled/circle_blue.svg</file>

@@ -15,9 +15,13 @@ Row {
     property alias txOn: cbTxOn.checked
 
     spacing: 10
+    property color textPrimary: "#d9d9d9"
+    property color surface: "#1f1f1f"
+    property color primary: "#1668dc"
     Label {
         id: lblRadio
         text: 'Radio ' + transceiverId
+        color: textPrimary
         verticalAlignment: Text.AlignVCenter
         anchors.verticalCenter: parent.verticalCenter
     }
@@ -31,6 +35,11 @@ Row {
         to: 140000
         from: 110000
         value: 122800
+        palette.base: "#141414"
+        palette.text: textPrimary
+        palette.button: surface
+        palette.buttonText: textPrimary
+        palette.highlight: primary
 
         property int decimals: 3
         property real realValue: value / 1000
@@ -69,6 +78,8 @@ Row {
         height: 25
         text: qsTr("TX")
         checked: true
+        palette.text: textPrimary
+        palette.highlight: primary
         anchors.verticalCenter: parent.verticalCenter
         onClicked: idTransceiver.txOnChanged(checked)
     }
@@ -78,6 +89,8 @@ Row {
         height: 25
         text: qsTr("Enabled")
         checked: true
+        palette.text: textPrimary
+        palette.highlight: primary
         anchors.verticalCenter: parent.verticalCenter
         onClicked: idTransceiver.rxOnChanged(checked)
     }

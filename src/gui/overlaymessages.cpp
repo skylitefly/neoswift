@@ -24,6 +24,7 @@
 #include "gui/components/statusmessageform.h"
 #include "gui/components/statusmessageformsmall.h"
 #include "gui/guiapplication.h"
+#include "gui/guiutility.h"
 #include "gui/models/statusmessagelistmodel.h"
 #include "gui/stylesheetutility.h"
 #include "gui/views/statusmessageview.h"
@@ -251,7 +252,8 @@ namespace swift::gui
             ui->le_TmReceived->setText(textMessage.getFormattedUtcTimestampHms());
             ui->te_TmText->setText(textMessage.getMessage());
             ui->wi_TmSupervisor->setVisible(textMessage.isSupervisorMessage());
-            ui->wi_TmSupervisor->setStyleSheet("background-color: red;");
+            ui->wi_TmSupervisor->setProperty("statusRole", QStringLiteral("error"));
+            CGuiUtility::forceStyleSheetUpdate(ui->wi_TmSupervisor);
 
             this->setModeToTextMessage();
             this->display(timeout);

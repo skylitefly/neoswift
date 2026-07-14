@@ -25,6 +25,7 @@
 #include "gui/components/configurationwizard.h"
 #include "gui/components/texteditdialog.h"
 #include "gui/guiapplication.h"
+#include "gui/guiutility.h"
 #include "gui/overlaymessagesframe.h"
 #include "gui/stylesheetutility.h"
 #include "misc/dbusserver.h"
@@ -114,8 +115,7 @@ CSwiftLauncher::CSwiftLauncher(bool installerMode, QWidget *parent)
     {
         QTimer::singleShot(1000, this, [=] {
             if (!sGui || sGui->isShuttingDown() || !myself) { return; }
-            ui->fr_SwiftLauncherMain->showOverlayHTMLMessage(
-                tr("Checking installation!<br>One moment please ...."));
+            ui->fr_SwiftLauncherMain->showOverlayHTMLMessage(tr("Checking installation!<br>One moment please ...."));
             this->raise();
         });
     }
@@ -279,7 +279,8 @@ void CSwiftLauncher::setHeaderInfo(const CArtifact &latestArtifact)
         static const QString t("New version '%1' ['%2'/'%3']");
         ui->lbl_HeaderInfo->setText(t.arg(latestArtifact.getVersion(), latestArtifact.getPlatform().getPlatformName(),
                                           latestArtifact.getMostStableDistribution().getChannel()));
-        ui->lbl_HeaderInfo->setStyleSheet("background: red; color: yellow;");
+        ui->lbl_HeaderInfo->setProperty("statusRole", QStringLiteral("warning"));
+        CGuiUtility::forceStyleSheetUpdate(ui->lbl_HeaderInfo);
     }
 }
 
@@ -534,10 +535,7 @@ void CSwiftLauncher::onCoreModeReleased()
     this->saveSetup();
 }
 
-void CSwiftLauncher::popupExecutableArgs()
-{
-    QMessageBox::information(this, tr("Command line"), this->getCmdLine());
-}
+void CSwiftLauncher::popupExecutableArgs() { QMessageBox::information(this, tr("Command line"), this->getCmdLine()); }
 
 void CSwiftLauncher::showSimulatorConfigDirs()
 {

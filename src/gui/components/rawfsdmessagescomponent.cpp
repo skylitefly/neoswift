@@ -12,6 +12,7 @@
 
 #include "core/context/contextnetwork.h"
 #include "gui/guiapplication.h"
+#include "gui/guiutility.h"
 #include "misc/directoryutils.h"
 
 using namespace swift::misc;
@@ -86,22 +87,10 @@ namespace swift::gui::components
 
     void CRawFsdMessagesComponent::enableDisableRawFsdMessages()
     {
-        //! \fixme KB 2019-03 hardcoded style sheet
         bool enable {};
-        if (ui->pb_EnableDisable->text() == "Enable")
-        {
-            enable = true;
-            ui->pb_EnableDisable->setText("Disable");
-            ui->lbl_EnabledDisabled->setText("Enabled (Display + File)");
-            ui->lbl_EnabledDisabled->setStyleSheet("background: green;");
-        }
-        else
-        {
-            enable = false;
-            ui->pb_EnableDisable->setText("Enable");
-            ui->lbl_EnabledDisabled->setText("Disabled (Display + File)");
-            ui->lbl_EnabledDisabled->setStyleSheet("background: darkred;");
-        }
+        if (ui->pb_EnableDisable->text() == "Enable") { enable = true; }
+        else { enable = false; }
+        this->updateEnabledStatus(enable);
         m_setting.setProperty(vatsim::CRawFsdMessageSettings::IndexRawFsdMessagesEnabled, CVariant::fromValue(enable));
     }
 
@@ -222,21 +211,19 @@ namespace swift::gui::components
     {
         const vatsim::CRawFsdMessageSettings setting = m_setting.get();
         const bool enable = setting.areRawFsdMessagesEnabled();
-        if (enable)
-        {
-            ui->pb_EnableDisable->setText("Disable");
-            ui->lbl_EnabledDisabled->setText("Enabled (Display + File)");
-            ui->lbl_EnabledDisabled->setStyleSheet("background: green;");
-        }
-        else
-        {
-            ui->pb_EnableDisable->setText("Enable");
-            ui->lbl_EnabledDisabled->setText("Disabled (Display + File)");
-            ui->lbl_EnabledDisabled->setStyleSheet("background: darkred;");
-        }
+        this->updateEnabledStatus(enable);
         ui->le_FileDir->setText(setting.getFileDir());
         const CRawFsdMessageSettings::FileWriteMode mode = setting.getFileWriteMode();
         ui->cb_FileWritingMode->setCurrentIndex(static_cast<int>(mode));
+    }
+
+    void CRawFsdMessagesComponent::updateEnabledStatus(bool enabled)
+    {
+        ui->pb_EnableDisable->setText(enabled ? "Disable" : "Enable");
+        ui->lbl_EnabledDisabled->setText(enabled ? "Enabled (Display + File)" : "Disabled (Display + File)");
+        ui->lbl_EnabledDisabled->setProperty("statusRole",
+                                             enabled ? QStringLiteral("success") : QStringLiteral("info"));
+        CGuiUtility::forceStyleSheetUpdate(ui->lbl_EnabledDisabled);
     }
 
     QString CRawFsdMessagesComponent::rawFsdMessageToString(const CRawFsdMessage &rawFsdMessage)

@@ -69,8 +69,8 @@ namespace swift::gui::components
         qint64 m_sharedLastCheck = -1; //!< when shared URLs were last checked
         bool m_sharedValueCheckInProgress = false; //!< setting values in progress, needed because of
                                                    //!< CNetworkUtils::canConnect check (processing events)
-        const QString m_imgOk = ":/diagona/icons/diagona/icons/tick.png";
-        const QString m_imgFailed = ":/diagona/icons/diagona/icons/cross-script.png";
+        const QString m_imgOk = ":/ant-design/icons/ant-design/check.svg";
+        const QString m_imgFailed = ":/ant-design/icons/ant-design/error.svg";
 
         //! Trigger loading from DB
         void triggerLoadingFromDb(swift::misc::network::CEntityFlags::Entity entities);
