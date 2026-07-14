@@ -407,6 +407,12 @@
                   <bool>true</bool>
                  </property>
                  <widget class="QWidget" name="qw_DataUpdates">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>160</height>
+                   </size>
+                  </property>
                   <property name="geometry">
                    <rect>
                     <x>0</x>
@@ -775,7 +781,7 @@
        </property>
        <property name="icon">
         <iconset resource="../misc/misc.qrc">
-         <normaloff>:/diagona/icons/diagona/icons/arrow-180.png</normaloff>:/diagona/icons/diagona/icons/arrow-180.png</iconset>
+         <normaloff>:/ant-design/icons/ant-design/arrow-left.svg</normaloff>:/ant-design/icons/ant-design/arrow-left.svg</iconset>
        </property>
        <property name="shortcut">
         <string>Ctrl+M</string>

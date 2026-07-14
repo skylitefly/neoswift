@@ -81,7 +81,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../misc/misc.qrc">
-             <normaloff>:/diagona/icons/diagona/icons/cross-white.png</normaloff>:/diagona/icons/diagona/icons/cross-white.png</iconset>
+             <normaloff>:/ant-design/icons/ant-design/close.svg</normaloff>:/ant-design/icons/ant-design/close.svg</iconset>
            </property>
           </widget>
          </item>
@@ -116,7 +116,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../misc/misc.qrc">
-             <normaloff>:/diagona/icons/diagona/icons/cross-white.png</normaloff>:/diagona/icons/diagona/icons/cross-white.png</iconset>
+             <normaloff>:/ant-design/icons/ant-design/close.svg</normaloff>:/ant-design/icons/ant-design/close.svg</iconset>
            </property>
           </widget>
          </item>
@@ -173,7 +173,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../misc/misc.qrc">
-             <normaloff>:/diagona/icons/diagona/icons/cross-white.png</normaloff>:/diagona/icons/diagona/icons/cross-white.png</iconset>
+             <normaloff>:/ant-design/icons/ant-design/close.svg</normaloff>:/ant-design/icons/ant-design/close.svg</iconset>
            </property>
           </widget>
          </item>
@@ -291,7 +291,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../misc/misc.qrc">
-             <normaloff>:/diagona/icons/diagona/icons/cross-white.png</normaloff>:/diagona/icons/diagona/icons/cross-white.png</iconset>
+             <normaloff>:/ant-design/icons/ant-design/close.svg</normaloff>:/ant-design/icons/ant-design/close.svg</iconset>
            </property>
           </widget>
          </item>

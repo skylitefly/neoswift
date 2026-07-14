@@ -36,7 +36,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/diagona/icons/diagona/icons/binocular.png</normaloff>:/diagona/icons/diagona/icons/binocular.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/search.svg</normaloff>:/ant-design/icons/ant-design/search.svg</iconset>
      </property>
     </widget>
    </item>

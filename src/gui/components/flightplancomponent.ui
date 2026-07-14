@@ -39,12 +39,18 @@
        <bool>true</bool>
       </property>
       <widget class="QWidget" name="qw_FlightPlanTabMain">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>680</height>
+        </size>
+       </property>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-71</y>
+         <y>0</y>
          <width>368</width>
-         <height>548</height>
+         <height>680</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -120,7 +126,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../misc/misc.qrc">
-                <normaloff>:/pastel/icons/pastel/16/pencil.png</normaloff>:/pastel/icons/pastel/16/pencil.png</iconset>
+                <normaloff>:/ant-design/icons/ant-design/edit.svg</normaloff>:/ant-design/icons/ant-design/edit.svg</iconset>
               </property>
              </widget>
             </item>
@@ -245,7 +251,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../misc/misc.qrc">
-                <normaloff>:/pastel/icons/pastel/16/help.png</normaloff>:/pastel/icons/pastel/16/help.png</iconset>
+                <normaloff>:/ant-design/icons/ant-design/question.svg</normaloff>:/ant-design/icons/ant-design/question.svg</iconset>
               </property>
              </widget>
             </item>
@@ -325,7 +331,7 @@
                </property>
                <property name="icon">
                 <iconset resource="../../misc/misc.qrc">
-                 <normaloff>:/diagona/icons/diagona/icons/arrow-circle-225.png</normaloff>:/diagona/icons/diagona/icons/arrow-circle-225.png</iconset>
+                 <normaloff>:/ant-design/icons/ant-design/swap.svg</normaloff>:/ant-design/icons/ant-design/swap.svg</iconset>
                </property>
               </widget>
              </item>
@@ -581,7 +587,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../misc/misc.qrc">
-                <normaloff>:/pastel/icons/pastel/16/pencil.png</normaloff>:/pastel/icons/pastel/16/pencil.png</iconset>
+                <normaloff>:/ant-design/icons/ant-design/edit.svg</normaloff>:/ant-design/icons/ant-design/edit.svg</iconset>
               </property>
              </widget>
             </item>
@@ -609,7 +615,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../misc/misc.qrc">
-                <normaloff>:/pastel/icons/pastel/16/help.png</normaloff>:/pastel/icons/pastel/16/help.png</iconset>
+                <normaloff>:/ant-design/icons/ant-design/question.svg</normaloff>:/ant-design/icons/ant-design/question.svg</iconset>
               </property>
              </widget>
             </item>
@@ -637,7 +643,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../misc/misc.qrc">
-                <normaloff>:/pastel/icons/pastel/16/help.png</normaloff>:/pastel/icons/pastel/16/help.png</iconset>
+                <normaloff>:/ant-design/icons/ant-design/question.svg</normaloff>:/ant-design/icons/ant-design/question.svg</iconset>
               </property>
              </widget>
             </item>
@@ -650,7 +656,7 @@
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>100</height>
+            <height>145</height>
            </size>
           </property>
           <layout class="QGridLayout" name="gl_FPButtons">
@@ -679,7 +685,7 @@
              </property>
              <property name="icon">
               <iconset resource="../../misc/misc.qrc">
-               <normaloff>:/pastel/icons/pastel/16/disk.png</normaloff>:/pastel/icons/pastel/16/disk.png</iconset>
+               <normaloff>:/ant-design/icons/ant-design/save.svg</normaloff>:/ant-design/icons/ant-design/save.svg</iconset>
              </property>
             </widget>
            </item>
@@ -690,7 +696,7 @@
              </property>
              <property name="icon">
               <iconset resource="../../misc/misc.qrc">
-               <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+               <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
              </property>
             </widget>
            </item>
@@ -704,7 +710,7 @@
              </property>
              <property name="icon">
               <iconset resource="../../misc/misc.qrc">
-               <normaloff>:/diagona/icons/diagona/icons/network-cloud.png</normaloff>:/diagona/icons/diagona/icons/network-cloud.png</iconset>
+               <normaloff>:/ant-design/icons/ant-design/download.svg</normaloff>:/ant-design/icons/ant-design/download.svg</iconset>
              </property>
             </widget>
            </item>
@@ -718,7 +724,7 @@
              </property>
              <property name="icon">
               <iconset resource="../../misc/misc.qrc">
-               <normaloff>:/pastel/icons/pastel/16/disk.png</normaloff>:/pastel/icons/pastel/16/disk.png</iconset>
+               <normaloff>:/ant-design/icons/ant-design/folder.svg</normaloff>:/ant-design/icons/ant-design/folder.svg</iconset>
              </property>
             </widget>
            </item>
@@ -739,7 +745,7 @@
              </property>
              <property name="icon">
               <iconset resource="../../misc/misc.qrc">
-               <normaloff>:/diagona/icons/diagona/icons/network-cloud.png</normaloff>:/diagona/icons/diagona/icons/network-cloud.png</iconset>
+               <normaloff>:/ant-design/icons/ant-design/send.svg</normaloff>:/ant-design/icons/ant-design/send.svg</iconset>
              </property>
             </widget>
            </item>
@@ -796,12 +802,18 @@
        <bool>true</bool>
       </property>
       <widget class="QWidget" name="qw_RemarksGenerator">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>560</height>
+        </size>
+       </property>
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
          <width>345</width>
-         <height>520</height>
+         <height>560</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="vl_RemarksGeneratorScroll">

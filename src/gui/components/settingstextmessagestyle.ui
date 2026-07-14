@@ -36,7 +36,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/font-enlarge.png</normaloff>:/pastel/icons/pastel/16/font-enlarge.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/zoom-in.svg</normaloff>:/ant-design/icons/ant-design/zoom-in.svg</iconset>
      </property>
     </widget>
    </item>
@@ -50,7 +50,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/font-shrink.png</normaloff>:/pastel/icons/pastel/16/font-shrink.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/zoom-out.svg</normaloff>:/ant-design/icons/ant-design/zoom-out.svg</iconset>
      </property>
     </widget>
    </item>

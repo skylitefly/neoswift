@@ -268,7 +268,7 @@
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>:/diagona/icons/diagona/icons/question-button.png</normaloff>:/diagona/icons/diagona/icons/question-button.png</iconset>
+                    <normaloff>:/ant-design/icons/ant-design/question.svg</normaloff>:/ant-design/icons/ant-design/question.svg</iconset>
                   </property>
                  </widget>
                 </item>

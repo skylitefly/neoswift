@@ -60,7 +60,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/diagona/icons/diagona/icons/folder--pencil.png</normaloff>:/diagona/icons/diagona/icons/folder--pencil.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/edit.svg</normaloff>:/ant-design/icons/ant-design/edit.svg</iconset>
      </property>
     </widget>
    </item>
@@ -146,7 +146,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/diagona/icons/diagona/icons/cross-circle.png</normaloff>:/diagona/icons/diagona/icons/cross-circle.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/error.svg</normaloff>:/ant-design/icons/ant-design/error.svg</iconset>
      </property>
     </widget>
    </item>
@@ -200,7 +200,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/diagona/icons/diagona/icons/arrow-circle-225-left.png</normaloff>:/diagona/icons/diagona/icons/arrow-circle-225-left.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/undo.svg</normaloff>:/ant-design/icons/ant-design/undo.svg</iconset>
      </property>
     </widget>
    </item>

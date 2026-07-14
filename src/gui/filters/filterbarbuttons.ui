@@ -67,7 +67,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/diagona/icons/diagona/icons/application-search-result.png</normaloff>:/diagona/icons/diagona/icons/application-search-result.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/search.svg</normaloff>:/ant-design/icons/ant-design/search.svg</iconset>
      </property>
     </widget>
    </item>
@@ -81,7 +81,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/diagona/icons/diagona/icons/cross-circle.png</normaloff>:/diagona/icons/diagona/icons/cross-circle.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/error.svg</normaloff>:/ant-design/icons/ant-design/error.svg</iconset>
      </property>
     </widget>
    </item>
@@ -95,7 +95,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/diagona/icons/diagona/icons/cross-white.png</normaloff>:/diagona/icons/diagona/icons/cross-white.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/close.svg</normaloff>:/ant-design/icons/ant-design/close.svg</iconset>
      </property>
      <property name="shortcut">
       <string>Ctrl+S</string>
@@ -112,7 +112,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/diagona/icons/diagona/icons/cross-button.png</normaloff>:/diagona/icons/diagona/icons/cross-button.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/close.svg</normaloff>:/ant-design/icons/ant-design/close.svg</iconset>
      </property>
     </widget>
    </item>

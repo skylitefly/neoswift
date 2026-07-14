@@ -60,7 +60,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../misc/misc.qrc">
-          <normaloff>:/diagona/icons/diagona/icons/folder--plus.png</normaloff>:/diagona/icons/diagona/icons/folder--plus.png</iconset>
+          <normaloff>:/ant-design/icons/ant-design/folder-add.svg</normaloff>:/ant-design/icons/ant-design/folder-add.svg</iconset>
         </property>
        </widget>
       </item>

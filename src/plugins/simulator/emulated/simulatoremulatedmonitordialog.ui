@@ -580,6 +580,12 @@
              <bool>true</bool>
             </property>
             <widget class="QWidget" name="sa_LogMEssagesWidget">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>384</height>
+              </size>
+             </property>
              <property name="geometry">
               <rect>
                <x>0</x>

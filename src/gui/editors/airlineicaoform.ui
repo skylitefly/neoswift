@@ -114,7 +114,7 @@
            </property>
            <property name="icon">
             <iconset resource="../../misc/misc.qrc">
-             <normaloff>:/diagona/icons/diagona/icons/clipboard-paste.png</normaloff>:/diagona/icons/diagona/icons/clipboard-paste.png</iconset>
+             <normaloff>:/ant-design/icons/ant-design/paste.svg</normaloff>:/ant-design/icons/ant-design/paste.svg</iconset>
            </property>
           </widget>
          </item>

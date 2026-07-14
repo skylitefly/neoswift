@@ -168,7 +168,7 @@
    <item row="3" column="2">
     <widget class="QLabel" name="lbl_ModelDirsInfo">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/diagona/icons/diagona/icons/exclamation--frame.png&quot;/&gt; Changing model directories means you have to update your model set! Check documentation on &amp;quot;creating a model set&amp;quot;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/ant-design/icons/ant-design/warning.svg&quot;/&gt; Changing model directories means you have to update your model set! Check documentation on &amp;quot;creating a model set&amp;quot;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

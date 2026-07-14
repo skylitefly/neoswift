@@ -182,7 +182,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../misc/misc.qrc">
-                <normaloff>:/diagona/icons/diagona/icons/tick-white.png</normaloff>:/diagona/icons/diagona/icons/tick-white.png</iconset>
+                <normaloff>:/ant-design/icons/ant-design/check.svg</normaloff>:/ant-design/icons/ant-design/check.svg</iconset>
               </property>
               <property name="flat">
                <bool>false</bool>

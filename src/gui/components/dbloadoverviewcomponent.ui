@@ -66,7 +66,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -102,7 +102,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -279,7 +279,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -315,7 +315,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -394,7 +394,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -414,7 +414,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -456,7 +456,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../misc/misc.qrc">
-          <normaloff>:/pastel/icons/pastel/16/disk.png</normaloff>:/pastel/icons/pastel/16/disk.png</iconset>
+          <normaloff>:/ant-design/icons/ant-design/save.svg</normaloff>:/ant-design/icons/ant-design/save.svg</iconset>
         </property>
        </widget>
       </item>
@@ -467,7 +467,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../misc/misc.qrc">
-          <normaloff>:/pastel/icons/pastel/16/database.png</normaloff>:/pastel/icons/pastel/16/database.png</iconset>
+          <normaloff>:/ant-design/icons/ant-design/database.svg</normaloff>:/ant-design/icons/ant-design/database.svg</iconset>
         </property>
        </widget>
       </item>
@@ -478,7 +478,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../misc/misc.qrc">
-          <normaloff>:/pastel/icons/pastel/16/disk.png</normaloff>:/pastel/icons/pastel/16/disk.png</iconset>
+          <normaloff>:/ant-design/icons/ant-design/save.svg</normaloff>:/ant-design/icons/ant-design/save.svg</iconset>
         </property>
        </widget>
       </item>
@@ -514,7 +514,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -567,7 +567,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -677,7 +677,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -710,7 +710,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -789,7 +789,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -825,7 +825,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -859,7 +859,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -921,7 +921,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -951,7 +951,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>
@@ -1169,7 +1169,7 @@
      </property>
      <property name="icon">
       <iconset resource="../../misc/misc.qrc">
-       <normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</normaloff>:/pastel/icons/pastel/16/arrow-refresh.png</iconset>
+       <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
      </property>
     </widget>
    </item>

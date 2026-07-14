@@ -47,7 +47,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../misc/misc.qrc">:/diagona/icons/diagona/icons/tick.png</pixmap>
+      <pixmap resource="../../misc/misc.qrc">:/ant-design/icons/ant-design/check.svg</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignJustify|Qt::AlignVCenter</set>

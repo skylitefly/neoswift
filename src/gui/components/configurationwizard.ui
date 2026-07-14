@@ -159,6 +159,12 @@
        <bool>true</bool>
       </property>
       <widget class="QWidget" name="wi_CopySettingsAndCache">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>468</height>
+        </size>
+       </property>
        <property name="geometry">
         <rect>
          <x>0</x>

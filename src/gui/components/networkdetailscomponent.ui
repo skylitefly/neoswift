@@ -169,7 +169,7 @@
                 </property>
                 <property name="icon">
                  <iconset resource="../../misc/misc.qrc">
-                  <normaloff>:/diagona/icons/diagona/icons/arrow-circle-225.png</normaloff>:/diagona/icons/diagona/icons/arrow-circle-225.png</iconset>
+                  <normaloff>:/ant-design/icons/ant-design/reload.svg</normaloff>:/ant-design/icons/ant-design/reload.svg</iconset>
                 </property>
                </widget>
               </item>

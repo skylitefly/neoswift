@@ -103,12 +103,6 @@
        </property>
        <item alignment="Qt::AlignRight">
         <widget class="QPushButton" name="pb_Restart">
-         <property name="styleSheet">
-          <string notr="true">/** Main window **/
-QTextEdit {
-  background-color: DimGray;
-}</string>
-         </property>
          <property name="text">
           <string>restart</string>
          </property>
@@ -271,7 +265,7 @@ QTextEdit {
   <action name="menu_SettingsDialog">
    <property name="icon">
     <iconset resource="../misc/misc.qrc">
-     <normaloff>:/pastel/icons/pastel/16/wrench-orange.png</normaloff>:/pastel/icons/pastel/16/wrench-orange.png</iconset>
+     <normaloff>:/ant-design/icons/ant-design/tool.svg</normaloff>:/ant-design/icons/ant-design/tool.svg</iconset>
    </property>
    <property name="text">
     <string>Modify settings</string>

@@ -67,7 +67,7 @@
       </layout>
      </widget>
      <widget class="QWidget" name="pg_Gui">
-      <layout class="QVBoxLayout" name="vl_Gui">
+      <layout class="QVBoxLayout" name="vl_Gui" stretch="1,0">
        <item>
         <widget class="swift::gui::components::CSettingsGuiComponent" name="comp_SettingsGuiGeneral"/>
        </item>

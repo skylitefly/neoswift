@@ -157,8 +157,8 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
-        <property name="styleSheet">
-         <string>color: orange; font-style: italic;</string>
+        <property name="statusRole" stdset="0">
+         <string>warning</string>
         </property>
        </widget>
       </item>
