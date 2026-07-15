@@ -10,6 +10,7 @@
 #include <QScopedPointer>
 
 #include "gui/overlaymessagesframe.h"
+#include "gui/settings/guisettings.h"
 #include "gui/swiftguiexport.h"
 
 class QWidget;
@@ -42,7 +43,11 @@ namespace swift::gui::components
         void setBackgroundUpdater(const swift::core::db::CBackgroundDataUpdater *updater);
 
     private:
+        //! Startup database loading changed
+        void loadDbDataAtStartupChanged(bool enabled);
+
         QScopedPointer<Ui::CDataSettingsComponent> ui;
+        swift::misc::CSetting<swift::gui::settings::TLoadDbDataAtStartup> m_loadDbDataAtStartup { this };
     };
 } // namespace swift::gui::components
 

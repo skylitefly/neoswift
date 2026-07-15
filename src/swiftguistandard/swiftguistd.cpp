@@ -568,6 +568,7 @@ void SwiftGuiStd::displayValidationDialog()
 void SwiftGuiStd::checkDbDataLoaded()
 {
     if (!sGui || sGui->isShuttingDown()) { return; }
+    if (!m_loadDbDataAtStartup.get()) { return; }
     Q_ASSERT_X(sGui->hasWebDataServices(), Q_FUNC_INFO, "Missing web services");
     Q_ASSERT_X(CThreadUtils::thisIsMainThread(), Q_FUNC_INFO, "Wrong thread, needs to run in main thread");
     const CEntityFlags::Entity loadEntities =
