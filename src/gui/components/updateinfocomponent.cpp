@@ -5,6 +5,7 @@
 
 #include <QDesktopServices>
 #include <QMessageBox>
+#include <QSignalBlocker>
 
 #include "ui_updateinfocomponent.h"
 
@@ -38,6 +39,10 @@ namespace swift::gui::components
         connect(ui->pb_DownloadXSwiftBus, &QPushButton::pressed, this, &CUpdateInfoComponent::downloadXSwiftBusDialog,
                 Qt::QueuedConnection);
         connect(ui->pb_DownloadInstaller, &QPushButton::pressed, this, &CUpdateInfoComponent::downloadInstallerDialog,
+                Qt::QueuedConnection);
+        connect(ui->cb_Platforms, &QComboBox::currentTextChanged, this, &CUpdateInfoComponent::platformChanged,
+                Qt::QueuedConnection);
+        connect(ui->cb_Channels, &QComboBox::currentTextChanged, this, &CUpdateInfoComponent::channelChanged,
                 Qt::QueuedConnection);
 
         // use version signal as trigger for completion
@@ -99,8 +104,10 @@ namespace swift::gui::components
         CDistributionList distributions = updateInfo.getArtifactsPilotClient().getDistributions();
         distributions.sortByStability(Qt::DescendingOrder);
 
+        const QSignalBlocker platformsBlocker(ui->cb_Platforms);
+        const QSignalBlocker channelsBlocker(ui->cb_Channels);
+
         int i = 0;
-        ui->cb_Platforms->disconnect();
         ui->cb_Platforms->clear();
         for (const CPlatform &platform : platforms)
         {
@@ -113,7 +120,6 @@ namespace swift::gui::components
         }
 
         i = 0;
-        ui->cb_Channels->disconnect();
         ui->cb_Channels->clear();
         for (const CDistribution &distribution : distributions)
         {
@@ -123,10 +129,6 @@ namespace swift::gui::components
         if (distributions.containsChannel(settings.front())) { ui->cb_Channels->setCurrentText(settings.front()); }
 
         this->uiSelectionChanged();
-        connect(ui->cb_Platforms, &QComboBox::currentTextChanged, this, &CUpdateInfoComponent::platformChanged,
-                Qt::QueuedConnection);
-        connect(ui->cb_Channels, &QComboBox::currentTextChanged, this, &CUpdateInfoComponent::channelChanged,
-                Qt::QueuedConnection);
 
         // emit via digest signal
         m_dsDistributionAvailable.inputSignal();

@@ -48,11 +48,6 @@ using namespace swift::gui::components;
 
 namespace
 {
-    QString firstModelSetText(const char *source)
-    {
-        return QCoreApplication::translate("CFirstModelSetComponent", source);
-    }
-
     class CCreateModelSetWizard;
 
     class CModelScanWizardPage : public QWizardPage
@@ -94,13 +89,13 @@ namespace
 
         explicit CCreateModelSetWizard(QWidget *parent = nullptr) : QWizard(parent)
         {
-            this->setWindowTitle(firstModelSetText("New Model Set Wizard"));
+            this->setWindowTitle(CFirstModelSetComponent::tr("New Model Set Wizard"));
             this->setWizardStyle(QWizard::ClassicStyle);
             this->setOption(QWizard::NoCancelButton);
 
             auto *selectPage = new QWizardPage(this);
-            selectPage->setTitle(firstModelSetText("Select Simulator"));
-            selectPage->setSubTitle(firstModelSetText("Choose the simulator this model set is for."));
+            selectPage->setTitle(CFirstModelSetComponent::tr("Select Simulator"));
+            selectPage->setSubTitle(CFirstModelSetComponent::tr("Choose the simulator this model set is for."));
             auto *selectLayout = new QVBoxLayout(selectPage);
             m_simulatorSelector = new CSimulatorSelector(selectPage);
             m_simulatorSelector->setMode(CSimulatorSelector::RadioButtons);
@@ -109,11 +104,11 @@ namespace
             this->setPage(SelectSimulator, selectPage);
 
             auto *scanPage = new CModelScanWizardPage(this);
-            scanPage->setTitle(firstModelSetText("Scan Installed Models"));
-            scanPage->setSubTitle(firstModelSetText(
+            scanPage->setTitle(CFirstModelSetComponent::tr("Scan Installed Models"));
+            scanPage->setSubTitle(CFirstModelSetComponent::tr(
                 "NeoSwift scans the selected simulator and continues automatically when models are found."));
             auto *scanLayout = new QVBoxLayout(scanPage);
-            m_scanLabel = new QLabel(firstModelSetText("Ready to scan installed models."), scanPage);
+            m_scanLabel = new QLabel(CFirstModelSetComponent::tr("Ready to scan installed models."), scanPage);
             m_scanLabel->setWordWrap(true);
             scanLayout->addWidget(m_scanLabel);
             m_ownModels = new CDbOwnModelsComponent(scanPage);
@@ -121,11 +116,11 @@ namespace
             this->setPage(ScanModels, scanPage);
 
             auto *providersPage = new CModelProvidersWizardPage(this);
-            providersPage->setTitle(firstModelSetText("Choose Model Providers"));
+            providersPage->setTitle(CFirstModelSetComponent::tr("Choose Model Providers"));
             providersPage->setSubTitle(
-                firstModelSetText("Select the model providers you want to include in this model set."));
+                CFirstModelSetComponent::tr("Select the model providers you want to include in this model set."));
             auto *providersLayout = new QVBoxLayout(providersPage);
-            m_dbOnly = new QCheckBox(firstModelSetText("Use models with DB data only"), providersPage);
+            m_dbOnly = new QCheckBox(CFirstModelSetComponent::tr("Use models with DB data only"), providersPage);
             m_dbOnly->setChecked(true);
             providersLayout->addWidget(m_dbOnly);
             m_distributors = new CDbDistributorComponent(providersPage);
@@ -134,8 +129,8 @@ namespace
             this->setPage(SelectProviders, providersPage);
 
             auto *previewPage = new CModelPreviewWizardPage(this);
-            previewPage->setTitle(firstModelSetText("Preview Model Set"));
-            previewPage->setSubTitle(firstModelSetText("Review the model set before saving it."));
+            previewPage->setTitle(CFirstModelSetComponent::tr("Preview Model Set"));
+            previewPage->setSubTitle(CFirstModelSetComponent::tr("Review the model set before saving it."));
             auto *previewLayout = new QVBoxLayout(previewPage);
             m_previewLabel = new QLabel(previewPage);
             m_previewLabel->setWordWrap(true);
@@ -151,8 +146,8 @@ namespace
                         m_scanComplete = count > 0;
                         m_scanLabel->setText(
                             count > 0 ?
-                                firstModelSetText("Model scan complete. Continuing to model providers...") :
-                                firstModelSetText("Model scan completed, but no models were found."));
+                                CFirstModelSetComponent::tr("Model scan complete. Continuing to model providers...") :
+                                CFirstModelSetComponent::tr("Model scan completed, but no models were found."));
                         if (m_scanComplete && this->currentId() == ScanModels)
                         {
                             QTimer::singleShot(0, this, [this] {
@@ -170,7 +165,7 @@ namespace
             if (!simulator.isSingleSimulator()) { return; }
 
             m_scanComplete = false;
-            m_scanLabel->setText(firstModelSetText("Scanning installed models..."));
+            m_scanLabel->setText(CFirstModelSetComponent::tr("Scanning installed models..."));
             m_ownModels->setSimulator(simulator, true);
             m_ownModels->requestModelsInBackground(simulator, false);
         }
@@ -207,7 +202,7 @@ namespace
             m_previewView->updateContainerMaybeAsync(m_previewModels);
 
             m_previewLabel->setText(
-                firstModelSetText("This will save %1 models for %2.")
+                CFirstModelSetComponent::tr("This will save %1 models for %2.")
                     .arg(m_previewModels.sizeInt())
                     .arg(simulator.toQString(true)));
         }
@@ -217,8 +212,8 @@ namespace
             const CSimulatorInfo simulator = this->selectedSimulator();
             if (!simulator.isSingleSimulator() || m_previewModels.isEmpty())
             {
-                QMessageBox::warning(this, firstModelSetText("Model Set"),
-                                     firstModelSetText(
+                QMessageBox::warning(this, CFirstModelSetComponent::tr("Model Set"),
+                                     CFirstModelSetComponent::tr(
                                          "The preview is empty. Choose another simulator or model provider."));
                 return false;
             }
@@ -228,8 +223,8 @@ namespace
             if (modelSets.getCachedModelsCount(simulator) > 0)
             {
                 const QMessageBox::StandardButton reply =
-                    QMessageBox::question(this, firstModelSetText("Model Set"),
-                                          firstModelSetText("Replace the existing model set for %1?")
+                    QMessageBox::question(this, CFirstModelSetComponent::tr("Model Set"),
+                                          CFirstModelSetComponent::tr("Replace the existing model set for %1?")
                                               .arg(simulator.toQString(true)),
                                           QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
                 if (reply != QMessageBox::Yes) { return false; }
@@ -238,7 +233,7 @@ namespace
             const CStatusMessage status = modelSets.setCachedModels(m_previewModels, simulator);
             if (status.isFailure())
             {
-                QMessageBox::warning(this, firstModelSetText("Model Set"), status.getMessage());
+                QMessageBox::warning(this, CFirstModelSetComponent::tr("Model Set"), status.getMessage());
                 return false;
             }
             return true;
@@ -266,8 +261,8 @@ namespace
     {
         auto *w = static_cast<CCreateModelSetWizard *>(this->wizard());
         if (w->hasScannedModels()) { return true; }
-        QMessageBox::warning(w, firstModelSetText("Model Scan"),
-                             firstModelSetText(
+        QMessageBox::warning(w, CFirstModelSetComponent::tr("Model Scan"),
+                             CFirstModelSetComponent::tr(
                                  "No models were found yet. Wait for the scan to finish or check your simulator model paths."));
         return false;
     }
@@ -304,15 +299,15 @@ namespace swift::gui::components
         ui->gl_FirstModelSet->hide();
 
         auto *overviewLabel = new QLabel(
-            firstModelSetText(
+            CFirstModelSetComponent::tr(
                 "Create one model set for each simulator you use. The matching engine uses the saved model set for the selected simulator."),
             this);
         overviewLabel->setWordWrap(true);
 
         m_modelSetTable = new QTableWidget(0, 4, this);
         m_modelSetTable->setHorizontalHeaderLabels(
-            { firstModelSetText("Simulator"), firstModelSetText("Models"), firstModelSetText("Updated"),
-              firstModelSetText("File") });
+            { CFirstModelSetComponent::tr("Simulator"), CFirstModelSetComponent::tr("Models"),
+              CFirstModelSetComponent::tr("Updated"), CFirstModelSetComponent::tr("File") });
         m_modelSetTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
         m_modelSetTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
         m_modelSetTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
@@ -322,8 +317,8 @@ namespace swift::gui::components
         m_modelSetTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
         m_modelSetTable->verticalHeader()->setVisible(false);
 
-        m_pbAddModelSet = new QPushButton(firstModelSetText("Add"), this);
-        m_pbDeleteModelSet = new QPushButton(firstModelSetText("Delete"), this);
+        m_pbAddModelSet = new QPushButton(CFirstModelSetComponent::tr("Add"), this);
+        m_pbDeleteModelSet = new QPushButton(CFirstModelSetComponent::tr("Delete"), this);
         m_pbDeleteModelSet->setEnabled(false);
 
         auto *buttonLayout = new QHBoxLayout;
@@ -418,8 +413,9 @@ namespace swift::gui::components
         if (!simulator.isSingleSimulator()) { return; }
 
         const QMessageBox::StandardButton reply =
-            QMessageBox::question(this->mainWindow(), firstModelSetText("Delete Model Set"),
-                                  firstModelSetText("Delete the model set for %1?").arg(simulator.toQString(true)),
+            QMessageBox::question(this->mainWindow(), CFirstModelSetComponent::tr("Delete Model Set"),
+                                  CFirstModelSetComponent::tr("Delete the model set for %1?")
+                                      .arg(simulator.toQString(true)),
                                   QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
         if (reply != QMessageBox::Yes) { return; }
 

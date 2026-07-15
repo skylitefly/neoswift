@@ -1498,93 +1498,93 @@ p, li { white-space: pre-wrap; }
         <translation>音频设置</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="32"/>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="109"/>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="130"/>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="141"/>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="152"/>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="277"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="38"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="115"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="136"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="147"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="158"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="283"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="43"/>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="380"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="49"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="386"/>
         <source>In</source>
         <translation>输入</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="50"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="56"/>
         <source>Info</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="67"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="73"/>
         <source>Out</source>
         <translation>输出</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="74"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="80"/>
         <source>Disable realistic audio simulation</source>
         <translation>禁用仿真音频模拟</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="84"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="90"/>
         <source>extra info goes here</source>
         <translation>额外信息显示在此处</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="123"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="129"/>
         <source>Test</source>
         <translation>测试</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="163"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="169"/>
         <source>Out Master</source>
         <translation>主输出音量</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="170"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="176"/>
         <source>Out COM1</source>
         <translation>COM1 输出音量</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="177"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="183"/>
         <source>Out COM2</source>
         <translation>COM2 输出音量</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="224"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="230"/>
         <source>Rx1</source>
         <translation>接收1</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="231"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="237"/>
         <source>Tx1</source>
         <translation>发射1</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="238"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="244"/>
         <source>Rx2</source>
         <translation>接收2</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="245"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="251"/>
         <source>Tx2</source>
         <translation>发射2</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="306"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="312"/>
         <source>Loopback, test sound in- to output</source>
         <translation>环回，将输入音频直接发送到输出</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="346"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="352"/>
         <source>Output</source>
         <translation>输出</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="363"/>
+        <location filename="../src/gui/components/audiodevicevolumesetupcomponent.ui" line="369"/>
         <source>Input</source>
         <translation>输入</translation>
     </message>
@@ -1597,92 +1597,92 @@ p, li { white-space: pre-wrap; }
         <translation>通知</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="56"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="62"/>
         <source>AFV click</source>
         <translation>AFV 提示音</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="63"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="69"/>
         <source>Notifications</source>
         <translation>通知</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="66"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="72"/>
         <source>Volume:</source>
         <translation>音量：</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="73"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="79"/>
         <source> volume 25-100 (notifications)</source>
         <translation>音量 25-100（通知）</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="104"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="116"/>
         <source>your private sound directory</source>
         <translation>您的私人音效目录</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="111"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="123"/>
         <source>reset</source>
         <translation>重置</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="118"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="130"/>
         <source>[...]</source>
         <translation>[...]</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="128"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="140"/>
         <source>Text message on ATC frequency</source>
         <translation>ATC 频道上的文本消息</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="135"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="147"/>
         <source>Text message on UNICOM</source>
         <translation>UNICOM 上的文本消息</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="142"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="154"/>
         <source>Text message mentions my callsign</source>
         <translation>提及我的呼号的文本消息</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="149"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="161"/>
         <source>AFV blocking sound when more than station transmits</source>
         <translation>多个席位同时发射时的 AFV 阻塞音</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="156"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="168"/>
         <source>Private text message</source>
         <translation>私信（.msg）</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="163"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="175"/>
         <source>Dir.:</source>
         <translation>目录：</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="170"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="182"/>
         <source>PTT click (key down)</source>
         <translation>PTT 按下</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="177"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="189"/>
         <source>Supervisor text message</source>
         <translation>Supervisor 的文本消息</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="184"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="196"/>
         <source>PTT click (key up)</source>
         <translation>PTT 松开</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="191"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="203"/>
         <source>Login</source>
         <translation>登录</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/audionotificationcomponent.ui" line="198"/>
+        <location filename="../src/gui/components/audionotificationcomponent.ui" line="210"/>
         <source>Logoff</source>
         <translation>登出</translation>
     </message>
@@ -1887,12 +1887,12 @@ p, li { white-space: pre-wrap; }
         <translation>设备和音量</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/cockpitinfoareacomponent.ui" line="125"/>
+        <location filename="../src/gui/components/cockpitinfoareacomponent.ui" line="165"/>
         <source>Notifications</source>
         <translation>通知</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/cockpitinfoareacomponent.ui" line="198"/>
+        <location filename="../src/gui/components/cockpitinfoareacomponent.ui" line="238"/>
         <source>Distributed audio</source>
         <translation>分离音频</translation>
     </message>
@@ -2016,85 +2016,80 @@ p, li { white-space: pre-wrap; }
         <translation>从过往版本中导入设置</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="194"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="200"/>
         <source>Configure Flight Networks</source>
         <translation>配置连飞平台</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="197"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="203"/>
         <source>Add the flight networks you want to use. NeoSwift configures networks automatically from their domain.</source>
         <translation>添加你想使用的连飞平台。NeoSwift 会通过平台域名自动配置平台。</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="226"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="232"/>
         <source>Select simulators</source>
         <translation>模拟器</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="229"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="235"/>
         <source>Which simulator(s) do you use?</source>
         <translation>你飞什么模飞？</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="258"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="264"/>
         <source>Simulator setup</source>
         <translation>模拟器配置</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="261"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="267"/>
         <source>Configure paths for each of your selected simulators. In most cases the defaults are correct.</source>
         <translation>配置启用的模拟器和映射文件的路径。在大多数情况下默认值应该是正确的。</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="290"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="296"/>
         <source>Aircraft models</source>
         <translation>配置映射</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="293"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="299"/>
         <source>Tell swift which aircraft models you have installed. You can skip this and do it later from the main window.</source>
         <translation>配置安装的映射包，你也可以跳过并以后配置</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="299"/>
-        <source>Skip, I&apos;ll set this up later</source>
-        <translation>跳过这一步</translation>
-    </message>
-    <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="317"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="316"/>
         <source>Install simulator plugin</source>
         <translation>安装模拟器插件</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="320"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="319"/>
         <source>X-Plane users: install xswiftbus into your X-Plane folder. FSX/P3D users: install the terrain probe if prompted.</source>
         <translation>对于X-Plane用户：请安装xswiftbus插件
 对于FSX/P3D用户：若提示则安装Terrain Probe插件。</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="338"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="337"/>
         <source>Install FSX terrain probe</source>
         <extracomment>FSX/P3D: Needed with the x86 legacy 32bit SimConnect</extracomment>
         <translation>安装FSX Terrain Probe</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="363"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="362"/>
         <source>XPlane: Install xswiftbus</source>
         <extracomment>Install the xswiftbus component</extracomment>
         <translation>安装 xswiftbus</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="384"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="383"/>
         <source>Hotkey bindings</source>
         <translation>热键绑定</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="387"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="386"/>
         <source>Assign keys or buttons for swift actions such as push-to-talk. Press &quot;Add&quot; and then press the key you want to use.</source>
         <translation>为 NeoSwift 操作绑定键盘按键或按钮，例如 PTT。点击“Add”，然后按下你想使用的按键。</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/configurationwizard.ui" line="411"/>
+        <location filename="../src/gui/components/configurationwizard.ui" line="410"/>
         <source>Hotkeys</source>
         <translation>热键</translation>
     </message>
@@ -2695,7 +2690,7 @@ p, li { white-space: pre-wrap; }
         <translation>外部工具</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/datasettingscomponent.ui" line="257"/>
+        <location filename="../src/gui/components/datasettingscomponent.ui" line="260"/>
         <source>Load new DB data at startup</source>
         <translation>启动时加载新的数据库数据</translation>
     </message>
@@ -4329,502 +4324,502 @@ p, li { white-space: pre-wrap; }
         <translation>飞行计划</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="101"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="107"/>
         <source>enter remarks here or use &quot;generator&quot;</source>
         <translation>在此输入备注或使用 &quot;生成器&quot;</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="113"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="574"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="119"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="580"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="116"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="122"/>
         <source>Edit Nav/Com equipment code</source>
         <translation>编辑导航/通信设备代码</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="119"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="244"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="580"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="608"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="636"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="125"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="250"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="586"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="614"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="642"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="130"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="136"/>
         <source>equip.code</source>
         <translation>设备代码</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="140"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="844"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="146"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="856"/>
         <source>Full voice</source>
         <translation>完整语音</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="145"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="849"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="151"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="861"/>
         <source>Text only</source>
         <translation>仅文本</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="150"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="854"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="156"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="866"/>
         <source>Receive voice</source>
         <translation>接收语音</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="158"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="164"/>
         <source>2. Callsign</source>
         <translation>2. 呼号</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="171"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="177"/>
         <source>pilot&apos;s name</source>
         <translation>飞行员姓名</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="174"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="180"/>
         <source>17. Pilot / homebase</source>
         <translation>17. 飞行员 / 基地</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="197"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="203"/>
         <source>9. Departure time</source>
         <translation>9. 出发时间</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="210"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="216"/>
         <source>e.g. 100 kts</source>
         <translation>例如 100 节</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="217"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="270"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="412"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="223"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="276"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="418"/>
         <source>99:99</source>
         <translation>99:99</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="220"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="273"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="415"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="226"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="279"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="421"/>
         <source>00:00</source>
         <translation>00:00</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="226"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="418"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="232"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="424"/>
         <source>hh:mm e.g. 02:30</source>
         <translation>hh:mm 例如 02:30</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="238"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="241"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="244"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="247"/>
         <source>altitude formats</source>
         <translation>高度格式</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="257"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="263"/>
         <source>Estimated time enroute</source>
         <translation>预计航路时间</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="260"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="266"/>
         <source>13. Est.time enroute</source>
         <translation>13. 预计航路时间</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="286"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="292"/>
         <source>homebase (read only)</source>
         <translation>基地（只读）</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="314"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="320"/>
         <source>e.g. DLH1331</source>
         <translation>例如 DLH1331</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="321"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="324"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="327"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="330"/>
         <source>Synchronize with simulator</source>
         <translation>与模拟器同步</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="338"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="344"/>
         <source>goto generator page</source>
         <translation>前往生成器页面</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="341"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="347"/>
         <source>goto gen.</source>
         <translation>前往生成器</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="348"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="354"/>
         <source>Sent</source>
         <translation>已发送</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="355"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="361"/>
         <source>copy from generator page</source>
         <translation>从生成器页面复制</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="358"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="364"/>
         <source>from gen.</source>
         <translation>来自生成器</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="365"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="371"/>
         <source>Aircraft type</source>
         <translation>机型类型</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="368"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="374"/>
         <source>3. Aircraft</source>
         <translation>3. 机型</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="381"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="387"/>
         <source>1. Type</source>
         <translation>1. 类型</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="389"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="395"/>
         <source>IFR</source>
         <translation>IFR</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="394"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="400"/>
         <source>VFR</source>
         <translation>VFR</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="399"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="405"/>
         <source>SVFR</source>
         <translation>SVFR</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="404"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="410"/>
         <source>DVFR</source>
         <translation>DVFR</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="425"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="431"/>
         <source>12. Destination airport</source>
         <translation>12. 目的地机场</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="435"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="441"/>
         <source>ICAO, e.g. A321</source>
         <translation>ICAO，例如 A321</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="445"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="508"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="518"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="451"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="514"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="524"/>
         <source>ICAO, e.g. EDDF</source>
         <translation>ICAO，例如 EDDF</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="452"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="458"/>
         <source>10. Cruising altitude</source>
         <translation>10. 巡航高度</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="462"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="468"/>
         <source>True airspeed</source>
         <translation>真空速</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="465"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="471"/>
         <source>7. TAS</source>
         <translation>7. 真空速</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="475"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="481"/>
         <source>8. Departure airport</source>
         <translation>8. 出发机场</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="488"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="494"/>
         <source>pilot&apos;s name (read only)</source>
         <translation>飞行员姓名（只读）</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="495"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="501"/>
         <source>14. Fuel on board</source>
         <translation>14. 机上燃油</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="525"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="531"/>
         <source>15. Alternate airport</source>
         <translation>15. 备降机场</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="535"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="541"/>
         <source>16. remarks</source>
         <translation>16. 备注</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="545"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="551"/>
         <source>sent time will go here (read only)</source>
         <translation>发送时间将显示在此处（只读）</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="552"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="558"/>
         <source>4. Wake Turbulence Category</source>
         <translation>4. 尾流湍流类别</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="559"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="565"/>
         <source>11. Route</source>
         <translation>11. 航路</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="577"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="583"/>
         <source>Edit SSR equipment code</source>
         <translation>编辑 SSR 设备代码</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="595"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="601"/>
         <source>5. NAV/COM Equipment</source>
         <translation>5. 导航/通信设备</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="602"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="605"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="608"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="611"/>
         <source>NAV/COM equipment overview</source>
         <translation>导航/通信设备概览</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="623"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="629"/>
         <source>6. SSR Equipment</source>
         <translation>6. SSR 设备</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="630"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="633"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="636"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="639"/>
         <source>SSR equipment overview</source>
         <translation>SSR 设备概览</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="675"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="681"/>
         <source>Save to disk</source>
         <translation>保存到磁盘</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="678"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="684"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="689"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="695"/>
         <source>&amp;Reset</source>
         <translation>重置(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="700"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="706"/>
         <source>Load flight plan from network</source>
         <translation>从平台加载飞行计划</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="703"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="709"/>
         <source>Download</source>
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="714"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="720"/>
         <source>Load from disk</source>
         <translation>从磁盘加载</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="717"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="723"/>
         <source>Load</source>
         <translation>加载</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="728"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="734"/>
         <source>SimBrief</source>
         <translation>SimBrief</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="735"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="741"/>
         <source>Send flight plan to network</source>
         <translation>发送飞行计划到平台</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="738"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="744"/>
         <source>Send</source>
         <translation>发送</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="749"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="755"/>
         <source>Save template</source>
         <translation>保存模板</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="756"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="762"/>
         <source>Clear template</source>
         <translation>清除模板</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="763"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="769"/>
         <source>Load template</source>
         <translation>加载模板</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="778"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="784"/>
         <source>Remarks generator</source>
         <translation>备注生成器</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="862"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="874"/>
         <source>Aircraft registration</source>
         <translation>飞机注册号</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="872"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="884"/>
         <source>Remarks</source>
         <translation>备注</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="882"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="894"/>
         <source>Final Approach Speed</source>
         <translation>最后进近速度</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="886"/>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="1046"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="898"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="1058"/>
         <source>VFR - not required</source>
         <translation>VFR - 不需要</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="891"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="903"/>
         <source>A: below 91kts</source>
         <translation>A：低于 91 节</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="896"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="908"/>
         <source>B: 91-120kts</source>
         <translation>B：91-120 节</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="901"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="913"/>
         <source>C: 121-140kts</source>
         <translation>C：121-140 节</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="906"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="918"/>
         <source>D: 141-165kts</source>
         <translation>D：141-165 节</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="911"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="923"/>
         <source>E: 166-210kts</source>
         <translation>E：166-210 节</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="919"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="931"/>
         <source>SIDs / STARs</source>
         <translation>标准仪表离场/进场程序</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="926"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="938"/>
         <source>SELCAL</source>
         <translation>SELCAL</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="936"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="948"/>
         <source>no SIDs / STARs</source>
         <translation>无 SID/STAR</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="944"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="956"/>
         <source>P0 - unrated</source>
         <translation>P0 - 未评级</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="949"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="961"/>
         <source>P1</source>
         <translation>P1</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="954"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="966"/>
         <source>P2</source>
         <translation>P2</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="959"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="971"/>
         <source>P3</source>
         <translation>P3</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="964"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="976"/>
         <source>P4</source>
         <translation>P4</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="969"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="981"/>
         <source>P5</source>
         <translation>P5</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="986"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="998"/>
         <source>generated remarks</source>
         <translation>已生成的备注</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="999"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="1011"/>
         <source>simulator related remarks</source>
         <translation>模拟器相关备注</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="1006"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="1018"/>
         <source>Airline operator</source>
         <translation>航空公司运营人</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="1016"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="1028"/>
         <source>Performance category</source>
         <translation>性能类别</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="1035"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="1047"/>
         <source>Copy over</source>
         <translation>复制覆盖</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="1051"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="1063"/>
         <source>10 miles radius</source>
         <translation>10 海里半径</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="1056"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="1068"/>
         <source>4 miles radius</source>
         <translation>4 海里半径</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="1067"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="1079"/>
         <source>Required Navigation Performance</source>
         <translation>所需导航性能</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="1077"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="1089"/>
         <source>Pilot rating</source>
         <translation>飞行员等级</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="1087"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="1099"/>
         <source>Voice capabilities</source>
         <translation>语音能力</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/flightplancomponent.ui" line="1097"/>
+        <location filename="../src/gui/components/flightplancomponent.ui" line="1109"/>
         <source>add.remarks</source>
         <translation>添加备注</translation>
     </message>
@@ -6266,8 +6261,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../src/gui/components/logincomponent.ui" line="161"/>
-        <source>color: orange; font-style: italic;</source>
-        <translation>color: orange; font-style: italic;</translation>
+        <source>warning</source>
+        <translation type="unfinished">警告</translation>
     </message>
     <message>
         <location filename="../src/gui/components/logincomponent.ui" line="205"/>
@@ -8531,22 +8526,22 @@ p, li { white-space: pre-wrap; }
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/rawfsdmessagescomponent.cpp" line="28"/>
+        <location filename="../src/gui/components/rawfsdmessagescomponent.cpp" line="29"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/rawfsdmessagescomponent.cpp" line="30"/>
+        <location filename="../src/gui/components/rawfsdmessagescomponent.cpp" line="31"/>
         <source>Truncate</source>
         <translation>截断</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/rawfsdmessagescomponent.cpp" line="32"/>
+        <location filename="../src/gui/components/rawfsdmessagescomponent.cpp" line="33"/>
         <source>Append</source>
         <translation>追加</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/rawfsdmessagescomponent.cpp" line="34"/>
+        <location filename="../src/gui/components/rawfsdmessagescomponent.cpp" line="35"/>
         <source>Timestamped</source>
         <translation>带时间戳</translation>
     </message>
@@ -8843,22 +8838,22 @@ p, li { white-space: pre-wrap; }
         <translation>映射设置</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsmatchingcomponent.ui" line="89"/>
+        <location filename="../src/gui/components/settingsmatchingcomponent.ui" line="95"/>
         <source>do matching for all models again</source>
         <translation>重新对所有模型进行映射</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsmatchingcomponent.ui" line="92"/>
+        <location filename="../src/gui/components/settingsmatchingcomponent.ui" line="98"/>
         <source> re-matching </source>
         <translation> 重新映射</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsmatchingcomponent.ui" line="99"/>
+        <location filename="../src/gui/components/settingsmatchingcomponent.ui" line="105"/>
         <source>reload</source>
         <translation>重新加载</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingsmatchingcomponent.ui" line="106"/>
+        <location filename="../src/gui/components/settingsmatchingcomponent.ui" line="112"/>
         <source>save</source>
         <translation>保存</translation>
     </message>
@@ -9017,8 +9012,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../src/gui/components/settingssimulatorbasicscomponent.ui" line="171"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/diagona/icons/diagona/icons/exclamation--frame.png&quot;/&gt; Changing model directories means you have to update your model set! Check documentation on &amp;quot;creating a model set&amp;quot;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/diagona/icons/diagona/icons/exclamation--frame.png&quot;/&gt; 更改模型目录意味着您必须更新模型集！请查阅关于 &amp;quot;创建模型集&amp;quot; 的文档。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/ant-design/icons/ant-design/warning.svg&quot;/&gt; Changing model directories means you have to update your model set! Check documentation on &amp;quot;creating a model set&amp;quot;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9848,12 +9843,12 @@ p, li { white-space: pre-wrap; }
         <translation>模拟器 API 调用</translation>
     </message>
     <message>
-        <location filename="../src/plugins/simulator/emulated/simulatoremulatedmonitordialog.ui" line="613"/>
+        <location filename="../src/plugins/simulator/emulated/simulatoremulatedmonitordialog.ui" line="619"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../src/plugins/simulator/emulated/simulatoremulatedmonitordialog.ui" line="619"/>
+        <location filename="../src/plugins/simulator/emulated/simulatoremulatedmonitordialog.ui" line="625"/>
         <source>Simulator settings</source>
         <translation>模拟器设置</translation>
     </message>
@@ -10406,67 +10401,67 @@ p, li { white-space: pre-wrap; }
         <translation>控制</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="113"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="107"/>
         <source>restart</source>
         <translation>重启</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="164"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="158"/>
         <source>DBus Mode (changing requires restart)</source>
         <translation>DBus 模式（更改需要重启）</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="195"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="189"/>
         <source>Audio/Cockpit</source>
         <translation>音频/驾驶舱</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="213"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="207"/>
         <source>advanced</source>
         <translation>高级</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="220"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="214"/>
         <source>audio</source>
         <translation>音频</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="240"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="234"/>
         <source>&amp;File</source>
         <translation>文件(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="245"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="239"/>
         <source>&amp;Help</source>
         <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="250"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="244"/>
         <source>&amp;Window</source>
         <translation>窗口(&amp;W)</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="255"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="249"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="261"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="255"/>
         <source>Internals</source>
         <translation>内部</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="277"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="271"/>
         <source>Modify settings</source>
         <translation>修改设置</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="282"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="276"/>
         <source>FSD Messages</source>
         <translation>FSD 消息</translation>
     </message>
     <message>
-        <location filename="../src/swiftcore/swiftcore.ui" line="285"/>
+        <location filename="../src/swiftcore/swiftcore.ui" line="279"/>
         <source>Raw FSD Messages</source>
         <translation>原始 FSD 消息</translation>
     </message>
@@ -10632,133 +10627,133 @@ p, li { white-space: pre-wrap; }
         <translation>数据</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="470"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="476"/>
         <source>&amp;Tools</source>
         <translation>&amp;工具</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="501"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="507"/>
         <source>P3D/FSX</source>
         <translation>P3D/FSX</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="507"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="513"/>
         <source>P3D config dirs.</source>
         <translation>P3D 配置目录</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="514"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="520"/>
         <source>FSX config dirs.</source>
         <translation>FSX 配置目录</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="524"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="530"/>
         <source>Log</source>
         <translation>日志</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="530"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="536"/>
         <source>log</source>
         <translation>日志</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="537"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="543"/>
         <source>log directory</source>
         <translation>日志目录</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="547"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="553"/>
         <source>Windows</source>
         <translation>Windows</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="553"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="559"/>
         <source>clear registry</source>
         <translation>清除注册表</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="585"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="591"/>
         <source>Start application</source>
         <translation>启动</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="606"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="612"/>
         <source>start neoswift GUI</source>
         <translation>启动 neoswift GUI</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="609"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="615"/>
         <source>neoswift GUI</source>
         <translation>neoswift GUI</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="626"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="632"/>
         <source>start neoswift core</source>
         <translation>启动 neoswift 核心</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="629"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="635"/>
         <source>neoswift core</source>
         <translation>neoswift 核心</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="646"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="652"/>
         <source>start neoswift data (the mapping tool)</source>
         <translation>启动 neoswift data（映射工具）</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="649"/>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="713"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="655"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="719"/>
         <source>mapping tool</source>
         <translation>映射工具</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="666"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="672"/>
         <source>Config</source>
         <translation>配置向导</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="679"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="685"/>
         <source>open browser for neoswift database</source>
         <translation>打开 neoswift 数据库网页</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="682"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="688"/>
         <source>goto neoswift database</source>
         <translation>前往 neoswift 数据库</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="699"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="705"/>
         <source>GUI</source>
         <translation>GUI</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="706"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="712"/>
         <source>core</source>
         <translation>核心</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="720"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="726"/>
         <source>config</source>
         <translation>配置向导</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="727"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="733"/>
         <source>goto DB</source>
         <translation>前往数据库</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="734"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="740"/>
         <source>reset window</source>
         <translation>启动时重置窗口状态</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="774"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="780"/>
         <source>back to main</source>
         <translation>返回到main</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="781"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.ui" line="787"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
@@ -10790,7 +10785,7 @@ This cannot be undone!</source>
         <translation>你确定要删除全部项吗？\n该操作无法撤销！</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.cpp" line="409"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.cpp" line="410"/>
         <source>While using the wizard no other application should run.
 Close applications and try again.
 Currently running: %1</source>
@@ -10799,12 +10794,12 @@ Currently running: %1</source>
 当前正在运行：%1</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.cpp" line="413"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.cpp" line="414"/>
         <source>Wizard</source>
         <translation>向导</translation>
     </message>
     <message>
-        <location filename="../src/swiftlauncher/swiftlauncher.cpp" line="539"/>
+        <location filename="../src/swiftlauncher/swiftlauncher.cpp" line="538"/>
         <source>Command line</source>
         <translation>命令行</translation>
     </message>
@@ -11411,7 +11406,7 @@ Currently running: %1</source>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="355"/>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="435"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="806"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="802"/>
         <source>Internals</source>
         <translation>内部</translation>
     </message>
@@ -11468,7 +11463,7 @@ Currently running: %1</source>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="90"/>
         <location filename="../src/swiftguistandard/swiftguistd.cpp" line="298"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="690"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="687"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
@@ -11487,14 +11482,14 @@ Currently running: %1</source>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="135"/>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="465"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="757"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="753"/>
         <source>Flight Plan</source>
         <translation>飞行计划</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="148"/>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="490"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="797"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="793"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
@@ -11580,55 +11575,55 @@ Currently running: %1</source>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="440"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="720"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="716"/>
         <source>Cockpit</source>
         <translation>驾驶舱</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="445"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="710"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="707"/>
         <source>Controllers / ATIS / METAR</source>
         <translation>管制员 / ATIS / METAR</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="450"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="733"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="729"/>
         <source>Aircraft</source>
         <translation>机型</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="455"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="743"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="739"/>
         <source>Users</source>
         <translation>在线用户</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="460"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="752"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="748"/>
         <source>Simulator</source>
         <translation>模拟器</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="470"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="764"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="760"/>
         <source>Models</source>
         <translation>模型</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="475"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="775"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="771"/>
         <source>Interpolation</source>
         <translation>内插</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="480"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="781"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="777"/>
         <source>Radar</source>
         <translation>雷达</translation>
     </message>
     <message>
         <location filename="../src/swiftguistandard/swiftguistd.ui" line="485"/>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="787"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="783"/>
         <source>Log</source>
         <translation>日志</translation>
     </message>
@@ -11748,7 +11743,7 @@ Currently running: %1</source>
         <translation>DBus：%1</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="421"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="422"/>
         <source>connected</source>
         <translation>已连接</translation>
     </message>
@@ -11763,12 +11758,12 @@ Currently running: %1</source>
         <translation>DBus：不可用</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="531"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="528"/>
         <source>Cannot access the keyboard. Is &quot;Input Monitoring&quot; for swift enabled?</source>
         <translation>无法访问键盘。是否已为 swift 启用&quot;输入监控&quot;？</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="829"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="824"/>
         <source>Do you want to try to reconnect? &apos;Abort&apos; will close the GUI.
 
 DBus: &apos;%1&apos;</source>
@@ -11777,7 +11772,7 @@ DBus: &apos;%1&apos;</source>
 DBus：“%1”</translation>
     </message>
     <message>
-        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="832"/>
+        <location filename="../src/swiftguistandard/swiftguistd.cpp" line="827"/>
         <source>neoswift core not reachable!</source>
         <translation>neoswift 核心无法访问！</translation>
     </message>
@@ -11795,12 +11790,12 @@ DBus：“%1”</translation>
 <context>
     <name>Transceiver</name>
     <message>
-        <location filename="../src/gui/qml/Transceiver.qml" line="70"/>
+        <location filename="../src/gui/qml/Transceiver.qml" line="79"/>
         <source>TX</source>
         <translation>TX</translation>
     </message>
     <message>
-        <location filename="../src/gui/qml/Transceiver.qml" line="79"/>
+        <location filename="../src/gui/qml/Transceiver.qml" line="90"/>
         <source>Enabled</source>
         <translation>已启用</translation>
     </message>
@@ -12133,7 +12128,7 @@ Creating mappings requires at least &apos;%2&apos;.</source>
     </message>
     <message>
         <location filename="../src/gui/components/dbloaddatadialog.cpp" line="50"/>
-        <location filename="../src/gui/components/dbloaddatadialog.cpp" line="84"/>
+        <location filename="../src/gui/components/dbloaddatadialog.cpp" line="82"/>
         <source>Done!</source>
         <translation>完成！</translation>
     </message>
@@ -12201,44 +12196,187 @@ Do you want to reload the file?</source>
 <context>
     <name>swift::gui::components::CFirstModelSetComponent</name>
     <message>
-        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="550"/>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="547"/>
         <source>DB data</source>
         <translation>数据库数据</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="551"/>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="548"/>
         <source>No DB data, models cannot be consolidated. Load anyway?</source>
         <translation>无数据库数据，无法整合模型。仍然加载？</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="560"/>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="557"/>
         <source>Model loading</source>
         <translation>模型加载</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="561"/>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="558"/>
         <source>Reload the models?
 The existing cache data will we overridden.</source>
         <translation>重新加载模型？
 现有的缓存数据将被覆盖。</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="598"/>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="595"/>
         <source>Open model directory</source>
         <translation>打开模型目录</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="626"/>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="309"/>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="623"/>
         <source>Models</source>
         <translation>模型</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="627"/>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="92"/>
+        <source>New Model Set Wizard</source>
+        <translation>新建模型集向导</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="97"/>
+        <source>Select Simulator</source>
+        <translation>选择模拟器</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="98"/>
+        <source>Choose the simulator this model set is for.</source>
+        <translation>选择此模型集对应的模拟器。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="107"/>
+        <source>Scan Installed Models</source>
+        <translation>扫描已安装模型</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="108"/>
+        <source>NeoSwift scans the selected simulator and continues automatically when models are found.</source>
+        <translation>NeoSwift 会扫描所选模拟器，找到模型后自动继续。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="111"/>
+        <source>Ready to scan installed models.</source>
+        <translation>准备扫描已安装模型。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="119"/>
+        <source>Choose Model Providers</source>
+        <translation>选择模型提供方</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="121"/>
+        <source>Select the model providers you want to include in this model set.</source>
+        <translation>选择要包含在此模型集中的模型提供方。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="123"/>
+        <source>Use models with DB data only</source>
+        <translation>仅使用带数据库资料的模型</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="132"/>
+        <source>Preview Model Set</source>
+        <translation>预览模型集</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="133"/>
+        <source>Review the model set before saving it.</source>
+        <translation>保存前预览模型集。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="149"/>
+        <source>Model scan complete. Continuing to model providers...</source>
+        <translation>模型扫描完成。正在继续到模型提供方...</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="150"/>
+        <source>Model scan completed, but no models were found.</source>
+        <translation>模型扫描完成，但没有找到模型。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="168"/>
+        <source>Scanning installed models...</source>
+        <translation>正在扫描已安装模型...</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="205"/>
+        <source>This will save %1 models for %2.</source>
+        <translation>将为 %2 保存 %1 个模型。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="215"/>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="226"/>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="236"/>
+        <source>Model Set</source>
+        <translation>模型集</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="216"/>
+        <source>The preview is empty. Choose another simulator or model provider.</source>
+        <translation>预览为空。请选择其他模拟器或模型提供方。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="227"/>
+        <source>Replace the existing model set for %1?</source>
+        <translation>替换 %1 现有的模型集？</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="264"/>
+        <source>Model Scan</source>
+        <translation>模型扫描</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="265"/>
+        <source>No models were found yet. Wait for the scan to finish or check your simulator model paths.</source>
+        <translation>尚未找到模型。请等待扫描完成，或检查模拟器模型路径。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="302"/>
+        <source>Create one model set for each simulator you use. The matching engine uses the saved model set for the selected simulator.</source>
+        <translation>为你使用的每个模拟器创建一个模型集。匹配引擎会使用所选模拟器已保存的模型集。</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="309"/>
+        <source>Simulator</source>
+        <translation>模拟器</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="310"/>
+        <source>Updated</source>
+        <translation>更新时间</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="310"/>
+        <source>File</source>
+        <translation>文件</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="320"/>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="321"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="416"/>
+        <source>Delete Model Set</source>
+        <translation>删除模型集</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="417"/>
+        <source>Delete the model set for %1?</source>
+        <translation>删除 %1 的模型集？</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="624"/>
         <source>No distributors selected, use all models?</source>
         <translation>未选择发布商，使用所有模型？</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="647"/>
+        <location filename="../src/gui/components/firstmodelsetcomponent.cpp" line="644"/>
         <source>Selection yielded no result!</source>
         <translation>选择未产生结果！</translation>
     </message>
@@ -12452,7 +12590,7 @@ Continue with this version?</source>
 <context>
     <name>swift::gui::components::CRawFsdMessagesComponent</name>
     <message>
-        <location filename="../src/gui/components/rawfsdmessagescomponent.cpp" line="193"/>
+        <location filename="../src/gui/components/rawfsdmessagescomponent.cpp" line="182"/>
         <source>Select File Directory</source>
         <translation>选择文件路径</translation>
     </message>
@@ -12535,7 +12673,7 @@ Do you want to save your changes?</source>
 <context>
     <name>swift::gui::components::CSettingsHotkeyComponent</name>
     <message>
-        <location filename="../src/gui/components/settingshotkeycomponent.cpp" line="163"/>
+        <location filename="../src/gui/components/settingshotkeycomponent.cpp" line="162"/>
         <source>The selected combination conflicts with the following %1 combination(s):
 
 </source>
@@ -12544,23 +12682,23 @@ Do you want to save your changes?</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingshotkeycomponent.cpp" line="170"/>
+        <location filename="../src/gui/components/settingshotkeycomponent.cpp" line="169"/>
         <source>
  Do you want to use it anway?</source>
         <translation>更改样式？</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingshotkeycomponent.cpp" line="171"/>
+        <location filename="../src/gui/components/settingshotkeycomponent.cpp" line="170"/>
         <source>SettingsHotkeyComponent</source>
         <translation>热键设置组件</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingshotkeycomponent.cpp" line="217"/>
+        <location filename="../src/gui/components/settingshotkeycomponent.cpp" line="216"/>
         <source>Test</source>
         <translation>测试</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/settingshotkeycomponent.cpp" line="218"/>
+        <location filename="../src/gui/components/settingshotkeycomponent.cpp" line="217"/>
         <source>Hotkey test</source>
         <translation>热键测试</translation>
     </message>
@@ -12787,22 +12925,22 @@ https://%1/.well-known/fsd-configuration.json
 <context>
     <name>swift::gui::components::CUpdateInfoComponent</name>
     <message>
-        <location filename="../src/gui/components/updateinfocomponent.cpp" line="142"/>
+        <location filename="../src/gui/components/updateinfocomponent.cpp" line="145"/>
         <source>xswiftbus &apos;%1&apos; does NOT match swift version &apos;%2&apos;, download anyway?</source>
         <translation>xswiftbus &apos;%1&apos; 与 swift 版本 &apos;%2&apos; 不匹配，仍然下载？</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/updateinfocomponent.cpp" line="144"/>
+        <location filename="../src/gui/components/updateinfocomponent.cpp" line="147"/>
         <source>Download xswiftbus</source>
         <translation>下载 xswiftbus</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/updateinfocomponent.cpp" line="166"/>
+        <location filename="../src/gui/components/updateinfocomponent.cpp" line="169"/>
         <source>Download installer</source>
         <translation>下载安装程序</translation>
     </message>
     <message>
-        <location filename="../src/gui/components/updateinfocomponent.cpp" line="167"/>
+        <location filename="../src/gui/components/updateinfocomponent.cpp" line="170"/>
         <source>The platform &apos;%1&apos; does not match your current platform &apos;%2&apos;.
 Do you want to continue?</source>
         <translation>平台“%1”与当前平台“%2”不匹配。
