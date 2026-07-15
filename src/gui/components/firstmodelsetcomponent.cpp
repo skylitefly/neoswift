@@ -96,6 +96,7 @@ namespace
         {
             this->setWindowTitle(firstModelSetText("New Model Set Wizard"));
             this->setWizardStyle(QWizard::ClassicStyle);
+            this->setOption(QWizard::NoCancelButton);
 
             auto *selectPage = new QWizardPage(this);
             selectPage->setTitle(firstModelSetText("Select Simulator"));

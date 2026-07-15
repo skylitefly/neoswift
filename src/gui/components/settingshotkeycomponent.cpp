@@ -21,7 +21,6 @@
 #include "core/context/contextapplication.h"
 #include "core/context/contextaudio.h"
 #include "core/inputmanager.h"
-#include "gui/components/configurationwizard.h"
 #include "gui/components/hotkeydialog.h"
 #include "gui/guiapplication.h"
 #include "misc/input/actionhotkeydefs.h"
@@ -225,7 +224,6 @@ namespace swift::gui::components
     bool CConfigHotkeyWizardPage::validatePage()
     {
         Q_ASSERT_X(m_config, Q_FUNC_INFO, "Missing configuration");
-        if (CConfigurationWizard::lastWizardStepSkipped(this->wizard())) { return true; }
         m_config->saveSettings();
         return true;
     }

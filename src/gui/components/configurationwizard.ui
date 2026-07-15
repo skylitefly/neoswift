@@ -29,7 +29,7 @@
    <enum>QWizard::WizardStyle::ClassicStyle</enum>
   </property>
   <property name="options">
-   <set>QWizard::WizardOption::HaveCustomButton1</set>
+   <set>QWizard::WizardOption::NoCancelButton</set>
   </property>
   <widget class="QWizardPage" name="wp_Welcome">
    <property name="title">
@@ -299,13 +299,6 @@
     <string>Tell swift which aircraft models you have installed. You can skip this and do it later from the main window.</string>
    </property>
    <layout class="QVBoxLayout" name="vl_FirstModelSet">
-    <item alignment="Qt::AlignmentFlag::AlignRight">
-     <widget class="QPushButton" name="pb_SkipFirstModelSet">
-      <property name="text">
-       <string>Skip, I'll set this up later</string>
-      </property>
-     </widget>
-    </item>
     <item>
      <widget class="swift::gui::components::CFirstModelSetComponent" name="comp_FirstModelSet">
       <property name="minimumSize">
@@ -537,22 +530,5 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections>
-  <connection>
-   <sender>pb_SkipFirstModelSet</sender>
-   <signal>clicked()</signal>
-   <receiver>CConfigurationWizard</receiver>
-   <slot>next()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>678</x>
-     <y>67</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>804</x>
-     <y>121</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

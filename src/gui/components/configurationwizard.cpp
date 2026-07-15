@@ -35,7 +35,6 @@ namespace swift::gui::components
         ui->wp_DataLoad->setConfigComponent(ui->comp_DataLoad);
         ui->wp_Hotkeys->setConfigComponent(ui->comp_Hotkeys);
         ui->comp_Hotkeys->registerDummyPttEntry();
-        this->setButtonText(CustomButton1, "skip");
 
         // Data is loaded in the background, so the data-load page must not be part of the visible flow.
         this->setStartId(Welcome);
@@ -62,13 +61,7 @@ namespace swift::gui::components
         // Silently trigger background data loading — no page visit needed
         QTimer::singleShot(500, this, [this] { ui->comp_DataLoad->loadAllFromShared(); });
 
-        const QList<int> ids = this->pageIds();
-        const auto mm = std::minmax_element(ids.begin(), ids.end());
-        m_maxId = *mm.second;
-        m_minId = *mm.first;
-
         connect(this, &QWizard::currentIdChanged, this, &CConfigurationWizard::wizardCurrentIdChanged);
-        connect(this, &QWizard::customButtonClicked, this, &CConfigurationWizard::clickedCustomButton);
         connect(this, &QWizard::rejected, this, &CConfigurationWizard::ended);
         connect(this, &QWizard::accepted, this, &CConfigurationWizard::ended);
 
@@ -85,8 +78,6 @@ namespace swift::gui::components
     }
 
     CConfigurationWizard::~CConfigurationWizard() = default;
-
-    bool CConfigurationWizard::lastStepSkipped() const { return m_skipped; }
 
     int CConfigurationWizard::nextId() const
     {
@@ -121,37 +112,11 @@ namespace swift::gui::components
         }
     }
 
-    bool CConfigurationWizard::lastWizardStepSkipped(const QWizard *standardWizard)
-    {
-        const auto *wizard = qobject_cast<const CConfigurationWizard *>(standardWizard);
-        return wizard && wizard->lastStepSkipped();
-    }
-
     void CConfigurationWizard::wizardCurrentIdChanged(int id)
     {
-        const int previousId = m_previousId;
-        const bool backward = id < previousId;
-        const bool skipped = m_skipped;
-        m_previousId = id; // update
-        m_skipped = false; // reset
-        Q_UNUSED(skipped);
-        Q_UNUSED(backward);
+        Q_UNUSED(id);
 
         this->setParentOpacity(0.5);
-        const QWizardPage *page = this->currentPage();
-        Q_UNUSED(page);
-
-        this->setOption(HaveCustomButton1, id != m_maxId && id != Welcome);
-    }
-
-    void CConfigurationWizard::clickedCustomButton(int which)
-    {
-        if (which == static_cast<int>(CustomButton1))
-        {
-            m_skipped = true;
-            this->next();
-        }
-        else { m_skipped = false; }
     }
 
     void CConfigurationWizard::ended() { this->setParentOpacity(1.0); }

@@ -48,21 +48,12 @@ namespace swift::gui::components
         //! Destructor
         ~CConfigurationWizard() override;
 
-        //! Was the last step skipped?
-        bool lastStepSkipped() const;
-
         //! \copydoc QWizard::nextId
         int nextId() const override;
-
-        //! Static version of CConfigurationWizard::lastStepSkipped
-        static bool lastWizardStepSkipped(const QWizard *standardWizard);
 
     private:
         //! The current page has changed
         void wizardCurrentIdChanged(int id);
-
-        //! Custom button was clicked
-        void clickedCustomButton(int which);
 
         //! Accepted or rejected
         void ended();
@@ -74,10 +65,6 @@ namespace swift::gui::components
         void setScreenGeometry();
 
         QScopedPointer<Ui::CConfigurationWizard> ui;
-        int m_previousId = -1;
-        int m_minId = -1;
-        int m_maxId = -1;
-        bool m_skipped = false;
         swift::misc::CSetting<swift::core::application::TEnabledSimulators> m_enabledSimulators { this };
     };
 } // namespace swift::gui::components
