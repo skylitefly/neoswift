@@ -73,7 +73,8 @@ namespace swift::misc::simulation
             ModeByFLags = ByMilOrCivilian | ByVtol,
 
             // default mode for set handling
-            ModeDefaultSet = ModelSetRemoveFailedModel | ModelVerificationAtStartup | ModelFailoverIfNoModelCanBeAdded,
+            ModeDefaultSet = ModelSetRemoveFailedModel | ModelVerificationAtStartup |
+                             ModelVerificationOnlyWarnError | ModelFailoverIfNoModelCanBeAdded,
 
             // default depending on algorithm
             ModeDefaultScore = ScoreIgnoreZeros | ScorePreferColorLiveries | ExcludeDefault | ReverseLookupDefault,
