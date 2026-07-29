@@ -448,6 +448,78 @@
         </property>
        </widget>
       </item>
+      <item row="14" column="0">
+       <widget class="QLabel" name="lbl_LowFrameRateDisconnectEnabled">
+        <property name="text">
+         <string>Low FPS disconnect</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="1">
+       <widget class="QCheckBox" name="cb_LowFrameRateDisconnectEnabled">
+        <property name="text">
+         <string>auto-disconnect when sim frame rate is too low</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="0">
+       <widget class="QLabel" name="lbl_LowFrameRateWarningMiles">
+        <property name="text">
+         <string>Low FPS warning at</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="1">
+       <widget class="QDoubleSpinBox" name="ds_LowFrameRateWarningMiles">
+        <property name="toolTip">
+         <string>Simulation lag (in track miles behind real time) at which a low frame rate warning is shown</string>
+        </property>
+        <property name="suffix">
+         <string> mi lag</string>
+        </property>
+        <property name="decimals">
+         <number>1</number>
+        </property>
+        <property name="minimum">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>20.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.500000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="0">
+       <widget class="QLabel" name="lbl_LowFrameRateDisconnectMiles">
+        <property name="text">
+         <string>Low FPS disconnect at</string>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="1">
+       <widget class="QDoubleSpinBox" name="ds_LowFrameRateDisconnectMiles">
+        <property name="toolTip">
+         <string>Simulation lag (in track miles behind real time) at which the connection is automatically dropped</string>
+        </property>
+        <property name="suffix">
+         <string> mi lag</string>
+        </property>
+        <property name="decimals">
+         <number>1</number>
+        </property>
+        <property name="minimum">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>20.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.500000000000000</double>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -509,6 +581,9 @@
   <tabstop>cs_ColorStat</tabstop>
   <tabstop>cs_ColorSup</tabstop>
   <tabstop>cb_NightTextureMode</tabstop>
+  <tabstop>cb_LowFrameRateDisconnectEnabled</tabstop>
+  <tabstop>ds_LowFrameRateWarningMiles</tabstop>
+  <tabstop>ds_LowFrameRateDisconnectMiles</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -5,8 +5,10 @@
 
 #include <vector>
 
+#include <QCheckBox>
 #include <QComboBox>
 #include <QDialogButtonBox>
+#include <QDoubleSpinBox>
 
 #include "ui_simulatorxplaneconfigwindow.h"
 
@@ -37,6 +39,13 @@ namespace swift::simplugin::xplane
 
         const CXSwiftBusSettings s = m_xSwiftBusServerSettings.getThreadLocal();
         this->setUiValues(s);
+
+        ui->ds_LowFrameRateWarningMiles->setEnabled(ui->cb_LowFrameRateDisconnectEnabled->isChecked());
+        ui->ds_LowFrameRateDisconnectMiles->setEnabled(ui->cb_LowFrameRateDisconnectEnabled->isChecked());
+        connect(ui->cb_LowFrameRateDisconnectEnabled, &QCheckBox::toggled, ui->ds_LowFrameRateWarningMiles,
+                &QDoubleSpinBox::setEnabled);
+        connect(ui->cb_LowFrameRateDisconnectEnabled, &QCheckBox::toggled, ui->ds_LowFrameRateDisconnectMiles,
+                &QDoubleSpinBox::setEnabled);
 
         connect(ui->bb_OkCancel, &QDialogButtonBox::accepted, this, &CSimulatorXPlaneConfigWindow::onSettingsAccepted);
         connect(ui->bb_OkCancel, &QDialogButtonBox::rejected, this, &CSimulatorXPlaneConfigWindow::close);
@@ -83,6 +92,9 @@ namespace swift::simplugin::xplane
         s.setTcasEnabled(ui->cb_TcasEnabled->isChecked());
         s.setTerrainProbeEnabled(ui->cb_TerrainProbeEnabled->isChecked());
         s.setLogRenderPhases(ui->cb_LogRenderPhases->isChecked());
+        s.setLowFrameRateDisconnectEnabled(ui->cb_LowFrameRateDisconnectEnabled->isChecked());
+        s.setLowFrameRateWarningTrackMiles(ui->ds_LowFrameRateWarningMiles->value());
+        s.setLowFrameRateDisconnectTrackMiles(ui->ds_LowFrameRateDisconnectMiles->value());
 
         // left, top, right, bottom, height
         s.setMessageBoxValues(
@@ -106,6 +118,9 @@ namespace swift::simplugin::xplane
         ui->cb_TcasEnabled->setChecked(settings.isTcasEnabled());
         ui->cb_TerrainProbeEnabled->setChecked(settings.isTerrainProbeEnabled());
         ui->cb_LogRenderPhases->setChecked(settings.isLogRenderPhases());
+        ui->cb_LowFrameRateDisconnectEnabled->setChecked(settings.isLowFrameRateDisconnectEnabled());
+        ui->ds_LowFrameRateWarningMiles->setValue(settings.getLowFrameRateWarningTrackMiles());
+        ui->ds_LowFrameRateDisconnectMiles->setValue(settings.getLowFrameRateDisconnectTrackMiles());
 
         const QString s = settings.getNightTextureModeQt().left(1);
         if (!s.isEmpty())
