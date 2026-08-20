@@ -447,19 +447,24 @@ namespace swift::simplugin::xplane
             // reading FPS resets average, so we only monitor over some time
             if ((m_slowTimerCalls % 5u) == 0u)
             {
-                constexpr double warningMiles = 1;
-                constexpr double disconnectMiles = 2;
                 const double previousMiles = m_trackMilesShort;
 
                 m_serviceProxy->getFrameStats(&m_averageFps, &m_simTimeRatio, &m_trackMilesShort, &m_minutesLate);
 
-                if (previousMiles < disconnectMiles && m_trackMilesShort >= disconnectMiles)
+                const CXSwiftBusSettings settings = m_xSwiftBusServerSettings.getThreadLocal();
+                if (settings.isLowFrameRateDisconnectEnabled())
                 {
-                    emit insufficientFrameRateDetected(true);
-                }
-                else if (previousMiles < warningMiles && m_trackMilesShort >= warningMiles)
-                {
-                    emit insufficientFrameRateDetected(false);
+                    const double warningMiles = settings.getLowFrameRateWarningTrackMiles();
+                    const double disconnectMiles = settings.getLowFrameRateDisconnectTrackMiles();
+
+                    if (previousMiles < disconnectMiles && m_trackMilesShort >= disconnectMiles)
+                    {
+                        emit insufficientFrameRateDetected(true);
+                    }
+                    else if (previousMiles < warningMiles && m_trackMilesShort >= warningMiles)
+                    {
+                        emit insufficientFrameRateDetected(false);
+                    }
                 }
             }
         }

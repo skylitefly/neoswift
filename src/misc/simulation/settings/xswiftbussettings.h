@@ -78,6 +78,24 @@ namespace swift::misc::simulation::settings
         //! \copydoc CXSwiftBusSettingsQtFree::parseXSwiftBusString
         void parseXSwiftBusStringQt(const QString &json) { this->parseXSwiftBusString(json.toStdString()); }
 
+        //! Automatically disconnect from the network when X-Plane's frame rate is too low to keep up with real time?
+        bool isLowFrameRateDisconnectEnabled() const { return m_lowFrameRateDisconnectEnabled; }
+
+        //! \copydoc isLowFrameRateDisconnectEnabled
+        void setLowFrameRateDisconnectEnabled(bool enabled) { m_lowFrameRateDisconnectEnabled = enabled; }
+
+        //! Simulation lag (in track miles behind real time) at which a low frame rate warning is shown
+        double getLowFrameRateWarningTrackMiles() const { return m_lowFrameRateWarningTrackMiles; }
+
+        //! \copydoc getLowFrameRateWarningTrackMiles
+        void setLowFrameRateWarningTrackMiles(double miles) { m_lowFrameRateWarningTrackMiles = miles; }
+
+        //! Simulation lag (in track miles behind real time) at which the connection is automatically dropped
+        double getLowFrameRateDisconnectTrackMiles() const { return m_lowFrameRateDisconnectTrackMiles; }
+
+        //! \copydoc getLowFrameRateDisconnectTrackMiles
+        void setLowFrameRateDisconnectTrackMiles(double miles) { m_lowFrameRateDisconnectTrackMiles = miles; }
+
         //! Sets both timestamps
         void setCurrentUtcTime() override;
 
@@ -92,6 +110,10 @@ namespace swift::misc::simulation::settings
         void objectUpdated() override;
 
     private:
+        bool m_lowFrameRateDisconnectEnabled = true; //!< auto-disconnect on sustained low frame rate?
+        double m_lowFrameRateWarningTrackMiles = 1.0; //!< lag (track miles) at which a warning is shown
+        double m_lowFrameRateDisconnectTrackMiles = 2.0; //!< lag (track miles) at which auto-disconnect happens
+
         SWIFT_METACLASS(
             CXSwiftBusSettings,
             SWIFT_METAMEMBER(dBusServerAddress),
@@ -106,6 +128,9 @@ namespace swift::misc::simulation::settings
             SWIFT_METAMEMBER(logRenderPhases),
             SWIFT_METAMEMBER(tcasEnabled),
             SWIFT_METAMEMBER(terrainProbeEnabled),
+            SWIFT_METAMEMBER(lowFrameRateDisconnectEnabled),
+            SWIFT_METAMEMBER(lowFrameRateWarningTrackMiles),
+            SWIFT_METAMEMBER(lowFrameRateDisconnectTrackMiles),
             SWIFT_METAMEMBER(timestampMSecsSinceEpoch, 0, DisabledForComparison | DisabledForHashing));
     };
 
