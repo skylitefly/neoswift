@@ -55,6 +55,7 @@ constexpr int PROTOCOL_REVISION_VATSIM_VELOCITY = 101;
 //! @}
 
 class QNetworkReply;
+class QWebSocket;
 
 namespace SwiftFsdTest
 {
@@ -449,6 +450,7 @@ namespace swift::core::fsd
 
         void readDataFromSocket() { this->readDataFromSocketMaxLines(); }
         void readDataFromSocketMaxLines(int maxLines = -1);
+        void readDataFromWebSocket(const QByteArray &message);
         void parseMessage(const QString &lineRaw);
 
         QString socketErrorString(QAbstractSocket::SocketError error) const;
@@ -496,6 +498,7 @@ namespace swift::core::fsd
         void printSocketError(QAbstractSocket::SocketError socketError);
         void handleSocketError(QAbstractSocket::SocketError socketError);
         void handleSocketConnected();
+        void handleWebSocketDisconnected();
 
         void updateConnectionStatus(swift::misc::network::CConnectionStatus newStatus);
 
@@ -594,8 +597,18 @@ namespace swift::core::fsd
 
         std::shared_ptr<QTcpSocket> m_socket =
             std::make_shared<QTcpSocket>(this); //!< used TCP socket, parent needed as it runs in worker thread
+        std::shared_ptr<QWebSocket> m_webSocket;
+        QByteArray m_webSocketReadBuffer;
         void connectSocketSignals();
+        void connectWebSocketSignals();
+        bool isTransportOpen() const;
+        bool isTransportConnected() const;
+        void closeTransport();
+        void writeTransportData(const QByteArray &data);
+        QString transportLocalAddress() const;
         void initiateConnection(std::shared_ptr<QTcpSocket> rehostingSocket = {}, const QString &rehostingHost = {});
+        void initiateWebSocketConnection(std::shared_ptr<QWebSocket> socket = {}, const QString &host = {},
+                                         quint16 port = 0);
         void resolveLoadBalancing(const QString &host, std::function<void(const QString &)> callback);
         bool m_rehosting = false;
 

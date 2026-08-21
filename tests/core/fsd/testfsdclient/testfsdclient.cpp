@@ -55,6 +55,7 @@ namespace SwiftFsdTest
         void testConstructor();
         void testDeleteAtc();
         void testDeletePilot();
+        void testWebSocketFrameBuffering();
         void testTextMessage();
         void testRadioMessage();
         void testClientQueryAtis();
@@ -184,6 +185,21 @@ namespace SwiftFsdTest
         QList<QVariant> arguments = spy.takeFirst();
 
         QCOMPARE(arguments.at(0).toString(), "1234567");
+    }
+
+    void CTestFSDClient::testWebSocketFrameBuffering()
+    {
+        QSignalSpy atcSpy(m_client, &CFSDClient::deleteAtcReceived);
+        QSignalSpy pilotSpy(m_client, &CFSDClient::deletePilotReceived);
+
+        m_client->readDataFromWebSocket("#DAEDDM_OBS:1234567\r\n#DPOE");
+        QCOMPARE(atcSpy.count(), 1);
+        QCOMPARE(pilotSpy.count(), 0);
+
+        m_client->readDataFromWebSocket("HAB:7654321\r\n");
+        QCOMPARE(pilotSpy.count(), 1);
+        QCOMPARE(pilotSpy.takeFirst().at(0).toString(), "7654321");
+        QVERIFY(m_client->m_webSocketReadBuffer.isEmpty());
     }
 
     void CTestFSDClient::testTextMessage()

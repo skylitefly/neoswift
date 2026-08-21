@@ -264,6 +264,7 @@ target_link_libraries(core
             config
         PRIVATE
             Qt::Qml
+            Qt::WebSockets
             Qt::Xml
             QJsonWebToken
 )

@@ -116,7 +116,7 @@ if(MSVC)
 endif()
 
 # Find dependencies
-find_package(Qt6 REQUIRED COMPONENTS Core DBus Gui Multimedia Network OpenGL Concurrent Xml Qml Widgets Svg Test LinguistTools)
+find_package(Qt6 REQUIRED COMPONENTS Core DBus Gui Multimedia Network OpenGL Concurrent WebSockets Xml Qml Widgets Svg Test LinguistTools)
 
 add_custom_target(update_translations
     COMMAND $<TARGET_FILE:Qt6::lupdate>

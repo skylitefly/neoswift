@@ -3,5 +3,6 @@
 
 add_subdirectory(context)
 add_subdirectory(fsd)
+add_subdirectory(network)
 add_subdirectory(testconnectivity)
 #add_subdirectory(testreaders)

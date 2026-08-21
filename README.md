@@ -30,6 +30,7 @@ Every FSD protocol behavior that swift exposes is now configurable per-network, 
 - VATSIMAuth challenge behaviors
 - Per-direction flags: aircraft parts, interim positions, ground flag, visual positions
 - EuroScope sim data, ICAO equipment field format, and more
+- Native FSD over secure or unencrypted WebSocket, selected per discovered server
 - Custom AFV-compatible voice server, or disable AFV
 
 And even more:

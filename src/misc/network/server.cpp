@@ -43,11 +43,14 @@ namespace swift::misc::network
 
     QString CServer::convertToQString(bool i18n) const
     {
-        return QStringLiteral("%1 %2 %3:%4 %5 %6 accepting: %7 FSD: %8 con.since: %9")
-            .arg(m_name, m_description, m_address)
-            .arg(m_port)
-            .arg(m_user.toQString(i18n), m_ecosystem.getSystemString(), boolToYesNo(m_isAcceptingConnections),
-                 m_fsdSetup.toQString(i18n), this->isConnected() ? this->getFormattedUtcTimestampHms() : "not con.");
+        const QString endpoint =
+            this->usesWebSocket() ?
+                QStringLiteral("%1://%2:%3%4").arg(m_transport, m_address).arg(m_port).arg(m_webSocketPath) :
+                QStringLiteral("%1:%2").arg(m_address).arg(m_port);
+        return QStringLiteral("%1 %2 %3 %4 %5 accepting: %6 FSD: %7 con.since: %8")
+            .arg(m_name, m_description, endpoint, m_user.toQString(i18n), m_ecosystem.getSystemString(),
+                 boolToYesNo(m_isAcceptingConnections), m_fsdSetup.toQString(i18n),
+                 this->isConnected() ? this->getFormattedUtcTimestampHms() : "not con.");
     }
 
     const CServer &CServer::fscFsdServer()
@@ -76,7 +79,9 @@ namespace swift::misc::network
 
     bool CServer::matchesAddressPort(const CServer &server) const
     {
-        return server.getPort() == this->getPort() && server.matchesAddress(this->getAddress());
+        return server.getPort() == this->getPort() && server.getTransport() == this->getTransport() &&
+               (!this->usesWebSocket() || server.getWebSocketPath() == this->getWebSocketPath()) &&
+               server.matchesAddress(this->getAddress());
     }
 
     bool CServer::matchesAddress(const QString &address) const
@@ -174,6 +179,8 @@ namespace swift::misc::network
         case IndexDescription: return QVariant::fromValue(m_description);
         case IndexName: return QVariant::fromValue(m_name);
         case IndexPort: return QVariant::fromValue(m_port);
+        case IndexTransport: return QVariant::fromValue(m_transport);
+        case IndexWebSocketPath: return QVariant::fromValue(m_webSocketPath);
         case IndexUser: return m_user.propertyByIndex(index.copyFrontRemoved());
         case IndexFsdSetup: return m_fsdSetup.propertyByIndex(index.copyFrontRemoved());
         case IndexEcosystem: return m_ecosystem.propertyByIndex(index.copyFrontRemoved());
@@ -202,6 +209,8 @@ namespace swift::misc::network
         {
         case IndexAddress: this->setAddress(variant.value<QString>()); break;
         case IndexPort: this->setPort(variant.value<qint32>()); break;
+        case IndexTransport: this->setTransport(variant.value<QString>()); break;
+        case IndexWebSocketPath: this->setWebSocketPath(variant.value<QString>()); break;
         case IndexDescription: this->setDescription(variant.value<QString>()); break;
         case IndexName: this->setName(variant.value<QString>()); break;
         case IndexUser: m_user.setPropertyByIndex(index.copyFrontRemoved(), variant); break;
@@ -230,6 +239,8 @@ namespace swift::misc::network
             return m_fsdSetup.comparePropertyByIndex(index.copyFrontRemoved(), compareValue.getFsdSetup());
         case IndexName: return this->getName().compare(compareValue.getName(), Qt::CaseInsensitive);
         case IndexPort: return Compare::compare(this->getPort(), compareValue.getPort());
+        case IndexTransport: return this->getTransport().compare(compareValue.getTransport());
+        case IndexWebSocketPath: return this->getWebSocketPath().compare(compareValue.getWebSocketPath());
         case IndexUser: return this->getUser().comparePropertyByIndex(index.copyFrontRemoved(), compareValue.getUser());
         case IndexEcosystem:
             return this->getEcosystem().comparePropertyByIndex(index.copyFrontRemoved(), compareValue.getEcosystem());
@@ -266,6 +277,32 @@ namespace swift::misc::network
     }
 
     void CServer::setAddress(const QString &address) { m_address = CObfuscation::decode(address); }
+
+    void CServer::setTransport(const QString &transport)
+    {
+        const QString normalized = transport.trimmed().toLower();
+        if (normalized == QStringLiteral("ws") || normalized == QStringLiteral("websocket-insecure"))
+        {
+            m_transport = QStringLiteral("ws");
+        }
+        else if (normalized == QStringLiteral("wss") || normalized == QStringLiteral("websocket") ||
+                 normalized == QStringLiteral("websocket-secure"))
+        {
+            m_transport = QStringLiteral("wss");
+        }
+        else { m_transport = QStringLiteral("tcp"); }
+    }
+
+    void CServer::setWebSocketPath(const QString &path)
+    {
+        const QString normalized = path.trimmed();
+        if (normalized.isEmpty())
+        {
+            m_webSocketPath = QStringLiteral("/fsd");
+            return;
+        }
+        m_webSocketPath = normalized.startsWith('/') ? normalized : QStringLiteral("/") + normalized;
+    }
 
     void CServer::setName(const QString &name) { m_name = CObfuscation::decode(name); }
 

@@ -11965,99 +11965,104 @@ DBus：“%1”</translation>
 <context>
     <name>swift::core::fsd::CFSDClient</name>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1570"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1630"/>
         <source>The requested callsign is already taken</source>
         <translation>请求的呼号已被占用</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1571"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1631"/>
         <source>The requested callsign is not valid</source>
         <translation>请求的呼号无效</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1573"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1633"/>
         <source>Wrong user ID or password, inactive account</source>
         <translation>用户 ID 或密码错误，账户未激活</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1576"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1636"/>
         <source>This server does not support our protocol version</source>
         <translation>此服务器不支持我们的协议版本</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1578"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1638"/>
         <source>The server is full</source>
         <translation>服务器已满</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1579"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1639"/>
         <source>Your user account is suspended</source>
         <translation>您的用户账户已被暂停</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1581"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1641"/>
         <source>You are not authorized to use the requested rating</source>
         <translation>您未被授权使用所请求的权限等级</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1584"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1644"/>
         <source>This software is not authorized for use on this network</source>
         <translation>此软件未获授权在此网络上使用</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1587"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1647"/>
         <source>You are not authorized to use the requested pilot rating</source>
         <translation>您未被授权使用所请求的飞行员等级</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1590"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1650"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1593"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1653"/>
         <source>Malformed packet, syntax error: &apos;%1&apos;. This can also occur if an OBS sends frequency text messages.</source>
         <translation>格式错误的数据包，语法错误：&apos;%1&apos;。如果观察员发送频率文本消息也可能出现此错误。</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1597"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1657"/>
         <source>FSD message was using an invalid callsign: %1 (%2)</source>
         <translation>FSD 消息使用了无效呼号：%1 (%2)</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1601"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1661"/>
         <source>FSD Server: no such callsign: %1 %2</source>
         <translation>FSD 服务器：不存在该呼号：%1 %2</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1604"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1664"/>
         <source>FSD Server: no flight plan</source>
         <translation>FSD 服务器：无飞行计划</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1606"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1666"/>
         <source>FSD Server: requested weather profile does not exist</source>
         <translation>FSD 服务器：请求的气象文件不存在</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1611"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1671"/>
         <source>Server says already registered: %1</source>
         <translation>服务器表示已注册：%1</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1614"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1674"/>
         <source>Server invalid control: %1</source>
         <translation>服务器无效控制：%1</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1617"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1677"/>
         <source>Server sent unknown error code: %1 (%2)</source>
         <translation>服务器发送了未知错误代码：%1 (%2)</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1620"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1680"/>
         <source>Client did not authenticate in time</source>
         <translation>客户端未及时通过身份验证</translation>
+    </message>
+    <message>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1976"/>
+        <source>WebSocket connection closed</source>
+        <translation>WebSocket 连接已关闭</translation>
     </message>
 </context>
 <context>

@@ -45,15 +45,15 @@ namespace swift::core::network
         discoverAndFetchAll(swift::misc::network::CNetwork network,
                             const swift::misc::CSlot<void(bool, const swift::misc::network::CNetwork &)> &callback);
 
+        //! Parse a servers-list JSON array into CServerList, using \a config for FSD setup
+        static swift::misc::network::CServerList parseServerList(const QJsonArray &arr,
+                                                                 const swift::misc::network::CNetworkConfig &config);
+
     signals:
         //! Emitted when a discovery attempt for a domain completes
         void discoveryCompleted(const QString &domain, bool success);
 
     private:
-        //! Parse a servers-list JSON array into CServerList, using \a config for FSD setup
-        swift::misc::network::CServerList parseServerList(const QJsonArray &arr,
-                                                          const swift::misc::network::CNetworkConfig &config) const;
-
         //! True if the domain was discovered within the last 60 seconds (rate-limit)
         bool isRateLimited(const QString &domain) const;
 
