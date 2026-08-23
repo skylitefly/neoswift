@@ -164,7 +164,7 @@ URL to a JSON file listing your FSD servers. The format is compatible with the V
 | `"ws"` | FSD over unencrypted WebSocket | `80` | `/fsd` |
 | `"wss"` | FSD over TLS WebSocket | `443` | `/fsd` |
 
-If `transport` is omitted or unrecognized, the client uses TCP for compatibility with existing server lists. The alias `"websocket"` is accepted as `"wss"`. WebSocket entries may set `path` when the endpoint is not `/fsd`; all FSD payloads are sent in binary WebSocket frames so non-UTF-8 FSD text codecs remain intact.
+If `transport` is omitted or unrecognized, the client uses TCP for compatibility with existing server lists. WebSocket entries may set `path` when the endpoint is not `/fsd`; all FSD payloads are sent in binary WebSocket frames so non-UTF-8 FSD text codecs remain intact.
 
 Entries with `clients_connection_allowed: false` are excluded from the dropdown.
 

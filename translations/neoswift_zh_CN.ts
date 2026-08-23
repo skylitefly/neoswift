@@ -12060,7 +12060,7 @@ DBus：“%1”</translation>
         <translation>客户端未及时通过身份验证</translation>
     </message>
     <message>
-        <location filename="../src/core/fsd/fsdclient.cpp" line="1976"/>
+        <location filename="../src/core/fsd/fsdclient.cpp" line="1952"/>
         <source>WebSocket connection closed</source>
         <translation>WebSocket 连接已关闭</translation>
     </message>

@@ -9,6 +9,8 @@
  */
 
 #include <QObject>
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QSignalSpy>
 #include <QTest>
 
@@ -16,6 +18,7 @@
 
 #include "config/buildconfig.h"
 #include "core/fsd/fsdclient.h"
+#include "core/network/networkdiscoveryservice.h"
 #include "misc/aviation/flightplan.h"
 #include "misc/network/clientprovider.h"
 #include "misc/network/networkutils.h"
@@ -33,6 +36,7 @@ using namespace swift::misc::network;
 using namespace swift::misc::simulation;
 using namespace swift::config;
 using namespace swift::core::fsd;
+using namespace swift::core::network;
 
 namespace SwiftFsdTest
 {
@@ -55,6 +59,7 @@ namespace SwiftFsdTest
         void testConstructor();
         void testDeleteAtc();
         void testDeletePilot();
+        void testServerTransportDiscovery();
         void testWebSocketFrameBuffering();
         void testTextMessage();
         void testRadioMessage();
@@ -185,6 +190,35 @@ namespace SwiftFsdTest
         QList<QVariant> arguments = spy.takeFirst();
 
         QCOMPARE(arguments.at(0).toString(), "1234567");
+    }
+
+    void CTestFSDClient::testServerTransportDiscovery()
+    {
+        const QJsonArray input {
+            QJsonObject { { "name", "TCP" }, { "hostname_or_ip", "tcp.example.test" } },
+            QJsonObject { { "name", "WSS" }, { "hostname_or_ip", "wss.example.test" }, { "transport", "wss" } },
+            QJsonObject { { "name", "WS" },
+                          { "hostname_or_ip", "ws.example.test" },
+                          { "transport", "ws" },
+                          { "path", "custom-fsd" },
+                          { "port", 8080 } },
+            QJsonObject { { "name", "UNKNOWN" },
+                          { "hostname_or_ip", "unknown.example.test" },
+                          { "transport", "future-transport" } },
+        };
+
+        const CServerList servers = CNetworkDiscoveryService::parseServerList(input, CNetworkConfig {});
+        QCOMPARE(servers.size(), 4);
+        QCOMPARE(servers[0].getTransport(), QStringLiteral("tcp"));
+        QCOMPARE(servers[0].getPort(), 6809);
+        QCOMPARE(servers[1].getTransport(), QStringLiteral("wss"));
+        QCOMPARE(servers[1].getPort(), 443);
+        QCOMPARE(servers[1].getWebSocketPath(), QStringLiteral("/fsd"));
+        QCOMPARE(servers[2].getTransport(), QStringLiteral("ws"));
+        QCOMPARE(servers[2].getPort(), 8080);
+        QCOMPARE(servers[2].getWebSocketPath(), QStringLiteral("/custom-fsd"));
+        QCOMPARE(servers[3].getTransport(), QStringLiteral("tcp"));
+        QCOMPARE(servers[3].getPort(), 6809);
     }
 
     void CTestFSDClient::testWebSocketFrameBuffering()

@@ -281,15 +281,8 @@ namespace swift::misc::network
     void CServer::setTransport(const QString &transport)
     {
         const QString normalized = transport.trimmed().toLower();
-        if (normalized == QStringLiteral("ws") || normalized == QStringLiteral("websocket-insecure"))
-        {
-            m_transport = QStringLiteral("ws");
-        }
-        else if (normalized == QStringLiteral("wss") || normalized == QStringLiteral("websocket") ||
-                 normalized == QStringLiteral("websocket-secure"))
-        {
-            m_transport = QStringLiteral("wss");
-        }
+        if (normalized == QStringLiteral("ws")) { m_transport = QStringLiteral("ws"); }
+        else if (normalized == QStringLiteral("wss")) { m_transport = QStringLiteral("wss"); }
         else { m_transport = QStringLiteral("tcp"); }
     }
 

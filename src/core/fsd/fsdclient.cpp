@@ -136,9 +136,6 @@ namespace swift::core::fsd
     {
         connect(m_webSocket.get(), &QWebSocket::binaryMessageReceived, this, &CFSDClient::readDataFromWebSocket,
                 Qt::QueuedConnection);
-        connect(
-            m_webSocket.get(), &QWebSocket::textMessageReceived, this,
-            [this](const QString &message) { this->readDataFromWebSocket(message.toLatin1()); }, Qt::QueuedConnection);
         connect(m_webSocket.get(), &QWebSocket::connected, this, &CFSDClient::handleSocketConnected);
         connect(m_webSocket.get(), &QWebSocket::disconnected, this, &CFSDClient::handleWebSocketDisconnected,
                 Qt::QueuedConnection);
@@ -1690,33 +1687,13 @@ namespace swift::core::fsd
 
         SWIFT_AUDIT_X(!m_rehosting, Q_FUNC_INFO, "Rehosting already in progress");
 
-        m_rehosting = true;
         if (this->getServer().usesWebSocket())
         {
-            auto rehostingWebSocket = std::make_shared<QWebSocket>();
-            connect(rehostingWebSocket.get(), &QWebSocket::connected, this, [this, rehostingWebSocket] {
-                m_webSocket->disconnect(this);
-                m_webSocket->close();
-                m_webSocket = rehostingWebSocket;
-                m_rehosting = false;
-                rehostingWebSocket->disconnect(this);
-                connectWebSocketSignals();
-                CLogMessage(this).debug(u"Successfully switched WebSocket server");
-            });
-            connect(rehostingWebSocket.get(), &QWebSocket::errorOccurred, this, [this, rehostingWebSocket] {
-                CLogMessage(this).warning(u"Failed to switch WebSocket server: %1")
-                    << rehostingWebSocket->errorString();
-                m_rehosting = false;
-                rehostingWebSocket->disconnect(this);
-                if (!this->isTransportConnected()) { updateConnectionStatus(CConnectionStatus::Disconnected); }
-            });
-
-            const quint16 port = m_webSocket->peerPort() > 0 ? m_webSocket->peerPort() :
-                                                               static_cast<quint16>(this->getServer().getPort());
-            initiateWebSocketConnection(rehostingWebSocket, rehost.m_hostname, port);
+            CLogMessage(this).warning(u"Ignoring rehost request over WebSocket");
             return;
         }
 
+        m_rehosting = true;
         auto rehostingSocket = std::make_shared<QTcpSocket>();
         connect(rehostingSocket.get(), &QTcpSocket::connected, this, [this, rehostingSocket] {
             readDataFromSocket();
@@ -1771,19 +1748,18 @@ namespace swift::core::fsd
         });
     }
 
-    void CFSDClient::initiateWebSocketConnection(std::shared_ptr<QWebSocket> socket, const QString &host, quint16 port)
+    void CFSDClient::initiateWebSocketConnection()
     {
         const CServer server = this->getServer();
-        const auto webSocket = socket ? socket : m_webSocket;
 
         QUrl url;
         url.setScheme(server.usesSecureWebSocket() ? QStringLiteral("wss") : QStringLiteral("ws"));
-        url.setHost(host.isEmpty() ? server.getAddress() : host);
-        url.setPort(port > 0 ? port : static_cast<quint16>(server.getPort()));
+        url.setHost(server.getAddress());
+        url.setPort(static_cast<quint16>(server.getPort()));
         url.setPath(server.getWebSocketPath());
 
         CLogMessage(this).info(u"Connecting to FSD over WebSocket at '%1'") << url.toString();
-        webSocket->open(url);
+        m_webSocket->open(url);
     }
 
     void CFSDClient::resolveLoadBalancing(const QString &host, std::function<void(const QString &)> callback)

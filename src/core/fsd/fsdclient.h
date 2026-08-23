@@ -607,8 +607,7 @@ namespace swift::core::fsd
         void writeTransportData(const QByteArray &data);
         QString transportLocalAddress() const;
         void initiateConnection(std::shared_ptr<QTcpSocket> rehostingSocket = {}, const QString &rehostingHost = {});
-        void initiateWebSocketConnection(std::shared_ptr<QWebSocket> socket = {}, const QString &host = {},
-                                         quint16 port = 0);
+        void initiateWebSocketConnection();
         void resolveLoadBalancing(const QString &host, std::function<void(const QString &)> callback);
         bool m_rehosting = false;
 
