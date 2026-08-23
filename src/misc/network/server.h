@@ -39,7 +39,9 @@ namespace swift::misc::network
             IndexEcosystem,
             IndexIsAcceptingConnections,
             IndexServerType,
-            IndexServerTypeAsString
+            IndexServerTypeAsString,
+            IndexTransport,
+            IndexWebSocketPath
         };
 
         //! Server Type
@@ -81,6 +83,27 @@ namespace swift::misc::network
 
         //! Set address (e.g. myserver.foo.com)
         void setAddress(const QString &address);
+
+        //! Transport used for the FSD connection ("tcp", "ws", or "wss")
+        const QString &getTransport() const { return m_transport; }
+
+        //! Set the transport, normalizing aliases and falling back to TCP
+        void setTransport(const QString &transport);
+
+        //! Whether this server uses FSD over WebSocket
+        bool usesWebSocket() const
+        {
+            return m_transport == QStringLiteral("ws") || m_transport == QStringLiteral("wss");
+        }
+
+        //! Whether this server uses secure FSD over WebSocket
+        bool usesSecureWebSocket() const { return m_transport == QStringLiteral("wss"); }
+
+        //! WebSocket request path
+        const QString &getWebSocketPath() const { return m_webSocketPath; }
+
+        //! Set the WebSocket request path, defaulting to /fsd
+        void setWebSocketPath(const QString &path);
 
         //! Get user
         const CUser &getUser() const { return m_user; }
@@ -213,6 +236,8 @@ namespace swift::misc::network
         QString m_description;
         QString m_address;
         int m_port = -1;
+        QString m_transport = QStringLiteral("tcp");
+        QString m_webSocketPath = QStringLiteral("/fsd");
         CUser m_user;
         CEcosystem m_ecosystem;
         int m_serverType = static_cast<int>(Unspecified);
@@ -225,6 +250,8 @@ namespace swift::misc::network
             SWIFT_METAMEMBER(description),
             SWIFT_METAMEMBER(address),
             SWIFT_METAMEMBER(port),
+            SWIFT_METAMEMBER(transport),
+            SWIFT_METAMEMBER(webSocketPath),
             SWIFT_METAMEMBER(user),
             SWIFT_METAMEMBER(fsdSetup),
             SWIFT_METAMEMBER(ecosystem),

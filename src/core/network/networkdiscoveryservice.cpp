@@ -228,7 +228,7 @@ namespace swift::core::network
             discoverNetwork(domain, { this, onConfig });
     }
 
-    CServerList CNetworkDiscoveryService::parseServerList(const QJsonArray &arr, const CNetworkConfig &config) const
+    CServerList CNetworkDiscoveryService::parseServerList(const QJsonArray &arr, const CNetworkConfig &config)
     {
         CServerList servers;
         const CFsdSetup fsdSetup = config.toFsdSetup();
@@ -239,7 +239,6 @@ namespace swift::core::network
             if (!obj["clients_connection_allowed"].toBool(true)) { continue; }
 
             const QString hostname = obj["hostname_or_ip"].toString();
-            const int port = obj["port"].toInt(6809);
             const QString name = obj["name"].toString();
             const QString location = obj["location"].toString();
 
@@ -247,7 +246,14 @@ namespace swift::core::network
 
             // Discovered networks are configured via fsd-configuration.json.
             // Do not infer legacy VATSIM behaviour presets from the protocol value here.
+            CServer transportDefaults;
+            transportDefaults.setTransport(obj["transport"].toString());
+            const int defaultPort =
+                transportDefaults.usesWebSocket() ? (transportDefaults.usesSecureWebSocket() ? 443 : 80) : 6809;
+            const int port = obj["port"].toInt(defaultPort);
             CServer server(name, location, hostname, port, CUser(), fsdSetup, {}, CServer::FSDServer);
+            server.setTransport(transportDefaults.getTransport());
+            server.setWebSocketPath(obj["path"].toString());
             servers.push_back(server);
         }
         return servers;

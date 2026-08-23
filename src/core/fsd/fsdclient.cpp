@@ -7,6 +7,8 @@
 #include <QMetaEnum>
 #include <QNetworkReply>
 #include <QStringView>
+#include <QUrl>
+#include <QWebSocket>
 
 #include "config/buildconfig.h"
 #include "core/application.h"
@@ -92,8 +94,10 @@ namespace swift::core::fsd
     {
         // NOLINTEND(cppcoreguidelines-pro-type-member-init)
 
+        m_webSocket = std::make_shared<QWebSocket>(QString(), QWebSocketProtocol::VersionLatest, this);
         initializeMessageTypes();
         connectSocketSignals();
+        connectWebSocketSignals();
 
         m_positionUpdateTimer.setObjectName(this->objectName().append(":m_positionUpdateTimer"));
         connect(&m_positionUpdateTimer, &QTimer::timeout, this, &CFSDClient::sendPilotDataUpdate);
@@ -126,6 +130,59 @@ namespace swift::core::fsd
         connect(m_socket.get(), &QTcpSocket::connected, this, &CFSDClient::handleSocketConnected);
         connect(m_socket.get(), &QTcpSocket::errorOccurred, this, &CFSDClient::printSocketError, Qt::QueuedConnection);
         connect(m_socket.get(), &QTcpSocket::errorOccurred, this, &CFSDClient::handleSocketError, Qt::QueuedConnection);
+    }
+
+    void CFSDClient::connectWebSocketSignals()
+    {
+        connect(m_webSocket.get(), &QWebSocket::binaryMessageReceived, this, &CFSDClient::readDataFromWebSocket,
+                Qt::QueuedConnection);
+        connect(m_webSocket.get(), &QWebSocket::connected, this, &CFSDClient::handleSocketConnected);
+        connect(m_webSocket.get(), &QWebSocket::disconnected, this, &CFSDClient::handleWebSocketDisconnected,
+                Qt::QueuedConnection);
+        connect(m_webSocket.get(), &QWebSocket::errorOccurred, this, &CFSDClient::printSocketError,
+                Qt::QueuedConnection);
+        connect(m_webSocket.get(), &QWebSocket::errorOccurred, this, &CFSDClient::handleSocketError,
+                Qt::QueuedConnection);
+    }
+
+    bool CFSDClient::isTransportOpen() const
+    {
+        if (this->getServer().usesWebSocket()) { return m_webSocket->state() != QAbstractSocket::UnconnectedState; }
+        return m_socket->isOpen();
+    }
+
+    bool CFSDClient::isTransportConnected() const
+    {
+        if (this->getServer().usesWebSocket()) { return m_webSocket->isValid(); }
+        return m_socket->state() == QAbstractSocket::ConnectedState;
+    }
+
+    void CFSDClient::closeTransport()
+    {
+        if (this->getServer().usesWebSocket())
+        {
+            m_webSocket->close(QWebSocketProtocol::CloseCodeNormal, QStringLiteral("Client disconnect"));
+            m_webSocketReadBuffer.clear();
+            return;
+        }
+        m_socket->close();
+    }
+
+    void CFSDClient::writeTransportData(const QByteArray &data)
+    {
+        if (this->getServer().usesWebSocket())
+        {
+            // FSD can contain non-UTF-8 bytes, so it must always use binary WebSocket frames.
+            m_webSocket->sendBinaryMessage(data);
+            return;
+        }
+        m_socket->write(data);
+    }
+
+    QString CFSDClient::transportLocalAddress() const
+    {
+        return this->getServer().usesWebSocket() ? m_webSocket->localAddress().toString() :
+                                                   m_socket->localAddress().toString();
     }
 
 #ifdef SWIFT_VATSIM_SUPPORT
@@ -238,7 +295,7 @@ namespace swift::core::fsd
             return;
         }
 
-        if (m_socket->isOpen()) { return; }
+        if (this->isTransportOpen()) { return; }
         Q_ASSERT(!m_clientName.isEmpty());
         Q_ASSERT((m_versionMajor + m_versionMinor) > 0);
         Q_ASSERT(m_capabilities != Capabilities::None);
@@ -277,12 +334,12 @@ namespace swift::core::fsd
 
         // allow also to close if broken
         CLoginMode mode = this->getLoginMode();
-        if (m_socket->isOpen())
+        if (this->isTransportConnected())
         {
             if (mode.isPilot()) { this->sendDeletePilot(); }
             else if (mode.isObserver()) { this->sendDeleteAtc(); }
         }
-        m_socket->close();
+        this->closeTransport();
 
         this->updateConnectionStatus(CConnectionStatus::Disconnected);
         this->clearState();
@@ -788,7 +845,7 @@ namespace swift::core::fsd
         if (message.isEmpty()) { return; }
         const QByteArray bufferEncoded = m_encoder(message);
         if (m_printToConsole) { qDebug() << "FSD Sent=>" << bufferEncoded; }
-        if (!m_unitTestMode) { m_socket->write(bufferEncoded); }
+        if (!m_unitTestMode) { this->writeTransportData(bufferEncoded); }
 
         // remove CR/LF and emit
         emitRawFsdMessage(message.trimmed(), true);
@@ -953,7 +1010,7 @@ namespace swift::core::fsd
 #endif
 
             const QString userInfo = QStringLiteral("CID=") % cid % " " % m_clientName % " IP=" %
-                                     m_socket->localAddress().toString() % " SYS_UID=" % sysuid.data() % " FSVER=" %
+                                     this->transportLocalAddress() % " SYS_UID=" % sysuid.data() % " FSVER=" %
                                      m_hostApplication % " LT=" % QString::number(latitude) % " LO=" %
                                      QString::number(longitude) % " AL=" % QString::number(altitude) % " " % realName;
 
@@ -1630,6 +1687,12 @@ namespace swift::core::fsd
 
         SWIFT_AUDIT_X(!m_rehosting, Q_FUNC_INFO, "Rehosting already in progress");
 
+        if (this->getServer().usesWebSocket())
+        {
+            CLogMessage(this).warning(u"Ignoring rehost request over WebSocket");
+            return;
+        }
+
         m_rehosting = true;
         auto rehostingSocket = std::make_shared<QTcpSocket>();
         connect(rehostingSocket.get(), &QTcpSocket::connected, this, [this, rehostingSocket] {
@@ -1664,6 +1727,14 @@ namespace swift::core::fsd
     void CFSDClient::initiateConnection(std::shared_ptr<QTcpSocket> rehostingSocket, const QString &rehostingHost)
     {
         const CServer server = this->getServer();
+
+        if (!rehostingSocket && server.usesWebSocket())
+        {
+            this->initiateWebSocketConnection();
+            this->startPositionTimers();
+            return;
+        }
+
         const auto socket = rehostingSocket ? rehostingSocket : m_socket;
 
         // NOLINTBEGIN(cppcoreguidelines-init-variables)
@@ -1675,6 +1746,20 @@ namespace swift::core::fsd
             socket->connectToHost(host, port);
             if (!rehostingSocket) { this->startPositionTimers(); }
         });
+    }
+
+    void CFSDClient::initiateWebSocketConnection()
+    {
+        const CServer server = this->getServer();
+
+        QUrl url;
+        url.setScheme(server.usesSecureWebSocket() ? QStringLiteral("wss") : QStringLiteral("ws"));
+        url.setHost(server.getAddress());
+        url.setPort(static_cast<quint16>(server.getPort()));
+        url.setPath(server.getWebSocketPath());
+
+        CLogMessage(this).info(u"Connecting to FSD over WebSocket at '%1'") << url.toString();
+        m_webSocket->open(url);
     }
 
     void CFSDClient::resolveLoadBalancing(const QString &host, std::function<void(const QString &)> callback)
@@ -1853,6 +1938,20 @@ namespace swift::core::fsd
             this->sendLogin();
             this->updateConnectionStatus(CConnectionStatus::Connected);
         }
+    }
+
+    void CFSDClient::handleWebSocketDisconnected()
+    {
+        if (m_rehosting || this->getConnectionStatus().isDisconnected() ||
+            this->getConnectionStatus().isDisconnecting())
+        {
+            return;
+        }
+
+        const QString error =
+            m_webSocket->closeReason().isEmpty() ? tr("WebSocket connection closed") : m_webSocket->closeReason();
+        emit this->severeNetworkError(error);
+        this->disconnectFromServer();
     }
 
     void CFSDClient::updateConnectionStatus(CConnectionStatus newStatus)
@@ -2215,10 +2314,25 @@ namespace swift::core::fsd
         }
     }
 
+    void CFSDClient::readDataFromWebSocket(const QByteArray &message)
+    {
+        if (message.isEmpty()) { return; }
+        m_webSocketReadBuffer.append(message);
+
+        qsizetype newline = -1;
+        while ((newline = m_webSocketReadBuffer.indexOf('\n')) >= 0)
+        {
+            const QByteArray dataEncoded = m_webSocketReadBuffer.left(newline + 1);
+            m_webSocketReadBuffer.remove(0, newline + 1);
+            if (!dataEncoded.trimmed().isEmpty()) { this->parseMessage(m_decoder(dataEncoded)); }
+        }
+    }
+
     QString CFSDClient::socketErrorString(QAbstractSocket::SocketError error) const
     {
         QString e = CFSDClient::socketErrorToQString(error);
-        if (!m_socket->errorString().isEmpty()) { e += QStringLiteral(": ") % m_socket->errorString(); }
+        const QString detail = this->getServer().usesWebSocket() ? m_webSocket->errorString() : m_socket->errorString();
+        if (!detail.isEmpty()) { e += QStringLiteral(": ") % detail; }
         return e;
     }
 

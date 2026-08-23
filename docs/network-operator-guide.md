@@ -150,12 +150,23 @@ URL to a JSON file listing your FSD servers. The format is compatible with the V
     "location": "Frankfurt, Germany",
     "name": "EU-WEST",
     "clients_connection_allowed": true,
+    "transport": "tcp",
     "port": 6809
   }
 ]
 ```
 
-The `port` field defaults to `6809` if omitted. Entries with `clients_connection_allowed: false` are excluded from the dropdown.
+`transport` controls how the client reaches the FSD server:
+
+| Value | Connection | Default port | Default path |
+|-------|------------|--------------|--------------|
+| `"tcp"` | Raw FSD over TCP | `6809` | — |
+| `"ws"` | FSD over unencrypted WebSocket | `80` | `/fsd` |
+| `"wss"` | FSD over TLS WebSocket | `443` | `/fsd` |
+
+If `transport` is omitted or unrecognized, the client uses TCP for compatibility with existing server lists. WebSocket entries may set `path` when the endpoint is not `/fsd`; all FSD payloads are sent in binary WebSocket frames so non-UTF-8 FSD text codecs remain intact.
+
+Entries with `clients_connection_allowed: false` are excluded from the dropdown.
 
 ---
 
@@ -299,6 +310,7 @@ The file at `fsd.servers_url` must be a JSON array:
     "location": "New York, USA",
     "name": "US-EAST",
     "clients_connection_allowed": true,
+    "transport": "tcp",
     "port": 6809
   },
   {
@@ -307,7 +319,9 @@ The file at `fsd.servers_url` must be a JSON array:
     "location": "London, UK",
     "name": "EU-WEST",
     "clients_connection_allowed": true,
-    "port": 6809
+    "transport": "wss",
+    "port": 443,
+    "path": "/fsd"
   }
 ]
 ```

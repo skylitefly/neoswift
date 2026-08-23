@@ -124,7 +124,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{ env.qt_version }}
-          modules: 'qtmultimedia'
+          modules: 'qtmultimedia qtwebsockets'
           cache: true
       - name: Install dependencies
         if: ${{ steps.check_need_clang_tidy.outputs.should_run_clang_tidy == 'true' }}
@@ -173,7 +173,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{ env.qt_version }}
-          modules: 'qtmultimedia'
+          modules: 'qtmultimedia qtwebsockets'
           cache: true
       - name: Cache InstallBuilder
         id: cache-bitrock
@@ -266,7 +266,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{ env.qt_version }}
-          modules: 'qtmultimedia'
+          modules: 'qtmultimedia qtwebsockets'
           arch: win64_msvc2022_64
           cache: true
       - name: Install Qt debug info
@@ -365,7 +365,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{ env.qt_version }}
-          modules: 'qtmultimedia'
+          modules: 'qtmultimedia qtwebsockets'
           cache: true
       - name: Cache InstallBuilder
         id: cache-bitrock
