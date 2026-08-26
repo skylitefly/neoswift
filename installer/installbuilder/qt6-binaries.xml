@@ -34,6 +34,9 @@
                     <origin>../../dist/bin/Qt6Svg.dll</origin>
                 </distributionFile>
                 <distributionFile>
+                    <origin>../../dist/bin/Qt6WebSockets.dll</origin>
+                </distributionFile>
+                <distributionFile>
                     <origin>../../dist/bin/Qt6Widgets.dll</origin>
                 </distributionFile>
                 <distributionFile>
@@ -91,6 +94,9 @@
                     <origin>../../dist/lib/libQt6Svg.so.6</origin>
                 </distributionFile>
                 <distributionFile>
+                    <origin>../../dist/lib/libQt6WebSockets.so.6</origin>
+                </distributionFile>
+                <distributionFile>
                     <origin>../../dist/lib/libQt6Widgets.so.6</origin>
                 </distributionFile>
                 <distributionFile>
@@ -137,6 +143,9 @@
                 </distributionDirectory>
                 <distributionDirectory>
                     <origin>../../dist/lib/QtSvg.framework</origin>
+                </distributionDirectory>
+                <distributionDirectory>
+                    <origin>../../dist/lib/QtWebSockets.framework</origin>
                 </distributionDirectory>
                 <distributionDirectory>
                     <origin>../../dist/lib/QtWidgets.framework</origin>
