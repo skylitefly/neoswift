@@ -20,6 +20,7 @@ copy_framework(QtOpenGL)
 copy_framework(QtQml)
 copy_framework(QtPrintSupport)
 copy_framework(QtSvg)
+copy_framework(QtWebSockets)
 copy_framework(QtWidgets)
 copy_framework(QtXml)
 
