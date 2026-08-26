@@ -1,0 +1,9 @@
+{
+  "name": "neoswift",
+  "user": "ubuntu",
+  "install": "bash .cursor/cloud-install.sh",
+  "repositoryDependencies": [
+    "github.com/skylitefly/neoswift-externals",
+    "github.com/skylitefly/rustfsd"
+  ]
+}
